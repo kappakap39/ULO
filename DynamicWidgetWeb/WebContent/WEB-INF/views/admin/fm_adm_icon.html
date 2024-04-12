@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Admin Icon fragment Page</title>
+<meta name="description" content="Bootstrap Metro Dashboard" />
+<meta name="author" content="Topkung" />
+<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+<!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- end: Mobile Specific -->
+
+</head>
+<body>
+	<div th:fragment="main">
+		<div class="row-fluid">
+			<div class="box span12">
+				<div class="box-header" id="main-admin-toggler">
+					<h2>
+						<a href="#" title="Click to Hide/Show icons" data-rel="tooltip" class=""> <i class="halflings-icon hand-top"></i>
+						</a> <span class="break"></span>Administrator Main
+					</h2>
+				</div>
+				<div class="box-content" id="main-admin-content">
+					<a class="quick-button span2" id="admin-dashboard-link"> <i class="icon-dashboard"></i>
+						<p>Dashboard</p> <span class="notification green">1</span>
+					</a> 
+					<a class="quick-button span2"> <i class="icon-group"></i>
+						<p>Users</p> <span class="notification blue">7</span>
+					</a> 
+					<a class="quick-button span2"> <i class="icon-comments-alt"></i>
+						<p>Comments</p> <span class="notification green">4</span>
+					</a> 
+					<a class="quick-button span2"> <i class="icon-beaker"></i>
+						<p>Projects</p>
+					</a> 
+					<a class="quick-button span2"> <i class="icon-bullhorn"></i>
+						<p>Notifications</p> <span class="notification yellow">7</span>
+					</a> 
+					<a class="quick-button span2"> <i class="icon-cogs"></i>
+						<p>Settings</p>
+					</a>
+					<div class="clearfix"></div>
+				</div>
+
+				<script>
+					//<![CDATA[
+					$('#main-admin-toggler').click(function() {
+						$('#main-admin-content').toggle('fast');
+					});
+					//]]>
+				</script>
+			</div>
+			<!--/span-->
+
+		</div>
+		<!--/row-->
+	</div>
+</body>
+</html>

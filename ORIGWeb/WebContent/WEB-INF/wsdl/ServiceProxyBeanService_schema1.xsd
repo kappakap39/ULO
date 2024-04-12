@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema targetNamespace="http://webservice.ias.eaf.com/" version="1.0" xmlns:tns="http://webservice.ias.eaf.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="accessObject" type="tns:accessObject"/>
+
+  <xs:element name="accessObjectResponse" type="tns:accessObjectResponse"/>
+
+  <xs:element name="changePassword" type="tns:changePassword"/>
+
+  <xs:element name="changePasswordResponse" type="tns:changePasswordResponse"/>
+
+  <xs:element name="getAccessOfObjectRole" type="tns:getAccessOfObjectRole"/>
+
+  <xs:element name="getAccessOfObjectRoleResponse" type="tns:getAccessOfObjectRoleResponse"/>
+
+  <xs:element name="getAccessOfObjectUser" type="tns:getAccessOfObjectUser"/>
+
+  <xs:element name="getAccessOfObjectUserResponse" type="tns:getAccessOfObjectUserResponse"/>
+
+  <xs:element name="getAuthentication" type="tns:getAuthentication"/>
+
+  <xs:element name="getAuthenticationResponse" type="tns:getAuthenticationResponse"/>
+
+  <xs:element name="getExcludeUser" type="tns:getExcludeUser"/>
+
+  <xs:element name="getExcludeUserResponse" type="tns:getExcludeUserResponse"/>
+
+  <xs:element name="getFirstName" type="tns:getFirstName"/>
+
+  <xs:element name="getFirstNameResponse" type="tns:getFirstNameResponse"/>
+
+  <xs:element name="getIncludeUser" type="tns:getIncludeUser"/>
+
+  <xs:element name="getIncludeUserResponse" type="tns:getIncludeUserResponse"/>
+
+  <xs:element name="getObjectInRole" type="tns:getObjectInRole"/>
+
+  <xs:element name="getObjectInRoleResponse" type="tns:getObjectInRoleResponse"/>
+
+  <xs:element name="getObjectInUser" type="tns:getObjectInUser"/>
+
+  <xs:element name="getObjectInUserResponse" type="tns:getObjectInUserResponse"/>
+
+  <xs:element name="getParentOfRole" type="tns:getParentOfRole"/>
+
+  <xs:element name="getParentOfRoleResponse" type="tns:getParentOfRoleResponse"/>
+
+  <xs:element name="getRole" type="tns:getRole"/>
+
+  <xs:element name="getRoleResponse" type="tns:getRoleResponse"/>
+
+  <xs:element name="getSizeOfRole" type="tns:getSizeOfRole"/>
+
+  <xs:element name="getSizeOfRoleResponse" type="tns:getSizeOfRoleResponse"/>
+
+  <xs:element name="getSurName" type="tns:getSurName"/>
+
+  <xs:element name="getSurNameResponse" type="tns:getSurNameResponse"/>
+
+  <xs:element name="getSystemID" type="tns:getSystemID"/>
+
+  <xs:element name="getSystemIDResponse" type="tns:getSystemIDResponse"/>
+
+  <xs:complexType name="getObjectInRole">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="arg0" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getObjectInRoleResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getIncludeUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getIncludeUserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getAccessOfObjectUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getAccessOfObjectUserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getAccessOfObjectRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getAccessOfObjectRoleResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getObjectInUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getObjectInUserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getFirstName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getFirstNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getSurName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getSurNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getSizeOfRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getSizeOfRoleResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="accessObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg3" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="accessObjectResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getSystemID">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getSystemIDResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getExcludeUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getExcludeUserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getAuthentication">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getAuthenticationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getParentOfRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getParentOfRoleResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getRoleResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="changePassword">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="changePasswordResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

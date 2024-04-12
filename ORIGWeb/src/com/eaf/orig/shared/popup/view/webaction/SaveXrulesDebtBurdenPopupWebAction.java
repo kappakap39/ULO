@@ -1,0 +1,184 @@
+/*
+ * Created on Nov 13, 2007
+ * Created by Sankom Sanpunya
+ * 
+ * Copyright (c) 2007 Avalant Co.,Ltd.
+ * 20 North Sathorn Road, 15-16th Floor Bubhajit Bldg., Silom, Bangrak, Bangkok 10500, Thailand
+ * All rights reserved.
+ *
+ * This software is the confidential and prorietary infomation of
+ * Avalant Co.,Ltd. ("Confidential Infomation"). You shall not
+ * disclose such Confidential Infomation and shall use it only in
+ * accordance with the terms of the license agreement you entered into
+ * with Avalant Co.,Ltd.
+ * 
+ */
+package com.eaf.orig.shared.popup.view.webaction;
+
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Vector;
+
+import org.apache.log4j.Logger;
+
+import com.eaf.j2ee.pattern.control.FrontController;
+import com.eaf.j2ee.pattern.control.event.Event;
+import com.eaf.j2ee.pattern.control.event.EventResponse;
+import com.eaf.j2ee.pattern.view.webaction.WebAction;
+import com.eaf.j2ee.pattern.view.webaction.WebActionHelper;
+import com.eaf.orig.formcontrol.view.form.ORIGFormHandler;
+import com.eaf.orig.profile.model.UserDetailM;
+import com.eaf.orig.shared.constant.OrigConstant;
+import com.eaf.orig.shared.model.ApplicationDataM;
+import com.eaf.orig.shared.model.PersonalInfoDataM;
+import com.eaf.orig.shared.utility.ORIGUtility;
+import com.eaf.orig.shared.utility.OrigXRulesUtil;
+import com.eaf.xrules.shared.model.XRulesDebtBdDataM;
+import com.eaf.xrules.shared.model.XRulesVerificationResultDataM;
+
+/**
+ * @author Sankom
+ * 
+ * Type: SaveXrulesDebtBurdenPopupWebAction
+ */
+public class SaveXrulesDebtBurdenPopupWebAction extends WebActionHelper
+        implements WebAction {
+    private static Logger log = (Logger) Logger
+            .getLogger(SaveXrulesDebtBurdenPopupWebAction.class);
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.eaf.j2ee.pattern.view.webaction.WebAction#toEvent()
+     */
+    public Event toEvent() {
+         
+        return null;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.eaf.j2ee.pattern.view.webaction.WebAction#requiredModelRequest()
+     */
+    public boolean requiredModelRequest() {
+         
+        return false;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.eaf.j2ee.pattern.view.webaction.WebAction#processEventResponse(com.eaf.j2ee.pattern.control.event.EventResponse)
+     */
+    public boolean processEventResponse(EventResponse response) {
+         
+        return false;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.eaf.j2ee.pattern.view.webaction.WebAction#preModelRequest()
+     */
+    public boolean preModelRequest() {
+        //getData From Session
+        log.debug("SaveXrulesDebtBurdenPopupWebAction -->preModelRequest");
+        ORIGFormHandler ORIGForm = (ORIGFormHandler) getRequest().getSession()
+                .getAttribute("ORIGForm");
+        UserDetailM ORIGUser = (UserDetailM) getRequest().getSession()
+                .getAttribute("ORIGUser");
+        ApplicationDataM applicationDataM = ORIGForm.getAppForm();
+        // ApplicationDataM appForm = ORIGForm.getAppForm();
+        //get Personal
+        if (applicationDataM == null) {
+            applicationDataM = new ApplicationDataM();
+        }
+        ORIGUtility utility = new ORIGUtility();
+        String personalType = (String) getRequest().getSession().getAttribute(
+                "PersonalType");
+        PersonalInfoDataM personalInfoDataM;
+        if (OrigConstant.PERSONAL_TYPE_GUARANTOR.equals(personalType)) {
+            personalInfoDataM = (PersonalInfoDataM) getRequest().getSession(
+                    true).getAttribute("MAIN_POPUP_DATA");
+        }else if (OrigConstant.PERSONAL_TYPE_SUP_CARD.equals(personalType)) {
+    		personalInfoDataM = (PersonalInfoDataM) getRequest().getSession(true).getAttribute("SUPCARD_POPUP_DATA");
+		} else {
+            personalInfoDataM = utility.getPersonalInfoByType(ORIGForm
+                    .getAppForm(), OrigConstant.PERSONAL_TYPE_APPLICANT);
+        }
+        if (personalInfoDataM == null) {
+            personalInfoDataM = new PersonalInfoDataM();
+           // personalInfoDataM.setPersonalType(personalType);
+           // applicationDataM.getPersonalInfoVect().add(personalInfoDataM);
+        }
+        XRulesVerificationResultDataM xrulesVerificationDataM = personalInfoDataM
+                .getXrulesVerification();
+        OrigXRulesUtil origXrulesUtility = OrigXRulesUtil.getInstance();
+        BigDecimal finalDebtScore = (BigDecimal) getRequest().getSession()
+                .getAttribute("debtCalulateScore");
+        BigDecimal totalDebtIncome = (BigDecimal) getRequest().getSession()
+                .getAttribute("debtTotalIncome");
+        String debBDResult = xrulesVerificationDataM.getDEBT_BDResult();
+        HashMap hCheckBox = (HashMap) getRequest().getSession().getAttribute(
+                "debtCalulateItem");
+        if(hCheckBox==null){hCheckBox=new HashMap();}
+        if (finalDebtScore != null) {
+            xrulesVerificationDataM.setDEBT_BDScore(finalDebtScore);
+            debBDResult = origXrulesUtility.getDebtResult(personalInfoDataM.getCustomerType(),
+                    finalDebtScore, totalDebtIncome);
+            log.debug(" Debtbd result -->" + debBDResult);
+            xrulesVerificationDataM.setDEBT_BDResult(debBDResult);
+        } 
+        Vector vPersoanalInfoDataM = applicationDataM.getPersonalInfoVect();
+        for (int i = 0; i < vPersoanalInfoDataM.size(); i++) {
+            PersonalInfoDataM guarantorPersonalInfo = (PersonalInfoDataM) vPersoanalInfoDataM
+                    .get(i);
+            if (OrigConstant.PERSONAL_TYPE_GUARANTOR
+                    .equalsIgnoreCase(guarantorPersonalInfo.getPersonalType())) {
+                String checkBoxGuarantor = (String) hCheckBox
+                        .get("chkGuarantorUseFlag_" + i);
+                log.debug("chkGuarantorUseFlag_" + i+"  ="+checkBoxGuarantor);
+                XRulesVerificationResultDataM guarantorVerrifiation = guarantorPersonalInfo
+                        .getXrulesVerification();
+                if (guarantorVerrifiation != null) {
+                    XRulesDebtBdDataM guarantorDebtBdDataM = guarantorVerrifiation
+                            .getXRulesDebtBdDataM();
+                    if (guarantorDebtBdDataM != null) {
+                        if (checkBoxGuarantor != null) {
+                            guarantorDebtBdDataM.setUseFlag(checkBoxGuarantor);
+                        }else{
+                            guarantorDebtBdDataM.setUseFlag(OrigConstant.ORIG_FLAG_N);
+                        }
+                        log.debug("Set use Flag Guarantor "
+                                + guarantorPersonalInfo.getIdNo());
+                    }
+                }
+               
+            }
+        }
+        String xrulesExecuteResult = debBDResult;
+        getRequest().getSession().setAttribute("execResult",
+                xrulesExecuteResult);
+        getRequest().getSession().setAttribute("openPopup", "N");
+        //remove session
+        return true;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.eaf.j2ee.pattern.view.webaction.WebAction#getNextActivityType()
+     */
+    public int getNextActivityType() {
+         
+        return FrontController.PAGE;
+    }
+
+	@Override
+	public boolean getCSRFToken() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

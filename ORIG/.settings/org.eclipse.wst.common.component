@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="ORIG">
+        <wb-resource deploy-path="/" source-path="/" tag="defaultRootSource"/>
+        <dependent-module archiveName="ORIGEJB.jar" deploy-path="/" handle="module:/resource/ORIGEJB/ORIGEJB">
+            <dependent-object>Module_1421985654164</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ORIGWeb.war" deploy-path="/" handle="module:/resource/ORIGWeb/ORIGWeb">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ORIGEJBClient.jar" deploy-path="/lib" handle="module:/resource/ORIGEJBClient/ORIGEJBClient">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="FLPCore.jar" deploy-path="/lib" handle="module:/resource/FLPCore/FLPCore">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="FLPModel.jar" deploy-path="/lib" handle="module:/resource/FLPModel/FLPModel">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

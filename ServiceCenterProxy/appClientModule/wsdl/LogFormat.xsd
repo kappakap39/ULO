@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://kasikornbank.com/Format" targetNamespace="http://kasikornbank.com/Format">
+    
+
+    <element name="Logging" type="tns:Logging"></element>
+
+
+    
+    <complexType name="Logging">
+    	<sequence>
+    		<element name="REQ_RESP_ID" type="string"></element>
+    		<element name="SERVICE_ID" type="string"></element>
+    		<element name="ACTIVITY_TYPE" type="string"></element>
+    		<element name="TRANSACTION_ID" type="string"></element>
+    		<element name="REF_CODE" type="string"></element>
+    		<element name="RESP_CODE" type="string"></element>
+    		<element name="RESP_DESC" type="string"></element>
+    		<element name="ERROR_MESSAGE" type="string"></element>
+    		<element name="CONTENT_MSG" type="string"></element>
+    		<element name="CREATE_BY" type="string"></element>
+    		<element name="CREATE_DATE" type="string"></element>
+    	</sequence>
+    </complexType>
+</schema>

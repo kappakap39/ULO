@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Javascript Inclusion Page</title>
+<meta name="description" content="Bootstrap Metro Dashboard" />
+<meta name="author" content="Topkung" />
+<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+<!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- end: Mobile Specific -->
+
+</head>
+<body>
+	<script th:inline="javascript" th:fragment="util">
+	//<![CDATA[
+		var DashboardUtilFn = {};
+		DashboardUtilFn.refreshCache = function(){
+				var refreshUrl = /*[[@{/admin/refreshCache}]]*/;
+				$.ajax({
+					url: refreshUrl,
+					method: "GET",
+					dataType: "html",
+					success: function(data){
+						window.location.reload();
+					},
+					error: function(xhr){
+						alert('Fail to refresh cache');
+					}
+				});
+		};
+	//]]>
+	</script>
+	<script th:inline="javascript" th:fragment="constant">
+	//<![CDATA[
+		var DashboardConstant = {};
+		DashboardConstant.contextPath = /*[[@{/}]]*/'/Widget';
+	//]]>
+	</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://kasikornbank.com/Format" targetNamespace="http://kasikornbank.com/Format">
+    <element name="errorMessage" type="tns:errorMessage"></element>
+    
+    <complexType name="errorMessage">
+    	<sequence>
+    		<element name="errorCode" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="errorDomain" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="errorLevel" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="errorMessage" type="string" maxOccurs="1" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+</schema>

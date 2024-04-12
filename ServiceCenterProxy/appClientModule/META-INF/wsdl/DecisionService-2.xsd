@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://kasikornbank.com/ExpiredCache" xmlns:tns="http://kasikornbank.com/ExpiredCache">
+
+	<xsd:element name="expiredCacheRequest" type="tns:ExpiredCache"/>
+
+	<xsd:complexType name="ExpiredCache">
+		<xsd:sequence>
+			<xsd:element name="applicationGroupNo" type="xsd:string"/>
+			<xsd:element name="idNo" type="xsd:string"/>
+			<xsd:element name="lifeCycle" type="xsd:string"/>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="cacheIds" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="statusCode" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="expiredCacheResponse" type="tns:ExpiredCache"/>
+</xsd:schema>

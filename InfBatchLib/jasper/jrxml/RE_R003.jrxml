@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RE_R003" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a615ff3c-b49d-4605-b1d0-c869eec6378f">
+	<property name="ireport.zoom" value="0.683013455365071"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="P_APP_DATE" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[select * from table (PKA_RPT.f_rpt_R003_VetoDoc)]]>
+	</queryString>
+	<field name="APPLICATION_GROUP_NO" class="java.lang.String"/>
+	<field name="IDNO" class="java.lang.String"/>
+	<field name="TH_FULL_NAME" class="java.lang.String"/>
+	<field name="EN_FULL_NAME" class="java.lang.String"/>
+	<field name="CARD_TYPE_DESC" class="java.lang.String"/>
+	<field name="APPLICATION_DATE" class="java.sql.Timestamp"/>
+	<field name="AISLE_NO" class="java.lang.String"/>
+	<field name="BOX_NO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="139" y="10" width="513" height="37" uuid="3fb545d1-5f8a-4f03-a797-79598ba55f36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="true" isItalic="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[รายงานสรุปใบสมัครที่ขอพิจราณาใหม่ / Veto  Document  Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="74" splitType="Stretch">
+			<textField pattern="HH:mm:ss">
+				<reportElement x="737" y="11" width="60" height="20" isPrintInFirstWholeBand="true" uuid="85450311-0419-46cc-8ded-9812d5e68827"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="648" y="11" width="89" height="20" isPrintInFirstWholeBand="true" uuid="a8eaaa82-8a65-4aea-a1b7-35964cfab9e7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="694" y="31" width="103" height="20" isPrintInFirstWholeBand="true" uuid="a7ad3d00-8964-4f4b-93e7-e5d724e00fbb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Report ID: RE_R003]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="737" y="51" width="20" height="20" isPrintInFirstWholeBand="true" uuid="564c0d7b-e049-4b62-992f-6b0ddf80c4e3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="777" y="51" width="20" height="20" isPrintInFirstWholeBand="true" uuid="b01a7dfe-c113-4053-9458-bb3b029652e9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="757" y="51" width="20" height="20" isPrintInFirstWholeBand="true" uuid="18175185-0486-4cbe-8f39-0f1bb6bcf3ba"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[of]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="11" width="59" height="20" isPrintInFirstWholeBand="true" uuid="dc4e9ea1-36c1-4b79-a92d-8bfa44e05243"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Date as of ]]></text>
+			</staticText>
+			<textField pattern="MMM dd, yyyy">
+				<reportElement x="370" y="11" width="127" height="20" isPrintInFirstWholeBand="true" uuid="b4599f38-9009-4b5d-8e4d-12d581f50e60"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{P_APP_DATE} == null?(new java.util.Date()-1): $P{P_APP_DATE}==""?(new java.util.Date()-1):$P{P_APP_DATE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="694" y="51" width="43" height="20" isPrintInFirstWholeBand="true" uuid="fd45cc74-bcd2-4e5c-9d93-04c6c082c47d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Page]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="686" y="1" width="116" height="20" isPrintInFirstWholeBand="true" forecolor="#000000" backcolor="#CCCCCC" uuid="06aa2934-27ee-4ed0-9ee5-f29194e95182"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[เลขที่กล่อง]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="128" y="1" width="105" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="06aa2934-27ee-4ed0-9ee5-f29194e95182"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[เลขที่เอกสารสำคัญ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="233" y="1" width="118" height="20" isPrintInFirstWholeBand="true" forecolor="#000000" backcolor="#CCCCCC" uuid="06aa2934-27ee-4ed0-9ee5-f29194e95182"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ชื่อผู้สมัคร]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="351" y="1" width="125" height="20" isPrintInFirstWholeBand="true" forecolor="#000000" backcolor="#CCCCCC" uuid="06aa2934-27ee-4ed0-9ee5-f29194e95182"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ประเภทบัตร]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="476" y="1" width="100" height="20" isPrintInFirstWholeBand="true" forecolor="#000000" backcolor="#CCCCCC" uuid="06aa2934-27ee-4ed0-9ee5-f29194e95182"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[วันที่ส่งเรื่อง Veto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="576" y="1" width="110" height="20" isPrintInFirstWholeBand="true" forecolor="#000000" backcolor="#CCCCCC" uuid="06aa2934-27ee-4ed0-9ee5-f29194e95182"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[เลขที่แฟ้ม]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="1" width="128" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="06aa2934-27ee-4ed0-9ee5-f29194e95182"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[หมายเลขใบสมัคร]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="233" y="0" width="118" height="21" isPrintInFirstWholeBand="true" uuid="f9339cbb-f84c-4db2-955d-dcb6dac2966e"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TH_FULL_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="128" y="0" width="105" height="21" uuid="1ff23a3c-dc6e-45bf-aea6-14db4cc624e9"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IDNO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="351" y="0" width="125" height="21" isPrintInFirstWholeBand="true" uuid="253c676a-a1e6-4094-a104-5b64dfa90fd2"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CARD_TYPE_DESC}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="686" y="0" width="116" height="21" isPrintInFirstWholeBand="true" uuid="dc34649d-28ee-459b-810d-1d6e8b8888ac"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BOX_NO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="476" y="0" width="100" height="21" isPrintInFirstWholeBand="true" uuid="55dec46a-a654-40f3-85e3-2bd83f99a322"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APPLICATION_DATE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="576" y="0" width="110" height="21" isPrintInFirstWholeBand="true" uuid="5d2e6298-b671-4a84-b1c8-30eadbcc2bb5"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AISLE_NO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="128" height="21" uuid="75cdf406-6d97-40bf-a217-8a17fe93f992"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APPLICATION_GROUP_NO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="21">
+			<textField>
+				<reportElement x="718" y="0" width="34" height="21" isPrintInFirstWholeBand="true" uuid="4f1356be-519c-4c8e-9fb9-07e8fbb9c7c5"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="718" height="21" isPrintInFirstWholeBand="true" uuid="06aa2934-27ee-4ed0-9ee5-f29194e95182"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma"/>
+				</textElement>
+				<text><![CDATA[รวมทั้งหมด]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="752" y="0" width="50" height="21" isPrintInFirstWholeBand="true" uuid="06aa2934-27ee-4ed0-9ee5-f29194e95182"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma"/>
+				</textElement>
+				<text><![CDATA[รายการ]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

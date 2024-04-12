@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<root>
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment" id="http://tempuri.org/com.ge.naosasia.sg.service.ImageNotepadService" checkMustUnderstands="false">
+  <isd:provider type="java" scope="Application" methods="saveNotepad">
+    <isd:java class="com.ge.naosasia.sg.service.ImageNotepadService" static="false"/>
+  </isd:provider>
+</isd:service>
+</root>

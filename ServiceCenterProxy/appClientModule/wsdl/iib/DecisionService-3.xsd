@@ -1,0 +1,1878 @@
+<?xml version="1.0" encoding="UTF-8"?><!--File Flp_uisFlp_decisionSchema1.xsd, application DecisionService--><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ibm.com/rules/decisionservice/Flp_uis/Flp_decision" version="1.0" xmlns:tns="http://www.ibm.com/rules/decisionservice/Flp_uis/Flp_decision">
+
+  <xsd:complexType name="applicationGroup">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="action" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="applicantSegment" type="tns:applicantSegment"/>
+      <xsd:element minOccurs="0" name="applicationDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="applicationGroupId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="applicationGroupNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="applicationSegment" type="tns:applicationSegment"/>
+      <xsd:element minOccurs="0" name="applyDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="fraudApplicantFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="fraudCompanyFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="masterData" type="tns:masterData"/>
+      <xsd:element minOccurs="0" name="policyExceptionSignOffBy" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="policyExceptionSignOffDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="priority" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="priorityPass" type="tns:priorityPass"/>
+      <xsd:element minOccurs="0" name="randomNo1" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="randomNo2" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="randomNo3" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="rcCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="referencePersonSegment" type="tns:referencePersonSegment"/>
+      <xsd:element minOccurs="0" name="scanChannel" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="systemDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="templateCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="vetoFlag" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="applicantSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="applicants" nillable="true" type="tns:applicant"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="applicant">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="addressData" type="tns:addressData"/>
+      <xsd:element minOccurs="0" name="applicantId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="applicantType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="birthDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="branchReceiveCard" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="businessType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cisNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cisPrimSegment" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cisPrimSubSegment" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cisSecSegment" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cisSecSubSegment" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="companyCisId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="contractTime" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="customerType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="debt" type="tns:debt"/>
+      <xsd:element minOccurs="0" name="degree" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="documentSLASegment" type="tns:documentSLASegment"/>
+      <xsd:element minOccurs="0" name="documentSegment" type="tns:documentSegment"/>
+      <xsd:element minOccurs="0" name="employmentType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="enFirstName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="enLastName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="enMidName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="enTitleCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="gender" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="idNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="idType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="incomeSegment" type="tns:incomeSegment"/>
+      <xsd:element minOccurs="0" name="internalApplicant" type="tns:internalApplicant"/>
+      <xsd:element minOccurs="0" name="mailingAddress" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="married" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="moblieNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="nationality" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="numberOfChild" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="occupation" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="passportExpiryDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="positionLevel" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="positionType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="previousCompanyName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="previousCompanyTitle" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="previousWorkMonth" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="previousWorkYear" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="profession" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="salaryLevelCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="serviceData" type="tns:serviceData"/>
+      <xsd:element minOccurs="0" name="thFirstName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="thLastName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="thMidName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="thTitleCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="totalWorkMonth" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="totalWorkYear" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="vatRegisterFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="verificationResult" type="tns:verificationResult"/>
+      <xsd:element minOccurs="0" name="visaExpiryDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="visaType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="wfVerifiedFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="workPermitExpiryDate" type="xsd:dateTime"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="addressData">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="compareAddresseSegment" type="tns:compareAddressSegment"/>
+      <xsd:element minOccurs="0" name="current" type="tns:address"/>
+      <xsd:element minOccurs="0" name="mailing" type="tns:address"/>
+      <xsd:element minOccurs="0" name="register" type="tns:address"/>
+      <xsd:element minOccurs="0" name="work" type="tns:address"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="compareAddressSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="compareAddresses" nillable="true" type="tns:compareAddress"/>
+      <xsd:element name="foundCompareAddress" type="xsd:boolean"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="compareAddress">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="compareType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="address">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="addressNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="addressStatus" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="addressType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="amphur" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="building" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="buildingType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="companyName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="companyTitle" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="country" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="department" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="fax" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="floor" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="mobile" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="moo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="phone" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="phoneExt" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="province" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="resideMonth" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="resideYear" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="rents" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="road" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="room" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="soi" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="state" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="tambol" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="vatCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="vatRegistration" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="vilapt" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="zipcode" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="debt">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="commercialAmount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="commercialLoanAmount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="consumerLoanAmount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="otherDebtAmount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="totalOtherDebtAmount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="welfareAmount" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="documentSLASegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="documentSLA" nillable="true" type="tns:documentSLA"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="documentSLA">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="documentSLAType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="documentSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="documents" nillable="true" type="tns:document"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="document">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="documentGroup" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="documentType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="incomeSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="incomes" nillable="true" type="tns:incomeInfo"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="incomeInfo">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="bankStatementSegment" type="tns:bankStatementSegment"/>
+      <xsd:element minOccurs="0" name="bundleHL" type="tns:bundleHL"/>
+      <xsd:element minOccurs="0" name="bundleKL" type="tns:bundleKL"/>
+      <xsd:element minOccurs="0" name="bundleSME" type="tns:bundleSME"/>
+      <xsd:element minOccurs="0" name="closedEndFundSegment" type="tns:closedEndFundSegment"/>
+      <xsd:element minOccurs="0" name="financialInstrumentSegment" type="tns:financialInstrumentSegment"/>
+      <xsd:element minOccurs="0" name="fixedAccountSegment" type="tns:fixedAccountSegment"/>
+      <xsd:element minOccurs="0" name="fixedGuaranteeSegment" type="tns:fixedGuaranteeSegment"/>
+      <xsd:element minOccurs="0" name="incomeType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="kviIncome" type="tns:kviIncome"/>
+      <xsd:element minOccurs="0" name="monthlyTawi50Segment" type="tns:monthlyTawi50Segment"/>
+      <xsd:element minOccurs="0" name="openedEndFundSegment" type="tns:openedEndFundSegment"/>
+      <xsd:element minOccurs="0" name="payroll" type="tns:payroll"/>
+      <xsd:element minOccurs="0" name="payslip" type="tns:payslip"/>
+      <xsd:element minOccurs="0" name="previousIncome" type="tns:previousIncome"/>
+      <xsd:element minOccurs="0" name="salaryCertSegment" type="tns:salaryCertSegment"/>
+      <xsd:element minOccurs="0" name="savingAccountSegment" type="tns:savingAccountSegment"/>
+      <xsd:element minOccurs="0" name="taweesap" type="tns:taweesap"/>
+      <xsd:element minOccurs="0" name="yearlyTawi50Segment" type="tns:yearlyTawi50Segment"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="bankStatementSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="bankStatements" nillable="true" type="tns:bankStatement"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="bankStatement">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="additionalCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="bankCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="bankStatementDetailSegment" type="tns:bankStatementDetailSegment"/>
+      <xsd:element minOccurs="0" name="statementCode" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="bankStatementDetailSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="bankStatementDetails" nillable="true" type="tns:bankStatementDetail"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="bankStatementDetail">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="amount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="month" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="year" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="bundleHL">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="approveCreditLine" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="approvedDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="ccApprovedAmt" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="kecApprovedAmt" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="verifiedIncome" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="bundleKL">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="approveCreditLine" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="estimatedIncome" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="verifiedDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="verifiedIncome" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="bundleSME">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="accountOpenDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="applicantQuality" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="approveCreditLine" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="approvedDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="borrowingType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="busOwnerFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="businessCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="corporateRatio" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="individualRatio" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="gDscrReq" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="gTotExistPayment" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="gTotNewPayReq" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="closedEndFundSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="closedEndFunds" nillable="true" type="tns:closedEndFund"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="closedEndFund">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="accountBalance" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="accountName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="accountNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="bankCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="holderingRatio" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="name" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="openDate" type="xsd:dateTime"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="financialInstrumentSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="financialInstruments" nillable="true" type="tns:financialInstrument"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="financialInstrument">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="currentBalance" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="expireDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="finInstrument" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="holderName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="holdingRatio" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="instrumentType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="issuerName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="openDate" type="xsd:dateTime"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="fixedAccountSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="fixedAccounts" nillable="true" type="tns:fixedAccount"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="fixedAccount">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="accountBalance" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="accountName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="accountNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="bankCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="holdingRatio" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="openDate" type="xsd:dateTime"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="fixedGuaranteeSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="fixedGuarantees" nillable="true" type="tns:fixedGuarantee"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="fixedGuarantee">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="accountName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="accountNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="branchNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="retentionAmount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="retentionDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="retentionType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="sub" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="kviIncome">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="percentChequeReturn" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="verifiedIncome" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="monthlyTawi50Segment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="monthlyTawi50s" nillable="true" type="tns:monthlyTawi50"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="monthlyTawi50">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="companyName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="monthlyTawi50DetailSegment" type="tns:monthlyTawi50DetailSegment"/>
+      <xsd:element minOccurs="0" name="tawiIncomeType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="monthlyTawi50DetailSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="monthlyTawi50Details" nillable="true" type="tns:monthlyTawi50Detail"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="monthlyTawi50Detail">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="amount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="month" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="year" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="openedEndFundSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="openedEndFunds" nillable="true" type="tns:openedEndFund"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="openedEndFund">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="accountName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="accountNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="bankCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="fundName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="holdingRatio" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="openDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="openedEndFundDetailSegment" type="tns:openedEndFundDetailSegment"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="openedEndFundDetailSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="openedEndFundDetails" nillable="true" type="tns:openedEndFundDetail"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="openedEndFundDetail">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="amount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="month" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="year" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="payroll">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="income" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="numberOfEmployee" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="payslip">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="bonus" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="bonusMonth" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="bonusYear" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="numberOfMonth" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="payslipMonthlySegment" type="tns:payslipMonthlySegment"/>
+      <xsd:element minOccurs="0" name="salaryDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="salaryType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="spacialPension" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="sumIncome" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="sumOtherIncome" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="sumSso" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="payslipMonthlySegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="payslipMonthlys" nillable="true" type="tns:payslipMonthly"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="payslipMonthly">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="amount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="incomeType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="month" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="year" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="previousIncome">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="income" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="incomeDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="product" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="salaryCertSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="salaryCerts" nillable="true" type="tns:salaryCert"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="salaryCert">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="companyName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="income" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="savingAccountSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="savingAccounts" nillable="true" type="tns:savingAccount"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="savingAccount">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="accountBalance" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="accountName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="accountNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="bankCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="holdingRatio" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="openDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="savingAccountDetailSegment" type="tns:savingAccountDetailSegment"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="savingAccountDetailSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="savingAccountDetails" nillable="true" type="tns:savingAccountDetail"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="savingAccountDetail">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="amount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="month" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="seq" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="year" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="taweesap">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="aum" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="yearlyTawi50Segment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="yearlyTawi50s" nillable="true" type="tns:yearlyTawi50"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="yearlyTawi50">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="companyName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="income401" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="income402" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="month" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="sumSso" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="year" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="internalApplicant">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="bundleWithMainFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="companySegment" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="initialDataSegment" type="tns:initialDataSegment"/>
+      <xsd:element minOccurs="0" name="listedCompanyFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="occupationType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="initialDataSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="initialDatas" nillable="true" type="tns:initialData"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="initialData">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="group" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="value" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="serviceData">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="amcCompany" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="bankruptcy" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="bankruptcyCompany" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="bolOrganizationSegment" type="tns:bolOrganizationSegment"/>
+      <xsd:element minOccurs="0" name="cardlinkCardSegment" type="tns:cardlinkCardSegment"/>
+      <xsd:element minOccurs="0" name="cardlinkCustomerSegment" type="tns:cardlinkCustomerSegment"/>
+      <xsd:element minOccurs="0" name="ccaCampaignSegment" type="tns:ccaCampaignSegment"/>
+      <xsd:element minOccurs="0" name="classifyLevel" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="currentAccountSegment" type="tns:currentAccountSegment"/>
+      <xsd:element minOccurs="0" name="fixAccountSegment" type="tns:fixAccountSegment"/>
+      <xsd:element minOccurs="0" name="foundBolOrgFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="foundCCAFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="foundCardlinkCardFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="foundCardlinkCustomerFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="foundCobrandFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="foundKbankDepositAccountFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="foundKbankEmployeeFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="foundSoloFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="foundTcbLoanFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="foundThaiBevFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="foundTrustedCompanyFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="kbankEmployee" type="tns:kBankEmployee"/>
+      <xsd:element minOccurs="0" name="kbankPayroll" type="tns:kBankPayroll"/>
+      <xsd:element minOccurs="0" name="kbankSalary" type="tns:kBankSalary"/>
+      <xsd:element minOccurs="0" name="lpmRestructureDateFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ncbData" type="tns:ncbData"/>
+      <xsd:element minOccurs="0" name="oldIncomeSegment" type="tns:oldIncomeSegment"/>
+      <xsd:element minOccurs="0" name="safeLoanSegment" type="tns:safeLoanSegment"/>
+      <xsd:element minOccurs="0" name="sanctionFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="savingAccountSegment" type="tns:savingAccountSegment"/>
+      <xsd:element minOccurs="0" name="spReasonSegment" type="tns:spReasonSegment"/>
+      <xsd:element minOccurs="0" name="tamcCompany" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="tcbLoanSegment" type="tns:tcbLoanSegment"/>
+      <xsd:element minOccurs="0" name="thaiBev" type="tns:thaiBev"/>
+      <xsd:element minOccurs="0" name="trustedCompany" type="tns:trustedCompany"/>
+      <xsd:element minOccurs="0" name="wealthSegment" type="tns:wealthSegment"/>
+      <xsd:element minOccurs="0" name="bScoreSegment" type="tns:bScoreSegment"/>
+      <xsd:element minOccurs="0" name="kAssetSegment" type="tns:kAssetSegment"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="bolOrganizationSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="bolOrganizations" nillable="true" type="tns:bolOrganization"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="bolOrganization">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="bolfinancialStatementSegment" type="tns:bolFinancialStatementSegment"/>
+      <xsd:element minOccurs="0" name="enSearchName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="orgId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="orgRegistDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="orgStatus" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="telNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="thSearchName" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="bolFinancialStatementSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="bolfinancialStatements" nillable="true" type="tns:bolFinancialStatement"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="bolFinancialStatement">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="financialDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="financialId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="financialType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="netProfitAndLoss" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="orgId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="postDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="seq" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="totalIncome" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="cardlinkCardSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="cardlinkCards" nillable="true" type="tns:cardlinkCard"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="cardlinkCard">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="autoPayAcctNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="autoPayFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="billCycle" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="billingCycleCardType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="blockCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="blockDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="cardCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cardEntity" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cardLevel" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cardLevelNum" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="cardNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cardType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="coaProductCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="creditLimitAmount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="eligibleCardLevel" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="expiryDate" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="lastIncreaseDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="lastPaymentDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="mon24Profile" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="openDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="orgNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="outstandingBal" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="plasticCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="product" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="projectCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="realCustNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="realOrgNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="status" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="supCustNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="wealthFlag" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="cardlinkCustomerSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="cardlinkCustomers" nillable="true" type="tns:cardlinkCustomer"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="cardlinkCustomer">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="addressLine1" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="addressLine2" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="addressLine3" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="billCycle" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="cardlinkCustNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="creditLine" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="empPosition" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="financialInfoCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="firstOpenDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="incomeAmount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="mobileNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="occupation" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="orgNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="referAddressLine1" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="referAddressLine2" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="referAddressLine3" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="referZipcode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="zipCode" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ccaCampaignSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="ccaCampaigns" nillable="true" type="tns:ccaCampaign"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ccaCampaign">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="additionalDetail" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="applicationType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="campaignCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cisNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="effectiveDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="enFirstName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="enLastName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="enTitleCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="expiryDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="highestIncome" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="idNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="projectCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="thFirstName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="thLastName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="thTitleCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="updateDate" type="xsd:dateTime"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="currentAccountSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="currentAccounts" nillable="true" type="tns:accountInfo"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="accountInfo">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="accountNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="countOwner" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="currentBalance" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="holdBalance" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="monthEndBalanceSegment" type="tns:monthEndBalanceSegment"/>
+      <xsd:element minOccurs="0" name="openDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="subAccountNo" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="monthEndBalanceSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="monthEndBalances" nillable="true" type="tns:monthEndBalance"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="monthEndBalance">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="holdBalance" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="outstanding" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="postDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="productGroup" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="fixAccountSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="fixAccounts" nillable="true" type="tns:accountInfo"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="kBankEmployee">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="birthDate" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="corpTitleCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="empId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="enFirstName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="enLastName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="idNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="jobCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="jobLayerCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="thFirstName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="thLastName" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="kBankPayroll">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="averageIncome12Month" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="averageIncome3Month" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="averageIncome6Month" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="ccPayrollFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cisNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="companyName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="grossIncome12Month" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="grossIncome3Month" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="grossIncome6Month" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="idNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="incomeMonth1" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="incomeMonth2" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="incomeMonth3" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="incomeMonth4" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="incomeMonth5" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="incomeMonth6" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="incomeTotal" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="kecPayrollFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="minimumIncome6Month" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="numberOfAvgIncome" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="paymentAccountNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="paymentChannel" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="payrollIncomeType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="positionDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="projectCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="pvf12Month" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="pvf3Month" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="pvf6Month" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="salaryDate" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="sso" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="thFirstName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="thLastName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="welfareFlag" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="kBankSalary">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="averageSalary" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="citizenId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="description" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="name" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="surname" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbData">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="consentRefNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="dateOfSearch" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ficoData" type="tns:ficoData"/>
+      <xsd:element minOccurs="0" name="ncbAccountSegment" type="tns:ncbAccountSegment"/>
+      <xsd:element minOccurs="0" name="ncbAddressSegment" type="tns:ncbAddressSegment"/>
+      <xsd:element minOccurs="0" name="ncbDisputeRemarkSegment" type="tns:ncbDisputeRemarkSegment"/>
+      <xsd:element minOccurs="0" name="ncbEnquirySegment" type="tns:ncbEnquirySegment"/>
+      <xsd:element minOccurs="0" name="ncbHistorySegment" type="tns:ncbHistorySegment"/>
+      <xsd:element minOccurs="0" name="ncbIdSegment" type="tns:ncbIdSegment"/>
+      <xsd:element minOccurs="0" name="ncbNameSegment" type="tns:ncbNameSegment"/>
+      <xsd:element minOccurs="0" name="numTimesOfEnquiry" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="numTimesOfEnquiry6Month" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="summaryNcbResultSegment" type="tns:summaryNcbResultSegment"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ficoData">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="ficoErrorCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ficoErrorMsg" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ficoReason1Code" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ficoReason1Desc" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ficoReason2Code" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ficoReason2Desc" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ficoReason3Code" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ficoReason3Desc" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ficoReason4Code" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ficoReason4Desc" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="totalScore" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbAccountSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="ncbAccounts" nillable="true" type="tns:ncbAccount"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbAccount">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="accountNumber" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="accountStatus" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="accountType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="amtOwed" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="amtPastDue" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="asOfDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="collateral1" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="collateral2" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="collateral3" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="creditCardType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="creditTypeFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="creditlimit" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="currencyCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="dateAccClosed" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="dateAccOpened" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="dateOfLastPmt" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="defaultDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="installAmt" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="installFreq" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="installNoofpay" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="lastDebtRestDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="loanClass" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="loanObjective" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="match" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="memberCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="memberShortName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ncbRuleResultSegment" type="tns:ncbRuleResultSegment"/>
+      <xsd:element minOccurs="0" name="negativeFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="numberOfCoborr" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="ownerShipIndicator" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="percentPayment" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="pmtHist1" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="pmtHist2" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="pmtHistEnddate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="pmtHistStartdate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="positiveFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="segmentValue" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="unitMake" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="unitModel" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbRuleResultSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="ncbRuleResults" nillable="true" type="tns:ncbRuleResult"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbRuleResult">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="ruleCondition" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ruleId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ruleResult" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbAddressSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="ncbAddresses" nillable="true" type="tns:ncbAddress"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbAddress">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="addressLine1" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="addressLine2" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="addressLine3" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="addressType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="country" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="district" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="postalCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="province" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="reportedDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="residentialStatus" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="segmentValue" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="subdistrict" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="telephone" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="telephoneType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbDisputeRemarkSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="ncbDisputeRemarks" nillable="true" type="tns:ncbDisputeRemark"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbDisputeRemark">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="dispute" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="disputeCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="disputeDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="disputeRemark1" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="disputeRemark2" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="disputeRemark3" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="disputeRemark4" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="disputeRemark6" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="disputeTime" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="referenceSegment" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="referenceSegmentType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="remarks5" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="segmentValue" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbEnquirySegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="ncbEnquirys" nillable="true" type="tns:ncbEnquiry"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbEnquiry">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="currencyCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="dateOfEnquiry" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="enquiryAmount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="enquiryPurpose" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="memberCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="memberShortName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="segmentValue" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="timeOfEnquiry" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbHistorySegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="ncbHistorys" nillable="true" type="tns:ncbHistory"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbHistory">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="amount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="asOfDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="creditLimit" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="overDueMonths" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="segmentValue" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbIdSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="ncbIds" nillable="true" type="tns:ncbId"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbId">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="idIssueCountry" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="idNumber" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="idType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="segmentValue" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbNameSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="ncbNames" nillable="true" type="tns:ncbName"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ncbName">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="consentToEnquire" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="dateOfBirth" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="familyName1" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="familyName2" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="firstName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="gender" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="groupSeq" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="maritalStatus" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="middleName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="nationality" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="numberOfChildren" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="occupation" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="segmentValue" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="spouseName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="title" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="summaryNcbResultSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="ncbRuleResults" nillable="true" type="tns:ncbRuleResult"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="oldIncomeSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="oldIncomes" nillable="true" type="tns:oldIncome"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="oldIncome">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="accountStatus" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="applyType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="incomeSource" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="openDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="productId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="sourceData" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="submitIncomeDocFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="typeOfFin" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="verifiedIncome" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="safeLoanSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="safeLoans" nillable="true" type="tns:safeLoan"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="safeLoan">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="accountNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="asOfDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="closeDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="creditLimit" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="loanPurpose" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="loanType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="openDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="outstanding" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="subAccountNo" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="spReasonSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="spReasons" nillable="true" type="tns:spReason"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="spReason">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="inactiveDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="spCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="spDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="spType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="tcbLoanSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="tcbLoans" nillable="true" type="tns:tcbLoan"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="tcbLoan">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="accountNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="accountStatus" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="coaProductCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="creditLimit" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="openDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="outstanding" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="thAccountName" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="thaiBev">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="avgMonthlyPurchasing" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="citizenID" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="name" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="partnerSinceYear" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="partnersince" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="surname" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="thaiBevMembershipNo" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="trustedCompany">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="address" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="category" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="companyName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="idNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="tel" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="typeOfCompany" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="website" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="wealthSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="wealths" nillable="true" type="tns:wealth"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="wealth">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="postDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="wealthValue" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="bScoreSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="bScores" nillable="true" type="tns:bscore"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="bscore">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="productType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="riskGrade" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="riskGradeType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="status" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="kAssetSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="kAssets" nillable="true" type="tns:kAsset"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="kAsset">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="accountNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="assetType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="countOwner" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="fundId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="fundType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="maturityDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="monthEndBalanceSegment" type="tns:monthEndBalanceSegment"/>
+      <xsd:element minOccurs="0" name="outstanding" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="referanceId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="subAccountNo" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="verificationResult">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="appScoreSegment" type="tns:appScoreSegment"/>
+      <xsd:element minOccurs="0" name="customerVerification" type="tns:customerVerification"/>
+      <xsd:element minOccurs="0" name="documentVerification" type="tns:documentVerification"/>
+      <xsd:element minOccurs="0" name="incomeVerification" type="tns:incomeVerification"/>
+      <xsd:element minOccurs="0" name="priorityPassVerification" type="tns:priorityPassVerification"/>
+      <xsd:element minOccurs="0" name="privilegeVerification" type="tns:privilegeVerification"/>
+      <xsd:element minOccurs="0" name="totalSavingandFundFromPriviliegeProjectCode" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="verifyCustomerResult" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="verifyIncomeResult" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="verifyPriviledgeResult" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="verifyWebsiteResult" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="webVerification" type="tns:webVerification"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="appScoreSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="appScores" nillable="true" type="tns:appScore"/>
+      <xsd:element minOccurs="0" name="criteria" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="specialSegment" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="appScore">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="coarseRiskGrade" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="fineRiskGrade" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="productId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="riskGrade" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="scoreModelId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="scoreModelSegment" type="tns:scoreModelSegment"/>
+      <xsd:element minOccurs="0" name="scoreResult" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="totalScore" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="aScoreCode" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="scoreModelSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="scoreModels" nillable="true" type="tns:scoreModel"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="scoreModel">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="characteristicId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="weight" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="customerVerification">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="customerQuestionSegment" type="tns:customerQuestionSegment"/>
+      <xsd:element minOccurs="0" name="customerVerificationRequiredFlag" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="customerQuestionSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="customerQuestion" nillable="true" type="tns:customerQuestion"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="customerQuestion">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="callToWhom" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="code" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="documentVerification">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="documentCompleteFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="documentSuggestionSegment" type="tns:documentSuggestionSegment"/>
+      <xsd:element minOccurs="0" name="requireBureauType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="documentSuggestionSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="documentSuggestions" nillable="true" type="tns:documentSuggestion"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="documentSuggestion">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="documentCompleteFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="documentGroup" type="xsd:string"/>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="documentScenarioSegment" nillable="true" type="tns:documentScenarioSegment"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="documentScenarioSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="documentScenarios" nillable="true" type="tns:documentScenario"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="documentScenario">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="documentSegment" nillable="true" type="tns:document"/>
+      <xsd:element minOccurs="0" name="scen" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="scenType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="incomeVerification">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="incomeCalculationSegment" type="tns:incomeCalculataionSegment"/>
+      <xsd:element minOccurs="0" name="incomeScreenSegment" type="tns:incomeScreenSegment"/>
+      <xsd:element minOccurs="0" name="incomeSourceSegment" type="tns:incomeSourceSegment"/>
+      <xsd:element minOccurs="0" name="incomeVerificationRequiredFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="nextIncomeSource" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="typeOfFin" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="verifiedIncome" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="verifiedIncomeSource" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="incomeCalculataionSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="incomeCalculations" nillable="true" type="tns:incomeCalculataion"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="incomeCalculataion">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="incomeSourceType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="typeOfFin" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="verifiedIncome" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="incomeScreenSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="incomeScreens" nillable="true" type="tns:incomeScreen"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="incomeScreen">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="incomeScreenType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="incomeSourceSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="incomeSources" nillable="true" type="tns:incomeSource"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="incomeSource">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="incomeSourceType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="priorityPassVerification">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="priorityPassVerificationRequiredFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="recommendScreen" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="privilegeVerification">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="privilegeVerificationRequiredFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="recommendScreen" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="webVerification">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="websiteSegment" type="tns:websiteSegment"/>
+      <xsd:element minOccurs="0" name="websiteVerificationRequiredFlag" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="websiteSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="websites" nillable="true" type="tns:website"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="website">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="webCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="webResult" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="applicationSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="applications" nillable="true" type="tns:application"/>
+      <xsd:element minOccurs="0" name="productData" type="tns:productData"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="application">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="applicantId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="applicationId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="applyType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="applyTypeTransformationFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="approvalProcessFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="approveDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="caProductStatus" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="caaProjectCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="internalApplication" type="tns:internalApplication"/>
+      <xsd:element minOccurs="0" name="loanSegment" type="tns:loanSegment"/>
+      <xsd:element minOccurs="0" name="mainApplicationId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="policyProgramId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="policyRuleResultSegment" type="tns:policyRuleResultSegment"/>
+      <xsd:element minOccurs="0" name="previousProductStatus" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="product" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="productStatus" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="projectCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="reExecuteKeyProgramFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="recommendProjectCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="spSignOffDate" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="specialSegmentData" type="tns:specialSegmentData"/>
+      <xsd:element minOccurs="0" name="subProduct" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="vetoEligibleFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="waivedIncomeDocFlag" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="internalApplication">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="ccaProjectCodeType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="fallBackProjectCodeFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="foundIncomeInCCAFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="initialDataSegment" type="tns:initialDataSegment"/>
+      <xsd:element minOccurs="0" name="maximumAge" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="minimumAge" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="nextRuleRecProjectCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ruleMatrixSegment" type="tns:ruleMatrixSegment"/>
+      <xsd:element minOccurs="0" name="verCompletedFlag" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ruleMatrixSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="ruleMatrixs" nillable="true" type="tns:ruleMatrix"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ruleMatrix">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="ruleId" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="loanSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="loans" nillable="true" type="tns:loan"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="loan">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="additionalServiceSegment" type="tns:additionalServiceSegment"/>
+      <xsd:element minOccurs="0" name="botFactor" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="callForCash" type="tns:cashTransfer"/>
+      <xsd:element minOccurs="0" name="capport" type="tns:capport"/>
+      <xsd:element minOccurs="0" name="card" type="tns:card"/>
+      <xsd:element minOccurs="0" name="cashTransfer" type="tns:cashTransfer"/>
+      <xsd:element minOccurs="0" name="creditLimit" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="creditLimitProductFactor" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="cycleCutDate" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="debtBurden" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="debtBurdenCreditLimit" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="dueDate" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="finalApproveAmount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="foundRequestedCardType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="loanFeeSegment" type="tns:loanFeeSegment"/>
+      <xsd:element minOccurs="0" name="loanPricingSegment" type="tns:loanPricingSegment"/>
+      <xsd:element minOccurs="0" name="loanTierSegment" type="tns:loanTierSegment"/>
+      <xsd:element minOccurs="0" name="maxCreditLimit" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="maxCreditLimitBot" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="maxDebtBurden" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="maximumCap" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="minCreditLimit" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="minimumCap" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="orCreditLimit" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="orProductFactor" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="paymentMethod" type="tns:paymentMethod"/>
+      <xsd:element minOccurs="0" name="personalLoanRestriction" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="productFactor" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="recommendCreditLimit" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="requestLoanAmount" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="additionalServiceSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="additionalServices" nillable="true" type="tns:additionalService"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="additionalService">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="currentAccountName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="currentAccountNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="savingAccountName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="savingAccountNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="serviceType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="cashTransfer">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="accountName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="accountNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="firstAmount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="percent" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="productType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="transferExpress" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="transferType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="capport">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="remainingCreditLine" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="card">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="cardEntity" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cardLevel" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cardLevelNum" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="cardLinkData" type="tns:cardlinkData"/>
+      <xsd:element minOccurs="0" name="cardNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cardTransformationFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cardType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cardlinkCardCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cgaApplyChannel" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cgaCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="chassisNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="coaProductCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="eligibleCardLevel" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="eligibleCardType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="eligibleCoaProductCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="mainCardNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="mainCardlinkCustomerId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="membershipNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="percentLimitMainCard" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="plasticCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="validCardNoFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="wisdom" type="tns:wisdom"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="cardlinkData">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="existingCardFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="existingCustomerFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="refCardlinkCard" type="tns:cardlinkCard"/>
+      <xsd:element minOccurs="0" name="refCardlinkCustomer" type="tns:cardlinkCustomer"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="wisdom">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="insuranceType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="numberOfPriorityPassSup" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="premiumAmt" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="priorityPassFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="priorityPassMain" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="priorityPassMemo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="priorityPassNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="quotaOf" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="requestPriorityPassSup" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="transferFrom" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="wisdomNo" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="loanFeeSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="loanFees" nillable="true" type="tns:loanFee"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="loanFee">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="feeAmount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="feeCalculateType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="feeEndMonth" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="feeLevelType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="feeSrc" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="feeStartMonth" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="feeType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="fianlFeeAmount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="maxFee" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="minFee" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="loanPricingSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="loanPricings" nillable="true" type="tns:loanPricing"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="loanPricing">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="feeWaiveCode" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="loanTierSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="loanTiers" nillable="true" type="tns:loanTierPricing"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="loanTierPricing">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="effectiveDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="flatRate" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="intRateAmount" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="intRateIndex" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="intRateSign" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="intRateSpread" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="lastInstallment" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="monthlyInstallment" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="rateType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="term" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="termType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="totalInstallment" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="paymentMethod">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="accountName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="accountNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="accountType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="bankCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="dueCycle" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="paymentMethodType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ratio" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="policyRuleResultSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="policyRuleResults" nillable="true" type="tns:policyRuleResult"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="policyRuleResult">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="overrideFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="overrideRuleSegment" type="tns:overrideRuleSegment"/>
+      <xsd:element minOccurs="0" name="policyRuleConditionSegment" type="tns:policyRuleConditionSegment"/>
+      <xsd:element minOccurs="0" name="policyRuleReasonSegment" type="tns:policyRuleReasonSegment"/>
+      <xsd:element minOccurs="0" name="rank" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ruleId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ruleResult" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="overrideRuleSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="overrideRules" nillable="true" type="tns:overrideRule"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="overrideRule">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="creditLineFactor" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="foundGuidelineResult" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="guideLineSegment" type="tns:guidelineSegment"/>
+      <xsd:element minOccurs="0" name="minimunAuthority" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="overrideCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="overrideResult" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="guidelineSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="guideLines" nillable="true" type="tns:guideline"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="guideline">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="code" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="guideLineDataSegment" type="tns:guideLineDataSegment"/>
+      <xsd:element minOccurs="0" name="rank" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="result" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="guideLineDataSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="guideLineDatas" nillable="true" type="tns:guidelineData"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="guidelineData">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="name" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="value" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="policyRuleConditionSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="policyRuleConditions" nillable="true" type="tns:policyRuleCondition"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="policyRuleCondition">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="conditionCode" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="policyRuleReasonSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="policyRuleReasons" nillable="true" type="tns:policyRuleReason"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="policyRuleReason">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="reasonCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="reasonRank" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="specialSegmentData">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="specialSegments" nillable="true" type="tns:specialSegment"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="specialSegment">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="referCriteria" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="productData">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="avgCreditLimit" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="cardChecking" type="tns:cardChecking"/>
+      <xsd:element minOccurs="0" name="claType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="creditLineNonThaiBev" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="creditLineThaiBev" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="productLoanSegment" type="tns:productLoanSegment"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="cardChecking">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="totalMainNonThaiBevCard" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="totalSupNonThaiBevCard" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="totalWisdomCard" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="productLoanSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="productLoans" nillable="true" type="tns:productLoan"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="productLoan">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="averageUtilize1" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="averageUtilize2" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="avgCreditLimit" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="creditLimit" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="debtBurden" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="maxDebtBurden" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="maxDebtBurdenCreditLimit" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="portion" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="productId" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="masterData">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="capportDataSegment" type="tns:capportDataSegment"/>
+      <xsd:element minOccurs="0" name="cardHierarchySegment" type="tns:cardHierarchySegment"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="capportDataSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="capportDatas" nillable="true" type="tns:capportData"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="capportData">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="applyType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="policyProgramId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="productId" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="remainingCreditLine" type="xsd:decimal"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="cardHierarchySegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="cardHierarchys" nillable="true" type="tns:cardHierarchy"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="cardHierarchy">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="cardCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cardCodeDesc" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cardLevel" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cardLevelDesc" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cardType" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cardTypeBillingCycle" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="coaProductCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="plasticCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="plasticCodeDesc" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="productId" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="priorityPass">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="numberOfPriorityPassSup" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="priorityPassFlag" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="priorityPassMain" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="priorityPassMemo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="priorityPassNo" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="requestPriorityPassSup" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="referencePersonSegment">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="referencePersons" nillable="true" type="tns:referencePerson"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="referencePerson">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="homePhone" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="moblie" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="officePhone" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="relation" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="seq" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="thFirstName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="thLastName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="thTitleCode" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

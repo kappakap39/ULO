@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Bootstrap Metro Dashboard by TOP demo</title>
+<meta name="description" content="Bootstrap Metro Dashboard" />
+<meta name="author" content="Topkung" />
+<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+<!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- end: Mobile Specific -->
+</head>
+<body>
+	<script th:fragment="grid-js" th:inline="javascript">
+		//<![CDATA[
+// Loader settings
+paceOptions = {
+    ajax: {
+        trackMethods: ['GET', 'POST']
+    },
+    document: true,
+    eventLag: true
+};
+
+$(function () {
+
+    // Prevent #
+    $('a[href=#]').click(function (e) {
+        e.preventDefault();
+    });
+
+    // Filter for clean Object
+    function cleanObj(someobj) {
+        for (var i in someobj) {
+            if (someobj[i] === null || someobj[i] === undefined || someobj[i] === "") {
+                delete someobj[i];
+            }
+        }
+        return someobj;
+    }
+
+    // Prepare Element for use on Dialogs
+    // Put elements to var
+    var GridItemEl = $('.panel-template').clone(true).removeClass('hidden panel-template');
+    $('.panel-template').remove();
+    var GridItemDialog = $('.GridItem.modal-body').clone(true);
+    $('.GridItem.modal-body').remove();
+    var WidgetEditorDialog = $('.widgeteditor.modal-body').clone(true);
+    $('.widgeteditor.modal-body').remove();
+    var WidgetItemEditDialog = $('.widgetitemedit.modal-body').clone(true);
+    $('.widgetitemedit.modal-body').remove();
+    $('#modaldialogs').remove();
+
+
+    var getGridItemEl = function () {
+        return GridItemEl.clone(true);
+    };
+
+    var getWidgetEditorDialog = function () {
+        return WidgetEditorDialog.clone(true);
+    };
+
+    var getGridItemDialog = function () {
+        return GridItemDialog.clone(true);
+    };
+
+    var getWidgetItemEditDialog = function () {
+        return WidgetItemEditDialog.clone(true);
+    };
+
+
+    // Sortable table rows
+    //Helper function to keep table row from collapsing when being sorted
+    var fixHelperModified = function (e, tr) {
+        var $originals = tr.children();
+        var $helper = tr.clone();
+        $helper.children().each(function (index) {
+            $(this).width($originals.eq(index).outerWidth());
+        });
+        return $helper;
+    };
+
+    //Re-number table rows
+    var renumber_table = function (tableEl) {
+        $(tableEl).find('tr').each(function () {
+            count = $(this).parent().children().index($(this)) + 1;
+            $(this).attr('data-seq', count);
+            $(this).find('.sequence').html(count);
+        });
+    };
+
+    // Load prototype to Grid Item
+    var loadWidgetPrototype = function (el, node) {
+        // el : Element of Grid item
+        // node : Data from Grid item
+        var panelbody = el.find('.panel-body');
+        panelbody.addClass('loading'); // set loading
+        $.ajax({
+            url: 'wgproto.php', // URI
+            data: 'id=' + node.id,
+            contentType: "application/json; charset=utf-8",
+            type: 'GET',
+            cache: false,
+            timeout: 10000,
+            dataType: 'json', // IMPORTANT !!!
+            error: function () {
+                panelbody.removeClass('loading');
+                return true;
+            },
+            success: function (rs) {
+                var griditem = el.find('.widget-box');
+                griditem.html(rs.html);
+                panelbody.removeClass('loading');
+            }
+        });
+    };
+
+    // Bind Buttons Grid item
+    // Edit Grid item
+    $('.grid-stack').delegate('.editgriditem', 'click', function (e) {
+        var el = $(this).closest('.grid-stack-item'); // Use  parents() -or- closest() ??
+        var node = el.data('_gridstack_node');
+        try {
+            delete node._dirty;
+            delete node._id;
+            //delete node.el; // Not need to delete
+            delete node.auto_position;
+        } catch (ex) {
+        }
+        ;
+
+        e.data = {node: node, el: el};
+        GriditemEditor(e, true);
+    });
+
+    $('.grid-stack').delegate('.editwgs', 'click', function (e) {
+        var el = $(this).closest('.grid-stack-item'); // Use  parents() -or- closest() ??
+        var node = el.data('_gridstack_node');
+        try {
+            delete node._dirty;
+            delete node._id;
+            //delete node.el; // Don't Delete
+            delete node.auto_position;
+        } catch (ex) {
+        }
+        ;
+
+        e.data = {
+            node: node,
+            el: el,
+            byMenu: true,
+            parent: {
+                // Proxy functions for dialog
+                setData: function (k, v) {
+                    node[k] = v;
+                    $('.grid-stack').data('gridstack').update_widget(el, node);
+                    loadWidgetPrototype(e.data.el, node);
+                },
+                getData: function (k) {
+                    return node[k];
+                }
+            }
+        };
+        WidgetEditor(e, true);
+    });
+
+    // Disable Dialog backgrop (Background)
+    var disableBackDrop = function (d) {
+        setTimeout(function (d) {
+            md = d.getModal().find('.modal-backdrop').removeClass('in');
+        }, 50, d);
+    };
+
+    // Functions for use
+    var WidgetEditor = (function (e) {
+        e.preventDefault();
+        BootstrapDialog.show({
+            nl2br: false,
+            draggable: true,
+            closable: false,
+            title: 'Widget Editor',
+            message: function () {
+                var el = getWidgetEditorDialog();
+                // bind functions
+                //Make diagnosis table sortable
+                el.find('.widget-list tbody').sortable({
+                    helper: fixHelperModified,
+                    stop: function (event, ui) {
+                        renumber_table(el.find('.widget-list'));
+                    }
+                }).disableSelection();
+                //Delete button in table rows
+                el.find('.widget-list tbody').find('.btn-delete-widget').click(function (e) {
+                    fnDeleteWg(e, el, $(this));
+                });
+                el.find('.widget-list tbody').find('.btn-delete-widget').click(function (e) {
+                    WidgetItemEditor(e, true, $(this));
+                });
+
+                return el;
+            },
+            spinicon: 'fa fa-spinner fa-spin fa-fw',
+            btnOKLabel: 'Save',
+            btnOKClass: 'btn-primary',
+            buttons: [
+                {
+                    label: 'Cancel',
+                    icon: 'fa fa-times fa-fw',
+                    action: function (d) {
+                        d.close();
+                    }
+                },
+                {
+                    label: 'Save',
+                    icon: 'fa fa-save fa-fw',
+                    cssClass: 'btn-primary',
+                    autospin: true,
+                    action: function (d) {
+                        var wgnodes = _.map(d.getModalBody().find('.widget-list > tbody > tr'), function (el) {
+                            el = $(el);
+                            return cleanObj({
+                                id: el.attr('data-id'),
+                                seq: el.attr('data-seq'),
+                                title: el.attr('data-title'),
+                                typeId: el.attr('data-type-id'),
+                                typeCode: el.attr('data-type-code'),
+                                typeName: el.attr('data-type-name'),
+                                yAxisTitle: el.attr('data-yaxis-title'),
+                                yAxisMin: el.attr('data-yaxis-min'),
+                                yAxisMax: el.attr('data-yaxis-max'),
+                                dataSuffix: el.attr('data-data-suffix'),
+                                toolTipSuffix: el.attr('data-tooltip-suffix'),
+                                width: el.attr('data-width'),
+                                height: el.attr('data-height'),
+                                cssClass: el.attr('css-class')
+                            });
+                        }, this);
+                        console.log('widgetList : ' + JSON.stringify(wgnodes, null, '    '));
+
+                        e.data.parent.setData('widgetList', wgnodes);
+                        d.close();
+                    }
+                }
+            ],
+            onshow: function (d) {
+                if (typeof e.data.byMenu === 'undefined') {
+                    disableBackDrop(d);
+                }
+                // Load WGs data
+                var wgdatas = e.data.parent.getData('widgetList');
+                var tbody = d.getModalBody().find('.widget-list tbody');
+                $(wgdatas).each(function (i, node) {
+                    var row = $('<tr>' +
+                            '<td class="sequence">' + node.seq + '</td>' +
+                            '<td>' + (node.title?node.title:'') + '</td>' +
+                            '<td>' + node.typeName +' ('+node.typeId+') </td>' +
+                            '<td><button type="button" class="btn btn-sm btn-default btn-edit-widget"><i class="fa fa-edit"></i></button> ' +
+                            '<button type="button" class="btn btn-sm btn-danger btn-delete-widget"><i class="fa fa-times"></i></button>' +
+                            '</td></tr>');
+                    row.attr('data-id', node.id);
+                    row.attr('data-seq', node.seq);
+                    row.attr('data-title', node.title);
+                    row.attr('data-type-id', node.typeId);
+                    row.attr('data-type-code', node.typeCode);
+                    row.attr('data-type-name', node.typeName);
+                    row.attr('data-yaxis-title', node.yAxisTitle);
+                    row.attr('data-yaxis-min', node.yAxisMin);
+                    row.attr('data-yaxis-max', node.yAxisMax);
+                    row.attr('data-data-suffix', node.dataSuffix);
+                    row.attr('data-tooltip-suffix', node.toolTipSuffix);
+                    row.attr('data-width', node.height);
+                    row.attr('data-height', node.width);
+                    row.attr('css-class', node.cssClass);
+                    tbody.append(row);
+                    // Bind Button
+                    row.find('.btn-delete-widget').click(function (e) {
+                        fnDeleteWg(e, d.getModalBody(), $(this));
+                    });
+                    row.find('.btn-edit-widget').click(function (e) {
+                        e.data = {parent: d};
+                        WidgetItemEditor(e, true, $(this));
+                    });
+                });
+
+
+            },
+            onshown: function (d) {
+
+                // Bind Buttons
+
+                // Add Widget
+                d.getModalBody().find('.addwidget').click({parent: d}, function (e) {
+                    WidgetItemEditor(e);
+                });
+            }
+        });
+    });
+
+    var fnDeleteWg = function (e, el, row) {
+        row = row.closest('tr');
+        BootstrapDialog.confirm({
+            title: 'Confirmation',
+            message: 'Delete this item?',
+            type: BootstrapDialog.TYPE_WARNING,
+            draggable: true,
+            btnOKLabel: 'Delete',
+            btnOKClass: 'btn-danger',
+            //btnOKIcon: 'fa fa-times', // Not worked
+            callback: function (r) {
+                if (r) {
+                    row.remove();
+                    renumber_table(el.find('.widget-list'));
+                }
+            }
+        });
+    };
+
+    var GriditemEditor = function (e, isEdit) {
+        e.preventDefault();
+        var dlgprop = {
+            title: 'Add Grid item',
+            btnAdd: 'Add item',
+            btnAddIcon: 'fa fa-plus fa-fw'
+        };
+        if (isEdit) {
+            dlgprop = {
+                title: 'Edit Grid item',
+                btnAdd: 'Save item',
+                btnAddIcon: 'fa fa-save fa-fw'
+            };
+        }
+        BootstrapDialog.show({
+            nl2br: false, // For disable auto <br/>
+            draggable: true,
+            spinicon: 'fa fa-spinner fa-spin fa-fw',
+            title: dlgprop.title,
+            message: function () {
+                var el = getGridItemDialog();
+                return el;
+            },
+            closable: false,
+            buttons: [
+                {
+                    label: 'Cancel',
+                    icon: 'fa fa-times fa-fw',
+                    action: function (d) {
+                        d.close();
+                    }
+                },
+                {
+                    label: dlgprop.btnAdd,
+                    icon: dlgprop.btnAddIcon,
+                    cssClass: 'btn-primary',
+                    autospin: true,
+                    action: function (d) {
+                        // Get Element body
+                        var dlgbody = d.getModalBody();
+                        // Get form data
+                        var node = {};
+                        node.id = dlgbody.find('[name=id]').val();
+                        node.title = dlgbody.find('[name=title]').val();
+                        node.icon = dlgbody.find('[name=header_icon]').val();
+                        node.x = dlgbody.find('[name=x]').val();
+                        node.y = dlgbody.find('[name=y]').val();
+                        node.width = dlgbody.find('[name=width]').val();
+                        node.height = dlgbody.find('[name=height]').val();
+                        node.maxWidth = dlgbody.find('[name=max_width]').val();
+                        node.maxHeight = dlgbody.find('[name=max_height]').val();
+                        node.minWidth = dlgbody.find('[name=min_width]').val();
+                        node.minHeight = dlgbody.find('[name=min_height]').val();
+                        node.widgetAlignment = dlgbody.find('[name=widget_alignment] option:selected').val();
+                        node.noResize = true;
+                        node.noMove = true;
+                        if (dlgbody.find('[name=no_resize]').is(":checked"))
+                        {
+                            node.noResize = false;
+                        }
+
+                        if (dlgbody.find('[name=no_move]').is(":checked"))
+                        {
+                            node.noMove = false;
+                        }
+
+                        // Put Widget List
+                        node.widgetList = d.getData('widgetList');
+
+                        // Clean Array obj
+                        node = cleanObj(node);
+
+                        // Log Node
+                        console.log('Node serialized : ' + JSON.stringify(node, null, '    '));
+                        var newel;
+                        if (!isEdit) {
+                            // Add widget
+                            newel = getGridItemEl();
+                            $('.grid-stack').data('gridstack').add_widget(newel, node, true);
+                            loadWidgetPrototype(newel, node);
+                        } else {
+                            node.el = e.data.el;
+                            $('.grid-stack').data('gridstack').update_widget(e.data.el, node);
+                            loadWidgetPrototype(e.data.el, node);
+                        }
+
+
+                        // Done, close dialog
+                        d.close();
+                    }
+                }
+            ],
+            onshow: function (d) {
+                if (isEdit) {
+                    //alert(e.data.test); // Accessing data from e
+                    var dlgbody = d.getModalBody();
+                    dlgbody.find('[name=id]').val(e.data.node.id);
+                    dlgbody.find('[name=title]').val(e.data.node.title);
+                    dlgbody.find('[name=header_icon]').val(e.data.node.icon);
+                    dlgbody.find('[name=x]').val(e.data.node.x);
+                    dlgbody.find('[name=y]').val(e.data.node.y);
+                    dlgbody.find('[name=width]').val(e.data.node.width);
+                    dlgbody.find('[name=height]').val(e.data.node.height);
+                    dlgbody.find('[name=max_width]').val(e.data.node.maxWidth);
+                    dlgbody.find('[name=max_height]').val(e.data.node.maxHeight);
+                    dlgbody.find('[name=min_width]').val(e.data.node.minWidth);
+                    dlgbody.find('[name=min_height]').val(e.data.node.minHeight);
+                    dlgbody.find('[name=widget_alignment]').val(e.data.node.widgetAlignment);
+                    dlgbody.find('[name=no_resize]').prop('checked', !e.data.node.noResize);
+                    dlgbody.find('[name=no_move]').prop('checked', !e.data.node.noMove);
+                    d.setData('widgetList', e.data.node.widgetList);
+                }
+            },
+            onshown: function (d) {
+                d.getModalBody().find('.editwidget').click({parent: d}, WidgetEditor);
+                d.getModalBody().find('[name=title]').focus();
+            }
+        });
+    };
+
+    var WidgetItemEditor = function (e, isEdit, row) {
+        e.preventDefault();
+        var dlgprop = {
+            title: 'Add widget',
+            btnAdd: 'Add item',
+            btnAddIcon: 'fa fa-plus fa-fw'
+        };
+        if (isEdit) {
+            dlgprop = {
+                title: 'Edit widget',
+                btnAdd: 'Save item',
+                btnAddIcon: 'fa fa-save fa-fw'
+            };
+        }
+        BootstrapDialog.show({
+            nl2br: false, // For disable auto <br/>
+            draggable: true,
+            spinicon: 'fa fa-spinner fa-spin fa-fw',
+            title: dlgprop.title,
+            message: function () {
+                if (!isEdit) {
+                    return getWidgetItemEditDialog();
+                } else {
+                    row = row.closest('tr');
+                    msg = getWidgetItemEditDialog();
+                    msg.find('[name=id]').val(row.attr('data-id'));
+                    msg.find('[name=seq]').val(row.attr('data-seq'));
+                    msg.find('[name=title]').val(row.attr('data-title'));
+                    msg.find('[name=type_id]').val(row.attr('data-type-id')); // NOT SURE !!
+                    msg.find('[name=yaxis_title]').val(row.attr('data-yaxis-title'));
+                    msg.find('[name=yaxis_min]').val(row.attr('data-yaxis-min'));
+                    msg.find('[name=yaxis_max]').val(row.attr('data-yaxis-max'));
+                    msg.find('[name=data_suffix]').val(row.attr('data-data-suffix'));
+                    msg.find('[name=tooltip_suffix]').val(row.attr('data-tooltip-suffix'));
+                    msg.find('[name=width]').val(row.attr('data-width'));
+                    msg.find('[name=height]').val(row.attr('data-height'));
+                    msg.find('[name=css_class]').val(row.attr('data-css-class'));
+
+                }
+                return msg;
+            },
+            closable: false,
+            buttons: [
+                {
+                    label: 'Cancel',
+                    icon: 'fa fa-times fa-fw',
+                    action: function (d) {
+                        d.close();
+                    }
+                },
+                {
+                    label: dlgprop.btnAdd,
+                    icon: dlgprop.btnAddIcon,
+                    cssClass: 'btn-primary',
+                    autospin: true,
+                    action: function (d) {
+                        // Set widget data to save
+                        var wgfrm = d.getModalBody().find('#formaddwidgetitem');
+                        var wgel = $('<tr>' +
+                                '<td class="sequence">' + wgfrm.find('[name=seq]').val() + '</td>' +
+                                '<td>' + wgfrm.find('[name=title]').val() + '</td>' +
+                                '<td>' + wgfrm.find('[name=type_id] option:selected').text() + ' ('+wgfrm.find('[name=type_id] option:selected').val()+') </td>' +
+                                '<td><button type="button" class="btn btn-sm btn-default btn-edit-widget"><i class="fa fa-edit"></i></button> ' +
+                                '<button type="button" class="btn btn-sm btn-danger btn-delete-widget"><i class="fa fa-times"></i></button>' +
+                                '</td></tr>');
+
+                        wgel.attr('data-id', wgfrm.find('[name=id]').val());
+                        wgel.attr('data-seq', wgfrm.find('[name=seq]').val());
+                        wgel.attr('data-title', wgfrm.find('[name=title]').val());
+                        wgel.attr('data-type-id', wgfrm.find('[name=type_id] option:selected').val());
+                        wgel.attr('data-type-name', wgfrm.find('[name=type_id] option:selected').text());
+                        wgel.attr('data-yaxis-title', wgfrm.find('[name=yaxis_title]').val());
+                        wgel.attr('data-yaxis-min', wgfrm.find('[name=yaxis_min]').val());
+                        wgel.attr('data-yaxis-max', wgfrm.find('[name=yaxis_max]').val());
+                        wgel.attr('data-data-suffix', wgfrm.find('[name=data_suffix]').val());
+                        wgel.attr('data-tooltip-suffix', wgfrm.find('[name=tooltip_suffix]').val());
+                        wgel.attr('data-width', wgfrm.find('[name=width]').val());
+                        wgel.attr('data-height', wgfrm.find('[name=height]').val());
+                        wgel.attr('data-css-class', wgfrm.find('[name=css_class]').val());
+
+                        // Send data to parent
+                        if (!isEdit) {
+                            e.data.parent.getModalBody().find('.widget-list tbody:last').append(wgel);
+                            renumber_table(e.data.parent.getModalBody().find('.widget-list'));
+                        } else {
+                            e.data.parent.getModalBody().find('.widget-list tbody tr[data-id="' +
+                                    wgfrm.find('[name=id]').val() + '"]').replaceWith(wgel);
+                        }
+
+                        // Bind Button
+                        wgel.find('.btn-delete-widget').click(function (e) {
+                            fnDeleteWg(e, d.getModalBody(), $(this));
+                        });
+                        wgel.find('.btn-edit-widget').click(function (e) {
+                            e.data = {parent: d};
+                            WidgetItemEditor(e, true, $(this));
+                        });
+                        // Done, close dialog
+                        d.close();
+                    }
+                }
+            ],
+            onshow: function (d) {
+                disableBackDrop(d);
+            }
+        });
+    };
+
+    // OnClick Add grid item to open dialog
+    $('.add-grid-item').click(function (e) {
+        GriditemEditor(e);
+    });
+
+    // Save button action
+    $('.save-grid-item').click(function (e) {
+        e.preventDefault();
+        $(this).html('<i class="fa fa-spinner fa-spin fa-fw"></i> Saving...').attr('disabled', 'disabled');
+        /*setTimeout(function (el) { // FOR TEST
+         el.html('<i class="fa fa-check fa-fw"></i> Saved');
+         }, 1500, $(this));*/
+        gridfunc.save_grid();
+    });
+
+    // Gridstack
+    var options = {
+    };
+    $('.grid-stack').gridstack(options);
+    var counter = 9;
+    var gridfunc = new function () {
+        // Load JSON Serialized data
+        this.serialized_data = jsonGrid?jsonGrid:[];
+        /*
+         this.serialized_data = [
+         {id: 1, title: 'Main Widget', x: 0, y: 0, width: 12, height: 3, icon: 'fa-bar-chart-o'},
+         {id: 2, title: 'Has Widgets', x: 0, y: 3, width: 2, height: 2, widgetList: [
+         {
+         id: "1",
+         seq: "1",
+         title: "New widget",
+         type_id: "1",
+         type_name: "Solid Gauge",
+         yaxis_title: "12312",
+         yaxis_min: "312",
+         yaxis_max: "41324",
+         data_suffix: "123",
+         tooltip_suffix: "124",
+         height: "12"
+         }
+         ]},
+         {id: 3, x: 5, y: 3, width: 2, min_width: 3, height: 2},
+         {id: 4, title: 'Extra content', x: 2, y: 5, width: 3, height: 2, content: '<h2>Hello World</h2><p>skawweffgdfsdfks;dkf;lskdjfpoisdupfosidfsdfsdfs;djpsldf</p>'}
+         ];*/
+//         this.serialized_data = {};
+        this.grid = $('.grid-stack').data('gridstack');
+        this.load_grid = function () {
+            this.grid.remove_all();
+//              var items = GridStackUI.Utils.sort(this.serialized_data);
+            var items = this.serialized_data;
+            _.each(items, function (node) {
+                var newel = getGridItemEl();
+                this.grid.add_widget(newel, node, false);
+                loadWidgetPrototype(newel, node);
+            }, this);
+        }.bind(this);
+        
+        // Save function  send by AJAX
+        this.save_grid = function (url) {
+            this.serialized_data = _.map($('.grid-stack > .grid-stack-item:visible'), function (el) {
+                el = $(el);
+                var node = el.data('_gridstack_node');
+                return {
+                    id: node.id,
+                    posX: node.x,
+                    posY: node.y,
+                    width: node.width,
+                    height: node.height,
+                    noResize: node.noResize,
+                    noMove: node.noMove,
+                    maxWidth: node.maxWidth,
+                    maxHeight: node.maxHeight,
+                    minWidth: node.minWidth,
+                    minHeight: node.minHeight,
+                    locked: node.locked,
+                    title: node.title,
+                    icon: node.icon,
+                    widgetAlignment: node.widgetAlignment,
+                    widgetList: node.widgetList
+                };
+            }, this);
+            console.log("save_grid, JSON : "+JSON.stringify(this.serialized_data, null, '\t'));
+            $.ajax({
+                url: '/Widget/admin/ajax/grid',
+                data: {"json" : "{title=\"My Title\", id: "+$('#grid_id').val()+", items : "+JSON.stringify(this.serialized_data)+"}"}, // Serialized : send as Request Payload
+//                 contentType: "application/json; charset=utf-8",
+                type: 'POST',
+                cache: false,
+                timeout: 10000,
+                dataType: 'json', // IMPORTANT !!!
+                error: function (rs, textStatus, jqXHR) {
+                    $('.save-grid-item')
+                            .addClass('btn-danger')
+                            .removeClass('btn-success')
+                            .html('<i class="fa fa-times fa-fw"></i> Save error !')
+                            .removeAttr('disabled');
+                    console.log("Error : " + rs.responseJSON.msg);
+                    return true;
+                },
+                success: function (rs) {
+                	console.log(rs.resultDesc);
+                    if (!rs.error === true) {
+                        $('.save-grid-item')
+                                .addClass('btn-success')
+                                .removeClass('btn-danger')
+                                .html('<i class="fa fa-check fa-fw"></i> Saved')
+                                .removeAttr('disabled');
+                    } else {
+                        $('.save-grid-item')
+                                .addClass('btn-danger')
+                                .removeClass('btn-success')
+                                .html('<i class="fa fa-times fa-fw"></i> Save error !')
+                                .removeAttr('disabled');
+                        console.log("Error : " + rs.msg);
+                    }
+                }
+            });
+        }.bind(this);
+        this.clear_grid = function () {
+            this.grid.remove_all();
+        }.bind(this);
+        this.add_grid = function (e) {
+            e.preventDefault();
+            var $el = getGridItemEl();
+            this.grid.add_widget($($el),
+                    counter++, 0, 0, Math.floor(1 + 3 * Math.random()), Math.floor(1 + 3 * Math.random()), true);
+        }.bind(this);
+        $('#save-grid').click(this.save_grid);
+        $('#load-grid').click(this.load_grid);
+        $('#clear-grid').click(this.clear_grid);
+        $('#add-grid').click(this.add_grid);
+        this.load_grid();
+    };
+    $(document).on("click", ".remove-me", function (e) {
+        e.preventDefault();
+        var grid = $('.grid-stack').data('gridstack');
+        grid.remove_widget($(this).parents('.grid-stack-item'));
+    });
+
+    // And now Load DATA
+    $.ajax({
+        url: 'data.php',
+        contentType: "application/json; charset=utf-8",
+        type: 'GET',
+        cache: false,
+        timeout: 10000,
+        dataType: 'json', // IMPORTANT !!!
+        error: function () {
+            return true;
+        },
+        success: function (msg) {
+            gridfunc.serialized_data = msg;
+            gridfunc.load_grid();
+        }
+    });
+
+});
+		//]]>
+	</script>
+
+	<script th:fragment="refresh-cache-js" th:inline="javascript">
+		//<![CDATA[
+        $('a#refresh-cache').click(function(e){
+			e.preventDefault();
+			
+        	if(typeof DashboardUtilFn != "undefined"){
+        		DashboardUtilFn.refreshCache();
+        	}
+		});
+		//]]>
+	</script>
+</body>
+</html>

@@ -1,0 +1,2292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://kasikornbank.com/ManualFile" targetNamespace="http://kasikornbank.com/ManualFile" xmlns:Q1="http://kasikornbank.com/Format">
+
+
+
+
+	<import schemaLocation="ErrorFormat.xsd" namespace="http://kasikornbank.com/Format"/>
+
+	<complexType name="COAMappingRequest">
+		<sequence>
+			<element name="coaProductCode" type="string" maxOccurs="1"
+				minOccurs="1" />
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="COAMappingResponse">
+		<sequence>
+			<element name="productCategory" type="string" maxOccurs="1" minOccurs="1"/>
+			<element name="errorMessage" type="Q1:errorMessage" maxOccurs="1" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+
+
+	<complexType name="CardHierarchyRequest">
+		<sequence>
+			<element name="cardLinkCardCode" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="cardNoDecrypt" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="cardNoEncrypt" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="cardType" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="kbankProductCode" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="plasticCode" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="productCategory" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="terminalId" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="userName" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="rqUID" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="CardHierarchyResponse">
+		<sequence>
+			<element name="cardCode" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="cardCodeDesc" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+
+			<element name="cardLevelDesc" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="cardLevelEligibleCard" type="string"
+				maxOccurs="1" minOccurs="0" />
+			<element name="cardType" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="cardTypeBillingCycle" type="string"
+				maxOccurs="1" minOccurs="0" />
+			<element name="kbankProductCode" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="plasticCode" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="plasticCodeDesc" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="productId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="errorMessage" type="Q1:errorMessage"
+				maxOccurs="1" minOccurs="0" />
+		</sequence>
+	</complexType>
+
+	<element name="Response" type="tns:Response"/>
+
+	<complexType name="Response">
+		<sequence>
+			<element name="BOLResponse" type="tns:BOLResponse"
+				maxOccurs="unbounded" minOccurs="0" />
+			<element name="BScoreResponse" type="tns:BScoreResponse"
+				maxOccurs="unbounded" minOccurs="0" />
+			<element name="CapPortResponse"
+				type="tns:CapPortResponse">
+			</element>
+			<element name="CardHierarchyResponse"
+				type="tns:CardHierarchyResponse" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="CardHierarchySMEResponse" type="tns:CardHierarchyResponse" maxOccurs="unbounded" minOccurs="0"></element>
+			<element name="CardlinkResponse" type="tns:CardlinkResponse"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="CIS0368I01Response" maxOccurs="1"
+				minOccurs="0">
+				<complexType>
+					<sequence>
+						<element name="EAIHeader" maxOccurs="1"
+							minOccurs="0">
+							<complexType>
+								<sequence>
+									<element name="serviceId"
+										nillable="true" type="string" maxOccurs="1" minOccurs="0" />
+									<element name="beginTimestamp"
+										nillable="true" type="string" maxOccurs="1" minOccurs="0" />
+									<element name="endTimestamp"
+										nillable="true" type="string" maxOccurs="1" minOccurs="0" />
+									<element name="transactionId"
+										nillable="true" type="string" maxOccurs="1" minOccurs="0" />
+									<element name="sourceTransactionId"
+										nillable="true" type="string" maxOccurs="1" minOccurs="0" />
+									<element name="sourceSystem"
+										nillable="true" type="string" maxOccurs="1" minOccurs="0" />
+									<element minOccurs="0" name="userId"
+										nillable="true" type="string" />
+									<element minOccurs="0"
+										name="password" nillable="true" type="string" />
+									<element name="status"
+										nillable="true" type="string" maxOccurs="1" minOccurs="0" />
+									<element name="reasonCode"
+										nillable="true" type="string" maxOccurs="1" minOccurs="0" />
+									<element name="reasonDesc"
+										nillable="true" type="string" maxOccurs="1" minOccurs="0" />
+									<element name="multiMsgFlg"
+										nillable="true" type="string" maxOccurs="1" minOccurs="0" />
+									<element name="orderMsgTypeCode"
+										nillable="true" type="string" maxOccurs="1" minOccurs="0" />
+									<element name="multiMsgVect"
+										maxOccurs="1" minOccurs="0">
+										<complexType>
+											<sequence>
+												<element name="MultiMsg"
+													maxOccurs="unbounded" minOccurs="0">
+													<complexType>
+														<sequence>
+															<element
+																name="status" nillable="true" type="string"
+																maxOccurs="1" minOccurs="0" />
+															<element
+																name="reasonCode" nillable="true" type="string"
+																maxOccurs="1" minOccurs="0" />
+															<element
+																name="reasonDesc" nillable="true" type="string"
+																maxOccurs="1" minOccurs="0" />
+															<element
+																name="refFieldVect" maxOccurs="1" minOccurs="0">
+																<complexType>
+																	<sequence>
+																		<element
+																			name="RefField" maxOccurs="unbounded"
+																			minOccurs="0">
+																			<complexType>
+																				<sequence>
+																					<element
+																						name="refValue" nillable="true" type="string"
+																						maxOccurs="1" minOccurs="0" />
+																					<element
+																						name="refCode" nillable="true" type="string"
+																						maxOccurs="1" minOccurs="0" />
+																					<element
+																						name="refDesc" nillable="true" type="string"
+																						maxOccurs="1" minOccurs="0" />
+																				</sequence>
+																			</complexType>
+																		</element>
+																	</sequence>
+																</complexType>
+															</element>
+														</sequence>
+													</complexType>
+												</element>
+											</sequence>
+										</complexType>
+									</element>
+									<element name="errorMessage"
+										maxOccurs="1" minOccurs="0">
+										<complexType>
+											<sequence>
+												<element
+													name="errorCode" type="string" maxOccurs="1" minOccurs="0" />
+												<element
+													name="errorDomain" type="string" maxOccurs="1"
+													minOccurs="0" />
+												<element
+													name="errorLevel" type="string" maxOccurs="1"
+													minOccurs="0" />
+												<element
+													name="errorMessage" type="string" maxOccurs="1"
+													minOccurs="0" />
+											</sequence>
+										</complexType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+						<element minOccurs="0" name="CISCustomer">
+							<complexType>
+								<sequence>
+									<element minOccurs="0" name="num"
+										maxOccurs="1" type="string" />
+									<element minOccurs="0"
+										name="prodDomain1Name" maxOccurs="1" type="string" />
+									<element minOccurs="0"
+										name="prodDomain2Name" maxOccurs="1" type="string" />
+									<element minOccurs="0"
+										name="prodDomain3Name" maxOccurs="1" type="string" />
+									<element minOccurs="0"
+										name="prodDomain4Name" maxOccurs="1" type="string" />
+									<element name="prodDomainObj">
+										<complexType>
+											<sequence>
+												<element minOccurs="0"
+													name="prodDomainsVect">
+													<complexType>
+														<sequence>
+															<element
+																maxOccurs="60" minOccurs="0" name="CISProdDomain">
+																<complexType>
+																	<sequence>
+																		<element
+																			minOccurs="0" name="prodCode" nillable="true"
+																			type="string" />
+																		<element
+																			minOccurs="0" name="subProdCode" nillable="true"
+																			type="string" />
+																		<element
+																			minOccurs="0" name="prodDesc" nillable="true"
+																			type="string" />
+																		<element
+																			minOccurs="0" name="domainCode" nillable="true"
+																			type="string" />
+																		<element
+																			minOccurs="0" name="totProdAcctCnt" nillable="true"
+																			type="string" />
+																		<element
+																			minOccurs="0" name="totInactvProdCnt" nillable="true"
+																			type="string" />
+																		<element
+																			minOccurs="0" name="unitDesc" nillable="true"
+																			type="string" />
+																		<element
+																			minOccurs="0" name="limAmt" nillable="true"
+																			type="string" />
+																		<element
+																			minOccurs="0" name="ostAmt" nillable="true"
+																			type="string" />
+																		<element
+																			minOccurs="0" name="allowFlag" nillable="true"
+																			type="string" />
+																		<element
+																			minOccurs="0" name="CISPIMProdCode" nillable="true"
+																			type="string" />
+																	</sequence>
+																</complexType>
+															</element>
+														</sequence>
+													</complexType>
+												</element>
+											</sequence>
+										</complexType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="CVRS1312I01Response" maxOccurs="1"
+				minOccurs="0">
+				<complexType>
+					<sequence>
+						<element name="KBankHeader" maxOccurs="1"
+							minOccurs="0">
+							<complexType>
+								<sequence>
+
+									<element minOccurs="0" name="funcNm"
+										maxOccurs="1" type="string" />
+									<element minOccurs="0" name="rqUID"
+										maxOccurs="1" type="string" />
+									<element minOccurs="0"
+										name="rsAppId" maxOccurs="1" type="string" />
+									<element minOccurs="0" name="rsUID"
+										maxOccurs="1" type="string" />
+									<element minOccurs="0" name="rsDt"
+										maxOccurs="1" type="string" />
+									<element minOccurs="0"
+										name="statusCode" maxOccurs="1" type="string" />
+									<element minOccurs="0" name="corrID"
+										maxOccurs="1" type="string" />
+									<element name="error"
+										maxOccurs="unbounded" minOccurs="0">
+										<complexType>
+											<sequence>
+												<element minOccurs="0"
+													name="errorAppId" maxOccurs="1" type="string" />
+												<element minOccurs="0"
+													name="errorAppAbbrv" maxOccurs="1" type="string" />
+												<element minOccurs="0"
+													name="errorCode" maxOccurs="1" type="string" />
+												<element minOccurs="0"
+													name="errorDesc" maxOccurs="1" type="string" />
+												<element minOccurs="0"
+													name="errorSeverity" maxOccurs="1" type="string" />
+											</sequence>
+										</complexType>
+									</element>
+									<element name="errorMessage"
+										type="Q1:errorMessage" maxOccurs="1" minOccurs="0">
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+						<element name="CVRSInfo" maxOccurs="1"
+							minOccurs="0">
+							<complexType>
+								<sequence>
+									<element minOccurs="0" maxOccurs="1"
+										type="string" name="sanctionFlg" />
+									<element name="regulsObj"
+										maxOccurs="1" minOccurs="0">
+										<complexType>
+											<sequence>
+												<element minOccurs="0"
+													name="totRegulCnt" maxOccurs="1" type="string" />
+												<element
+													name="regulsVect" maxOccurs="1" minOccurs="0">
+													<complexType>
+														<sequence>
+															<element
+																minOccurs="0" name="subTypCode" maxOccurs="1"
+																type="string" />
+															<element
+																minOccurs="0" name="typCode" maxOccurs="1"
+																type="string" />
+														</sequence>
+													</complexType>
+												</element>
+											</sequence>
+										</complexType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="COAMappingResponse"
+				type="tns:COAMappingResponse">
+			</element>
+			<element name="CoBandResponse" type="tns:CoBandResponse" />
+			<element name="CompanyGroupResponse"
+				type="tns:CompanyGroupResponse">
+			</element>
+			<element name="CurrentAccountResponse"
+				type="tns:CurrentAccountResponse" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="FICSMappingResponse"
+				type="tns:FICSMappingResponse">
+			</element>
+			<element name="FixAccountResponse"
+				type="tns:FixAccountResponse" maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="FraudResponse">
+				<complexType>
+					<sequence>
+						<element minOccurs="0" name="actionCountNumber"
+							type="string" />
+						<element minOccurs="0" name="actionTaken"
+							type="string" />
+						<element minOccurs="0" name="actionUser"
+							type="string" />
+						<element minOccurs="0" name="applicationNumber"
+							type="string" />
+						<element minOccurs="0" name="applicationType"
+							type="string" />
+						<element minOccurs="0" name="captureDate"
+							type="string" />
+						<element minOccurs="0" name="captureTime"
+							type="string" />
+						<element minOccurs="0" name="countryCode"
+							type="string" />
+						<element minOccurs="0" name="decisionReason"
+							type="string" />
+						<element minOccurs="0" name="diary"
+							type="string" />
+						<element minOccurs="0" name="errorCode"
+							type="string" />
+						<element minOccurs="0" name="fraudAlert"
+							type="string" />
+						<element minOccurs="0" name="fraudScore"
+							type="string" />
+						<element minOccurs="0" name="groupMemberCode"
+							type="string" />
+						<element minOccurs="0" name="natureOfFraud"
+							type="string" />
+						<element minOccurs="0" name="organisation"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered1"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered10"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered11"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered12"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered13"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered14"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered15"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered16"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered17"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered18"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered19"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered2"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered20"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered3"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered4"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered5"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered6"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered7"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered8"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggered9"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggeredDesc1"
+							type="string" />
+						<element minOccurs="0"
+							name="ruleTriggeredDesc10" type="string" />
+						<element minOccurs="0"
+							name="ruleTriggeredDesc11" type="string" />
+						<element minOccurs="0"
+							name="ruleTriggeredDesc12" type="string" />
+						<element minOccurs="0"
+							name="ruleTriggeredDesc13" type="string" />
+						<element minOccurs="0"
+							name="ruleTriggeredDesc14" type="string" />
+						<element minOccurs="0"
+							name="ruleTriggeredDesc15" type="string" />
+						<element minOccurs="0"
+							name="ruleTriggeredDesc16" type="string" />
+						<element minOccurs="0"
+							name="ruleTriggeredDesc17" type="string" />
+						<element minOccurs="0"
+							name="ruleTriggeredDesc18" type="string" />
+						<element minOccurs="0"
+							name="ruleTriggeredDesc19" type="string" />
+						<element minOccurs="0" name="ruleTriggeredDesc2"
+							type="string" />
+						<element minOccurs="0"
+							name="ruleTriggeredDesc20" type="string" />
+						<element minOccurs="0" name="ruleTriggeredDesc3"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggeredDesc4"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggeredDesc5"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggeredDesc6"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggeredDesc7"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggeredDesc8"
+							type="string" />
+						<element minOccurs="0" name="ruleTriggeredDesc9"
+							type="string" />
+						<element minOccurs="0" name="userDefinedAlert"
+							type="string" />
+						<element name="KBankHeader" maxOccurs="1"
+							minOccurs="0">
+							<complexType>
+								<sequence>
+									<element minOccurs="0"
+										name="authLevel" type="string" />
+									<element minOccurs="0"
+										name="authUserId" type="string" />
+									<element minOccurs="0"
+										name="beginTimestamp" type="string" />
+									<element minOccurs="0" name="corrID"
+										type="string" />
+									<element minOccurs="0"
+										name="endTimestamp" type="string" />
+									<element minOccurs="0" name="error"
+										maxOccurs="1">
+										<complexType>
+											<sequence>
+												<element minOccurs="0"
+													name="corrID" type="string" />
+												<element minOccurs="0"
+													name="errorAppAbbrv" type="string" />
+												<element minOccurs="0"
+													name="errorAppId" type="string" />
+												<element minOccurs="0"
+													name="errorCode" type="string" />
+												<element minOccurs="0"
+													name="errorDesc" type="string" />
+												<element minOccurs="0"
+													name="errorSeverity" type="string" />
+											</sequence>
+										</complexType>
+									</element>
+									<element minOccurs="0"
+										name="multiMsgFlg" type="string" />
+									<element minOccurs="1"
+										name="multiMsg" maxOccurs="1">
+										<complexType>
+											<sequence>
+												<element minOccurs="0"
+													name="reasonCode" type="int" />
+												<element minOccurs="0"
+													name="reasonDesc" type="string" />
+												<element name="refField"
+													maxOccurs="unbounded" minOccurs="0">
+													<complexType>
+														<sequence>
+															<element
+																minOccurs="0" name="refCode" type="string" />
+															<element
+																minOccurs="0" name="refDesc" type="string" />
+															<element
+																minOccurs="0" name="refValue" type="string" />
+														</sequence>
+													</complexType>
+												</element>
+												<element minOccurs="0"
+													name="status" type="int" />
+											</sequence>
+										</complexType>
+									</element>
+									<element minOccurs="0"
+										name="orderMsgTypeCode" type="string" />
+									<element minOccurs="0"
+										name="password" type="string" />
+									<element minOccurs="0"
+										name="reasonCode" type="string" />
+									<element minOccurs="0"
+										name="reasonDesc" type="string" />
+									<element minOccurs="0"
+										name="rsAppId" type="string" />
+									<element minOccurs="0" name="rsUID"
+										type="string" />
+									<element minOccurs="0"
+										name="serviceId" type="string" />
+									<element minOccurs="0"
+										name="sourceSystem" type="string" />
+									<element minOccurs="0"
+										name="sourceTransactionId" type="string" />
+									<element minOccurs="0" name="status"
+										type="string" />
+									<element minOccurs="0"
+										name="statusCode" type="string" />
+									<element minOccurs="0"
+										name="terminalId" type="string" />
+									<element minOccurs="0"
+										name="transactionId" type="string" />
+									<element minOccurs="0" name="userId"
+										type="string" />
+									<element minOccurs="0"
+										name="userLangPref" type="string" />
+									<element name="errorMessage"
+										maxOccurs="1" minOccurs="0">
+										<complexType>
+											<sequence>
+												<element
+													name="errorCode" type="string" maxOccurs="1" minOccurs="0" />
+												<element
+													name="errorDomain" type="string" maxOccurs="1"
+													minOccurs="0" />
+												<element
+													name="errorLevel" type="string" maxOccurs="1"
+													minOccurs="0" />
+												<element
+													name="errorMessage" type="string" maxOccurs="1"
+													minOccurs="0" />
+											</sequence>
+										</complexType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="HRISResponse" type="tns:HRISResponse" />
+			<element name="KAssetResponse" type="tns:KAssetResponse"
+				maxOccurs="unbounded" minOccurs="0" />
+			<element name="KBankSalaryResponse"
+				type="tns:KBankSalaryResponse">
+			</element>
+			<element name="KBANK1211I01Response" maxOccurs="1"
+				minOccurs="0">
+				<complexType>
+					<sequence>
+						<element name="applicantBankruptcyStatus"
+							minOccurs="0" maxOccurs="1" type="string" />
+						<element name="INDCustomer" maxOccurs="1"
+							minOccurs="0">
+							<complexType>
+								<sequence>
+									<element minOccurs="0"
+										name="caseFlag" maxOccurs="1" type="string" />
+									<element minOccurs="0" name="name"
+										maxOccurs="1" type="string" />
+									<element minOccurs="0"
+										name="uniqueCustFoundFlg" maxOccurs="1" type="string" />
+								</sequence>
+							</complexType>
+						</element>
+						<element name="KBankHeader" maxOccurs="1"
+							minOccurs="0">
+							<complexType>
+								<sequence>
+									<element minOccurs="0"
+										name="serviceId" maxOccurs="1" type="string" />
+									<element minOccurs="0"
+										name="transactionId" maxOccurs="1" type="string" />
+									<element minOccurs="0"
+										name="sourceSystem" maxOccurs="1" type="string" />
+									<element minOccurs="0" name="rsuid"
+										maxOccurs="1" type="string" />
+									<element minOccurs="0"
+										name="rsAppId" maxOccurs="1" type="string" />
+									<element name="rsDt" type="dateTime"
+										maxOccurs="1" minOccurs="0">
+									</element>
+									<element minOccurs="0"
+										name="statusCode" maxOccurs="1" type="string" />
+									<element minOccurs="0" name="error"
+										maxOccurs="1">
+										<complexType>
+											<sequence>
+												<element minOccurs="0"
+													name="errorAppId" maxOccurs="1" type="string" />
+												<element minOccurs="0"
+													name="errorAppAbbrv" maxOccurs="1" type="string" />
+												<element minOccurs="0"
+													name="errorCode" maxOccurs="1" type="string" />
+												<element minOccurs="0"
+													name="errorDesc" maxOccurs="1" type="string" />
+												<element minOccurs="0"
+													name="errorSeverity" maxOccurs="1" type="string" />
+											</sequence>
+										</complexType>
+									</element>
+									<element minOccurs="0" name="corrID"
+										maxOccurs="1" type="string" />
+									<element name="errorMessage"
+										type="Q1:errorMessage" maxOccurs="1" minOccurs="0">
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+						<element name="LPMCustomer" maxOccurs="1"
+							minOccurs="0">
+							<complexType>
+								<sequence>
+									<element name="classCode"
+										minOccurs="0" maxOccurs="1" type="string" />
+									<element name="creditSumryObj"
+										minOccurs="0" maxOccurs="1">
+										<complexType>
+											<sequence>
+												<element
+													name="lastRstruDate" minOccurs="0" maxOccurs="1"
+													type="string" />
+												<element
+													name="statRstruFlag" minOccurs="0" maxOccurs="1"
+													type="string" />
+											</sequence>
+										</complexType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="KBANK1550I01Response" minOccurs="0"
+				maxOccurs="1">
+				<complexType>
+					<sequence>
+						<element name="KBankHeader" minOccurs="0"
+							maxOccurs="1">
+							<complexType>
+								<sequence>
+									<element name="serviceId"
+										minOccurs="0" maxOccurs="1" type="string" />
+									<element name="beginTimestamp"
+										minOccurs="0" maxOccurs="1" type="string" />
+									<element name="endTimestamp"
+										minOccurs="0" maxOccurs="1" type="string" />
+									<element name="transactionId"
+										minOccurs="0" maxOccurs="1" type="string" />
+									<element name="sourceTransactionId"
+										minOccurs="0" maxOccurs="1" type="string" />
+									<element name="sourceSystem"
+										minOccurs="0" maxOccurs="1" type="string" />
+									<element name="userId" minOccurs="0"
+										maxOccurs="1" type="string" />
+									<element name="password"
+										minOccurs="0" maxOccurs="1" type="string" />
+									<element name="status" minOccurs="0"
+										maxOccurs="1" type="string" />
+									<element name="reasonCode"
+										minOccurs="0" maxOccurs="1" type="string" />
+									<element name="reasonDesc"
+										minOccurs="0" maxOccurs="1" type="string" />
+									<element name="errorMessage"
+										type="Q1:errorMessage" maxOccurs="1" minOccurs="0">
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+						<element name="amcCustomer" minOccurs="0"
+							maxOccurs="1">
+							<complexType>
+								<sequence>
+									<element name="custName"
+										minOccurs="0" maxOccurs="1" type="string" />
+									<element name="exstCustFlag"
+										minOccurs="0" maxOccurs="1" type="string" />
+									<element name="uniqueCustFoundFlg"
+										minOccurs="0" maxOccurs="1" type="string" />
+								</sequence>
+							</complexType>
+						</element>
+						<element name="indCustomer" minOccurs="0"
+							maxOccurs="1">
+							<complexType>
+								<sequence>
+									<element name="caseFlag"
+										minOccurs="0" maxOccurs="1" type="string" />
+									<element name="name" minOccurs="0"
+										maxOccurs="1" type="string" />
+									<element name="uniqueCustFoundFlg"
+										minOccurs="0" maxOccurs="1" type="string" />
+								</sequence>
+							</complexType>
+						</element>
+						<element name="tmcCustomer" minOccurs="0"
+							maxOccurs="1">
+							<complexType>
+								<sequence>
+									<element name="name" minOccurs="0"
+										maxOccurs="1" type="string" />
+									<element name="exstCustFlag"
+										minOccurs="0" maxOccurs="1" type="string" />
+									<element name="uniqueCustFoundFlg"
+										minOccurs="0" maxOccurs="1" type="string" />
+								</sequence>
+							</complexType>
+						</element>
+						<element name="bankruptcyCompanyStatus"
+							minOccurs="0" maxOccurs="1" type="string" />
+						<element name="amcCompanyStatus" minOccurs="0"
+							maxOccurs="1" type="string" />
+						<element name="tamcCompanyStatus" minOccurs="0"
+							maxOccurs="1" type="string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="KCBSResponse" maxOccurs="1" minOccurs="0">
+				<complexType>
+					<sequence>
+						<element minOccurs="0" name="tranNo"
+							maxOccurs="1" type="string" />
+						<element minOccurs="0" name="consentRefNo"
+							maxOccurs="1" type="string" />
+						<element minOccurs="0" name="idNo" maxOccurs="1"
+							type="string" />
+						<element minOccurs="0" name="result"
+							maxOccurs="1" type="tns:TUEF" />
+						<element minOccurs="0" name="dataSource"
+							maxOccurs="1" type="string" />
+						<element minOccurs="0" name="dateOfSearch"
+							maxOccurs="1" type="string" />
+						<element name="KBankHeader" minOccurs="0"
+							maxOccurs="1">
+							<complexType>
+								<sequence>
+									<element minOccurs="0"
+										name="serviceId" maxOccurs="1" type="string" />
+									<element minOccurs="0"
+										name="transactionId" maxOccurs="1" type="string" />
+									<element minOccurs="0"
+										name="sourceSystem" maxOccurs="1" type="string" />
+									<element minOccurs="0" name="rsuid"
+										maxOccurs="1" type="string" />
+									<element minOccurs="0"
+										name="rsAppId" maxOccurs="1" type="string" />
+									<element name="rsDt" type="string"
+										maxOccurs="1" minOccurs="0">
+									</element>
+									<element minOccurs="0"
+										name="statusCode" maxOccurs="1" type="string" />
+									<element minOccurs="0" name="corrID"
+										maxOccurs="1" type="string" />
+									<element minOccurs="0" name="error"
+										maxOccurs="unbounded">
+										<complexType>
+											<sequence>
+												<element minOccurs="0"
+													name="errorAppId" maxOccurs="1" type="string" />
+												<element minOccurs="0"
+													name="errorAppAbbrv" maxOccurs="1" type="string" />
+												<element minOccurs="0"
+													name="errorCode" maxOccurs="1" type="string" />
+												<element minOccurs="0"
+													name="errorDesc" maxOccurs="1" type="string" />
+												<element minOccurs="0"
+													name="errorSeverity" maxOccurs="1" type="string" />
+											</sequence>
+										</complexType>
+									</element>
+									<element name="errorMessage"
+										type="Q1:errorMessage" maxOccurs="1" minOccurs="0">
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="KOCResponse" type="tns:KOCResponse" />
+			<element name="LPMResponse" type="tns:LPMResponse"
+				maxOccurs="unbounded" minOccurs="0" />
+			<element name="PayrollResponse"
+				type="tns:PayrollResponse">
+			</element>
+			<element name="SAFEResponse" type="tns:SAFEResponse"
+				maxOccurs="unbounded" minOccurs="0" />
+			<element name="SavingAccountResponse"
+				type="tns:SavingAccountResponse" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="SOLOResponse" type="tns:SOLOResponse" />
+			<element name="TCBLoanResponse" type="tns:TCBLoanResponse"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="ThaiBevPartnerResponse"
+				type="tns:ThaiBevPartnerResponse">
+			</element>
+			<element name="TrustedCompanyResponse"
+				type="tns:TrustCompanyResponse">
+			</element>
+
+			<element name="WealthResponse" type="tns:WealthResponse"
+				maxOccurs="unbounded" minOccurs="0" />
+			<element minOccurs="0" maxOccurs="1"
+				name="WFInquiryRespM">
+				<complexType>
+					<sequence>
+						<element minOccurs="0" maxOccurs="1"
+							name="kBankHeader">
+							<complexType>
+								<sequence>
+									<element minOccurs="0" maxOccurs="1"
+										name="serviceId" type="string" />
+									<element minOccurs="0" maxOccurs="1"
+										name="transactionId" type="string" />
+									<element minOccurs="0" maxOccurs="1"
+										name="sourceSystem" type="string" />
+									<element minOccurs="0" maxOccurs="1"
+										name="rsuid" type="string" />
+									<element minOccurs="0" maxOccurs="1"
+										name="rsAppId" type="string" />
+									<element minOccurs="0" maxOccurs="1"
+										name="statusCode" type="string" />
+									<element minOccurs="0"
+										maxOccurs="unbounded" name="error">
+										<complexType>
+											<sequence>
+												<element minOccurs="0"
+													maxOccurs="1" name="errorAppId" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="errorAppAbbrv" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="errorCode" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="errorDesc" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="errorSeverity" type="string" />
+											</sequence>
+										</complexType>
+									</element>
+									<element minOccurs="0" maxOccurs="1"
+										name="corrID" type="string" />
+									<element name="errorMessage"
+										type="Q1:errorMessage" maxOccurs="1" minOccurs="0">
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+						<element minOccurs="0" maxOccurs="1"
+							name="no_record" type="string" />
+						<element minOccurs="0" maxOccurs="unbounded"
+							name="applicationGroupM">
+							<complexType>
+								<sequence>
+									<element minOccurs="0" maxOccurs="1"
+										name="app_no" type="string" />
+									<element minOccurs="0" maxOccurs="1"
+										name="app_date" type="string" />
+									<element minOccurs="0"
+										maxOccurs="unbounded" name="personalInfoM">
+										<complexType>
+											<sequence>
+												<element minOccurs="0"
+													maxOccurs="1" name="personal_id" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="doc_no" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="doc_type" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="th_firstname" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="th_midname" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="th_lastname" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="cis_no" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="dob" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="applicant_type" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="final_verified_income" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="mailing_address" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="type_of_fin" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="mobile_no" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="vat_code" type="string" />
+												<element minOccurs="0"
+													maxOccurs="unbounded" name="addressM">
+													<complexType>
+														<sequence>
+															<element
+																minOccurs="0" maxOccurs="1" name="address_type"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="houseNumber"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="village"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="floorNumber"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="room" type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="buildingName"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="moo" type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="soi" type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="street" type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="subDistrict"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="district"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="province"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="postalCode"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="country"
+																type="string" />
+														</sequence>
+													</complexType>
+												</element>
+												<element minOccurs="0"
+													maxOccurs="1" name="cardlinkCustM">
+													<complexType>
+														<sequence>
+															<element
+																minOccurs="0" maxOccurs="1" name="cardlink_cust_no"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="org_id" type="string" />
+														</sequence>
+													</complexType>
+												</element>
+												<element minOccurs="0"
+													maxOccurs="unbounded" name="incomeInfoM">
+													<complexType>
+														<sequence>
+															<element
+																minOccurs="0" maxOccurs="1" name="income_type"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="unbounded"
+																name="previousIncomeM">
+																<complexType>
+																	<sequence>
+																		<element
+																			minOccurs="0" maxOccurs="1" name="income"
+																			type="string" />
+																		<element
+																			minOccurs="0" maxOccurs="1" name="incomeDate"
+																			type="string" />
+																	</sequence>
+																</complexType>
+															</element>
+														</sequence>
+													</complexType>
+												</element>
+												<element minOccurs="0"
+													maxOccurs="unbounded" name="incomeSourceM">
+													<complexType>
+														<sequence>
+															<element
+																minOccurs="0" maxOccurs="1" name="incomeSource"
+																type="string" />
+														</sequence>
+													</complexType>
+												</element>
+											</sequence>
+										</complexType>
+									</element>
+									<element minOccurs="0"
+										maxOccurs="unbounded" name="applicationM">
+										<complexType>
+											<sequence>
+												<element minOccurs="0"
+													maxOccurs="1" name="app_item_no" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="app_status" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="app_status_date" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="project_code" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="kbank_product_code" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="veto_flag" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="reject_code" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="apply_type" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="bundle_product" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="bundle_product_credit_limit"
+													type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="policy_program_id" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="main_app_item_no" type="string" />
+												<element minOccurs="0"
+													maxOccurs="1" name="verResultM">
+													<complexType>
+														<sequence>
+															<element
+																minOccurs="0" maxOccurs="unbounded" name="orCodeM">
+																<complexType>
+																	<sequence>
+																		<element
+																			minOccurs="0" maxOccurs="1" name="or_code"
+																			type="string" />
+																	</sequence>
+																</complexType>
+															</element>
+															<element
+																minOccurs="0" maxOccurs="1" name="verify_cust_result"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="unbounded" name="websiteM">
+																<complexType>
+																	<sequence>
+																		<element
+																			minOccurs="0" maxOccurs="1" name="website_code"
+																			type="string" />
+																		<element
+																			minOccurs="0" maxOccurs="1" name="website_reusult"
+																			type="string" />
+																	</sequence>
+																</complexType>
+															</element>
+														</sequence>
+													</complexType>
+												</element>
+												<element minOccurs="0"
+													maxOccurs="unbounded" name="loanM">
+													<complexType>
+														<sequence>
+															<element
+																minOccurs="0" maxOccurs="1" name="account_no"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="final_credit_limit"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="installment_amt"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="booked_flag"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="cycle_cut"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="payment_method"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="autopay_account_no"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="unbounded"
+																name="personalRefM">
+																<complexType>
+																	<sequence>
+																		<element
+																			minOccurs="0" maxOccurs="1" name="pesonal_id"
+																			type="string" />
+																		<element
+																			minOccurs="0" maxOccurs="1" name="applicant_type"
+																			type="string" />
+																	</sequence>
+																</complexType>
+															</element>
+															<element
+																minOccurs="0" maxOccurs="1" name="cardM">
+																<complexType>
+																	<sequence>
+																		<element
+																			minOccurs="0" maxOccurs="1" name="card_code"
+																			type="string" />
+																		<element
+																			minOccurs="0" maxOccurs="1" name="card_level"
+																			type="string" />
+																		<element
+																			minOccurs="0" maxOccurs="1" name="plastic_type"
+																			type="string" />
+																		<element
+																			minOccurs="0" maxOccurs="1" name="doc_no"
+																			type="string" />
+																		<element
+																			minOccurs="0" maxOccurs="1" name="card_apply_type"
+																			type="string" />
+																		<element
+																			minOccurs="0" maxOccurs="1" name="card_no"
+																			type="string" />
+																		<element
+																			minOccurs="0" maxOccurs="1" name="card_no_encrypted"
+																			type="string" />
+																		<element
+																			minOccurs="0" maxOccurs="1" name="priority_pass_no"
+																			type="string" />
+																		<element
+																			minOccurs="0" maxOccurs="1" name="card_type"
+																			type="string" />
+																		<element
+																			minOccurs="0" maxOccurs="1" name="cardlink_cust_no"
+																			type="string" />
+																		<element
+																			minOccurs="0" maxOccurs="1" name="cardlink_org_no"
+																			type="string" />
+																		<element
+																			minOccurs="0" maxOccurs="1" name="main_card_no"
+																			type="string" />
+																		<element
+																			minOccurs="0" maxOccurs="1"
+																			name="maincard_no_encrypted" type="string" />
+																	</sequence>
+																</complexType>
+															</element>
+														</sequence>
+													</complexType>
+												</element>
+												<element minOccurs="0"
+													maxOccurs="unbounded" name="personalRefM">
+													<complexType>
+														<sequence>
+															<element
+																minOccurs="0" maxOccurs="1" name="personal_id"
+																type="string" />
+															<element
+																minOccurs="0" maxOccurs="1" name="applicant_type"
+																type="string" />
+														</sequence>
+													</complexType>
+												</element>
+											</sequence>
+										</complexType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+						<element minOccurs="0" maxOccurs="1"
+							name="personal_id" type="string" />
+					</sequence>
+				</complexType>
+			</element>
+
+		</sequence>
+	</complexType>
+
+	<element name="Request" type="tns:Request"/>
+
+	<complexType name="Request">
+		<sequence>
+			<element name="BOLRequest" type="tns:BOLRequest" />
+			<element name="BScoreRequest" type="tns:BScoreRequest" />
+			<element name="CapPortRequest" type="tns:CapPortRequest" />
+			<element name="CardHierarchyRequest"
+				type="tns:CardHierarchyRequest">
+			</element>
+			<element name="CardlinkRequest"
+				type="tns:CardlinkRequest">
+			</element>
+			<element minOccurs="0" maxOccurs="1"
+				name="CIS0368I01Request">
+				<complexType>
+					<sequence>
+						<element name="userName" type="string"
+							maxOccurs="1" minOccurs="1" />
+						<element name="custTypeCode" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+						<element name="cisNo" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+			<element minOccurs="0" maxOccurs="1"
+				name="CVRS1312I01Request">
+				<complexType>
+					<sequence>
+						<element minOccurs="0" maxOccurs="1"
+							name="cvrsInfoRequest">
+							<complexType>
+								<sequence>
+									<element name="brthDate"
+										type="string" maxOccurs="1" minOccurs="0" />
+									<element name="docNum" type="string"
+										maxOccurs="1" minOccurs="0" />
+									<element name="engFstName"
+										type="string" maxOccurs="1" minOccurs="0" />
+									<element name="engLstName"
+										type="string" maxOccurs="1" minOccurs="0" />
+									<element name="engMidName"
+										type="string" maxOccurs="1" minOccurs="0" />
+									<element name="nationCode"
+										type="string" maxOccurs="1" minOccurs="0" />
+									<element name="thFstName"
+										type="string" maxOccurs="1" minOccurs="0" />
+									<element name="thLstName"
+										type="string" maxOccurs="1" minOccurs="0" />
+									<element name="thMidName"
+										type="string" maxOccurs="1" minOccurs="0" />
+									<element name="typeCode"
+										type="string" maxOccurs="1" minOccurs="1" />
+									<element name="officialCountry"
+										type="string" maxOccurs="1" minOccurs="0" />
+								</sequence>
+							</complexType>
+						</element>
+						<element name="userName" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+						<element name="rqUID" type="string"
+							maxOccurs="1" minOccurs="0" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="COAMappingRequest"
+				type="tns:COAMappingRequest">
+			</element>
+			<element name="CoBandRequest" type="tns:CoBandRequest" />
+			<element name="CompanyGroupRequest"
+				type="tns:CompanyGroupRequest">
+			</element>
+			<element name="CurrentAccountRequest"
+				type="tns:CurrentAccountRequest">
+			</element>
+			<element name="FICSMappingRequest"
+				type="tns:FICSMappingRequest">
+			</element>
+			<element name="FixAccountRequest"
+				type="tns:FixAccountRequest">
+			</element>
+			<element minOccurs="0" maxOccurs="1" name="FraudRequest">
+				<complexType>
+					<sequence>
+						<element name="fraudType" type="string"
+							maxOccurs="1" minOccurs="1" />
+						<element name="Application_Number" maxOccurs="1"
+							minOccurs="1" type="string">
+						</element>
+						<element name="Application_Date" maxOccurs="1"
+							minOccurs="1" type="string">
+						</element>
+						<element name="Application_Type" maxOccurs="1"
+							minOccurs="1" type="string">
+						</element>
+
+
+
+
+
+
+
+
+
+						<element name="Personals" type="tns:Personals"
+							maxOccurs="unbounded" minOccurs="0">
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="HRISRequest" type="tns:HRISRequest" />
+			<element name="KAssetRequest" type="tns:KAssetRequest" />
+			<element minOccurs="0" maxOccurs="1"
+				name="KBANK1211I01Request">
+				<complexType>
+					<sequence>
+						<element name="idNo" type="string" maxOccurs="1"
+							minOccurs="1">
+						</element>
+						<element name="cidType" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+						<element name="thFirstName" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+						<element name="thLastName" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+						<element name="rqUID" type="string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element minOccurs="0" maxOccurs="1"
+				name="KBANK1550I01Request">
+				<complexType>
+					<sequence>
+						<element name="userName" type="string"
+							maxOccurs="1" minOccurs="0" />
+						<element name="companyName" type="string"
+							maxOccurs="1" minOccurs="1" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="KBankSalaryRequest"
+				type="tns:KBankSalaryRequest">
+			</element>
+			<element minOccurs="0" maxOccurs="1" name="KCBSRequest">
+				<complexType>
+					<sequence>
+						<element name="userName" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+						<element name="requireBureau" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+						<element name="idType" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+						<element name="idNo" type="string" maxOccurs="1"
+							minOccurs="1">
+						</element>
+						<element name="prefix" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+						<element name="firstName" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+						<element name="familyName" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+						<element name="dateOfBirth" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+						<element name="applicationGroupNo" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+						<element name="rqUID" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+						<element name="numberOfSubmission" type="string"
+							maxOccurs="1" minOccurs="1">
+						</element>
+						<element name="applicantType" type="string"
+							maxOccurs="1" minOccurs="1" />
+						<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+						<element name="orgId" type="string" maxOccurs="1" minOccurs="0"></element>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="KOCRequest" type="tns:KOCRequest" />
+			<element name="LPMRequest" type="tns:LPMRequest" />
+			<element name="PayrollRequest" type="tns:PayrollRequest" />
+			<element name="SAFERequest" type="tns:SAFERequest" />
+			<element name="SavingAccountRequest"
+				type="tns:SavingAccountRequest">
+			</element>
+			<element name="SOLORequest" type="tns:SOLORequest" />
+			<element name="TCBLoanRequest" type="tns:TCBLoanRequest" />
+			<element name="ThaiBevPartnerRequest"
+				type="tns:ThaiBevPartnerRequest">
+			</element>
+			<element name="TrustedCompanyRequet"
+				type="tns:TrustedCompanyRequest">
+			</element>
+			<element name="WealthRequest" type="tns:WealthRequest" />
+			<element minOccurs="0" maxOccurs="1" name="WFInquiryRequestM">
+				<complexType>
+					<sequence>
+						<element name="cisNo" type="string" maxOccurs="1"
+							minOccurs="0">
+						</element>
+						<element name="idNo" type="string" maxOccurs="1"
+							minOccurs="0">
+						</element>
+						<element name="idType" type="string"/>
+						<element name="thFirstName" type="string"
+							maxOccurs="1" minOccurs="0">
+						</element>
+						<element name="thLastName" type="string"
+							maxOccurs="1" minOccurs="0">
+						</element>
+						<element name="dateOfBirth" type="string"
+							maxOccurs="1" minOccurs="0">
+						</element>
+						<element name="appStatus" type="string"
+							maxOccurs="1" minOccurs="0">
+						</element>
+						<element name="bookedFlag" type="string"
+							maxOccurs="1" minOccurs="0">
+						</element>
+						<element name="productCode" type="string"
+							maxOccurs="1" minOccurs="0">
+						</element>
+						<element name="appDateForm" type="string"
+							maxOccurs="1" minOccurs="0">
+						</element>
+						<element name="appDateTo" type="string"
+							maxOccurs="1" minOccurs="0">
+						</element>
+						<element name="rqUID" type="string" maxOccurs="1"
+							minOccurs="0">
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="TrustedCompanyRequest">
+		<sequence>
+			<element name="companyNameConvert" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="TrustCompanyResponse">
+		<sequence>
+			<element name="address" type="string"/>
+			<element name="category" type="string"/>
+			<element name="companyName" type="string"/>
+			<element name="idNo" type="string"/>
+			<element name="tel" type="string"/>
+			<element name="typeOfCompany" type="string"/>
+			<element name="website" type="string"/>
+			<element name="errorMessage" type="Q1:errorMessage"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="FICSMappingRequest">
+		<sequence>
+			<element name="ficsCode" type="string"/>
+			<element name="loanPurpose" type="string"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="FICSMappingResponse">
+		<sequence>
+			<element name="productCategory" type="string"/>
+			<element name="errorMessage" type="Q1:errorMessage"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="CompanyGroupRequest">
+		<sequence>
+			<element name="companyNameConvert" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="CompanyGroupResponse">
+		<sequence>
+			<element name="companyGroup" type="string"/>
+			<element name="errorMessage" type="Q1:errorMessage"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="CapPortRequest">
+		<sequence>
+			<element name="applyType" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="cardType" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="policyProgramId" type="string" maxOccurs="1" minOccurs="0"/>
+            <element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+            <element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="CapPortResponse">
+		<sequence>
+			<element name="capAmount" type="string"/>
+			<element name="declinePoint" type="string"/>
+			<element name="grantedAmount" type="string"/>
+			<element name="remainingCap" type="string"/>
+			<element name="warningPoint" type="string"/>
+			<element name="errorMessage" type="Q1:errorMessage"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="SOLORequest">
+		<sequence>
+			<element name="idNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="thNameConvertNoSpace" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="SOLOResponse">
+		<sequence>
+			<element name="birthDate" type="string"/>
+			<element name="citizenId" type="string"/>
+			<element name="name" type="string"/>
+			<element name="surname" type="string"/>
+			<element name="errorMessage" type="Q1:errorMessage"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ThaiBevPartnerRequest">
+		<sequence>
+			<element name="idNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="thNameConvertNoSpace" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="ThaiBevPartnerResponse">
+		<sequence>
+			<element name="avgMonthlyPurchasing" type="string"/>
+			<element name="citizenId" type="string"/>
+			<element name="name" type="string"/>
+			<element name="partnersince" type="string"/>
+			<element name="surname" type="string"/>
+			<element name="thaiBevMemberShipNo" type="string"/>
+			<element name="errorMessage" type="Q1:errorMessage"/>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="CoBandResponse">
+		<sequence>
+			<element name="dateOfBirth" type="string"/>
+			<element name="description" type="string"/>
+			<element name="idNo" type="string"/>
+			<element name="name" type="string"/>
+			<element name="programID" type="string"/>
+			<element name="surname" type="string"/>
+			<element name="errorMessage" type="Q1:errorMessage"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="CoBandRequest">
+		<sequence>
+			<element name="applyType" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="cardType" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="cisNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="programId" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="thNameSurnameNoSpecialChar" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="KBankSalaryRequest">
+		<sequence>
+			<element name="idNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="thNameConvertNoSpace" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="KBankSalaryResponse">
+		<sequence>
+			<element name="averageSalary" type="string"/>
+			<element name="citizenID" type="string"/>
+			<element name="description" type="string"/>
+			<element name="name" type="string"/>
+			<element name="surname" type="string"/>
+			<element name="errorMessage" type="Q1:errorMessage"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="HRISRequest">
+		<sequence>
+			<element name="birthDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="enFirstName" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="enLastName" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="idNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="nationality" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="thFirstName" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="thLastName" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="HRISResponse">
+		<sequence>
+			<element name="birthDate" type="string"/>
+			<element name="corpTitleCode" type="string"/>
+			<element name="empId" type="string"/>
+			<element name="enFirstName" type="string"/>
+			<element name="enLastName" type="string"/>
+			<element name="idNo" type="string"/>
+			<element name="jobCode" type="string"/>
+			<element name="jobLayerCode" type="string"/>
+			<element name="thFirstName" type="string"/>
+			<element name="thLastName" type="string"/>
+			<element name="errorMessage" type="Q1:errorMessage"/>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="LPMResponse">
+		<sequence>
+			<element name="blackListCode" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="blackListDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="blackListType" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="inactiveDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="lpmId" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="errorMessage" type="Q1:errorMessage" maxOccurs="1" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="LPMRequest">
+		<sequence>
+			<element name="cisNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="BScoreRequest">
+		<sequence>
+			<element name="cisNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="BScoreResponse">
+		<sequence>
+			<element name="lpmId" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="postDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="productType" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="riskGrade" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="errorMessage" type="Q1:errorMessage" maxOccurs="1" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="TCBLoanResponse">
+		<sequence>
+			<element name="accountNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="accountStatus" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="coaProductCode" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="creditLimit" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="openDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="outstanding" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="thAccountName" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="errorMessage" type="Q1:errorMessage" maxOccurs="1" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="TCBLoanRequest">
+		<sequence>
+			<element name="cisNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="CardlinkResponse">
+		<sequence>
+			<element name="customer" type="tns:customer" maxOccurs="unbounded" minOccurs="0"/>
+			<element name="card" type="tns:card" maxOccurs="unbounded" minOccurs="0"/>
+			<element name="errorMessage" type="Q1:errorMessage"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="customer">
+		<sequence>
+			<element name="addressLine1" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="addressLine2" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="addressLine3" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="billCycle" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="cardlinkCustNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="creditLine" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="custType" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="empPosition" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="financialInfoCode" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="firstOpenDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="incomeAmount" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="mobileNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="occupation" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="orgNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="referAddressLine1" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="referAddressLine2" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="referAddressLine3" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="referZipcode" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="vatCode" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="zipCode" type="string" maxOccurs="1" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="card">
+		<sequence>
+            <element name="autoPayAcctNo" type="string" maxOccurs="1" minOccurs="0"/>
+            <element name="autoPayFlag" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="billCycle" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="blockCode" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="blockDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="cardCode" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="cardFlag" type="string" maxOccurs="1" minOccurs="0"/>
+
+			<element name="cardLevelEligibleCard" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="cardlinkCardId" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="cardlinkCustNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="cardNoInEncrypt" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="cardNoInHash" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="cardType" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="cardTypeBillingCycle" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="coaProductCode" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="creditLimitAmount" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="embossname3" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="expiryDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="lastIncreaseDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="lastPaymentDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="mainCustNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="mainFlag" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="mainOrgNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="mon24Profile" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="month24Profile" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="openDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="orgNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="outstandingBal" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="plasticCode" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="projectCode" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="realCustNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="realOrgNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="supCustNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="supOrgId" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="supOrgNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="wealthFlag" type="string" maxOccurs="1" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="CardlinkRequest">
+		<sequence>
+			<element name="cisNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="SAFERequest">
+		<sequence>
+			<element name="cisNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="SAFEResponse">
+		<sequence>
+			<element name="accountNo" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="closeDate" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="creditLimit" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="loanPurpose" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="loanType" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="openDate" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="outstanding" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="productCategory" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="subAccountNo" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="errorMessage" type="Q1:errorMessage"
+				maxOccurs="1" minOccurs="0" />
+		</sequence>
+	</complexType>
+
+	<complexType name="KOCRequest">
+		<sequence>
+			<element name="applicantType" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="applicationDate" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="cisNo" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="enFirstName" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="enLastName" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="idNo" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="thFirstName" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="thLastName" type="string" maxOccurs="1"
+				minOccurs="0" />
+			<element name="terminalId" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="userName" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="rqUID" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="KOCResponse">
+		<sequence>
+			<element name="additionalDetail" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="applicationType" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="campaignCode" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="createDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="createTime" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="effectiveDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="enfrstName" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="enLastName" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="expiryDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="highestIncome" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="idNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="projectCode" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="thfirstName" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="thLastName" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="errorMessage" type="Q1:errorMessage" maxOccurs="1" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="SavingAccountRequest">
+		<sequence>
+			<element name="cisNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="nationality" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="SavingAccountResponse">
+		<sequence>
+			<element name="accountNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="countOwner" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="currentBalance" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="holdBalance" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="openDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="monthEndBalance" type="tns:monthEndBalance" maxOccurs="1" minOccurs="0"/>
+			<element name="errorMessage" type="Q1:errorMessage" maxOccurs="1" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="FixAccountRequest">
+		<sequence>
+			<element name="cisNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="nationality" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="FixAccountResponse">
+		<sequence>
+			<element name="accountNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="countOwner" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="currentBalance" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="holdBalance" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="openDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="subAccountNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="errorMessage" type="Q1:errorMessage" maxOccurs="1" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="KAssetRequest">
+		<sequence>
+			<element name="cidType" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="idNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="KAssetResponse">
+		<sequence>
+			<element name="accountNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="assetType" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="countOwner" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="fundId" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="fundType" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="maturityDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="monthEndBalance" type="tns:monthEndBalance" maxOccurs="unbounded" minOccurs="0"/>
+			<element name="openDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="operationFlag" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="outstanding" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="referanceId" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="subAccountNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="errorMessage" type="Q1:errorMessage" maxOccurs="1" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="monthEndBalance">
+		<sequence>
+			<element name="accountNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="assetType" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="holdBalance" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="outstanding" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="postDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="productGroup" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="referanceId" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="subAccountNo" type="string" maxOccurs="1" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="BOLRequest">
+		<sequence>
+			<element name="companyName" type="string" maxOccurs="1" minOccurs="0"/>
+
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="BOLResponse">
+		<sequence>
+			<element name="bolFinancialStatement" type="tns:bolFinancialStatement" maxOccurs="unbounded" minOccurs="0"/>
+			<element name="enName" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="orgId" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="orgStatus" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="registerdate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="telNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="thName" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="errorMessage" type="Q1:errorMessage"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="bolFinancialStatement">
+		<sequence>
+			<element name="financialDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="financialId" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="financialType" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="netProfitAndLoss" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="orgId" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="postDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="seq" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="totalIncome" type="string" maxOccurs="1" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="PayrollRequest">
+		<sequence>
+			<element name="idNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="PayrollResponse">
+		<sequence>
+			<element name="averageIncome12Month" type="string" />
+			<element name="averageIncome3Month" type="string" />
+			<element name="averageIncome6Month" type="string" />
+			<element name="ccPayrollFlag" type="string" />
+			<element name="cisNo" type="string" />
+			<element name="companyName" type="string" />
+			<element name="cycleCut" type="string"></element>
+			<element name="grossIncome12Month" type="string" />
+			<element name="grossIncome3Month" type="string" />
+			<element name="grossIncome6Month" type="string" />
+			<element name="idNo" type="string" />
+			<element name="incomeMonth1" type="string" />
+			<element name="incomeMonth2" type="string" />
+			<element name="incomeMonth3" type="string" />
+			<element name="incomeMonth4" type="string" />
+			<element name="incomeMonth5" type="string" />
+			<element name="incomeMonth6" type="string" />
+			<element name="incomeTotal" type="string" />
+			<element name="kecPayrollFlag" type="string" />
+			<element name="paymentAccountNo" type="string" />
+			<element name="paymentChannel" type="string" />
+			<element name="positionDate" type="string" />
+			<element name="salaryDate" type="int" />
+			<element name="projectCode" type="string" />
+			<element name="pvf12Month" type="string" />
+			<element name="pvf3Month" type="string" />
+			<element name="pvf6Month" type="string" />
+			<element name="sso" type="string" />
+			<element name="thFirstName" type="string" />
+			<element name="thLastName" type="string" />
+			<element name="welfarePayrollFlag" type="string" />
+			<element name="errorMessage" type="Q1:errorMessage" />
+		</sequence>
+	</complexType>
+
+	<complexType name="CurrentAccountRequest">
+		<sequence>
+			<element name="cisNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="nationality" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="CurrentAccountResponse">
+		<sequence>
+			<element name="accountNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="openDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="effectiveDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="errorMessage" type="Q1:errorMessage" maxOccurs="1" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="header">
+		<sequence>
+			<element minOccurs="0" maxOccurs="1" type="string" name="segmentValue" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="version" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="memberReferenceNumber" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="country" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="memberCode" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="subjectReturnCode" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="enquiryControlNumber" />
+		</sequence>
+	</complexType>
+	<complexType name="ncbNames">
+		<sequence>
+			<element minOccurs="0" maxOccurs="1" type="string" name="segmentValue" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="familyName1" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="familyName2" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="firstName" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="middle" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="maritalStatus" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="dateOfBirth" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="gender" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="title" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="nationality" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="numberOfChildren" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="spouseName" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="occupation" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="consentToEnquire" />
+		</sequence>
+	</complexType>
+	<complexType name="ncbIds">
+		<sequence>
+			<element minOccurs="0" maxOccurs="1" type="string" name="segmentValue" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="idType" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="idNumber" />	
+			<element minOccurs="0" maxOccurs="1" type="string" name="idIssueCountry" />
+		</sequence>
+	</complexType>
+	<complexType name="ncbAddress">
+		<sequence>						
+			<element minOccurs="0" maxOccurs="1" type="string" name="segmentValue" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="addressLine1" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="addressLine2" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="addressLine3" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="subdistrict" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="district" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="province" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="country" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="postalCode" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="telephone" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="telephoneType" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="addressType" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="residentialSuatus" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="reportedDate" />
+		</sequence>
+	</complexType>
+	<complexType name="ncbAccounts">
+		<sequence>
+			<element minOccurs="0" maxOccurs="1" type="string" name="SegmentValue" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="MemberCode" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="MemberShortName" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="AccountNumber" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="AccountType" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="OwnershipIndicator" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="CurrencyCode" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="DateAccountOpened" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="DateOfLastPayment" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="DateAccountClose" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="AsOfDate" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="CreditLimit" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="AmountOwed" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="AmountPastDue" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="DefaultDate" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="Instalment" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="Frequency" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="InstallmentAmount" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="InstallmentNumberOfPayments" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="AccountStatus" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="LoanClass" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="PaymentHistory1" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="PaymentHistory2" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="PaymentHistoryStartDate" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="PaymentHistoryEndDate" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="LoanObjective" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="Collateral1" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="Collateral2" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="Collateral3" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="DateOfLastDebtRestructure" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="PercentPayment" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="TypeOfCreditCard" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="NumberOfCoborrowers" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="UnitMake" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="UnitModel" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="CreditTypeFlag" />
+		</sequence>
+	</complexType>
+	<complexType name="ncbHistory">
+		<sequence>
+			<element minOccurs="0" maxOccurs="1" type="string" name="SegmentValue" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="AsOfDate" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="OverDueMonths" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="CreditLimit" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="Amount" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="Owed" />
+		</sequence>
+	</complexType>
+	<complexType name="ncbEnquiry">
+		<sequence>
+			<element minOccurs="0" maxOccurs="1" type="string" name="SegmentValue" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="DateOfEnquiry" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="TimeOfEnquiry" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="MemberCode" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="MemberShortName" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="EnquiryPurpose" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="EnquiryAmount" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="CurrencyCode" />
+		</sequence>
+	</complexType>
+	<complexType name="ncbDisputeRemarks">
+		<sequence>
+			<element minOccurs="0" maxOccurs="1" type="string" name="SegmentValue" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="ReferenceSegmentType" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="ReferenceSegment" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="DisputeCode" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="DisputeDate" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="DisputeTime" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="DisputeRemark1" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="DisputeRemark2" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="DisputeRemark3" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="DisputeRemark4" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="Dispute" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="Remarks5" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="DisputeRemark6" />
+		</sequence>
+	</complexType>
+	<complexType name="ficoScore">
+		<sequence>
+			<element minOccurs="0" maxOccurs="1" type="string" name="FicoScore" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="FicoReason1Code" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="FicoReason1Desc" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="FicoReason2Code" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="FicoReason2Desc" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="FicoReason3Code" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="FicoReason3Desc" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="FicoReason4Code" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="FicoReason4Desc" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="FicoErrorCode" />
+			<element minOccurs="0" maxOccurs="1" type="string" name="FicoErrorMsg" />
+		</sequence>
+	</complexType>
+	<complexType name="TUEF">
+		<sequence>
+			<element minOccurs="0" maxOccurs="1" type="tns:header" name="header" />
+			<element minOccurs="0" maxOccurs="unbounded" type="tns:ncbNames" name="ncbNames" />
+			<element minOccurs="0" maxOccurs="unbounded" type="tns:ncbIds" name="ncbIds" />
+			<element minOccurs="0" maxOccurs="unbounded" name="ncbAddress" type="tns:ncbAddress" />
+			<element minOccurs="0" maxOccurs="unbounded" name="ncbAccounts" type="tns:ncbAccounts" />
+			<element minOccurs="0" maxOccurs="unbounded" name="ncbHistory" type="tns:ncbHistory" />
+			<element minOccurs="0" maxOccurs="unbounded" name="ncbEnquiry" type="tns:ncbEnquiry" />
+			<element minOccurs="0" maxOccurs="unbounded" name="ncbDisputeRemarks" type="tns:ncbDisputeRemarks" />
+			<element minOccurs="0" maxOccurs="1" name="ficoScore" type="tns:ficoScore" />
+		</sequence>
+	</complexType>
+
+	<complexType name="WealthResponse">
+		<sequence>
+			<element name="cisNo" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="postDate" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="wealthValue" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="errorMessage" type="Q1:errorMessage" maxOccurs="1" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="WealthRequest">
+		<sequence>
+			<element name="cisNo" type="string" maxOccurs="1" minOccurs="0"/>
+			<element name="terminalId" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="userName" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="rqUID" type="string" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+
+
+	<element name="TUEF" type="tns:TUEF"/>
+
+	<complexType name="Personals">
+		<sequence>
+			<element name="idNo" type="string" maxOccurs="1" minOccurs="1"></element>
+			<element name="idType" type="string" maxOccurs="1" minOccurs="1"></element>
+			<element name="thFirstName" type="string" maxOccurs="1" minOccurs="1"></element>
+			<element name="thLastName" type="string" maxOccurs="1" minOccurs="1"></element>
+			<element name="middleName" type="string" maxOccurs="1" minOccurs="1"></element>
+			<element name="birthDate" type="string" maxOccurs="1" minOccurs="1"></element>
+			<element name="companyName" type="string" maxOccurs="1" minOccurs="1"></element>
+			<element name="enFirstName" type="string" maxOccurs="1" minOccurs="1"></element>
+			<element name="enLastName" type="string" maxOccurs="1" minOccurs="1"></element>
+		</sequence>
+	</complexType>
+</schema>

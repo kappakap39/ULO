@@ -1,0 +1,1704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportP10" language="groovy" pageWidth="2525" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="2485" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="3ba5a5af-155d-4a7c-a6b9-21c6f44a69c1">
+	<property name="ireport.zoom" value="3.1384283767210266"/>
+	<property name="ireport.x" value="3739"/>
+	<property name="ireport.y" value="332"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\WorkSpace\\FLP_WorkSpace\\InfBatchLib\\jasper\\source\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_APP_DATE" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[select * from table (PKA_RPT.f_rpt_R007_Performance_01)]]>
+	</queryString>
+	<field name="ROLE_NAME" class="java.lang.String"/>
+	<field name="USER_NAME" class="java.lang.String"/>
+	<field name="TH_NAME" class="java.lang.String"/>
+	<field name="COUNT_CC_APPROVE" class="java.math.BigDecimal"/>
+	<field name="COUNT_CC_REJECT" class="java.math.BigDecimal"/>
+	<field name="COUNT_CC_CANCEL" class="java.math.BigDecimal"/>
+	<field name="COUNT_KEC_APPROVE" class="java.math.BigDecimal"/>
+	<field name="COUNT_KEC_REJECT" class="java.math.BigDecimal"/>
+	<field name="COUNT_KE_CANCEL" class="java.math.BigDecimal"/>
+	<field name="COUNT_KPL_APPROVE" class="java.math.BigDecimal"/>
+	<field name="COUNT_KPL_REJECT" class="java.math.BigDecimal"/>
+	<field name="COUNT_KPL_CANCEL" class="java.math.BigDecimal"/>
+	<field name="COUNT_BUNDLE_APPROVE" class="java.math.BigDecimal"/>
+	<field name="COUNT_BUNDLE_REJECT" class="java.math.BigDecimal"/>
+	<field name="COUNT_BUNDLE_CANCEL" class="java.math.BigDecimal"/>
+	<field name="COUNT_INC_APPROVE" class="java.math.BigDecimal"/>
+	<field name="COUNT_INC_REJECT" class="java.math.BigDecimal"/>
+	<field name="COUNT_INC_CANCEL" class="java.math.BigDecimal"/>
+	<field name="OT_POINT" class="java.math.BigDecimal"/>
+	<field name="GRAND_TOTAL" class="java.math.BigDecimal"/>
+	<field name="GRAND_SUB_OT_TOTAL" class="java.math.BigDecimal"/>
+	<field name="COUNT_TH_BIG" class="java.math.BigDecimal"/>
+	<field name="COUNT_FR_BIG" class="java.math.BigDecimal"/>
+	<field name="COUNT_TH_SMALL" class="java.math.BigDecimal"/>
+	<field name="COUNT_FR_SMALL" class="java.math.BigDecimal"/>
+	<field name="SUM_VACATION_LEAVE" class="java.math.BigDecimal"/>
+	<field name="SUM_OTHER_LEAVE" class="java.math.BigDecimal"/>
+	<field name="WORKING_DAY" class="java.math.BigDecimal"/>
+	<field name="REMAIN_DAY" class="java.math.BigDecimal"/>
+	<field name="WORK_TARGET" class="java.math.BigDecimal"/>
+	<field name="TOTAL_TARGET" class="java.math.BigDecimal"/>
+	<field name="TOTAL_POINT" class="java.math.BigDecimal"/>
+	<field name="TOTAL_WORKING" class="java.math.BigDecimal"/>
+	<field name="TOTAL_POINT_MONTH" class="java.math.BigDecimal"/>
+	<variable name="COUNT_CC_APPROVE_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_CC_APPROVE}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_CC_REJECT_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_CC_REJECT}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_CC_CANCEL_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_CC_CANCEL}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_CC_CANCEL_2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_CC_CANCEL}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_KEC_APPROVE_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_KEC_APPROVE}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_KEC_REJECT_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_KEC_REJECT}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_KE_CANCEL_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_KE_CANCEL}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_KPL_APPROVE_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_KPL_APPROVE}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_KPL_REJECT_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_KPL_REJECT}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_KPL_CANCEL_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_KPL_CANCEL}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_BUNDLE_APPROVE_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_BUNDLE_APPROVE}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_BUNDLE_REJECT_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_BUNDLE_REJECT}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_BUNDLE_CANCEL_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_BUNDLE_CANCEL}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_INC_APPROVE_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_INC_APPROVE}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_INC_REJECT_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_INC_REJECT}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_INC_CANCEL_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_INC_CANCEL}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_TH_BIG_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_TH_BIG}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_FR_BIG_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_FR_BIG}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_TH_SMALL_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_TH_SMALL}]]></variableExpression>
+	</variable>
+	<variable name="COUNT_FR_SMALL_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT_FR_SMALL}]]></variableExpression>
+	</variable>
+	<variable name="SUM_VACATION_LEAVE_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{SUM_VACATION_LEAVE}]]></variableExpression>
+	</variable>
+	<variable name="SUM_OTHER_LEAVE_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{SUM_OTHER_LEAVE}]]></variableExpression>
+	</variable>
+	<variable name="WORKING_DAY_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{WORKING_DAY}]]></variableExpression>
+	</variable>
+	<variable name="REMAIN_DAY_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{REMAIN_DAY}]]></variableExpression>
+	</variable>
+	<variable name="WORK_TARGET_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{WORK_TARGET}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_TARGET_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL_TARGET}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_POINT_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL_POINT}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_WORKING_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL_WORKING}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_POINT_MONTH_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL_POINT_MONTH}]]></variableExpression>
+	</variable>
+	<variable name="CURRENT_DATE" class="java.util.Date">
+		<variableExpression><![CDATA[new Date()]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_OT_POINT" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{OT_POINT}]]></variableExpression>
+	</variable>
+	<variable name="SUM_GRAND_TOTAL" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{GRAND_TOTAL}]]></variableExpression>
+	</variable>
+	<variable name="SUM_GRAND_TOTAL_POINT" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{GRAND_SUB_OT_TOTAL}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="116">
+			<staticText>
+				<reportElement uuid="c14fa3a6-b983-4073-a5d2-f29eb2f51dbd" x="1121" y="0" width="164" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ผลการดำเนินงานของทีมผู้อนุมัติ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement uuid="14513871-6853-4d28-85a4-029e43295df8" x="2366" y="60" width="27" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="011e3723-852b-4dba-a78b-1280f77c9001" x="2323" y="60" width="18" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="dd9d6e9b-b4e8-46be-825e-87d9e0e19d06" x="2341" y="60" width="25" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[of]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement uuid="fecf2c8f-41ad-4919-a5f3-335a9f708a42" x="2247" y="20" width="94" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a61e79e3-a8a4-49ee-bf0d-71941d2f25a8" x="2294" y="60" width="29" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Page ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c0bde652-a82e-49f6-bd7a-d006ee66ed87" x="2257" y="40" width="136" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Report ID: RE_R007]]></text>
+			</staticText>
+			<textField pattern="HH:mm:ss">
+				<reportElement uuid="6363e2c2-c903-4641-8e87-b8060e04c73d" x="2341" y="20" width="52" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="790252b7-8ea6-432e-8e5f-e6329cea0692" x="1121" y="20" width="63" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Date as of  ]]></text>
+			</staticText>
+			<textField pattern="MMM dd, yyyy">
+				<reportElement uuid="c3ba079d-7dbf-4b9f-aa63-4bd80cdb1928" x="1184" y="20" width="126" height="20"/>
+				<textElement>
+					<font fontName="Tahoma" pdfFontName="C:\Users\father\Desktop\พร้อมส่ง\tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{P_APP_DATE} == null?(new java.util.Date()-1): $P{P_APP_DATE}==""?(new java.util.Date()-1):$P{P_APP_DATE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="60">
+			<staticText>
+				<reportElement uuid="4fe90627-3c01-441f-a0a8-780231a93261" mode="Opaque" x="0" y="0" width="85" height="60" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="9" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Role]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4fe90627-3c01-441f-a0a8-780231a93261" mode="Opaque" x="85" y="0" width="74" height="60" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[รหัสพนักงาน]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4fe90627-3c01-441f-a0a8-780231a93261" mode="Opaque" x="244" y="0" width="894" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ผลการดำเนินงานของทีมผู้อนุมัติ       ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4fe90627-3c01-441f-a0a8-780231a93261" mode="Opaque" x="244" y="20" width="184" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4fe90627-3c01-441f-a0a8-780231a93261" mode="Opaque" x="428" y="20" width="184" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[KEC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4fe90627-3c01-441f-a0a8-780231a93261" mode="Opaque" x="612" y="20" width="184" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[KPL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d422c1f2-5f3a-4bd4-82d1-42a986726eb7" mode="Opaque" x="244" y="40" width="46" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Approve]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d422c1f2-5f3a-4bd4-82d1-42a986726eb7" mode="Opaque" x="290" y="40" width="46" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Reject]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d422c1f2-5f3a-4bd4-82d1-42a986726eb7" mode="Opaque" x="336" y="40" width="46" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Cancel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d422c1f2-5f3a-4bd4-82d1-42a986726eb7" mode="Opaque" x="382" y="40" width="46" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d422c1f2-5f3a-4bd4-82d1-42a986726eb7" mode="Opaque" x="520" y="40" width="46" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Cancel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d422c1f2-5f3a-4bd4-82d1-42a986726eb7" mode="Opaque" x="428" y="40" width="46" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Approve]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d422c1f2-5f3a-4bd4-82d1-42a986726eb7" mode="Opaque" x="566" y="40" width="46" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d422c1f2-5f3a-4bd4-82d1-42a986726eb7" mode="Opaque" x="474" y="40" width="46" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Reject]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d422c1f2-5f3a-4bd4-82d1-42a986726eb7" mode="Opaque" x="704" y="40" width="46" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Cancel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d422c1f2-5f3a-4bd4-82d1-42a986726eb7" mode="Opaque" x="612" y="40" width="46" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Approve]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d422c1f2-5f3a-4bd4-82d1-42a986726eb7" mode="Opaque" x="750" y="40" width="46" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d422c1f2-5f3a-4bd4-82d1-42a986726eb7" mode="Opaque" x="658" y="40" width="46" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Reject]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4bfce1ff-7f5b-4c73-b43f-e90e3d68cba9" mode="Opaque" x="1012" y="40" width="40" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Reject]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4bfce1ff-7f5b-4c73-b43f-e90e3d68cba9" mode="Opaque" x="796" y="40" width="46" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Approve]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4bfce1ff-7f5b-4c73-b43f-e90e3d68cba9" mode="Opaque" x="966" y="40" width="46" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Approve]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4bfce1ff-7f5b-4c73-b43f-e90e3d68cba9" mode="Opaque" x="842" y="40" width="39" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Reject]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4bfce1ff-7f5b-4c73-b43f-e90e3d68cba9" mode="Opaque" x="921" y="40" width="45" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e586e3ca-cce7-4834-8295-63f90ef79ea7" mode="Opaque" x="1522" y="40" width="76" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ลูกค้าไทย]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4bfce1ff-7f5b-4c73-b43f-e90e3d68cba9" mode="Opaque" x="1093" y="40" width="45" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4bfce1ff-7f5b-4c73-b43f-e90e3d68cba9" mode="Opaque" x="881" y="40" width="40" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[cancel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e586e3ca-cce7-4834-8295-63f90ef79ea7" mode="Opaque" x="1370" y="20" width="152" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ผู้ประกอบการ / ผู้มีเงินออม]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e586e3ca-cce7-4834-8295-63f90ef79ea7" mode="Opaque" x="1370" y="0" width="305" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ประเภทผู้มีรายได้]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="77b27704-c811-4362-9b3e-f8fd71aab11c" mode="Opaque" x="1208" y="0" width="69" height="60" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[OT Point]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e586e3ca-cce7-4834-8295-63f90ef79ea7" mode="Opaque" x="1447" y="40" width="75" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ลูกค้าต่างชาติ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="77b27704-c811-4362-9b3e-f8fd71aab11c" mode="Opaque" x="1277" y="0" width="93" height="60" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Grand Total Point (หลังหัก OT)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e586e3ca-cce7-4834-8295-63f90ef79ea7" mode="Opaque" x="1522" y="20" width="153" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ลูกจ้าง / รายได้อิสระ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e586e3ca-cce7-4834-8295-63f90ef79ea7" mode="Opaque" x="1370" y="40" width="77" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ลูกค้าไทย]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="822252c5-8b9c-4e21-9174-963ce3619f0f" mode="Opaque" x="796" y="20" width="170" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Bundling]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4bfce1ff-7f5b-4c73-b43f-e90e3d68cba9" mode="Opaque" x="1052" y="40" width="41" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[cancel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="77b27704-c811-4362-9b3e-f8fd71aab11c" mode="Opaque" x="1138" y="0" width="70" height="60" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Grand Total Point]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="822252c5-8b9c-4e21-9174-963ce3619f0f" mode="Opaque" x="966" y="20" width="172" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Increase]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e586e3ca-cce7-4834-8295-63f90ef79ea7" mode="Opaque" x="1598" y="40" width="77" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ลูกค้าต่างชาติ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e586e3ca-cce7-4834-8295-63f90ef79ea7" mode="Opaque" x="2063" y="20" width="110" height="40" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Actual Point]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e586e3ca-cce7-4834-8295-63f90ef79ea7" mode="Opaque" x="2283" y="20" width="110" height="40" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Actual Point]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e586e3ca-cce7-4834-8295-63f90ef79ea7" mode="Opaque" x="2173" y="0" width="220" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Monthly]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="77b27704-c811-4362-9b3e-f8fd71aab11c" mode="Opaque" x="1843" y="0" width="55" height="60" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[จำนวนวันที่ทำงาน]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="77b27704-c811-4362-9b3e-f8fd71aab11c" mode="Opaque" x="1898" y="0" width="55" height="60" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Target Day]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e586e3ca-cce7-4834-8295-63f90ef79ea7" mode="Opaque" x="1953" y="0" width="220" height="20" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Weekly]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="77b27704-c811-4362-9b3e-f8fd71aab11c" mode="Opaque" x="1730" y="0" width="55" height="60" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ลาอื่นๆ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="77b27704-c811-4362-9b3e-f8fd71aab11c" mode="Opaque" x="1675" y="0" width="55" height="60" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ลาพ้กร้อน]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e586e3ca-cce7-4834-8295-63f90ef79ea7" mode="Opaque" x="1953" y="20" width="110" height="40" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Target Point]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="77b27704-c811-4362-9b3e-f8fd71aab11c" mode="Opaque" x="1785" y="0" width="58" height="60" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[วันทำการประจำเดือน]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e586e3ca-cce7-4834-8295-63f90ef79ea7" mode="Opaque" x="2173" y="20" width="110" height="40" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Target Point]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4fe90627-3c01-441f-a0a8-780231a93261" mode="Opaque" x="159" y="0" width="85" height="60" forecolor="#000000" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ชื่อ นามสกุล]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="671a3836-cd2d-4f00-8b86-31104ab911af" x="0" y="0" width="85" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="9" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ROLE_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="16655b1f-b307-4bbe-981f-e5f06582f200" x="85" y="0" width="74" height="20"/>
+				<box>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USER_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="712e25b6-1ddb-4fcc-ae28-28cd41b853d3" x="159" y="0" width="85" height="20"/>
+				<box>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TH_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="7e6864e9-29b3-4387-8342-d86e000fd61f" x="244" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_CC_APPROVE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="0ce42507-64a1-495f-9d89-2fa917fc277c" x="290" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_CC_REJECT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="bcab4a90-f5d9-4325-907e-a3585deece1a" x="336" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_CC_CANCEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d7289ccc-eb95-46a6-8eaa-10ea6744617c" x="382" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_CC_APPROVE}+$F{COUNT_CC_REJECT}+$F{COUNT_CC_CANCEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="196e2a44-6b88-47b9-b008-de16caf40204" x="428" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_KEC_APPROVE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="eeaeb66a-85b3-4494-8952-59ef60187f84" x="520" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_KE_CANCEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="435d3f3c-8ac7-4bfc-92fe-25cedd897f03" x="612" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_KPL_APPROVE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d62563bc-1a63-4a5a-aec3-cb15dbafea05" x="658" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_KPL_REJECT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="cb4d7188-d3ef-4186-b2f4-84b9b6d63569" x="704" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_KPL_CANCEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2314ea81-b45f-4a25-b0fa-ce08d487e5eb" x="796" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_BUNDLE_APPROVE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3b8e81c7-e086-4224-828f-2d3864b9d5c2" x="842" y="0" width="39" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_BUNDLE_REJECT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1c735d41-92d5-408d-821b-ffb6bdd94981" x="881" y="0" width="40" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_BUNDLE_CANCEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9980a4ce-9fad-49c7-ae6a-a2b7a07e30fd" x="966" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_INC_APPROVE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="6a08337f-36b6-442f-9e72-bcf689a031aa" x="1012" y="0" width="40" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_INC_REJECT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f99528d5-320f-4fff-9469-faacfbc62268" x="1052" y="0" width="41" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_INC_CANCEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="270ce623-1052-43e6-b462-e96945c7cc9e" x="1370" y="0" width="77" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_TH_BIG}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="63892c6e-06f0-4486-860e-1b72791da08d" x="1447" y="0" width="75" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_FR_BIG}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2a92d817-5801-4e56-8e4d-d20f205f8af9" x="1522" y="0" width="76" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_TH_SMALL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="97b3d7e8-3784-471b-90c0-8f98e138a704" x="1598" y="0" width="77" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_FR_SMALL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f52d8bca-4786-482c-9901-eaf140070556" x="1675" y="0" width="55" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUM_VACATION_LEAVE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3477bea5-0fa4-43bc-ad02-ff96da1e4a69" x="1730" y="0" width="55" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUM_OTHER_LEAVE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3479aa7f-fc17-4ab8-bcab-b7e791b6c74a" x="1785" y="0" width="58" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{WORKING_DAY}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d439511a-7b92-4083-932d-a83d835a2e28" x="1843" y="0" width="55" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REMAIN_DAY}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3772ea30-c668-42f8-926e-f790b0ff85e9" x="1898" y="0" width="55" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{WORK_TARGET}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="75dccbc2-1ba1-4176-a518-2d9e40904cef" x="1953" y="0" width="110" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_TARGET}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f982c4f4-7dee-4a88-85bf-91f88a157856" x="2063" y="0" width="110" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_POINT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="13076f7b-b73b-4730-80ef-b94e1828573d" x="2173" y="0" width="110" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_WORKING}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="a45e3fe1-687f-46a5-8c88-8989544cd34a" x="2283" y="0" width="110" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_POINT_MONTH}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d7289ccc-eb95-46a6-8eaa-10ea6744617c" x="566" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_KEC_APPROVE}+$F{COUNT_KEC_REJECT}+$F{COUNT_KE_CANCEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d7289ccc-eb95-46a6-8eaa-10ea6744617c" x="750" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_KPL_APPROVE}+$F{COUNT_KPL_REJECT}+$F{COUNT_KPL_CANCEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d7289ccc-eb95-46a6-8eaa-10ea6744617c" x="921" y="0" width="45" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_BUNDLE_APPROVE}+$F{COUNT_BUNDLE_REJECT}+$F{COUNT_BUNDLE_CANCEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1c735d41-92d5-408d-821b-ffb6bdd94981" x="1093" y="0" width="45" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_INC_APPROVE}+$F{COUNT_BUNDLE_CANCEL}+$F{COUNT_INC_REJECT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="b37a04d8-f05e-4739-8bdc-d3dd7a795bb1" x="474" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNT_KEC_REJECT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="51c0cba5-d719-4b2a-940d-d40277870cda" x="1138" y="0" width="70" height="20"/>
+				<box leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GRAND_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="57bae1e5-4bb6-4cc4-bd4f-4dccfff10cb5" x="1208" y="0" width="69" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{OT_POINT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="34bdac37-511b-4efb-b038-c93510637c37" x="1277" y="0" width="91" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GRAND_SUB_OT_TOTAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d422c1f2-5f3a-4bd4-82d1-42a986726eb7" x="0" y="0" width="244" height="20"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="9" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Total point]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9d793074-84dc-4536-898c-31f87cdf2b1c" x="244" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_CC_APPROVE_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="55e590f5-af08-4313-9f8f-e00bdd22925f" x="290" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_CC_REJECT_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d7289ccc-eb95-46a6-8eaa-10ea6744617c" x="382" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_CC_APPROVE_1}+$V{COUNT_CC_REJECT_1}+$V{COUNT_CC_CANCEL_2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1f24ad2f-2636-403e-ab7e-cff53af6473a" x="336" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_CC_CANCEL_2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="19f7137a-cdba-4c5f-8b17-32a62eeb97d5" x="428" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_KEC_APPROVE_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9c6730f2-cf56-47c5-9e82-d098cfc2aec7" x="474" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_KEC_REJECT_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="e4acbb2d-5447-4cdb-9d5d-933f53dc9b88" x="520" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_KE_CANCEL_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="0355d7e8-999b-46c7-b5f9-f8c5ae971cb5" x="612" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_KPL_APPROVE_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d7289ccc-eb95-46a6-8eaa-10ea6744617c" x="566" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_KEC_APPROVE_1}+$V{COUNT_KEC_REJECT_1}+$V{COUNT_KE_CANCEL_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="32e2d8e9-e00f-4c19-bfb1-336229031c54" x="658" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_KPL_REJECT_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="02b55447-fd16-449b-a40a-adccd9eb4222" x="704" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_KPL_CANCEL_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d7289ccc-eb95-46a6-8eaa-10ea6744617c" x="750" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_KPL_APPROVE_1}+$V{COUNT_KPL_REJECT_1}+$V{COUNT_KPL_CANCEL_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d7b83ff5-d115-482e-8c8c-3521151ce5cc" x="796" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_BUNDLE_APPROVE_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="bef87ac1-7aef-4eea-97ce-0bda560c7d33" x="842" y="0" width="39" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_BUNDLE_REJECT_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="14da7e89-d785-46ec-863f-4c0d20246365" x="881" y="0" width="40" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_BUNDLE_CANCEL_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d7289ccc-eb95-46a6-8eaa-10ea6744617c" x="921" y="0" width="45" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_BUNDLE_APPROVE_1}+$V{COUNT_BUNDLE_CANCEL_1}+$V{COUNT_BUNDLE_REJECT_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f5f7e5b5-5930-430f-b337-2c3ef4918341" x="966" y="0" width="46" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_INC_APPROVE_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="dcf73b89-81c4-4df5-9205-e2ff240bf172" x="1012" y="0" width="40" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_INC_REJECT_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="033cea69-2a19-412c-ba85-e7c6bd109da0" x="1052" y="0" width="41" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_INC_CANCEL_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="14da7e89-d785-46ec-863f-4c0d20246365" x="1093" y="0" width="45" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_INC_APPROVE_1}+$V{COUNT_INC_CANCEL_1}+$V{COUNT_INC_REJECT_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="bea95c40-bce9-4e6f-8bb6-a8aa05e40be8" x="1370" y="0" width="77" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_TH_BIG_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="71f6f2b8-9799-4fba-9c97-31c5ba5076d4" x="1447" y="0" width="75" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_FR_BIG_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="14fe5332-30b4-4eda-bf6a-3ff406b42308" x="1522" y="0" width="76" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_TH_SMALL_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d878bd9c-3f19-4123-9bbb-7f4e20909446" x="1598" y="0" width="77" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COUNT_FR_SMALL_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="0cc95f09-efb0-4b28-af0c-10645856fd9c" x="1675" y="0" width="55" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SUM_VACATION_LEAVE_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="0153fcd2-13ea-424b-b2ce-0afc53694d0c" x="1730" y="0" width="55" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SUM_OTHER_LEAVE_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="40c948d1-b371-423f-a564-d0c38096f029" x="1785" y="0" width="58" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{WORKING_DAY_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="0853ff18-b0ce-41b7-8f1d-927a5a75d9da" x="1843" y="0" width="55" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REMAIN_DAY_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="0706a016-dc5f-4773-a513-f20a17e3dd6e" x="1898" y="0" width="55" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{WORK_TARGET_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f36dca6a-8b67-438c-b4fa-3a4e2d78187c" x="1953" y="0" width="110" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_TARGET_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9b31ac1b-0fac-437f-8f35-a0724c0b4b32" x="2063" y="0" width="110" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_POINT_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="92530a09-0b28-4ff4-a6ab-efe1e2e7e0b0" x="2173" y="0" width="110" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_WORKING_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="eaf4e92a-916f-43da-9a64-a3d92988fb6e" x="2283" y="0" width="110" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_POINT_MONTH_1}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="8f5bc856-c4c9-4c11-ab54-54e50bd7332b" x="0" y="29" width="1953" height="50"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["RE_R007sub.jasper"]]></subreportExpression>
+			</subreport>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="14da7e89-d785-46ec-863f-4c0d20246365" x="1208" y="0" width="69" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_OT_POINT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b1397931-a89d-43c3-894b-0ed196c1a2a6" x="1138" y="0" width="70" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{SUM_GRAND_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="29e09675-2ff6-4a95-bb5e-fe05f6d2ebc0" x="1277" y="0" width="93" height="20"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SUM_GRAND_TOTAL_POINT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+	<noData>
+		<band height="50">
+			<frame>
+				<reportElement uuid="f298fba2-22b4-4111-b8b7-2e87710ed19a" x="2294" y="12" width="100" height="20"/>
+			</frame>
+		</band>
+	</noData>
+</jasperReport>

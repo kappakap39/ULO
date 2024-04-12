@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Bootstrap Metro Dashboard by TOP demo</title>
+<meta name="description" content="Bootstrap Metro Dashboard" />
+<meta name="author" content="Topkung" />
+<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+<!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- end: Mobile Specific -->
+
+</head>
+<body>
+	<script th:fragment="dashboard" th:inline="javascript">
+	//<![CDATA[
+		$('#main-admin-content a#admin-dashboard-link').click(function(e){
+			e.preventDefault();
+			notifyInfo("Loading Dashboard Configuration Page...");
+			var targetUrl = /*[[@{/admin/content/dashboard}]]*/"/admin/content/anything";
+			$.ajax({
+				url: targetUrl,
+				dataType: "html",
+				async: true,
+				success: function(data, xhr, error){
+					notifySuccess("Loading Dashboard content sucessfully!");
+					$('#adm-content-info').html(data);
+				},
+				error: function(xhr, status, error){
+					notifyError(""+xhr.responseText);
+				}
+			});
+		});
+	//]]>
+	</script>
+</body>
+
+</html>

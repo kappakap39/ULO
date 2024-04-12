@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Content Information by TOP</title>
+<meta name="description" content="Dynamic Widget" />
+<meta name="author" content="Top" />
+<meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+<!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- end: Mobile Specific -->
+</head>
+<body>
+	<!-- 	Start : content detail -->
+	<div th:fragment="lane(lanes)">
+		<div th:each="lane : ${lanes}" class="row-fluid">
+			<span th:inline="text" th:remove="tag" th:utext="'&lt;!-- Start : Lane' +  ${laneStat.count} +  '--&gt;'"></span>
+			<th:block th:each="widget, stat : ${lane.widgetList}">
+				<span th:inline="text" th:remove="tag" th:utext="'&lt;!-- Start : Lane Box' +  ${lane.id} +  '--&gt;'"></span>
+				<div th:replace="${widget.viewPath} :: ${widget.fragment}(${widget})" th:class="${widget.cssClass}"></div>
+				<span th:inline="text" th:remove="tag" th:utext="'&lt;!-- End : Lane Box' +  ${lane.id} +  '--&gt;'"></span>
+			</th:block>
+			<span th:inline="text" th:remove="tag" th:utext="'&lt;!-- End : Lane' +  ${laneStat.count} +  '--&gt;'"></span>
+		</div>
+	</div>
+
+	<div th:fragment="box(box)" th:class="${box.cssClass}" th:style="${box.height}?'min-height:'+${box.height}+'px':'height:100%'">
+		<div class="box-header" th:if="${not #strings.isEmpty(box.title)}">
+			<h2>
+				<i class="halflings-icon hand-top"></i><span class="break"></span> <span th:text="${box.title}">Dash Board Configuration Canvas, URL = /Widget/dashboard/DE1_1_TEAM</span>
+			</h2>
+		</div>		
+			<div class="box-content" th:class="${not box.containerFlag}?'box-content'">
+				<div class="widget-wrapper">
+				<th:block th:each="widget : ${box.widgetList}">
+				<span th:inline="text" th:remove="tag" th:utext="'&lt;!-- Start : Box' +  ${widgetStat.count} +  '--&gt;'"></span>
+				<div th:replace="${widget.viewPath} :: ${widget.fragment}(${widget})" th:class="'widget-box '+${widget.cssClass}"></div>
+				<span th:inline="text" th:remove="tag" th:utext="'&lt;!-- End : Box' +  ${widgetStat.count} +  '--&gt;'"></span>
+				</th:block>
+				</div>
+			</div>		
+	</div>
+	
+	<!-- Panel Template for GRID -->
+	<div th:fragment="grid-item(item, isDynamic)">
+           <div class="panel-heading">
+               <i class="titleicon fa fa-fw"></i> <span class="title" th:text="${item.title}">Title</span>
+               <div class="pull-right" th:remove="all">
+                   <div class="btn-group">
+                       <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                           <i class="fa fa-wrench fa-fw"></i>
+                           <span class="caret"></span>
+                       </button>
+                       <ul class="dropdown-menu pull-right" style="cursor: default">
+                           <li><a href="#" class="editgriditem"><i class="fa fa-edit fa-fw"></i> Edit this item</a></li>
+                           <li><a href="#" class="editwgs"><i class="fa fa-edit fa-fw"></i> Widgets Editor</a></li>
+                           <!-- <li><a href="#">.....</a></li> -->
+                           <li class="divider"></li>
+                           <li><a href="#" class="text-danger remove-me"><i class="fa fa-times fa-fw"></i> Delete this item</a></li>
+                       </ul>
+                   </div>
+               </div>
+           </div>
+           <div class="panel-body">
+               <!--  ################ START Widget Content Here  ################-->
+               <div class="widget-wrapper" th:classappend="${item.widgetAlignment == 'V'}?'vertical'">
+					<th:block th:each="widget : ${item.widgetList}">
+					<i th:inline="text" th:remove="tag" th:utext="'&lt;!-- Start : Box' +  ${widgetStat.count} +  '--&gt;'"></i>
+					<div th:include="${widget.viewPath} :: ${widget.fragment}(${widget})" class="widget-box"></div>
+					<i th:inline="text" th:remove="tag" th:utext="'&lt;!-- End : Box' +  ${widgetStat.count} +  '--&gt;'"></i>
+					<div th:if="${isDynamic == true}" th:include="fragments/fr_decoration :: dec-horizontal-rule"></div>
+					</th:block>				
+               </div>
+               <!--  ################ END Widget Content Here  ################-->
+           </div>
+           <div class="panel-footer" style="display:none;"></div>
+	</div>
+	<!-- /END Panel Template for GRID -->
+</body>
+</html>

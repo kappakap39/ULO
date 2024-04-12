@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Line Chart Widget Fragments</title>
+
+</head>
+<body>
+
+	<div class="box-content">
+		<th:block th:fragment="wg-solid-gauge(widget)">
+			<span th:inline="text" th:remove="tag" th:utext="'&lt;!-- Start : Gauge Widget' +  ${widgetStat.count} +  '--&gt;'"></span>
+<!-- 			<div id="solid-guage" th:id="'wg_sg_'+${widget.id}" class='solid-gauge' style="width: 300px; height: 200px; "></div> -->
+			<div class="col-md-12 col-sm-9">
+			<div id="solid-guage" th:id="'wg_sg_'+${widget.id}" class='solid-gauge' style="max-width: 100%; height: 130px; "></div>
+			</div>
+			<div class="footer" th:text="${widget.yAxisTitle}"></div>
+			<script th:inline="javascript">
+			//<![CDATA[
+				$(function () {
+				    var gaugeOptions = {
+				
+				        chart: {
+				            type: 'solidgauge'
+				        },
+				
+				        title: null,
+				
+				        pane: {
+				            center: ['50%', '50%'],
+				            size: '100%',
+				            startAngle: -90,
+				            endAngle: 90,
+				            background: {
+				                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+				                innerRadius: '60%',
+				                outerRadius: '100%',
+				                shape: 'arc'
+				            }
+				        },
+				
+				        tooltip: {
+				            enabled: false
+				        },
+				
+				        // the value axis
+				        yAxis: {
+				            stops: [
+				                [0.1, '#DF5353'], // red
+				                //[0.1, '#55BF3B'], // green
+				                [0.4, '#DDDF0D'], // yellow
+				                //[0.9, '#DF5353'] // red
+				                [0.9, '#55BF3B'] // green
+				            ],
+				            lineWidth: 0,
+				            minorTickInterval: null,
+				            tickPixelInterval: 400,
+				            tickWidth: 0,
+				            title: {
+				                y: -70
+				            },
+				            labels: {
+				                y: 16
+				            }
+				        },
+				
+				        plotOptions: {
+				            solidgauge: {
+				                dataLabels: {
+				                    y: 5,
+				                    borderWidth: 0,
+				                    useHTML: true
+				                }
+				            }
+				        }
+				    };
+				
+				    // The speed gauge
+				    var protoData = [{"name":"","data":[0.0,0.0,0.0]}];
+				    var solidGuageId = /*[['wg_sg_'+${widget.id}]]*/'solid-guage';
+				    var series = /*[[${widget.series}]]*/;
+				    series = $.extend(true,protoData,series);
+				    var seriesName = (series && series[0])?series[0].name:null;
+				    var seriesData = series[0].data[0];
+				    seriesData = parseFloat(seriesData.toFixed(2));
+				    var yAxisMin = /*[[${widget.yAxisMin}]]*/;
+				    yAxisMin = yAxisMin||0;
+				    var yAxisMax = /*[[${widget.yAxisMax}]]*/;
+				    yAxisMax = (yAxisMax||Math.max(seriesData,100));
+				    
+				    var title = /*[[${widget.title}]]*/;
+				    var dataSuffix = /*[[${widget.dataSuffix}]]*/;
+				    dataSuffix = (dataSuffix?dataSuffix:"");
+				    var tooltipSuffix = /*[[${#strings.defaultString(widget.toolTipSuffix,'')}]]*/;
+				    $('#'+solidGuageId).highcharts(Highcharts.merge(gaugeOptions, {
+				        exporting: {
+				        	enabled: false
+				        },
+				        yAxis: {
+				            min: yAxisMin,
+				            max: yAxisMax,
+				            title: {
+				                text: title
+				            }
+				        },
+				
+				        credits: {
+				            enabled: false
+				        },
+				
+				        series: [{
+				            name: seriesName,
+				            data: [seriesData],
+				            dataLabels: {
+				                format: '<div style="text-align:center"><span style="font-size:20px;color:' +
+				                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span>&nbsp;' +
+				                       '<span style="font-size:12px;color:silver">'+dataSuffix+'</span></div>'
+				            },
+				            tooltip: {
+				                valueSuffix: tooltipSuffix
+				            }
+				        }]
+				
+				    }));
+				    // Bring life to the dials
+				//     setInterval(function () {
+				//         // Speed
+				//         var chart = $('#solid-guage').highcharts(),
+				//             point,
+				//             newVal,
+				//             inc;
+				
+				//         if (chart) {
+				//             point = chart.series[0].points[0];
+				//             inc = Math.round((Math.random() - 0.5) * 100);
+				//             newVal = point.y + inc;
+				
+				//             if (newVal < 0 || newVal > 200) {
+				//                 newVal = point.y - inc;
+				//             }
+				
+				//             point.update(newVal);
+				//         }
+				//     }, 2000);
+					var widget = /*[[${widget}]]*/{id:1234};
+					var intervalTime = widget.intervalTime;
+					if(null!=intervalTime&&intervalTime>0){
+						var interval = setInterval(function(){
+							$.ajax({
+								method: 'POST',
+								url: "/Widget/grid/chart/load-data",
+								contentType: 'application/json',
+								data: JSON.stringify(widget),
+								success: function(data) {	
+									//console.log(data);
+									if(data && data.series && data.series.length){
+										for(var i =0, l = data.series.length; i < l; i++){
+											$('#'+solidGuageId).highcharts().series[i].setData(data.series[i].data); 
+										}
+									}
+										
+								},
+								error: function(e) {
+									log.error('Error');
+								}
+							});
+						}, intervalTime);
+					}
+				});
+			//]]>
+		</script>
+		<span th:inline="text" th:remove="tag" th:utext="'&lt;!-- End : Gauge Widget' +  ${widgetStat.count} +  '--&gt;'"></span>
+		</th:block>
+		
+<!-- 	##############################	Multi-Gauge Widget ######################################    -->
+		<th:block th:fragment="wg-multi-solid-gauge(widget)">
+			<span th:inline="text" th:remove="tag" th:utext="'&lt;!-- Start : Multi Gauge Widget' +  ${widgetStat.count} +  '--&gt;'"></span>
+			<div th:each="cate : ${widget.categories}" style="display:table-cell" class="col-md-4">
+<!-- 				<div id="solid-guage" th:id="'wg_mul_sg_'+${widget.id+'-'+cateStat.count}" class='solid-gauge' style="width: 300px; height: 200px; "></div> -->
+					<div id="solid-guage" th:id="'wg_mul_sg_'+${widget.id+'-'+cateStat.count}" class='solid-gauge' style="width: auto; height: 130px; "></div>
+				<script th:inline="javascript">
+					//<![CDATA[
+						$(function () {
+						    var gaugeOptions = {
+						
+						        chart: {
+						            type: 'solidgauge'
+						        },
+						
+						        title: null,
+						
+						        pane: {
+						            center: ['50%', '50%'],
+						            size: '60%',
+						            startAngle: -90,
+						            endAngle: 90,
+						            background: {
+						                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+						                innerRadius: '90%',
+						                outerRadius: '100%',
+						                shape: 'arc'
+						            }
+						        },
+						
+						        tooltip: {
+						            enabled: false
+						        },
+						
+						        // the value axis
+						        yAxis: {
+						            stops: [
+						            	[0.1, '#DF5353'], // red
+						                //[0.1, '#55BF3B'], // green
+						                [0.7, '#DDDF0D'], // yellow
+						                //[0.9, '#DF5353'] // red
+						                [0.9, '#55BF3B'] // green
+						            ],
+						            lineWidth: 0,
+						            minorTickInterval: null,
+						            tickPixelInterval: 400,
+						            tickWidth: 0,
+						            title: {
+						                y: -70
+						            },
+						            labels: {
+						                y: 16
+						            }
+						        },
+						
+						        plotOptions: {
+						            solidgauge: {
+						                dataLabels: {
+						                    y: 5,
+						                    borderWidth: 0,
+						                    useHTML: true
+						                }
+						            }
+						        }
+						    };
+						
+						    // The speed gauge
+						    var protoData = [{"name":"","data":[0.0,0.0,0.0]}];
+						    var solidGuageId = /*[['wg_mul_sg_'+${widget.id+'-'+cateStat.count}]]*/'solid-guage';
+						    var series = /*[[${widget.series}]]*/;
+						    series = $.extend(true,protoData,series);
+						    var seriesName = (series && series[0])?series[0].name:null;
+						    var seriesIndex = /*[[${cateStat.index}]]*/;
+						    var seriesData = series[0].data[seriesIndex];
+						    seriesData = parseFloat(seriesData.toFixed(2));
+						    var yAxisMin = /*[[${widget.yAxisMin}]]*/;
+						    yAxisMin = yAxisMin||0;
+						    var yAxisMax = /*[[${widget.yAxisMax}]]*/;
+						    yAxisMax = (yAxisMax||Math.max(seriesData,10));
+						    var title = /*[[${widget.title}]]*/;
+						    var dataSuffix = /*[[${widget.dataSuffix}]]*/;
+						    dataSuffix = (dataSuffix?dataSuffix:"");
+						    var tooltipSuffix = /*[[${#strings.defaultString(widget.toolTipSuffix,'')}]]*/;
+						    $('#'+solidGuageId).highcharts(Highcharts.merge(gaugeOptions, {
+						        exporting: {
+						        	enabled: false
+						        },
+						        yAxis: {
+						            min: yAxisMin,
+						            max: yAxisMax,
+						            title: {
+						                text: title
+						            }
+						        },
+						
+						        credits: {
+						            enabled: false
+						        },
+						
+						        series: [{
+						            name: seriesName,
+						            data: [seriesData],
+						            dataLabels: {
+						                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+						                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+						                       '<span style="font-size:12px;color:silver">'+dataSuffix+'</span></div>'
+						            },
+						            tooltip: {
+						                valueSuffix: tooltipSuffix
+						            }
+						        }]
+						
+						    }));						
+							
+							var widget = /*[[${widget}]]*/{id:1234};
+							var intervalTime = widget.intervalTime;
+							if(null!=intervalTime&&intervalTime>0){
+								var interval = setInterval(function(){
+									$.ajax({
+										method: 'POST',
+										url: "/Widget/grid/chart/load-data",
+										contentType: 'application/json',
+										data: JSON.stringify(widget),
+										success: function(data) {	
+											if(data && data.series && data.series.length){
+												for(var i =0, l = data.series.length; i < l; i++){
+													$('#'+solidGuageId).highcharts().series[i].setData([data.series[i].data[seriesIndex]]); 
+												}
+											}
+												
+										},
+										error: function(e) {
+											log.error('Error');
+										}
+									});
+								}, intervalTime);
+							}
+						});
+					//]]>
+				</script>
+				<div class="footer" th:text="${cate}"></div>
+			</div>			
+			
+			
+		<span th:inline="text" th:remove="tag" th:utext="'&lt;!-- End : Multi Gauge Widget' +  ${widgetStat.count} +  '--&gt;'"></span>
+		</th:block>
+	</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RE_R016" language="groovy" pageWidth="1500" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="1500" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="942ef362-1a6f-493e-8628-63595f0b3ae0">
+	<property name="ireport.zoom" value="0.5"/>
+	<property name="ireport.x" value="31"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="P_TRAN_DATE_FROM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_TRAN_DATE_TO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_TRAN_DETAIL" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_OPERATE_BY" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT ROWNUM,A.* FROM(
+SELECT
+TR.CREATED_DATE,
+ME.ACTION_DESCRIPTION,TR.MESSAGE_LOGS,
+OBJ.OBJECT_ID,OBJ.OBJECT_NAME,
+ROLE.ROLE_ID,ROLE.ROLE_NAME,
+TR.CREATED_BY AS OPERATE_BY
+FROM  TRANSACTION_LOGS TR
+LEFT JOIN METAB_LOGS ME ON TR.ACTION_ID = ME.ACTION_ID
+LEFT JOIN (
+        SELECT T_OBJ.ID,T_OBJ.OBJECT_ID,O.OBJECT_DESC AS OBJECT_NAME FROM (
+                SELECT ID,CASE WHEN INSTR(MESSAGE_LOGS, 'O') >0 THEN
+                SUBSTR(MESSAGE_LOGS,INSTR(MESSAGE_LOGS, 'O'),5) END AS OBJECT_ID
+                FROM TRANSACTION_LOGS
+                WHERE ACTION_ID <> 'L0004') T_OBJ
+        JOIN OBJECT O ON O.OBJECT_ID = T_OBJ.OBJECT_ID
+        WHERE T_OBJ.OBJECT_ID IS NOT NULL
+)OBJ ON OBJ.ID = TR.ID
+LEFT JOIN (
+        SELECT T_ROLE.ID,T_ROLE.ROLE_ID,R.ROLE_DESC AS ROLE_NAME FROM (
+                SELECT ID,CASE WHEN INSTR(MESSAGE_LOGS, 'R') >0 THEN
+                SUBSTR(MESSAGE_LOGS,INSTR(MESSAGE_LOGS, 'R'),5) END  AS ROLE_ID
+                FROM TRANSACTION_LOGS WHERE ACTION_ID <> 'L0004')T_ROLE
+        JOIN ROLE R ON R.ROLE_ID = T_ROLE.ROLE_ID
+        WHERE T_ROLE.ROLE_ID IS NOT NULL
+)ROLE ON ROLE.ID = TR.ID
+WHERE TR.ACTION_ID <> 'L0004'
+AND UPPER(TR.CREATED_BY) =NVL(UPPER($P{P_OPERATE_BY}),UPPER(TR.CREATED_BY))
+AND TR.MESSAGE_LOGS LIKE ('%'||''||NVL($P{P_TRAN_DETAIL},TR.MESSAGE_LOGS)||''||'%')
+AND TRUNC(TR.CREATED_DATE) >=NVL(TO_DATE($P{P_TRAN_DATE_FROM},'DD/MM/YYYY'),TRUNC(TR.CREATED_DATE))
+AND TRUNC(TR.CREATED_DATE) <=NVL(TO_DATE($P{P_TRAN_DATE_TO},'DD/MM/YYYY'),TRUNC(TR.CREATED_DATE))
+ORDER BY TR.CREATED_DATE)A]]>
+	</queryString>
+	<field name="ROWNUM" class="java.math.BigDecimal"/>
+	<field name="CREATED_DATE" class="java.sql.Timestamp"/>
+	<field name="ACTION_DESCRIPTION" class="java.lang.String"/>
+	<field name="MESSAGE_LOGS" class="java.lang.String"/>
+	<field name="OBJECT_ID" class="java.lang.String"/>
+	<field name="OBJECT_NAME" class="java.lang.String"/>
+	<field name="ROLE_ID" class="java.lang.String"/>
+	<field name="ROLE_NAME" class="java.lang.String"/>
+	<field name="OPERATE_BY" class="java.lang.String"/>
+	<title>
+		<band height="80">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="1500" height="40" forecolor="#000000" uuid="ab88ec19-ab5d-414b-aaef-5c7b4e61be21"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Customer Information Filter]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="40" width="100" height="40" forecolor="#000000" uuid="d84d5f8a-77e3-4939-822c-f750c61399fe"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Seq.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="100" y="40" width="100" height="40" forecolor="#000000" uuid="c3c40149-5c11-4393-b66d-bc7025449d1f"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Tran. Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="900" y="40" width="200" height="40" forecolor="#000000" uuid="49557a20-a088-482c-8aee-2342d563a54c"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Role Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="200" y="60" width="100" height="20" forecolor="#000000" uuid="9045af93-f2d5-4f6c-8b18-df6828871d34"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[(Optional)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="200" y="40" width="100" height="20" forecolor="#000000" uuid="496336af-68f9-442c-9b7a-c2987e804a23"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Admin. Task]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="300" y="40" width="500" height="40" forecolor="#000000" uuid="e007b7bf-80bc-4ab7-8907-9d73ec69c3f9"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Tran. Detail]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="800" y="40" width="100" height="40" forecolor="#000000" uuid="ad1e38a9-72d6-41d9-bffb-b0efc0ac5163"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Role ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1100" y="40" width="100" height="20" forecolor="#000000" uuid="933157e6-d898-4fc4-98d6-d9559941a7f8"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Function ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1100" y="60" width="100" height="20" forecolor="#000000" uuid="bebb9b77-3630-4f86-ae93-1be7454b602d"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[(Optional)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1200" y="40" width="200" height="20" forecolor="#000000" uuid="2293e453-1d57-4173-a0f7-7e2790b1ce4d"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Function Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1200" y="60" width="200" height="20" forecolor="#000000" uuid="9f21794b-48dc-4604-888e-e9b4216c4998"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[(Optional)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1400" y="40" width="100" height="40" forecolor="#000000" uuid="e6e04dbc-bcfc-4f0d-ad1d-3251dcf4cab1"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Operated By]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="b1e73ad6-908a-4bd4-a37f-c4088bb4f9ea"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ROWNUM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="7e99e616-eae5-4fb9-b637-9bd9c76c506f"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CREATED_DATE} == null ? "-" : $F{CREATED_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20" uuid="375e9104-02f0-4d1e-b77a-1a5e6da91cc9"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ACTION_DESCRIPTION} == null ? "-" : $F{ACTION_DESCRIPTION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="500" height="20" uuid="abe8fe90-68a4-46d1-be92-2b1b81943ee8"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{MESSAGE_LOGS} == null ? "-" : $F{MESSAGE_LOGS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="800" y="0" width="100" height="20" uuid="87399ce8-0111-4a2a-9b40-d5723e3e1e94"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ROLE_ID} == null ? "-" : $F{ROLE_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="900" y="0" width="200" height="20" uuid="12e188b9-8d9f-40ea-bc64-f5311cfd82a7"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ROLE_NAME} == null ? "-" : $F{ROLE_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1100" y="0" width="100" height="20" uuid="79e7bf12-0fcc-4c80-9693-51fe95227a89"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{OBJECT_ID} == null ? "-" : $F{OBJECT_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1200" y="0" width="200" height="20" uuid="b13693be-caa8-44e6-95c6-f2aac2013f5a"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{OBJECT_NAME} == null ? "-" : $F{OBJECT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1400" y="0" width="100" height="20" uuid="d227abc0-6e05-4072-80df-6ff45f0131fc"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{OPERATE_BY} == null ? "-" : $F{OPERATE_BY}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

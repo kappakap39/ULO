@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://eai.kasikornbank.com/EAIWS/KBANK1550I01/v1" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:s1="http://eai.kasikornbank.com/EAIWS/KBANK1550I01/v1">
+
+   <xsd:element ibmSchExtn:docRoot="true" name="doService" type="s1:doService"/>
+   <xsd:element ibmSchExtn:docRoot="true" name="doServiceResponse" type="s1:doServiceResponse"/>
+
+   <xsd:complexType name="doService">
+      <xsd:sequence>
+         <xsd:element name="TFB0152I01">
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="EAIHeader">
+                     <xsd:complexType>
+                        <xsd:sequence>
+                           <xsd:element name="serviceId" nillable="true" type="s1:stringLength12"/>
+                           <xsd:element name="beginTimestamp" nillable="true" type="xsd:dateTime"/>
+                           <xsd:element minOccurs="0" name="endTimestamp" nillable="true" type="xsd:dateTime"/>
+                           <xsd:element minOccurs="0" name="transactionId" nillable="true" type="s1:stringLength32"/>
+                           <xsd:element minOccurs="0" name="sourceTransactionId" nillable="true" type="xsd:string"/>
+                           <xsd:element name="sourceSystem" nillable="true" type="xsd:string"/>
+                           <xsd:element minOccurs="0" name="userId" nillable="true" type="xsd:string"/>
+                           <xsd:element minOccurs="0" name="password" nillable="true" type="xsd:string"/>
+                           <xsd:element minOccurs="0" name="status" nillable="true" type="s1:intLength1"/>
+                           <xsd:element minOccurs="0" name="reasonCode" nillable="true" type="s1:intLength5"/>
+                        </xsd:sequence>
+                     </xsd:complexType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="CISCustomer">
+                     <xsd:complexType>
+                        <xsd:sequence>
+                           <xsd:element name="thFstName" nillable="true" type="s1:stringLength30"/>
+                        </xsd:sequence>
+                     </xsd:complexType>
+                  </xsd:element>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="doServiceResponse">
+      <xsd:sequence>
+         <xsd:element name="TFB0152I01Response">
+            <xsd:complexType>
+               <xsd:sequence>
+               	<xsd:element name="EAIHeader">
+               		<xsd:complexType>
+               			<xsd:sequence>
+               				<xsd:element name="serviceId" nillable="true" type="s1:stringLength12"/>
+               				<xsd:element name="beginTimestamp" nillable="true" type="xsd:dateTime"/>
+               				<xsd:element name="endTimestamp" nillable="true" type="xsd:dateTime"/>
+               				<xsd:element name="transactionId" nillable="true" type="s1:stringLength32"/>
+               				<xsd:element name="sourceTransactionId" nillable="true" type="xsd:string"/>
+               				<xsd:element name="sourceSystem" nillable="true" type="xsd:string"/>
+               				<xsd:element minOccurs="0" name="userId" nillable="true" type="xsd:string"/>
+               				<xsd:element minOccurs="0" name="password" nillable="true" type="xsd:string"/>
+               				<xsd:element name="status" nillable="true" type="s1:intLength1"/>
+               				<xsd:element name="reasonCode" nillable="true" type="s1:intLength5"/>
+               				<xsd:element name="reasonDesc" nillable="true" type="xsd:string"/>
+
+               				<xsd:element maxOccurs="1" minOccurs="0" name="error">
+			               		<xsd:complexType>
+								   	<xsd:sequence>
+								   		<xsd:element maxOccurs="1" minOccurs="0" name="corrId" type="xsd:string"/>
+								   		<xsd:element maxOccurs="1" minOccurs="0" name="errorAppAbbrv" type="xsd:string"/>
+								   		<xsd:element maxOccurs="1" minOccurs="0" name="errorAppId" type="xsd:string"/>
+								   		<xsd:element maxOccurs="1" minOccurs="0" name="errorCode" type="xsd:string"/>
+								   		<xsd:element maxOccurs="1" minOccurs="0" name="errorDesc" type="xsd:string"/>
+								   		<xsd:element maxOccurs="1" minOccurs="0" name="errorSeverity" type="xsd:string"/>
+								   	</xsd:sequence>
+							   </xsd:complexType>
+			               	</xsd:element>
+               			</xsd:sequence>
+               		</xsd:complexType>
+               	</xsd:element>
+               	<xsd:element minOccurs="0" name="INDCustomer">
+               		<xsd:complexType>
+               			<xsd:sequence>
+               				<xsd:element minOccurs="0" name="name" nillable="true" type="s1:stringLength65"/>
+               				<xsd:element name="caseFlag" nillable="true" type="s1:stringLength1"/>
+               				<xsd:element name="uniqueCustFoundFlg" nillable="true" type="s1:stringLength1"/>
+               			</xsd:sequence>
+               		</xsd:complexType>
+               	</xsd:element>
+               	<xsd:element minOccurs="0" name="AMCCustomer">
+               		<xsd:complexType>
+               			<xsd:sequence>
+               				<xsd:element minOccurs="0" name="custName" nillable="true" type="s1:stringLength40"/>
+               				<xsd:element name="exstCustFlag" nillable="true" type="s1:stringLength1"/>
+               				<xsd:element name="uniqueCustFoundFlg" nillable="true" type="s1:stringLength1"/>
+               			</xsd:sequence>
+               		</xsd:complexType>
+               	</xsd:element>
+               	<xsd:element minOccurs="0" name="TMCCustomer">
+               		<xsd:complexType>
+               			<xsd:sequence>
+               				<xsd:element minOccurs="0" name="name" nillable="true" type="s1:stringLength40"/>
+               				<xsd:element name="exstCustFlag" nillable="true" type="s1:stringLength1"/>
+               				<xsd:element name="uniqueCustFoundFlg" nillable="true" type="s1:stringLength1"/>
+               			</xsd:sequence>
+               		</xsd:complexType>
+               	</xsd:element>
+
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:simpleType name="intLength1">
+      <xsd:restriction base="xsd:int">
+         <xsd:totalDigits value="1"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="intLength5">
+      <xsd:restriction base="xsd:int">
+         <xsd:totalDigits value="5"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="stringLength1">
+      <xsd:restriction base="xsd:string">
+         <xsd:maxLength value="1"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="stringLength12">
+      <xsd:restriction base="xsd:string">
+         <xsd:maxLength value="12"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="stringLength30">
+      <xsd:restriction base="xsd:string">
+         <xsd:maxLength value="30"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="stringLength32">
+      <xsd:restriction base="xsd:string">
+         <xsd:maxLength value="32"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="stringLength40">
+      <xsd:restriction base="xsd:string">
+         <xsd:maxLength value="40"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="stringLength65">
+      <xsd:restriction base="xsd:string">
+         <xsd:maxLength value="65"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+
+</xsd:schema>

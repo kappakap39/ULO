@@ -1,0 +1,88 @@
+.clickable {
+    cursor: pointer;   
+}
+
+.panel-heading span {
+	margin-top: -20px;
+	font-size: 15px;
+}
+
+.table > thead > tr > th {
+    border-right: 1px solid #ddd;
+    border-bottom: 0;
+}
+
+.table > tbody > tr > td {
+    border-right: 1px solid #ddd;
+}
+
+.table > thead > tr > th:last-of-type {
+    border-right: 0px;
+}
+
+.table > tbody > tr > td:last-of-type {
+    border-right: 0px;
+}
+
+.panel-body > .table {
+	margin-bottom: 0px;
+}
+
+.special_collapse > .table {
+	margin: 0px;
+}
+
+.wm_toolbar {
+	display: table;
+	width: 100%;
+	vertical-align: middle !important;
+}
+
+.titlesearch,
+.wm_collapse_control {
+	display: table-cell;
+}
+
+.wm_collapse_control {
+	width: 75px;
+}
+
+.wm_collapse_control > span {
+	font-size: 10pt;
+}
+
+.wm_item_header {
+	display: table;
+	width: 100%;
+	vertical-align: middle !important;
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+}
+
+.wm_item_header_content,
+.wm_item_header_side {
+	display: table-cell;
+	vertical-align: middle !important;
+}
+
+.wm_item_header_content {
+	padding-right: 20px;
+}
+
+.wm_item_header_side {
+	width: 75px;
+}
+
+.wm_item_header_side > span {
+	margin-right: 10px;
+}
+
+.wm_table > th,
+.wm_table > td {
+	text-align: center !important;
+	vertical-align: middle !important;
+	padding: 2px !important;
+	font-size: 9pt;
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appdeployment:Deployment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:appdeployment="http://www.ibm.com/websphere/appserver/schemas/5.0/appdeployment.xmi" xmi:id="Deployment_1546505474435">
+  <deployedObject xmi:type="appdeployment:ApplicationDeployment" xmi:id="ApplicationDeployment_1546505474435" startingWeight="10" warClassLoaderPolicy="SINGLE">
+    <modules xmi:type="appdeployment:WebModuleDeployment" xmi:id="WebModuleDeployment_1546505474435" startingWeight="10000" uri="wm-plugin.war"/>
+    <classloader xmi:id="Classloader_1546505474435" mode="PARENT_FIRST">
+      <libraries xmi:id="LibraryRef_1546571155678" libraryName="wm-lib"/>
+    </classloader>
+  </deployedObject>
+</appdeployment:Deployment>

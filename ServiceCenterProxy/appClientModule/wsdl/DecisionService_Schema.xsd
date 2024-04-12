@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://com.ava.iib/decisionservice" xmlns:Q1="http://DecisionService_IIB" xmlns:ns1="http://www.ibm.com/rules/decisionservice/Flp_uis/Flp_decision" xmlns:tns="http://com.ava.iib/decisionservice">
+    <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService_IIB_Schema1.xsd"/>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="DecisionService">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="DecisionServiceRequest" type="Q1:applicationGroupDataM"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="DecisionServiceResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="DecisionServiceResponse" nillable="true" type="Q1:applicationGroupDataM"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>

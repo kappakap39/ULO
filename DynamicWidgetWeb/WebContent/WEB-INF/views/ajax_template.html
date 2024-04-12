@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Content Information by TOP</title>
+<meta name="description" content="Dynamic Widget" />
+<meta name="author" content="Top" />
+<meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+<!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- end: Mobile Specific -->
+</head>
+<body>
+	<!-- 	Start : content detail -->
+	<div th:fragment="content(page)">
+		<div th:replace="admin/adm_content_info :: config-dashboard"></div>
+		<!--/span-->
+	</div>
+	<!-- 	Start : content detail -->
+</body>
+</html>

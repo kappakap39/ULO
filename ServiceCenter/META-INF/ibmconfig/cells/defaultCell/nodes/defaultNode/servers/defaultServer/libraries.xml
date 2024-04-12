@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libraries:Library xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:libraries="http://www.ibm.com/websphere/appserver/schemas/5.0/libraries.xmi" xmi:id="Library_1429613186695" name="ServiceCenter_Lib" isolatedClassLoader="false">
+  <classPath>C:\WorkSpace\FLP_WorkSpace\Lib</classPath>
+  <classPath>C:\WorkSpace\FLP_WorkSpace\ServiceCenterProxy\build\classes</classPath>
+  <classPath>C:\WorkSpace\FLP_WorkSpace\Lib\JSONLibs</classPath>
+  <classPath>C:\WorkSpace\FLP_WorkSpace\ULOCore\bin</classPath>
+  <classPath>C:\WorkSpace\FLP_WorkSpace\ULOModel\bin</classPath>
+  <classPath>C:\WorkSpace\FLP_WorkSpace\FLPCore\bin</classPath>
+  <classPath>C:\WorkSpace\FLP_WorkSpace\FLPModel\bin</classPath>
+  <classPath>C:\WorkSpace\FLP_WorkSpace\BpmProxy\bin</classPath>
+  <classPath>C:\WorkSpace\FLP_WorkSpace\BPMCoreModel\bin</classPath>
+  <classPath>C:\WorkSpace\FLP_WorkSpace\BPMCore\bin</classPath>
+  <classPath>C:\WorkSpace\FLP_WorkSpace\InfBatchCore\bin</classPath>
+  <classPath>C:\WorkSpace\FLP_WorkSpace\Lib\jasper</classPath>
+  <classPath>C:\WorkSpace\FLP_WorkSpace\Lib\axis</classPath>
+  <classPath>C:\WorkSpace\FLP_WorkSpace\Lib\spring-framework</classPath>
+  <classPath>C:\WorkSpace\FLP_WorkSpace\ULOCache\bin</classPath>
+  <classPath>C:\WorkSpace\FLP_WorkSpace\Lib\IMLib</classPath>
+</libraries:Library>

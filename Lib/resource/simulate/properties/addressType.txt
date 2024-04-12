@@ -1,0 +1,4 @@
+'01'|'Y'=Successfully inserted|'record already exist'
+'02'|'N'=Error|'record already exist'
+'03'|'N'=Error|'record already exist'
+'09'|'Y'=Successfully inserted|'record already exist'

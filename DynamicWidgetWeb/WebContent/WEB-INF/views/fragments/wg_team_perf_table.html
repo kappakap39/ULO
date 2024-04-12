@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Team Performance Table by TOP</title>
+<meta name="description" content="Dynamic Widget" />
+<meta name="author" content="Top" />
+<meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+<!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- end: Mobile Specific -->
+</head>
+<body>
+	<!-- 	Start : content detail -->
+	<div class="row-fluid" th:fragment="full-span">
+		<div class="box span12">
+			<div class="box-header" data-original-title="">
+				<h2>
+					<i class="halflings-icon user"></i><span class="break"></span><span>Staff Team Performance</span>
+				</h2>
+				<div class="box-icon">
+					<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a> <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a> <a href="#"
+						class="btn-close"><i class="halflings-icon remove"></i></a>
+				</div>
+			</div>
+			<div class="box-content">
+				<table class="table table-striped table-bordered bootstrap-datatable datatable" th:fragment="data-table(teamPerf)">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Name</th>
+							<th class="center">Input</th>
+							<th class="center">On hand</th>
+							<th class="center">Output</th>
+							<th class="center">Target</th>
+							<th class="center">Performance</th>
+							<th class="center">Average Working Team</th>
+							<th class="center">On/Off</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="teamPerf : ${teamPerf.teamPerformanceDetailList}">
+							<td th:text="${teamPerf.userId}">ID</td>
+							<td th:text="${teamPerf.name}">Name</td>
+							<td th:text="${teamPerf.input}" class="center">input</td>
+							<td th:text="${teamPerf.assign}" class="center">assign</td>
+							<td class="center"><span th:text="${teamPerf.output}">output</span>&nbsp;&nbsp;<i th:class="${teamPerf.outputClass}"></i></td>
+							<td th:text="${teamPerf.target}" class="center">target</td>
+							<td class="center"><span th:class="${teamPerf.performanceClass}" th:text="${teamPerf.performance}">performance</span></td>
+							<td th:text="${teamPerf.averageWorkingTime}" class="center">averageWorkingTime</td>
+							<td class="center"><i th:class="${teamPerf.statusClass}"></i></td>
+						</tr>
+						<tr>
+							<td class="center" colspan="9" th:if="${#lists.isEmpty(teamPerf.teamPerformanceDetailList)}">No record</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!--/span-->
+	</div>
+	<!--/row-->
+	<!-- 	Start : content detail -->
+
+	<div th:fragment="wg-team-perf(widget)">
+<!-- 		<div class="panel panel-default"> -->
+			<table id="myTable" class="staffperformance table table-hover" >
+				<thead>
+					<tr>
+						<td class="text-left">ID</td>
+						<td class="text-left">Name</td>
+						<td class="number">Input <i id="inputId" onclick="sortTable(2,1)" class="fa fa-caret-down text-success icon-direction"></i></td>
+						<td class="number">On hand <i id="onHandId" onclick="sortTable(3,2)" class="fa fa-caret-down text-success icon-direction"></i></td>
+						<td class="number">Output <i id="outputId" onclick="sortTable(4,3)" class="fa fa-caret-down text-success icon-direction"></i></td>
+						<td class="number">Target</td>
+						<td class="number">Performance</td>
+						<td>Average Working Time</td>
+						<td>On/Off</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="detail : ${widget.teamPerformanceDetailList}">
+						<td th:id="'wg_tp_userid_'+${detailStat.index}" class="text-left" th:text="${detail.userId}">ID</td>
+						<td th:id="'wg_tp_name_'+${detailStat.index}" class="text-left" th:text="${detail.name}">Name</td>
+						<td th:id="'wg_tp_input_'+${detailStat.index}" th:text="${detail.input}" class="number">input</td>
+						<td th:id="'wg_tp_assign_'+${detailStat.index}" th:text="${detail.assign}" class="number">assign</td>
+						<td class="number"><span th:id="'wg_tp_output_'+${detailStat.index}" th:text="${detail.output}">output</span>&nbsp;&nbsp;<i th:id="'wg_tp_output_class_'+${detailStat.index}" th:class="${detail.outputClass}"></i></td>
+						<td th:id="'wg_tp_target_'+${detailStat.index}" th:text="${detail.target}" class="number">target</td>
+						<td class="number"><span th:id="'wg_tp_performance_'+${detailStat.index}" th:class="${detail.performanceClass}" th:text="${detail.performance}">performance</span></td>
+						<td th:id="'wg_tp_averageworkingtime_'+${detailStat.index}" th:text="${detail.averageWorkingTime}" class="center">averageWorkingTime</td>
+						<td class="center"><i th:class="${detail.statusClass}"></i></td>
+					</tr>
+					<tr th:if="${#lists.isEmpty(widget.teamPerformanceDetailList)}">
+						<td class="center" colspan="9" >No record</td>
+					</tr>
+					<tr th:remove="all">
+						<td class="text-left">KPL0002</td>
+						<td class="text-left">อารยา จรรโลงศิลป</td>
+						<td>56</td>
+						<td>6</td>
+						<td>50 <i class="fa fa-caret-up text-success icon-direction"></i></td>
+						<td>40</td>
+						<td><span class="text-success">10</span></td>
+						<td>1 Day 01:30</td>
+						<td><a href="#" class="text-success" style="font-size: 20px"><i class="fa fa-user"></i></a></td>
+					</tr>
+					<tr th:remove="all">
+						<td class="text-left">KPL0003</td>
+						<td class="text-left">นิธินาถ เมฆะ</td>
+						<td>52</td>
+						<td>13</td>
+						<td>39 <i class="fa fa-caret-down text-danger icon-direction"></i></td>
+						<td>40</td>
+						<td><span class="text-danger">-5</span></td>
+						<td>2 Day 01:30</td>
+						<td><a href="#" class="text-muted" style="font-size: 20px"><i class="fa fa-user"></i></a></td>
+					</tr>
+				</tbody>
+			</table>
+<!-- 		</div> -->
+		<script th:inline="javascript">
+			//<![CDATA[
+			
+			$(function() {
+				var widget = /*[[${widget}]]*/;
+				var intervalTime = widget.intervalTime;
+				if(null!=intervalTime&&intervalTime>0){
+					var interval = setInterval(function(){
+						$.ajax({
+							method: 'POST',
+							url: "/Widget/grid/team/load-data",
+							contentType: 'application/json',
+							data: JSON.stringify(widget),
+							success: function(data) {
+								//console.log(data);
+								if(data && data.teamPerformanceDetailList && data.teamPerformanceDetailList.length){
+									for(var i =0, l = data.teamPerformanceDetailList.length; i < l; i++){
+	 									$('#wg_tp_userid_'+i).text(data.teamPerformanceDetailList[i].userId);
+	 									$('#wg_tp_name_'+i).text(data.teamPerformanceDetailList[i].name);
+	 									$('#wg_tp_input_'+i).text(data.teamPerformanceDetailList[i].input);
+	 									$('#wg_tp_assign_'+i).text(data.teamPerformanceDetailList[i].assign);
+	 									$('#wg_tp_output_'+i).text(data.teamPerformanceDetailList[i].output);
+	 									$('#wg_tp_output_class_'+i).attr('class',data.teamPerformanceDetailList[i].outputClass);
+	 									$('#wg_tp_target_'+i).text(data.teamPerformanceDetailList[i].target);
+	 									$('#wg_tp_performance_'+i).text(data.teamPerformanceDetailList[i].performance);
+	 									$('#wg_tp_performance_'+i).addClass(data.teamPerformanceDetailList[i].performanceClass);
+	 									$('#wg_tp_averageworkingtime_'+i).text(data.teamPerformanceDetailList[i].averageWorkingTime);
+									}
+								}
+	 						},
+							error: function(e) {
+								log.error('Error');
+							}
+						});
+					}, intervalTime);
+				}
+			});
+			function sortTable(index,buttonId) {
+				var switching, x, y, shouldSwitch;
+				var table = document.getElementById("myTable");
+				var rows = table.rows;
+				var checkFlag = false;
+				switching = true;
+				if(buttonId ==1){
+					document.getElementById("onHandId").className ="fa fa-caret-down text-success icon-direction";
+					document.getElementById("outputId").className ="fa fa-caret-down text-success icon-direction";
+					if(document.getElementById("inputId").className == "fa fa-caret-down text-success icon-direction"){
+						while (switching) {
+		    				switching = false;
+							for(var i =1, l = rows.length; i < l; i++){
+								shouldSwitch = false;
+								x = rows[i].getElementsByTagName("TD")[index];
+								if((i+1) < l){
+		      						y = rows[i + 1].getElementsByTagName("TD")[index];
+		      					}
+		      					if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+		        					shouldSwitch = true;
+		        					break;
+		      					}
+							}
+							if(shouldSwitch) {
+		      					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+		      					switching = true;
+		      					checkFlag = true;
+							}
+						}
+						document.getElementById("inputId").className ="fa fa-caret-up text-success icon-direction";
+					}
+					else{
+						switching = true;
+						while (switching) {
+		    				switching = false;
+							for(var i =1, l = rows.length; i < l; i++){
+								shouldSwitch = false;
+								x = rows[i].getElementsByTagName("TD")[index];
+								if((i+1) < l){
+		      						y = rows[i + 1].getElementsByTagName("TD")[index];
+		      					}
+		      					if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+		        					shouldSwitch = true;
+		        					break;
+		      					}
+							}
+							if(shouldSwitch) {
+		      					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+		      					switching = true;
+		      					checkFlag = true;
+							}
+						}
+						document.getElementById("inputId").className ="fa fa-caret-down text-success icon-direction";
+					}
+				}
+				else if(buttonId==2){
+					document.getElementById("inputId").className ="fa fa-caret-down text-success icon-direction";
+					document.getElementById("outputId").className ="fa fa-caret-down text-success icon-direction";
+					if(document.getElementById("onHandId").className == "fa fa-caret-down text-success icon-direction"){
+						while (switching) {
+		    				switching = false;
+							for(var i =1, l = rows.length; i < l; i++){
+								shouldSwitch = false;
+								x = rows[i].getElementsByTagName("TD")[index];
+								if((i+1) < l){
+		      						y = rows[i + 1].getElementsByTagName("TD")[index];
+		      					}
+		      					if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+		        					shouldSwitch = true;
+		        					break;
+		      					}
+							}
+							if(shouldSwitch) {
+		      					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+		      					switching = true;
+		      					checkFlag = true;
+							}
+						}
+						document.getElementById("onHandId").className ="fa fa-caret-up text-success icon-direction";
+					}
+					else{
+						switching = true;
+						while (switching) {
+		    				switching = false;
+							for(var i =1, l = rows.length; i < l; i++){
+								shouldSwitch = false;
+								x = rows[i].getElementsByTagName("TD")[index];
+								if((i+1) < l){
+		      						y = rows[i + 1].getElementsByTagName("TD")[index];
+		      					}
+		      					if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+		        					shouldSwitch = true;
+		        					break;
+		      					}
+							}
+							if(shouldSwitch) {
+		      					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+		      					switching = true;
+		      					checkFlag = true;
+							}
+						}
+						document.getElementById("onHandId").className ="fa fa-caret-down text-success icon-direction";					
+					}
+				}
+				else if(buttonId==3){
+					document.getElementById("inputId").className ="fa fa-caret-down text-success icon-direction";
+					document.getElementById("onHandId").className ="fa fa-caret-down text-success icon-direction";
+					if(document.getElementById("outputId").className == "fa fa-caret-down text-success icon-direction"){
+						while (switching) {
+		    				switching = false;
+							for(var i =1, l = rows.length; i < l; i++){
+								shouldSwitch = false;
+								x = rows[i].getElementsByTagName("TD")[index];
+								if((i+1) < l){
+		      						y = rows[i + 1].getElementsByTagName("TD")[index];
+		      					}
+		      					if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+		        					shouldSwitch = true;
+		        					break;
+		      					}
+							}
+							if(shouldSwitch) {
+		      					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+		      					switching = true;
+		      					checkFlag = true;
+							}
+						}
+						document.getElementById("outputId").className ="fa fa-caret-up text-success icon-direction";
+					}
+					else{
+						switching = true;
+						while (switching) {
+		    				switching = false;
+							for(var i =1, l = rows.length; i < l; i++){
+								shouldSwitch = false;
+								x = rows[i].getElementsByTagName("TD")[index];
+								if((i+1) < l){
+		      						y = rows[i + 1].getElementsByTagName("TD")[index];
+		      					}
+		      					if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+		        					shouldSwitch = true;
+		        					break;
+		      					}
+							}
+							if(shouldSwitch) {
+		      					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+		      					switching = true;
+		      					checkFlag = true;
+							}
+						}
+						document.getElementById("outputId").className ="fa fa-caret-down text-success icon-direction";
+					}
+				}
+			}
+			//]]>
+		</script>
+	</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Cascading Style Inclusion Page</title>
+<meta name="description" content="Bootstrap Metro Dashboard" />
+<meta name="author" content="Topkung" />
+<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+<!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- end: Mobile Specific -->
+
+</head>
+<body>
+	<div th:fragment="left-nav(menu)" class="navbar-default sidebar" role="navigation">
+		<div class="sidebar-nav navbar-collapse" th:if="${not (menu == null)}">
+			<ul class="nav" id="side-menu">
+				<li th:each="item : ${menu.items}"><a href="index.html" th:href="${item.absoluteLink == null}?${item.link}: ${item.absoluteLink}"> <i class="fa fa-dashboard fa-fw" th:class="${item.icon }"></i> <span class="sidebar-title" th:text="${item.title}">Dashboard</span>
+						<span class="fa arrow" th:if="not ${item.subMenu == null}"></span>
+				</a>
+					<ul class="nav nav-second-level collapse" th:classappend="${item.active}?'in'">
+						<li th:each="subMenu : ${item.subMenu}"><a href="flot.html" th:href="${subMenu.absoluteLink == null}?@{/}+${subMenu.link}: ${subMenu.absoluteLink}" th:class="${subMenu.active}?'active'"> <i class="fa fa-dashboard fa-fw"
+								th:class="${subMenu.icon }"></i> <span th:text="${subMenu.title}">Dashboard</span></a></li>
+					</ul> <!-- /.nav-second-level --></li>
+				<li th:if="${menu.id} &lt; 0"><a href="#" id="refresh-cache"><i class="fa fa-refresh fa-fw"></i> Refresh Cache</a></li>
+			</ul>
+		</div>
+		<!-- /.sidebar-collapse -->
+	</div>
+	<!-- /.navbar-static-side -->
+</body>
+</html>

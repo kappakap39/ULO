@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ibm.etools.webservice.wscext:WsClientExtension xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.ibm.etools.webservice.wscext="http://www.ibm.com/websphere/appserver/schemas/5.0.2/wscext.xmi" xmi:id="WsClientExtension_1431395896624">
+  <serviceRefs xmi:id="ServiceRef_1431395896624" serviceRefLink="service/CIS0315U01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431395896624" portQnameLocalNameLink="CIS0315U01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431397255832" serviceRefLink="service/CBS1215I01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431397255832" portQnameLocalNameLink="CBS1215I01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431435352036" serviceRefLink="service/CIS0222I01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431435352036" portQnameLocalNameLink="CIS0222I01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431435408788" serviceRefLink="service/CIS0314I01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431435408788" portQnameLocalNameLink="CIS0314I01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431435450097" serviceRefLink="service/CIS1034A01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431435450097" portQnameLocalNameLink="CIS1034A01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431435483418" serviceRefLink="service/CIS1035A01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431435483418" portQnameLocalNameLink="CIS1035A01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431435556026" serviceRefLink="service/CIS1046A01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431435556026" portQnameLocalNameLink="CIS1046A01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431435591966" serviceRefLink="service/CIS1036A01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431435591966" portQnameLocalNameLink="CIS1036A01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431486797970" serviceRefLink="service/SMSServiceStd">
+    <portQnameBindings xmi:id="PortQnameBinding_1431486797970" portQnameLocalNameLink="SMSServiceStdWS"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1433236964570" serviceRefLink="service/EditKVIApplication">
+    <portQnameBindings xmi:id="PortQnameBinding_1433236964570" portQnameLocalNameLink="BasicHttpBinding_IEditKVIApplication"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1455620892408" serviceRefLink="service/CreateKVIApplication">
+    <portQnameBindings xmi:id="PortQnameBinding_1455620892408" portQnameLocalNameLink="BasicHttpBinding_ICreateKVIApplication"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1481778256045" serviceRefLink="service/CIS1047O01">
+    <portQnameBindings xmi:id="PortQnameBinding_1481778256045" portQnameLocalNameLink="CIS1047O01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1481804203486" serviceRefLink="service/CIS1048O01">
+    <portQnameBindings xmi:id="PortQnameBinding_1481804203486" portQnameLocalNameLink="CIS1048O01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1485342403752" serviceRefLink="service/DataQualityWebServiceService">
+    <portQnameBindings xmi:id="PortQnameBinding_1485342403752" portQnameLocalNameLink="DataQualityWebServicePort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1509649278819" serviceRefLink="service/CIS1037A01">
+    <portQnameBindings xmi:id="PortQnameBinding_1509649278819" portQnameLocalNameLink="CIS1037A01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1509649362846" serviceRefLink="service/CIS1044U01">
+    <portQnameBindings xmi:id="PortQnameBinding_1509649362846" portQnameLocalNameLink="CIS1044U01SoapPort"/>
+  </serviceRefs>
+</com.ibm.etools.webservice.wscext:WsClientExtension>

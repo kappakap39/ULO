@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/inc_header :: admin-grid">
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Bootstrap Metro Dashboard by TOP demo</title>
+<meta name="description" content="Bootstrap Metro Dashboard" />
+<meta name="author" content="Topkung" />
+<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+<!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- end: Mobile Specific -->
+
+</head>
+
+<body class="kstyle">
+	<div id="wrapper">
+
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html"><img th:src="@{/resources/img/logo.jpg}" /></a>
+			</div>
+			<!-- /.navbar-header -->
+
+			<div class="nav navbar-top-links navbar-left col-xs-6">
+				<div class="row">
+					<div class="col-xs-12">Welcome back Mr. Lead Dashboard</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">Last login 15:25 | 17 Apr 2015</div>
+				</div>
+			</div>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<ul class="nav navbar-top-links navbar-right">
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
+						<li class="divider"></li>
+						<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+					</ul> <!-- /.dropdown-user --></li>
+				<!-- /.dropdown -->
+			</ul>
+			<!-- /.navbar-top-links -->
+
+			<div th:replace="fragments/fr_navigation :: left-nav(${menu})"></div>
+			<!-- /.navbar-static-side -->
+		</nav>
+
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Dashboard Management</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<h3 style="margin-top: 0">Dashboards</h3>
+							<p>Add dashboard here.</p>
+							<a class="btn btn-primary add-dashboard-item" href="#"><i class="fa fa-plus fa-fw"></i> Add dashboard</a> <a class="btn btn-success save-dashboard-item" id="save-grid2"
+								href="#"><i class="fa fa-save fa-fw"></i> Save</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Modal Adding item -->
+			<div class="hidden modal fade" id="modaldialogs" role="dialog" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">Add Grid item</h4>
+						</div>
+						<!-- Dashboard Editor / Dialog -->
+						<div class="dashboardeditor modal-body">
+							<form name="formadddashboarditem" id="formadddashboarditem" method="post" action="">
+								<label>Widget properties</label> <input type="hidden" name="seq" value="new" />
+								<div class="form-group input-group">
+									<div class="input-group-addon">
+										<div style="width: 90px;">ID</div>
+									</div>
+									<input name="id" type="text" class="form-control" value="0" readonly="readonly" />
+								</div>
+								<div class="form-group input-group">
+									<div class="input-group-addon">
+										<div style="width: 90px;">Code</div>
+									</div>
+									<input name="code" type="text" class="form-control" />
+								</div>
+								<div class="form-group input-group">
+									<div class="input-group-addon">
+										<div style="width: 90px;">Title</div>
+									</div>
+									<input name="title" type="text" class="form-control" />
+								</div>
+								<div class="form-group input-group">
+									<div class="input-group-addon">
+										<div style="width: 90px;">Position Level</div>
+									</div>
+									<input name="position_level" type="text" class="form-control" />
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								<i class="fa fa-times fa-fw"></i> Cancel
+							</button>
+							<button type="submit" class="btn btn-primary">
+								<i class="fa fa-save fa-fw"></i> Save
+							</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- END Modal Adding item -->
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<table class="dashboard-list table table-hover">
+							<thead>
+								<tr>
+									<td style="width: 10%">Seq</td>
+									<td>Id</td>
+									<td>Code</td>
+									<td>Title</td>
+									<td style="width: 25%">Action</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="grid : ${grids}" data-th-attr="data-id=${grid.id}, data-code=${grid.code},data-title=${grid.title},data-pos-level=${grid.positionLevel}">
+									<td class="sequence" th:text="${gridStat.count}">1</td>
+									<td th:text="${grid.id}">2</td>
+									<td th:text="${grid.code}">DH01</td>
+									<td th:text="${grid.title}">DE1.1 Manager Dashboard</td>
+									<td>
+										<button type="button" class="btn btn-sm btn-default btn-edit-dashboard" data-toggle="tooltip" data-placement="top" title="Edit Dashboard Info">
+											<i class="fa fa-edit fw"></i>
+										</button>
+										<button type="button" class="btn btn-sm btn-default btn-edit-layout" data-toggle="tooltip" data-placement="top" title="Edit Dashboard Layout" data-th-attr="data-id=${grid.id}">
+											<i class="fa fa-reorder fw"></i>
+										</button>
+										<button type="button" class="btn btn-sm btn-danger btn-delete-dashboard" data-toggle="tooltip" data-placement="top" title="Delete Dashboard">
+											<i class="fa fa-times fw"></i>
+										</button>
+									</td>
+								</tr>
+								<tr data-id="0" data-seq="2" data-type="1" data-title="% Hello World" th:remove="all">
+									<td class="sequence">2</td>
+									<td>DH02</td>
+									<td>Staff Performance Dashboard</td>
+									<td>
+										<button type="button" class="btn btn-sm btn-default btn-edit-dashboard">
+											<i class="fa fa-edit fw"></i>
+										</button>
+										<button type="button" class="btn btn-sm btn-danger btn-delete-dashboard">
+											<i class="fa fa-times fw"></i>
+										</button>
+										<button type="button" class="btn btn-sm btn-danger btn-edit-dashboard">
+											<i class="fa reorder fw"></i>
+										</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+
+
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+	<!-- /#wrapper -->
+
+
+
+	<script th:inline="javascript">
+	//<![CDATA[
+	$('[data-toggle=tooltip]').tooltip();
+$(function () {
+    // Prevent #
+    $('a[href=#]').click(function (e) {
+        e.preventDefault();
+    });
+
+    // Get Element to object
+    var dashboardItemDialog = $('.dashboardeditor.modal-body').clone(true);
+    $('.dashboardeditor.modal-body').remove();
+
+    var getDashboardItemDialog = function () {
+        return dashboardItemDialog.clone(true);
+    };
+
+    // Sortable table rows
+    //Helper function to keep table row from collapsing when being sorted
+    var fixHelperModified = function (e, tr) {
+        var $originals = tr.children();
+        var $helper = tr.clone();
+        $helper.children().each(function (index) {
+            $(this).width($originals.eq(index).outerWidth());
+        });
+        return $helper;
+    };
+
+    //Re-number table rows
+    var renumber_table = function (tableEl) {
+        $(tableEl).find('tr').each(function () {
+            count = $(this).parent().children().index($(this)) + 1;
+            $(this).attr('data-seq', count);
+            $(this).find('.sequence').html(count);
+        });
+    };
+
+    // Make table as sortable
+    $('.dashboard-list tbody').sortable({
+        helper: fixHelperModified,
+        stop: function (event, ui) {
+            renumber_table($('.dashboard-list'));
+        }
+    }).disableSelection();
+
+    // Functions
+    var fnDashboardEditor = function (e, el, isEdit) {
+        e.preventDefault();
+        var dlgprop = {
+            title: 'Add Dashboard',
+            btnAdd: 'Add item',
+            btnAddIcon: 'fa fa-plus fa-fw'
+        };
+        if (isEdit) {
+            dlgprop = {
+                title: 'Edit Dashboard',
+                btnAdd: 'Save item',
+                btnAddIcon: 'fa fa-save fa-fw'
+            };
+        }
+        BootstrapDialog.show({
+            nl2br: false, // For disable auto <br/>
+            draggable: true,
+            spinicon: 'fa fa-spinner fa-spin fa-fw',
+            title: dlgprop.title,
+            message: function () {
+                if (!isEdit) {
+                    return getDashboardItemDialog();
+                } else {
+                    row = el.closest('tr');
+                    msg = getDashboardItemDialog();
+                    msg.find('[name=id]').val(row.attr('data-id'));
+                    msg.find('[name=code]').val(row.attr('data-code'));
+                    msg.find('[name=title]').val(row.attr('data-title'));
+                    msg.find('[name=seq]').val(row.attr('data-seq'));
+                    msg.find('[name=position_level]').val(row.attr('data-pos-level'));
+                }
+                return msg;
+            },
+            closable: false,
+            buttons: [
+                {
+                    label: 'Cancel',
+                    icon: 'fa fa-times fa-fw',
+                    action: function (d) {
+                        d.close();
+                    }
+                },
+                {
+                    label: dlgprop.btnAdd,
+                    icon: dlgprop.btnAddIcon,
+                    cssClass: 'btn-primary',
+                    autospin: true,
+                    action: function (d) {
+                        // Set widget data to save
+                        var wgfrm = d.getModalBody().find('#formadddashboarditem');
+                        var wgel = $('<tr>' +
+                                '<td class="sequence">' + wgfrm.find('[name=seq]').val() + '</td>' +
+                                '<td>' + wgfrm.find('[name=id]').val() + '</td>' +
+                                '<td>' + wgfrm.find('[name=code]').val() + '</td>' +
+                                '<td>' + wgfrm.find('[name=title]').val() + '</td>' +
+                                '<td><button type="button" class="btn btn-sm btn-default btn-edit-dashboard"><i class="fa fa-edit"></i></button> ' +
+                                '<button type="button" class="btn btn-sm btn-default btn-edit-layout"><i class="fa fa-reorder fw"></i></button> ' +
+                                '<button type="button" class="btn btn-sm btn-danger btn-delete-dashboard"><i class="fa fa-times"></i></button>' +
+                                '</td></tr>');
+
+                        wgel.attr('data-id', wgfrm.find('[name=id]').val());
+                        wgel.attr('data-seq', wgfrm.find('[name=seq]').val());
+                        wgel.attr('data-title', wgfrm.find('[name=title]').val());
+                        wgel.attr('data-code', wgfrm.find('[name=code]').val());
+                        wgel.attr('data-pos-level', wgfrm.find('[name=position_level]').val());
+                        wgel.attr('data-dirty', true);
+
+                        // Send data to parent
+                        if (!isEdit) {
+                            $('.dashboard-list tbody:last').append(wgel);
+                            renumber_table($('.dashboard-list'));
+                        } else {
+                            $('.dashboard-list tbody tr[data-id="' +
+                                    wgfrm.find('[name=id]').val() + '"]').replaceWith(wgel);
+                        }
+
+                        // Done, close dialog
+                        d.close();
+                    }
+                }
+            ]
+        });
+    };
+
+    var fnDeleteDashboard = function (e, el) {
+        row = el.closest('tr');
+        BootstrapDialog.confirm({
+            title: 'Confirmation',
+            message: 'Delete this item?',
+            type: BootstrapDialog.TYPE_WARNING,
+            draggable: true,
+            btnOKLabel: 'Delete',
+            btnOKClass: 'btn-danger',
+            //btnOKIcon: 'fa fa-times', // Not worked
+            callback: function (r) {
+                if (r) {
+                	//Call delete
+                	var deleteId = row.attr('data-id');alert(deleteId);
+                	var deleteUrl = /*[[@{'/admin/ajax/grid'}]]*/;
+                	$.ajax({
+			            url: deleteUrl+'?id='+deleteId,
+// 			            data: {"id":deleteId},
+// 		                contentType: "application/json; charset=utf-8",
+			            type: 'DELETE',
+			            cache: false,
+			            timeout: 10000,
+			            dataType: 'json', // IMPORTANT !!!
+			            error: function (rs, textStatus, jqXHR) {
+			                $('.save-dashboard-item')
+			                        .addClass('btn-danger')
+			                        .removeClass('btn-success')
+			                        .html('<i class="fa fa-times fa-fw"></i> Save error !')
+			                        .removeAttr('disabled');
+			                console.log("Error : " + rs.responseJSON.msg);
+			                return true;
+			            },
+			            success: function (rs) {
+			            	row.remove();
+			                renumber_table($('.dashboard-list'));
+			                if (!rs.error === true) {
+			                    $('.save-dashboard-item')
+			                            .addClass('btn-success')
+			                            .removeClass('btn-danger')
+			                            .html('<i class="fa fa-check fa-fw"></i> Saved')
+			                            .removeAttr('disabled');
+			                } else {
+			                	
+
+			                    $('.save-dashboard-item')
+			                            .addClass('btn-danger')
+			                            .removeClass('btn-success')
+			                            .html('<i class="fa fa-times fa-fw"></i> Save error !')
+			                            .removeAttr('disabled');
+			                    console.log("Error : " + rs.msg);
+			                }
+			            }
+			        });
+                }
+            }
+        });
+    };
+
+    var fnSave = function (e, el) {
+        e.preventDefault();
+        el.html('<i class="fa fa-spinner fa-spin fa-fw"></i> Saving...').attr('disabled', 'disabled');
+        /*setTimeout(function (el) { // FOR TEST
+         el.html('<i class="fa fa-check fa-fw"></i> Saved');
+         }, 1500, $(this));*/
+        var dashboardSerialized = _.map($('.dashboard-list > tbody > tr'), function (el) {
+            el = $(el);
+            return {
+                id: el.attr('data-id'),
+                seq: el.attr('data-seq'),
+                title: el.attr('data-title'),
+                code: el.attr('data-code'),
+                positionLevel: el.attr('data-pos-level'),
+                dirty: el.attr('data-dirty')
+            };
+        }, this);
+        console.log('All Dashboard(Grid) : ' + JSON.stringify(dashboardSerialized, null, '    '));
+        
+        // Save by AJAX
+        var saveUrl = /*[[@{'/admin/ajax/allgrids'}]]*/;
+        $.ajax({
+            url: saveUrl,
+            data: {"json":JSON.stringify(dashboardSerialized)},
+//             contentType: "application/json; charset=utf-8",
+            type: 'POST',
+            cache: false,
+            timeout: 10000,
+            dataType: 'json', // IMPORTANT !!!
+            error: function (rs, textStatus, jqXHR) {
+                $('.save-dashboard-item')
+                        .addClass('btn-danger')
+                        .removeClass('btn-success')
+                        .html('<i class="fa fa-times fa-fw"></i> Save error !')
+                        .removeAttr('disabled');
+                console.log("Error : " + rs.responseJSON.msg);
+                return true;
+            },
+            success: function (rs) {
+                if (!rs.error === true) {
+                    $('.save-dashboard-item')
+                            .addClass('btn-success')
+                            .removeClass('btn-danger')
+                            .html('<i class="fa fa-check fa-fw"></i> Saved')
+                            .removeAttr('disabled');
+                } else {
+                    $('.save-dashboard-item')
+                            .addClass('btn-danger')
+                            .removeClass('btn-success')
+                            .html('<i class="fa fa-times fa-fw"></i> Save error !')
+                            .removeAttr('disabled');
+                    console.log("Error : " + rs.msg);
+                }
+            }
+        });
+    };
+
+    // Let's bind buttons 
+    $('.add-dashboard-item').click(function (e) {
+        fnDashboardEditor(e, $(this));
+    });
+
+    $('.save-dashboard-item').click(function (e) {
+        fnSave(e, $(this));
+    });
+
+
+    // [Delegate] will not need to bind again
+    $('.dashboard-list tbody').delegate('.btn-edit-dashboard', 'click', function (e) {
+        fnDashboardEditor(e, $(this), true);
+    });
+    $('.dashboard-list tbody').delegate('.btn-edit-layout', 'click', function (e) {
+        var id = $(this).attr("data-id");
+        window.location = contextPath+'admin/dashboard/'+id;
+    });
+    $('.dashboard-list tbody').delegate('.btn-delete-dashboard', 'click', function (e) {
+        fnDeleteDashboard(e, $(this));
+    });
+
+
+
+});
+//]]>	
+	</script>
+
+	<script th:replace="admin/inc_home_js :: refresh-cache-js"></script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+body{
+	background-image:url(../images/bgmain.jpg);
+	overflow: hidden;
+}
+.textinbox-boxbold{
+	border: 0px solid #ececee;
+	background-color:transparent;
+	width:160px;
+	font-family: Helvetica,Arial,sans-serif;
+	font-size: 9pt;
+	font-weight: bold;
+	color: #6b6b6b;
+	display:block;
+}
+.text-error{
+	display: block;
+	font-family: "Verdana";
+	text-shadow: 0 1px 1px #D7D7D7 inset;	
+	font-size: 13px;
+}
+input:focus {outline: none; }

@@ -1,0 +1,44 @@
+html, body{
+  height: 100%;
+  width: 100%;
+}
+.headerheightspace3{
+	width:163px;
+}
+.headerheightsub{
+	height:20px;
+/* 	background: #11A560; */
+	background-image:url(../images/header-background.png);
+}
+.pagelocation_EN_green{
+	font-family: "Verdana";
+	font-size: 11px;
+	font-weight: bold;
+	color: #ffffff;
+}
+.pagelocation_all_green{
+	font-family: "Verdana";
+	font-size: 11px;
+	font-weight: normal;
+	color: #ffffff;
+}
+.pagelocation_EN_green_right{
+	font-family: "Verdana";
+	font-size: 11px;
+	font-weight: bold;
+	color: #ffffff;
+	text-align: right;
+}
+.headerheightsub2{
+	height:10px;
+	background: #ffffff;
+	padding: 0px 5px 0px 5px;
+	display:block;
+}
+.header-logout{
+	cursor: pointer;
+}
+.header-logout-haver{
+	font-size:12px;
+	cursor: pointer;
+}

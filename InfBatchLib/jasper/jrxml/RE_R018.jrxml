@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RE_R018" language="groovy" pageWidth="900" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="900" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="1e368fee-313a-4840-8915-8870a7a05c67">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="P_APP_DATE" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT DISTINCT
+        AG.APPLICATION_GROUP_NO,
+        LP.DISPLAY_NAME AS PERSONAL_TYPE_DESC,
+        CUST.CARDLINK_CUST_NO,
+        C.CARD_NO_MARK,
+        L.LOAN_AMT,
+        TO_CHAR(APP.FINAL_APP_DECISION_DATE,'DD/MM/YYYY') AS APP_DECISION_DATE
+FROM ORIG_APPLICATION_GROUP AG
+INNER JOIN ORIG_APPLICATION APP
+ON AG.APPLICATION_GROUP_ID = APP.APPLICATION_GROUP_ID
+INNER JOIN INF_BATCH_LOG INF ON APP.APPLICATION_RECORD_ID = INF.APPLICATION_RECORD_ID AND  INF.INTERFACE_CODE = 'CL001'
+INNER JOIN ORIG_LOAN L ON APP.APPLICATION_RECORD_ID = L.APPLICATION_RECORD_ID
+INNER JOIN ORIG_CARD C ON C.LOAN_ID = L.LOAN_ID
+INNER JOIN ORIG_PERSONAL_RELATION PR ON PR.REF_ID = APP.APPLICATION_RECORD_ID
+INNER JOIN ORIG_PERSONAL_INFO P ON PR.PERSONAL_ID = P.PERSONAL_ID
+INNER JOIN ORIG_CARDLINK_CUSTOMER CUST ON C.CARDLINK_CUST_ID = CUST.CARDLINK_CUST_ID
+JOIN LIST_BOX_MASTER LP ON LP.CHOICE_NO = P.PERSONAL_TYPE AND LP.FIELD_ID = '29'
+WHERE AG.APPLICATION_TYPE = 'INC'
+AND TRUNC(INF.INTERFACE_DATE) = (SELECT TRUNC(APP_DATE) FROM APPLICATION_DATE)
+AND AG.LAST_DECISION = 'AP' AND  APP.CARDLINK_FLAG = 'S'
+ORDER BY AG.APPLICATION_GROUP_NO, LP.DISPLAY_NAME, C.CARD_NO_MARK]]>
+	</queryString>
+	<field name="APPLICATION_GROUP_NO" class="java.lang.String"/>
+	<field name="PERSONAL_TYPE_DESC" class="java.lang.String"/>
+	<field name="CARDLINK_CUST_NO" class="java.lang.String"/>
+	<field name="CARD_NO_MARK" class="java.lang.String"/>
+	<field name="LOAN_AMT" class="java.math.BigDecimal"/>
+	<field name="APP_DECISION_DATE" class="java.lang.String"/>
+	<title>
+		<band height="166" splitType="Stretch">
+			<staticText>
+				<reportElement x="201" y="0" width="487" height="37" uuid="3fb545d1-5f8a-4f03-a797-79598ba55f36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="true" isItalic="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Increase Report]]></text>
+			</staticText>
+			<textField pattern="MMM dd, yyyy">
+				<reportElement x="452" y="37" width="167" height="20" uuid="b4599f38-9009-4b5d-8e4d-12d581f50e60"/>
+				<textElement>
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{P_APP_DATE} == null?(new java.util.Date()-1): $P{P_APP_DATE}==""?(new java.util.Date()-1):$P{P_APP_DATE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="386" y="37" width="66" height="20" uuid="dc4e9ea1-36c1-4b79-a92d-8bfa44e05243"/>
+				<textElement>
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Date as of ]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="771" y="70" width="70" height="20" uuid="a8eaaa82-8a65-4aea-a1b7-35964cfab9e7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="841" y="70" width="50" height="20" uuid="85450311-0419-46cc-8ded-9812d5e68827"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="762" y="90" width="129" height="20" uuid="a7ad3d00-8964-4f4b-93e7-e5d724e00fbb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Report ID: RE_R018]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="788" y="110" width="41" height="20" uuid="18175185-0486-4cbe-8f39-0f1bb6bcf3ba"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Page]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="831" y="110" width="20" height="20" uuid="14eba999-7a77-4176-bfc7-53e9d5ecf75b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="851" y="110" width="20" height="20" uuid="18175185-0486-4cbe-8f39-0f1bb6bcf3ba"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[of]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="871" y="110" width="20" height="20" uuid="14eba999-7a77-4176-bfc7-53e9d5ecf75b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="146" width="150" height="20" uuid="e55f3ee2-8a4b-4130-a786-3d1bd1d47244"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[หมายเลขใบสมัคร]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="146" width="150" height="20" uuid="af9fc699-b21b-4f5e-af99-1a776c4701c8"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ประเภทผู้สมัคร]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="146" width="150" height="20" uuid="28623100-9bc0-4495-a1a1-67f7de241778"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Customer ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="146" width="150" height="20" uuid="95ac5d43-62f8-429a-b4a0-1d41f8eb116e"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[หมายเลขบัตร]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="146" width="150" height="20" uuid="046f673c-e1a4-4410-a6ea-33a70bc3d860"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[วงเงินที่อนุมัติ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="750" y="146" width="150" height="20" uuid="4f40479e-c6d3-480b-9aac-0941ed144816"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[วันที่อนุมัติ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="150" height="20" uuid="7036e714-50b1-4288-a524-dd40ccd3878a"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{APPLICATION_GROUP_NO} != null ? $F{APPLICATION_GROUP_NO} : "-" )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="150" y="0" width="150" height="20" uuid="c5fb1d92-5ed1-4b30-861f-0b9888f7d4db"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{PERSONAL_TYPE_DESC} != null ? $F{PERSONAL_TYPE_DESC} : "-" )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="300" y="0" width="150" height="20" uuid="12a2d686-7842-43e8-82d6-aef8660b84a9"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{CARDLINK_CUST_NO} != null ? $F{CARDLINK_CUST_NO} : "-" )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="450" y="0" width="150" height="20" uuid="4ac7b405-a6ad-4dfa-8f97-5d696f4e4266"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{CARD_NO_MARK} != null ? $F{CARD_NO_MARK} : "-" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="600" y="0" width="150" height="20" uuid="e4a3c8e6-7414-4ad5-bc3e-b6bc502586ea"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{LOAN_AMT} != null ? $F{LOAN_AMT} : "-" )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="750" y="0" width="150" height="20" uuid="57c7e75d-a83f-438a-856e-bc045ec5084c"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{APP_DECISION_DATE} != null ? $F{APP_DECISION_DATE} : "-" )]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:resources.j2c="http://www.ibm.com/websphere/appserver/schemas/5.0/resources.j2c.xmi" xmlns:resources.jdbc="http://www.ibm.com/websphere/appserver/schemas/5.0/resources.jdbc.xmi" xmlns:resources.jms="http://www.ibm.com/websphere/appserver/schemas/5.0/resources.jms.xmi" xmlns:resources.mail="http://www.ibm.com/websphere/appserver/schemas/5.0/resources.mail.xmi" xmlns:resources.url="http://www.ibm.com/websphere/appserver/schemas/5.0/resources.url.xmi">
+  <resources.jdbc:JDBCProvider xmi:id="builtin_jdbcprovider" name="Derby JDBC Provider (XA)" description="Built-in Derby JDBC Provider (XA)" providerType="Derby JDBC Provider (XA)" implementationClassName="org.apache.derby.jdbc.EmbeddedXADataSource" xa="true">
+    <classpath>${DERBY_JDBC_DRIVER_PATH}/derby.jar</classpath>
+    <factories xmi:type="resources.jdbc:DataSource" xmi:id="DataSource_1429613186708" name="DefaultEJBTimerDataSource" jndiName="jdbc/DefaultEJBTimerDataSource" description="Default data source for WebSphere EJB Timer Service" category="default" authMechanismPreference="BASIC_PASSWORD" relationalResourceAdapter="builtin_rra" statementCacheSize="10" datasourceHelperClassname="com.ibm.websphere.rsadapter.DerbyDataStoreHelper">
+      <propertySet xmi:id="J2EEResourcePropertySet_1429613186709">
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613186709" name="databaseName" type="java.lang.String" value="${USER_INSTALL_ROOT}/databases/EJBTimers/${SERVER}/EJBTimerDB" description="Location of Derby default database for the EJB Timer Service." required="true"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613186710" name="shutdownDatabase" type="java.lang.String" value=""/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613186711" name="dataSourceName" type="java.lang.String" value=""/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613186712" name="description" type="java.lang.String" value=""/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613186713" name="connectionAttributes" type="java.lang.String" value="upgrade=true" description="Allows the Derby database to be upgraded."/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613186714" name="createDatabase" type="java.lang.String" value=""/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613186715" name="enableMultithreadedAccessDetection" type="java.lang.Boolean" value="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613186716" name="preTestSQLString" type="java.lang.String" value=""/>
+      </propertySet>
+      <connectionPool xmi:id="ConnectionPool_1429613186709" connectionTimeout="1800" maxConnections="30" minConnections="1" reapTime="180" unusedTimeout="1800" agedTimeout="0" purgePolicy="EntirePool"/>
+    </factories>
+  </resources.jdbc:JDBCProvider>
+  <resources.jms:JMSProvider xmi:id="builtin_mqprovider" name="WebSphere MQ JMS Provider" description="WebSphere MQ Messaging Provider" externalInitialContextFactory="" externalProviderURL=""/>
+  <resources.j2c:J2CResourceAdapter xmi:id="builtin_rra" name="WebSphere Relational Resource Adapter" description="Built-in Relational Resource Adapter for WebSphere Persistence" archivePath="${WAS_LIBS_DIR}/rsadapter.rar">
+    <classpath>${WAS_LIBS_DIR}/rsadapter.rar</classpath>
+    <factories xmi:type="resources.jdbc:CMPConnectorFactory" xmi:id="CMPConnectorFactory_1429613287098" name="jdbc/orig_CF" authMechanismPreference="BASIC_PASSWORD" authDataAlias="ORIG_APP Alias" connectionDefinition="ConnectionDefinition_1429613186710" cmpDatasource="DataSource_1429613287098">
+      <propertySet xmi:id="J2EEResourcePropertySet_1429613287098">
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287098" name="TransactionResourceRegistration" type="java.lang.String" value="dynamic" description="Type of transaction resource registration (enlistment).  Valid values are either &quot;static&quot; (immediate) or &quot;dynamic&quot; (deferred)." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287099" name="InactiveConnectionSupport" type="java.lang.Boolean" value="true" description="Specify whether connection handles support implicit reactivation. (Smart Handle support). Value may be &quot;true&quot; or &quot;false&quot;." required="false"/>
+      </propertySet>
+      <mapping xmi:id="MappingModule_1524722963808" mappingConfigAlias="DefaultPrincipalMapping" authDataAlias="ORIG_APP Alias"/>
+    </factories>
+    <factories xmi:type="resources.jdbc:CMPConnectorFactory" xmi:id="CMPConnectorFactory_1460451143242" name="jdbc/dm_CF" authMechanismPreference="BASIC_PASSWORD" authDataAlias="DM Alias" connectionDefinition="ConnectionDefinition_1429613186710" cmpDatasource="DataSource_1460451143242">
+      <propertySet xmi:id="J2EEResourcePropertySet_1460451143242">
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143242" name="TransactionResourceRegistration" type="java.lang.String" value="dynamic" description="Type of transaction resource registration (enlistment).  Valid values are either &quot;static&quot; (immediate) or &quot;dynamic&quot; (deferred)." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143243" name="InactiveConnectionSupport" type="java.lang.Boolean" value="true" description="Specify whether connection handles support implicit reactivation. (Smart Handle support). Value may be &quot;true&quot; or &quot;false&quot;." required="false"/>
+      </propertySet>
+      <mapping xmi:id="MappingModule_1460451215583" mappingConfigAlias="DefaultPrincipalMapping" authDataAlias="DM Alias"/>
+    </factories>
+    <factories xmi:type="resources.jdbc:CMPConnectorFactory" xmi:id="CMPConnectorFactory_1524712034319" name="jdbc/dih_CF" authMechanismPreference="BASIC_PASSWORD" authDataAlias="DIH Alias" connectionDefinition="ConnectionDefinition_1429613186710" cmpDatasource="DataSource_1524712034319">
+      <propertySet xmi:id="J2EEResourcePropertySet_1524712034319">
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034319" name="TransactionResourceRegistration" type="java.lang.String" value="dynamic" description="Type of transaction resource registration (enlistment).  Valid values are either &quot;static&quot; (immediate) or &quot;dynamic&quot; (deferred)." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034320" name="InactiveConnectionSupport" type="java.lang.Boolean" value="true" description="Specify whether connection handles support implicit reactivation. (Smart Handle support). Value may be &quot;true&quot; or &quot;false&quot;." required="false"/>
+      </propertySet>
+      <mapping xmi:id="MappingModule_1524722963809" mappingConfigAlias="DefaultPrincipalMapping" authDataAlias="DIH Alias"/>
+    </factories>
+    <propertySet xmi:id="J2EEResourcePropertySet_1429613186710"/>
+    <deploymentDescriptor xmi:id="Connector_1429613186709" displayName="WS_RdbResourceAdapter" vendorName="IBM" specVersion="1.5" eisType="RRA" version="6.0">
+      <icons xmi:id="IconType_1429613186709" smallIcon="rdb_small_icon.jpg" largeIcon="rdb_large_icon.jpg"/>
+      <displayNames xmi:id="DisplayName_1524722529670" value="WS_RdbResourceAdapter"/>
+      <displayNames xmi:id="DisplayName_1524713284073" value="WS_RdbResourceAdapter"/>
+      <displayNames xmi:id="DisplayName_1524711731814" value="WS_RdbResourceAdapter"/>
+      <displayNames xmi:id="DisplayName_1460451143242" value="WS_RdbResourceAdapter"/>
+      <displayNames xmi:id="DisplayName_1445409456465" value="WS_RdbResourceAdapter"/>
+      <displayNames xmi:id="DisplayName_1434442560443" value="WS_RdbResourceAdapter"/>
+      <displayNames xmi:id="DisplayName_1434441402807" value="WS_RdbResourceAdapter"/>
+      <displayNames xmi:id="DisplayName_1429613186709" value="WS_RdbResourceAdapter"/>
+      <displayNames xmi:id="DisplayName_1429613186710" value="WS_RdbResourceAdapter"/>
+      <descriptions xmi:id="Description_1429613186709" value="IBM Relational ResourceAdapter"/>
+      <license xmi:id="License_1429613186709" required="false">
+        <descriptions xmi:id="Description_1429613186710" value="IBM Relational ResourceAdapter"/>
+      </license>
+      <resourceAdapter xmi:id="ResourceAdapter_1429613186710" transactionSupport="NoTransaction" reauthenticationSupport="false" resourceAdapterClass="com.ibm.ws.rsadapter.spi.WSResourceAdapterImpl">
+        <outboundResourceAdapter xmi:id="OutboundResourceAdapter_1429613186710" reauthenticationSupport="false" transactionSupport="XATransaction">
+          <connectionDefinitions xmi:id="ConnectionDefinition_1429613186710" managedConnectionFactoryClass="com.ibm.ws.rsadapter.spi.WSManagedConnectionFactoryImpl" connectionFactoryInterface="javax.resource.cci.ConnectionFactory" connectionFactoryImplClass="com.ibm.ws.rsadapter.cci.WSRdbConnectionFactoryImpl" connectionInterface="javax.resource.cci.Connection" connectionImplClass="com.ibm.ws.rsadapter.cci.WSRdbConnectionImpl">
+            <configProperties xmi:id="ConfigProperty_1429613186710" name="ConnectionFactoryType" type="java.lang.Integer" value="2">
+              <descriptions xmi:id="Description_1429613186711" value="A constant indicating the type of connection factory: WSJdbcDataSource (1) or WSRdbConnectionFactory (2)"/>
+            </configProperties>
+          </connectionDefinitions>
+          <authenticationMechanisms xmi:id="AuthenticationMechanism_1429613186710" authenticationMechanismType="BasicPassword" credentialInterface="javax.resource.spi.security.PasswordCredential">
+            <descriptions xmi:id="Description_1429613186712" value="BasicPassword authentication"/>
+          </authenticationMechanisms>
+          <authenticationMechanisms xmi:id="AuthenticationMechanism_1429613186711" authenticationMechanismType="Kerbv5" credentialInterface="javax.resource.spi.security.GenericCredential">
+            <descriptions xmi:id="Description_1429613186713" value="Kerbv5 Authentication"/>
+          </authenticationMechanisms>
+        </outboundResourceAdapter>
+      </resourceAdapter>
+    </deploymentDescriptor>
+    <connectionDefTemplateProps xmi:id="ConnectionDefTemplateProps_1429613186710" ConnectionDefinition="ConnectionDefinition_1429613186710"/>
+  </resources.j2c:J2CResourceAdapter>
+  <resources.mail:MailProvider xmi:id="builtin_mailprovider" name="Built-in Mail Provider" description="The built-in mail provider">
+    <protocolProviders xmi:id="ProtocolProvider_1429613186710" protocol="smtp" classname="com.sun.mail.smtp.SMTPTransport" type="TRANSPORT"/>
+    <protocolProviders xmi:id="ProtocolProvider_1429613186711" protocol="pop3" classname="com.sun.mail.pop3.POP3Store" type="STORE"/>
+    <protocolProviders xmi:id="ProtocolProvider_1429613186712" protocol="imap" classname="com.sun.mail.imap.IMAPStore" type="STORE"/>
+    <protocolProviders xmi:id="ProtocolProvider_1429613186713" protocol="smtps" classname="com.sun.mail.smtp.SMTPSSLTransport" type="TRANSPORT"/>
+    <protocolProviders xmi:id="ProtocolProvider_1429613186714" protocol="pop3s" classname="com.sun.mail.pop3.POP3SSLStore" type="STORE"/>
+    <protocolProviders xmi:id="ProtocolProvider_1429613186715" protocol="imaps" classname="com.sun.mail.imap.IMAPSSLStore" type="STORE"/>
+  </resources.mail:MailProvider>
+  <resources.url:URLProvider xmi:id="URLProvider_1" name="Default URL Provider" streamHandlerClassName="unused" protocol="unused"/>
+  <resources.j2c:J2CResourceAdapter xmi:id="J2CResourceAdapter_1420699887288" name="SIB JMS Resource Adapter" description="Default messaging provider" archivePath="${WAS_INSTALL_ROOT}/installedConnectors/sib.api.jmsra.rar" threadPoolAlias="SIBJMSRAThreadPool">
+    <classpath>${WAS_INSTALL_ROOT}/installedConnectors/sib.api.jmsra.rar</classpath>
+    <propertySet xmi:id="J2EEResourcePropertySet_1429613186711"/>
+    <deploymentDescriptor xmi:id="Connector_1429613186710" displayName="WebSphere Default Messaging Provider" vendorName="IBM" specVersion="1.5" eisType="JMS Provider" version="0.3">
+      <displayNames xmi:id="DisplayName_1524722529671" value="WebSphere Default Messaging Provider"/>
+      <displayNames xmi:id="DisplayName_1524713284074" value="WebSphere Default Messaging Provider"/>
+      <displayNames xmi:id="DisplayName_1524711731815" value="WebSphere Default Messaging Provider"/>
+      <displayNames xmi:id="DisplayName_1460451143243" value="WebSphere Default Messaging Provider"/>
+      <displayNames xmi:id="DisplayName_1445409456466" value="WebSphere Default Messaging Provider"/>
+      <displayNames xmi:id="DisplayName_1434442560444" value="WebSphere Default Messaging Provider"/>
+      <displayNames xmi:id="DisplayName_1434441402808" value="WebSphere Default Messaging Provider"/>
+      <displayNames xmi:id="DisplayName_1429613186711" value="WebSphere Default Messaging Provider"/>
+      <displayNames xmi:id="DisplayName_1429613186712" value="WebSphere Default Messaging Provider"/>
+      <displayNames xmi:id="DisplayName_1429613186713" value="WebSphere Default Messaging Provider"/>
+      <resourceAdapter xmi:id="ResourceAdapter_1429613186711" transactionSupport="NoTransaction" reauthenticationSupport="false" resourceAdapterClass="com.ibm.ws.sib.api.jmsra.impl.JmsJcaResourceAdapterImpl">
+        <outboundResourceAdapter xmi:id="OutboundResourceAdapter_1429613186711" reauthenticationSupport="false" transactionSupport="XATransaction">
+          <connectionDefinitions xmi:id="ConnectionDefinition_1429613186711" managedConnectionFactoryClass="com.ibm.ws.sib.api.jmsra.impl.JmsJcaManagedQueueConnectionFactoryImpl" connectionFactoryInterface="javax.jms.QueueConnectionFactory" connectionFactoryImplClass="com.ibm.ws.sib.api.jms.impl.JmsQueueConnFactoryImpl" connectionInterface="javax.jms.QueueConnection" connectionImplClass="com.ibm.ws.sib.api.jms.impl.JmsQueueConnectionImpl">
+            <configProperties xmi:id="ConfigProperty_1429613186711" name="BusName" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186712" name="ClientID" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186713" name="UserName" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186714" name="Password" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186715" name="NonPersistentMapping" type="java.lang.String" value="ExpressNonPersistent"/>
+            <configProperties xmi:id="ConfigProperty_1429613186716" name="PersistentMapping" type="java.lang.String" value="ReliablePersistent"/>
+            <configProperties xmi:id="ConfigProperty_1429613186717" name="ReadAhead" type="java.lang.String" value="Default"/>
+            <configProperties xmi:id="ConfigProperty_1429613186718" name="Target" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186719" name="TargetType" type="java.lang.String" value="BusMember"/>
+            <configProperties xmi:id="ConfigProperty_1429613186720" name="TargetSignificance" type="java.lang.String" value="Preferred"/>
+            <configProperties xmi:id="ConfigProperty_1429613186721" name="RemoteProtocol" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186722" name="TargetTransportChain" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186723" name="ProviderEndpoints" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186724" name="ConnectionProximity" type="java.lang.String" value="Bus"/>
+            <configProperties xmi:id="ConfigProperty_1429613186725" name="TemporaryQueueNamePrefix" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186726" name="ShareDataSourceWithCMP" type="java.lang.Boolean" value="false"/>
+            <configProperties xmi:id="ConfigProperty_1429613186727" name="ProducerDoesNotModifyPayloadAfterSet" type="java.lang.String" value="false"/>
+            <configProperties xmi:id="ConfigProperty_1429613186728" name="ConsumerDoesNotModifyPayloadAfterGet" type="java.lang.String" value="false"/>
+          </connectionDefinitions>
+          <connectionDefinitions xmi:id="ConnectionDefinition_1429613186712" managedConnectionFactoryClass="com.ibm.ws.sib.api.jmsra.impl.JmsJcaManagedTopicConnectionFactoryImpl" connectionFactoryInterface="javax.jms.TopicConnectionFactory" connectionFactoryImplClass="com.ibm.ws.sib.api.jms.impl.JmsTopicConnFactoryImpl" connectionInterface="javax.jms.TopicConnection" connectionImplClass="com.ibm.ws.sib.api.jms.impl.JmsTopicConnectionImpl">
+            <configProperties xmi:id="ConfigProperty_1429613186729" name="BusName" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186730" name="ClientID" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186731" name="UserName" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186732" name="Password" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186733" name="NonPersistentMapping" type="java.lang.String" value="ExpressNonPersistent"/>
+            <configProperties xmi:id="ConfigProperty_1429613186734" name="PersistentMapping" type="java.lang.String" value="ReliablePersistent"/>
+            <configProperties xmi:id="ConfigProperty_1429613186735" name="DurableSubscriptionHome" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186736" name="ReadAhead" type="java.lang.String" value="Default"/>
+            <configProperties xmi:id="ConfigProperty_1429613186737" name="Target" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186738" name="TargetType" type="java.lang.String" value="BusMember"/>
+            <configProperties xmi:id="ConfigProperty_1429613186739" name="TargetSignificance" type="java.lang.String" value="Preferred"/>
+            <configProperties xmi:id="ConfigProperty_1429613186740" name="RemoteProtocol" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186741" name="TargetTransportChain" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186742" name="ProviderEndpoints" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186743" name="ConnectionProximity" type="java.lang.String" value="Bus"/>
+            <configProperties xmi:id="ConfigProperty_1429613186744" name="TemporaryTopicNamePrefix" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186745" name="ShareDataSourceWithCMP" type="java.lang.Boolean" value="false"/>
+            <configProperties xmi:id="ConfigProperty_1429613186746" name="ShareDurableSubscriptions" type="java.lang.String" value="InCluster"/>
+            <configProperties xmi:id="ConfigProperty_1429613186747" name="ProducerDoesNotModifyPayloadAfterSet" type="java.lang.String" value="false"/>
+            <configProperties xmi:id="ConfigProperty_1429613186748" name="ConsumerDoesNotModifyPayloadAfterGet" type="java.lang.String" value="false"/>
+          </connectionDefinitions>
+          <connectionDefinitions xmi:id="ConnectionDefinition_1429613186713" managedConnectionFactoryClass="com.ibm.ws.sib.api.jmsra.impl.JmsJcaManagedConnectionFactoryImpl" connectionFactoryInterface="javax.jms.ConnectionFactory" connectionFactoryImplClass="com.ibm.ws.sib.api.jms.impl.JmsConnFactoryImpl" connectionInterface="javax.jms.Connection" connectionImplClass="com.ibm.ws.sib.api.jms.impl.JmsConnectionImpl">
+            <configProperties xmi:id="ConfigProperty_1429613186749" name="BusName" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186750" name="ClientID" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186751" name="UserName" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186752" name="Password" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186753" name="NonPersistentMapping" type="java.lang.String" value="ExpressNonPersistent"/>
+            <configProperties xmi:id="ConfigProperty_1429613186754" name="PersistentMapping" type="java.lang.String" value="ReliablePersistent"/>
+            <configProperties xmi:id="ConfigProperty_1429613186755" name="DurableSubscriptionHome" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186756" name="ReadAhead" type="java.lang.String" value="Default"/>
+            <configProperties xmi:id="ConfigProperty_1429613186757" name="Target" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186758" name="TargetType" type="java.lang.String" value="BusMember"/>
+            <configProperties xmi:id="ConfigProperty_1429613186759" name="TargetSignificance" type="java.lang.String" value="Preferred"/>
+            <configProperties xmi:id="ConfigProperty_1429613186760" name="RemoteProtocol" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186761" name="TargetTransportChain" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186762" name="ProviderEndpoints" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186763" name="ConnectionProximity" type="java.lang.String" value="Bus"/>
+            <configProperties xmi:id="ConfigProperty_1429613186764" name="TemporaryQueueNamePrefix" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186765" name="TemporaryTopicNamePrefix" type="java.lang.String"/>
+            <configProperties xmi:id="ConfigProperty_1429613186766" name="ShareDataSourceWithCMP" type="java.lang.Boolean" value="false"/>
+            <configProperties xmi:id="ConfigProperty_1429613186767" name="ShareDurableSubscriptions" type="java.lang.String" value="InCluster"/>
+            <configProperties xmi:id="ConfigProperty_1429613186768" name="ProducerDoesNotModifyPayloadAfterSet" type="java.lang.String" value="false"/>
+            <configProperties xmi:id="ConfigProperty_1429613186769" name="ConsumerDoesNotModifyPayloadAfterGet" type="java.lang.String" value="false"/>
+          </connectionDefinitions>
+          <authenticationMechanisms xmi:id="AuthenticationMechanism_1429613186714" authenticationMechanismType="BasicPassword" credentialInterface="javax.resource.spi.security.PasswordCredential"/>
+        </outboundResourceAdapter>
+        <inboundResourceAdapter xmi:id="InboundResourceAdapter_1429613186714">
+          <messageAdapter xmi:id="MessageAdapter_1429613186714">
+            <messageListeners xmi:id="MessageListener_1429613186714" messageListenerType="javax.jms.MessageListener">
+              <activationSpec xmi:id="ActivationSpec_1429613186714" activationSpecClass="com.ibm.ws.sib.api.jmsra.impl.JmsJcaActivationSpecImpl">
+                <requiredConfigProperties xmi:id="RequiredConfigPropertyType_1429613186714" name="destination"/>
+                <requiredConfigProperties xmi:id="RequiredConfigPropertyType_1429613186715" name="destinationType"/>
+                <requiredConfigProperties xmi:id="RequiredConfigPropertyType_1429613186716" name="busName"/>
+              </activationSpec>
+            </messageListeners>
+          </messageAdapter>
+        </inboundResourceAdapter>
+        <adminObjects xmi:id="AdminObject_1429613186714" adminObjectInterface="javax.jms.Queue" adminObjectClass="com.ibm.ws.sib.api.jms.impl.JmsQueueImpl">
+          <configProperties xmi:id="ConfigProperty_1429613186770" name="QueueName" type="java.lang.String"/>
+          <configProperties xmi:id="ConfigProperty_1429613186771" name="DeliveryMode" type="java.lang.String" value="Application"/>
+          <configProperties xmi:id="ConfigProperty_1429613186772" name="TimeToLive" type="java.lang.Long"/>
+          <configProperties xmi:id="ConfigProperty_1429613186773" name="Priority" type="java.lang.Integer"/>
+          <configProperties xmi:id="ConfigProperty_1429613186774" name="ReadAhead" type="java.lang.String" value="AsConnection"/>
+          <configProperties xmi:id="ConfigProperty_1429613186775" name="BusName" type="java.lang.String"/>
+        </adminObjects>
+        <adminObjects xmi:id="AdminObject_1429613186715" adminObjectInterface="javax.jms.Topic" adminObjectClass="com.ibm.ws.sib.api.jms.impl.JmsTopicImpl">
+          <configProperties xmi:id="ConfigProperty_1429613186776" name="TopicSpace" type="java.lang.String" value="Default.Topic.Space"/>
+          <configProperties xmi:id="ConfigProperty_1429613186777" name="TopicName" type="java.lang.String"/>
+          <configProperties xmi:id="ConfigProperty_1429613186778" name="DeliveryMode" type="java.lang.String" value="Application"/>
+          <configProperties xmi:id="ConfigProperty_1429613186779" name="TimeToLive" type="java.lang.Long"/>
+          <configProperties xmi:id="ConfigProperty_1429613186780" name="Priority" type="java.lang.Integer"/>
+          <configProperties xmi:id="ConfigProperty_1429613186781" name="ReadAhead" type="java.lang.String" value="AsConnection"/>
+          <configProperties xmi:id="ConfigProperty_1429613186782" name="BusName" type="java.lang.String"/>
+        </adminObjects>
+      </resourceAdapter>
+    </deploymentDescriptor>
+    <connectionDefTemplateProps xmi:id="ConnectionDefTemplateProps_1429613186715" ConnectionDefinition="ConnectionDefinition_1429613186711">
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186717" name="BusName" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186718" name="ClientID" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186719" name="ConnectionProximity" type="java.lang.String" value="Bus" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186720" name="durableSubscriptionHome" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186721" name="NonPersistentMapping" type="java.lang.String" value="ExpressNonPersistent" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186722" name="Password" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186723" name="PersistentMapping" type="java.lang.String" value="ReliablePersistent" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186724" name="ProviderEndpoints" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186725" name="ReadAhead" type="java.lang.String" value="Default" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186726" name="RemoteProtocol" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186727" name="TargetTransportChain" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186728" name="ShareDataSourceWithCMP" type="java.lang.Boolean" value="false" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186729" name="shareDurableSubscriptions" type="java.lang.String" value="AsCluster" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186730" name="Target" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186731" name="TargetSignificance" type="java.lang.String" value="Preferred" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186732" name="TargetType" type="java.lang.String" value="BusMember" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186733" name="TemporaryQueueNamePrefix" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186734" name="temporaryTopicNamePrefix" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186735" name="UserName" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186736" name="ProducerDoesNotModifyPayloadAfterSet" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186737" name="ConsumerDoesNotModifyPayloadAfterGet" type="java.lang.String" required="false"/>
+    </connectionDefTemplateProps>
+    <connectionDefTemplateProps xmi:id="ConnectionDefTemplateProps_1429613186716" ConnectionDefinition="ConnectionDefinition_1429613186712">
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186738" name="BusName" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186739" name="ClientID" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186740" name="ConnectionProximity" type="java.lang.String" value="Bus" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186741" name="DurableSubscriptionHome" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186742" name="NonPersistentMapping" type="java.lang.String" value="ExpressNonPersistent" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186743" name="Password" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186744" name="PersistentMapping" type="java.lang.String" value="ReliablePersistent" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186745" name="ProviderEndpoints" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186746" name="ReadAhead" type="java.lang.String" value="Default" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186747" name="RemoteProtocol" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186748" name="TargetTransportChain" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186749" name="ShareDataSourceWithCMP" type="java.lang.Boolean" value="false" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186750" name="ShareDurableSubscriptions" type="java.lang.String" value="InCluster" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186751" name="Target" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186752" name="TargetSignificance" type="java.lang.String" value="Preferred" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186753" name="TargetType" type="java.lang.String" value="BusMember" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186754" name="temporaryQueueNamePrefix" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186755" name="TemporaryTopicNamePrefix" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186756" name="UserName" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186757" name="ProducerDoesNotModifyPayloadAfterSet" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186758" name="ConsumerDoesNotModifyPayloadAfterGet" type="java.lang.String" required="false"/>
+    </connectionDefTemplateProps>
+    <connectionDefTemplateProps xmi:id="ConnectionDefTemplateProps_1429613186717" ConnectionDefinition="ConnectionDefinition_1429613186713">
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186759" name="BusName" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186760" name="ClientID" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186761" name="ConnectionProximity" type="java.lang.String" value="Bus" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186762" name="DurableSubscriptionHome" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186763" name="NonPersistentMapping" type="java.lang.String" value="ExpressNonPersistent" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186764" name="Password" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186765" name="PersistentMapping" type="java.lang.String" value="ReliablePersistent" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186766" name="ProviderEndpoints" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186767" name="ReadAhead" type="java.lang.String" value="Default" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186768" name="RemoteProtocol" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186769" name="TargetTransportChain" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186770" name="ShareDataSourceWithCMP" type="java.lang.Boolean" value="false" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186771" name="ShareDurableSubscriptions" type="java.lang.String" value="InCluster" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186772" name="Target" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186773" name="TargetSignificance" type="java.lang.String" value="Preferred" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186774" name="TargetType" type="java.lang.String" value="BusMember" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186775" name="TemporaryQueueNamePrefix" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186776" name="TemporaryTopicNamePrefix" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186777" name="UserName" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186778" name="ProducerDoesNotModifyPayloadAfterSet" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186779" name="ConsumerDoesNotModifyPayloadAfterGet" type="java.lang.String" required="false"/>
+    </connectionDefTemplateProps>
+    <activationSpecTemplateProps xmi:id="ActivationSpecTemplateProps_1429613186717" activationSpec="ActivationSpec_1429613186714">
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186780" name="acknowledgeMode" type="java.lang.String" value="Auto-acknowledge" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186781" name="alwaysActivateAllMDBs" type="java.lang.Boolean" value="false" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186782" name="AutoStopSequentialMessageFailure" type="java.lang.Integer" value="0" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186783" name="busName" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186784" name="clientId" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186785" name="destination" type="javax.jms.Destination" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186786" name="destinationType" type="java.lang.String" required="true"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186787" name="durableSubscriptionHome" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186788" name="failingMessageDelay" type="java.lang.Long" value="0" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186789" name="maxBatchSize" type="java.lang.Integer" value="1" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186790" name="maxConcurrency" type="java.lang.Integer" value="10" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186791" name="maxSequentialMessageFailure" type="java.lang.Integer" value="-1" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186792" name="messageSelector" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186793" name="password" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186794" name="providerEndpoints" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186795" name="readAhead" type="java.lang.String" value="Default" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186796" name="retryInterval" type="java.lang.Integer" value="30" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186797" name="shareDataSourceWithCMP" type="java.lang.Boolean" value="false" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186798" name="shareDurableSubscriptions" type="java.lang.String" value="InCluster" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186799" name="subscriptionDurability" type="java.lang.String" value="NonDurable" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186800" name="subscriptionName" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186801" name="target" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186802" name="targetSignificance" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186803" name="targetTransportChain" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186804" name="targetType" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186805" name="userName" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186806" name="ConsumerDoesNotModifyPayloadAfterGet" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186807" name="ForwarderDoesNotModifyPayloadAfterSet" type="java.lang.String" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186808" name="useServerSubject" type="java.lang.Boolean" required="false"/>
+      <complexPropertySet xmi:id="J2EEResourcePropertySet_1429613186720">
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613186809" name="destination" type="javax.jms.Destination" required="false"/>
+      </complexPropertySet>
+    </activationSpecTemplateProps>
+    <adminObjectTemplateProps xmi:id="AdminObjectTemplateProps_1429613186720" adminObject="AdminObject_1429613186714">
+      <properties xmi:id="J2EEResourceProperty_1429613186810" name="BusName" type="java.lang.String" required="false"/>
+      <properties xmi:id="J2EEResourceProperty_1429613186811" name="DeliveryMode" type="java.lang.String" value="Application" required="false"/>
+      <properties xmi:id="J2EEResourceProperty_1429613186812" name="forwardRoutingPath" type="[Ljava.lang.String;" required="false"/>
+      <properties xmi:id="J2EEResourceProperty_1429613186813" name="Priority" type="java.lang.Integer" required="false"/>
+      <properties xmi:id="J2EEResourceProperty_1429613186814" name="QueueName" type="java.lang.String" required="false"/>
+      <properties xmi:id="J2EEResourceProperty_1429613186815" name="ReadAhead" type="java.lang.String" value="AsConnection" required="false"/>
+      <properties xmi:id="J2EEResourceProperty_1429613186816" name="reverseRoutingPath" type="[Ljava.lang.String;" required="false"/>
+      <properties xmi:id="J2EEResourceProperty_1429613186817" name="TimeToLive" type="java.lang.Long" required="false"/>
+    </adminObjectTemplateProps>
+    <adminObjectTemplateProps xmi:id="AdminObjectTemplateProps_1429613186721" adminObject="AdminObject_1429613186715">
+      <properties xmi:id="J2EEResourceProperty_1429613186818" name="BusName" type="java.lang.String" required="false"/>
+      <properties xmi:id="J2EEResourceProperty_1429613186819" name="DeliveryMode" type="java.lang.String" value="Application" required="false"/>
+      <properties xmi:id="J2EEResourceProperty_1429613186820" name="forwardRoutingPath" type="[Ljava.lang.String;" required="false"/>
+      <properties xmi:id="J2EEResourceProperty_1429613186821" name="Priority" type="java.lang.Integer" required="false"/>
+      <properties xmi:id="J2EEResourceProperty_1429613186822" name="ReadAhead" type="java.lang.String" value="AsConnection" required="false"/>
+      <properties xmi:id="J2EEResourceProperty_1429613186823" name="reverseRoutingPath" type="[Ljava.lang.String;" required="false"/>
+      <properties xmi:id="J2EEResourceProperty_1429613186824" name="TimeToLive" type="java.lang.Long" required="false"/>
+      <properties xmi:id="J2EEResourceProperty_1429613186825" name="TopicName" type="java.lang.String" required="false"/>
+      <properties xmi:id="J2EEResourceProperty_1429613186826" name="TopicSpace" type="java.lang.String" value="Default.Topic.Space" required="false"/>
+    </adminObjectTemplateProps>
+  </resources.j2c:J2CResourceAdapter>
+  <resources.j2c:J2CResourceAdapter xmi:id="J2CResourceAdapter_1420699887358" name="WebSphere MQ Resource Adapter" description="WAS Built In WebSphere MQ Resource Adapter" archivePath="${WAS_INSTALL_ROOT}/installedConnectors/wmq.jmsra.rar" threadPoolAlias="WMQJCAResourceAdapter">
+    <classpath>${WAS_INSTALL_ROOT}/installedConnectors/wmq.jmsra.rar</classpath>
+    <propertySet xmi:id="J2EEResourcePropertySet_1429613186721">
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186827" name="connectionConcurrency" type="int" value="1" description="connectionConcurrency" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186828" name="maxConnections" type="int" value="50" description="maxConnections" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186829" name="logWriterEnabled" type="boolean" value="true" description="logWriterEnabled" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186830" name="reconnectionRetryCount" type="int" value="5" description="reconnectionRetryCount" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186831" name="reconnectionRetryInterval" type="int" value="300000" description="reconnectionRetryInterval" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186832" name="startupRetryCount" type="int" value="0" description="startupRetryCount" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186833" name="startupRetryInterval" type="int" value="30000" description="startupRetryInterval" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186834" name="traceEnabled" type="boolean" value="false" description="traceEnabled" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186835" name="traceLevel" type="int" value="3" description="traceLevel" required="false"/>
+    </propertySet>
+    <deploymentDescriptor xmi:id="Connector_1429613186723" displayName="WebSphere MQ Resource Adapter" vendorName="International Business Machines Corporation (&quot;IBM&quot;)." specVersion="1.5" eisType="Java Message Service" version="7.1.0.2-k710-002-120928">
+      <displayNames xmi:id="DisplayName_1524722529673" value="WebSphere MQ Resource Adapter"/>
+      <displayNames xmi:id="DisplayName_1524713284075" value="WebSphere MQ Resource Adapter"/>
+      <displayNames xmi:id="DisplayName_1524711731817" value="WebSphere MQ Resource Adapter"/>
+      <displayNames xmi:id="DisplayName_1460451143257" value="WebSphere MQ Resource Adapter"/>
+      <displayNames xmi:id="DisplayName_1445409456481" value="WebSphere MQ Resource Adapter"/>
+      <displayNames xmi:id="DisplayName_1434442560445" value="WebSphere MQ Resource Adapter"/>
+      <displayNames xmi:id="DisplayName_1434441402809" value="WebSphere MQ Resource Adapter"/>
+      <displayNames xmi:id="DisplayName_1429613186723" value="WebSphere MQ Resource Adapter"/>
+      <displayNames xmi:id="DisplayName_1429613186724" value="WebSphere MQ Resource Adapter"/>
+      <license xmi:id="License_1429613186723" required="true">
+        <descriptions xmi:id="Description_1429613186723" value="&#xA;&#x9;&#x9;&#x9;This software is licenced under the IBM International&#xA;&#x9;&#x9;&#x9;Program License Agreement (&quot;IPLA&quot;). For licence information,&#xA;&#x9;&#x9;&#x9;see the WebSphere MQ Licence Information (&quot;LI&quot;) available at&#xA;&#x9;&#x9;&#x9;http://www.ibm.com/software/sla/. The LI may also be found&#xA;&#x9;&#x9;&#x9;in a file in the WebSphere MQ installation directory.&#xA;&#x9;&#x9;"/>
+      </license>
+      <resourceAdapter xmi:id="ResourceAdapter_1429613186723" transactionSupport="XATransaction" reauthenticationSupport="false" resourceAdapterClass="com.ibm.mq.connector.ResourceAdapterImpl">
+        <securityPermissions xmi:id="SecurityPermission_1429613186723" description="Security Permissions for the JMS client" specification="&#xA;&#x9;&#x9;&#x9;&#x9;grant { &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;permission java.security.AllPermission; &#xA;&#x9;&#x9;&#x9;&#x9;};&#xA;&#x9;&#x9;&#x9;"/>
+        <configProperties xmi:id="ConfigProperty_1429613186783" description="connectionConcurrency" name="connectionConcurrency" type="java.lang.String"/>
+        <configProperties xmi:id="ConfigProperty_1429613186784" description="maxConnections" name="maxConnections" type="java.lang.String"/>
+        <configProperties xmi:id="ConfigProperty_1429613186785" description="logWriterEnabled" name="logWriterEnabled" type="java.lang.String"/>
+        <configProperties xmi:id="ConfigProperty_1429613186786" description="reconnectionRetryCount" name="reconnectionRetryCount" type="java.lang.String"/>
+        <configProperties xmi:id="ConfigProperty_1429613186787" description="reconnectionRetryInterval" name="reconnectionRetryInterval" type="java.lang.String"/>
+        <configProperties xmi:id="ConfigProperty_1429613186788" description="startupRetryCount" name="startupRetryCount" type="java.lang.String"/>
+        <configProperties xmi:id="ConfigProperty_1429613186789" description="startupRetryInterval" name="startupRetryInterval" type="java.lang.String"/>
+        <configProperties xmi:id="ConfigProperty_1429613186790" description="traceEnabled" name="traceEnabled" type="java.lang.String"/>
+        <configProperties xmi:id="ConfigProperty_1429613186791" description="traceLevel" name="traceLevel" type="java.lang.String"/>
+        <inboundResourceAdapter xmi:id="InboundResourceAdapter_1429613186723">
+          <messageAdapter xmi:id="MessageAdapter_1429613186723">
+            <messageListeners xmi:id="MessageListener_1429613186723" messageListenerType="javax.jms.MessageListener">
+              <activationSpec xmi:id="ActivationSpec_1429613186723" activationSpecClass="com.ibm.mq.connector.inbound.ActivationSpecImpl">
+                <requiredConfigProperties xmi:id="RequiredConfigPropertyType_1429613186723" name="destination"/>
+                <requiredConfigProperties xmi:id="RequiredConfigPropertyType_1429613186724" name="destinationType"/>
+              </activationSpec>
+            </messageListeners>
+          </messageAdapter>
+        </inboundResourceAdapter>
+      </resourceAdapter>
+    </deploymentDescriptor>
+    <activationSpecTemplateProps xmi:id="ActivationSpecTemplateProps_1429613186723" activationSpec="ActivationSpec_1429613186723">
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186836" name="CCSID" type="int" value="819" description="CCSID" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186837" name="acknowledgeMode" type="int" value="1" description="acknowledgeMode" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186838" name="arbitraryProperties" type="java.lang.String" description="arbitraryProperties" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186839" name="brokerCCDurSubQueue" type="java.lang.String" value="SYSTEM.JMS.D.CC.SUBSCRIBER.QUEUE" description="brokerCCDurSubQueue" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186840" name="brokerCCSubQueue" type="java.lang.String" value="SYSTEM.JMS.ND.CC.SUBSCRIBER.QUEUE" description="brokerCCSubQueue" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186841" name="brokerControlQueue" type="java.lang.String" value="SYSTEM.BROKER.CONTROL.QUEUE" description="brokerControlQueue" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186842" name="brokerPubQueue" type="java.lang.String" value="SYSTEM.BROKER.DEFAULT.STREAM" description="brokerPubQueue" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186843" name="brokerQueueManager" type="java.lang.String" description="brokerQueueManager" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186844" name="brokerSubQueue" type="java.lang.String" value="SYSTEM.JMS.ND.SUBSCRIBER.QUEUE" description="brokerSubQueue" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186845" name="brokerVersion" type="java.lang.String" value="1" description="brokerVersion" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186846" name="ccdtURL" type="java.lang.String" description="ccdtURL" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186847" name="channel" type="java.lang.String" value="SYSTEM.DEF.SVRCONN" description="channel" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186848" name="cleanupInterval" type="long" value="3600000" description="cleanupInterval" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186849" name="cleanupLevel" type="java.lang.String" value="SAFE" description="cleanupLevel" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186850" name="clientID" type="java.lang.String" description="clientID" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186851" name="clientId" type="java.lang.String" description="clientId" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186852" name="cloneSupport" type="java.lang.String" value="DISABLED" description="cloneSupport" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186853" name="connectionNameList" type="java.lang.String" value="localhost(1414)" description="connectionNameList" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186854" name="destination" type="java.lang.String" value="SYSTEM.DEFAULT.LOCAL.QUEUE" description="destination" required="true"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186855" name="destinationType" type="java.lang.String" value="javax.jms.Queue" description="destinationType" required="true"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186856" name="failIfQuiesce" type="boolean" value="true" description="failIfQuiesce" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186857" name="headerCompression" type="java.lang.String" value="NONE" description="headerCompression" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186858" name="hostName" type="java.lang.String" value="localhost" description="hostName" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186859" name="localAddress" type="java.lang.String" description="localAddress" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186860" name="maxMessages" type="int" value="1" description="maxMessages" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186861" name="maxPoolDepth" type="int" value="10" description="maxPoolDepth" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186862" name="messageBatchSize" type="int" value="10" description="messageBatchSize" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186863" name="messageCompression" type="java.lang.String" value="NONE" description="messageCompression" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186864" name="messageRetention" type="java.lang.String" value="YES" description="messageRetention" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186865" name="messageSelection" type="java.lang.String" value="CLIENT" description="messageSelection" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186866" name="messageSelector" type="java.lang.String" description="messageSelector" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186867" name="nonASFRollbackEnabled" type="boolean" value="false" description="nonASFRollbackEnabled" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186868" name="nonASFTimeout" type="int" value="0" description="nonASFTimeout" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186869" name="password" type="java.lang.String" description="password" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186870" name="pollingInterval" type="int" value="5000" description="pollingInterval" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186871" name="poolTimeout" type="int" value="300000" description="poolTimeout" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186872" name="port" type="int" value="1414" description="port" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186873" name="providerVersion" type="java.lang.String" value="UNSPECIFIED" description="providerVersion" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186874" name="queueManager" type="java.lang.String" description="queueManager" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186875" name="readAheadAllowed" type="java.lang.String" value="DESTINATION" description="readAheadAllowed" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186876" name="readAheadClosePolicy" type="java.lang.String" value="ALL" description="readAheadClosePolicy" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186877" name="receiveCCSID" type="int" value="1208" description="receiveCCSID" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186878" name="receiveConversion" type="java.lang.String" value="CLIENT_MSG" description="receiveConversion" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186879" name="receiveExit" type="java.lang.String" description="receiveExit" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186880" name="receiveExitInit" type="java.lang.String" description="receiveExitInit" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186881" name="rescanInterval" type="int" value="5000" description="rescanInterval" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186882" name="securityExit" type="java.lang.String" description="securityExit" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186883" name="securityExitInit" type="java.lang.String" description="securityExitInit" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186884" name="sendExit" type="java.lang.String" description="sendExit" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186885" name="sendExitInit" type="java.lang.String" description="sendExitInit" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186886" name="shareConvAllowed" type="java.lang.String" value="YES" description="shareConvAllowed" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186887" name="sparseSubscriptions" type="java.lang.String" value="FALSE" description="sparseSubscriptions" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186888" name="sslCertStores" type="java.lang.String" description="sslCertStores" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186889" name="sslCipherSuite" type="java.lang.String" description="sslCipherSuite" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186890" name="sslFipsRequired" type="boolean" value="false" description="sslFipsRequired" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186891" name="sslPeerName" type="java.lang.String" description="sslPeerName" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186892" name="sslResetCount" type="int" value="0" description="sslResetCount" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186893" name="sslSocketFactory" type="java.lang.String" description="sslSocketFactory" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186894" name="startTimeout" type="int" value="10000" description="startTimeout" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186895" name="statusRefreshInterval" type="int" value="60000" description="statusRefreshInterval" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186896" name="subscriptionDurability" type="java.lang.String" value="NonDurable" description="subscriptionDurability" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186897" name="subscriptionName" type="java.lang.String" description="subscriptionName" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186898" name="subscriptionStore" type="java.lang.String" value="MIGRATE" description="subscriptionStore" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186899" name="transportType" type="java.lang.String" value="CLIENT" description="transportType" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186900" name="useJNDI" type="boolean" value="false" description="useJNDI" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186901" name="username" type="java.lang.String" description="username" required="false"/>
+      <resourceProperties xmi:id="J2EEResourceProperty_1429613186902" name="wildcardFormat" type="java.lang.String" value="TOPIC" description="wildcardFormat" required="false"/>
+    </activationSpecTemplateProps>
+  </resources.j2c:J2CResourceAdapter>
+  <resources.jdbc:JDBCProvider xmi:id="JDBCProvider_1429613236663" name="Oracle JDBC Driver (XA)" description="Oracle JDBC Driver (XA)" implementationClassName="oracle.jdbc.xa.client.OracleXADataSource">
+    <classpath>${ORACLE_JDBC_DRIVER_PATH}/ojdbc7.jar</classpath>
+    <factories xmi:type="resources.jdbc:DataSource" xmi:id="DataSource_1429613287098" name="jdbc/orig" jndiName="jdbc/orig" description="New JDBC Datasource" category="" authDataAlias="ORIG_APP Alias" relationalResourceAdapter="builtin_rra" statementCacheSize="10" datasourceHelperClassname="com.ibm.websphere.rsadapter.Oracle11gDataStoreHelper">
+      <propertySet xmi:id="J2EEResourcePropertySet_1429613287106">
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287106" name="driverType" type="java.lang.String" value="" description="The type of the driver. The possible values are: thin, oci." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287107" name="oracleLogFileSizeLimit" type="java.lang.Integer" value="0" description="Oracle10g and beyond: The oracleLogFileSizeLimit specifies the maximum number of bytes to be written to any one file.  Property is relevant only if trace file is specified. Default is unlimited" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287108" name="oracleLogFileCount" type="java.lang.Integer" value="1" description="Oracle10g and beyond: The oracleLogFileCount specifies the number of files to use.  Property is relevant only if trace file is specified. Default is 1." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287109" name="oracleLogFileName" type="java.lang.String" value="" description="Oracle10g and beyond: The oracleLogFileName indicates which file to write the traces to" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287110" name="oracleLogTraceLevel" type="java.lang.String" value="INFO" description="Oracle10g and beyond: The oracleLogTraceLevel specifies which message levels will be logged .Default is INFO. Property is relevant only if trace file is specified.  Possible values from highest to lowest: SEVERE, WARNING, INFO, CONFIG, FINE, FINER ,FINEST.  Note that each value includes all above it, for example INFO includes SEVERE and WARNING" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287111" name="oracleLogFormat" type="java.lang.String" value="SimpleFormat" description="Oracle10g and beyond: The trace output format. Default is SimpleFormat.  Property is relevant only if trace file is specified. Possible values (SimpleFormat/ XMLFormat)" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287112" name="oracleLogPackageName" type="java.lang.String" value="oracle.jdbc.driver" description="Oracle10g and beyond: The Oracle package to trace. Default is oracle.jdbc.driver" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287113" name="TNSEntryName" type="java.lang.String" value="" description="The entry name which is used for the Oracle OCI driver." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287114" name="networkProtocol" type="java.lang.String" value="" description="Whether to use TCP/IP or IPC or any other protocol" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287115" name="databaseName" type="java.lang.String" value="" description="The database name. For example, enter sample to make your Data Source point to sample.  used for thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287116" name="serverName" type="java.lang.String" value="" description="The name of the server. used for thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287117" name="portNumber" type="java.lang.Integer" value="1525" description="The TCP/IP port number where the jdbc driver resides. used for thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287118" name="dataSourceName" type="java.lang.String" value="" description="The name of the Data Source." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287119" name="URL" type="java.lang.String" value="jdbc:oracle:thin:@172.30.140.192:1525:ulodb" description="adminRequired=true - This is a required property. The URL indicating the database from which the Data Source will obtain connections, such as 'jdbc:oracle:thin:@//localhost:1521/sample' for thin driver and 'jdbc:oracle:oci:@//localhost:1521/sample' for thick driver." required="true"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287120" name="loginTimeout" type="java.lang.Integer" value="" description="The maximum time to attempt to connect to the database. If this value is non-zero, the attempt to connect to the database will time out when this specified value is reached." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287121" name="description" type="java.lang.String" value="" description="The description of this datasource." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287122" name="transactionBranchesLooselyCoupled" type="java.lang.Boolean" value="false" description="This property is introduced as a result of Oraclebug 2511780, Oracle Patch for 2511780 must be installed before setting this property to true, failure to do that would cause a program error.  Please check the WebSphere readme file for more info ." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287123" name="enableMultithreadedAccessDetection" type="java.lang.Boolean" value="false" description="Indicates whether or not to detect multithreaded access to a Connection and its corresponding Statements, ResultSets, and MetaDatas." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287124" name="reauthentication" type="java.lang.Boolean" value="false" description="Specifies whether to allow reauthentication of connections.  This option requires implementation of the doConnectionSetupPerTransaction() method on the DataStoreHelper where the reauthentication is expected to take place." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287125" name="preTestSQLString" type="java.lang.String" value="SELECT 1 FROM DUAL" description="This SQL statement is used for pre-test connection function. For example, SELECT 1 FROM [TESTTABLE]. If pre-testing of connection is enabled for the connection pool, this SQL statement will be executed to the connection to make sure the connection is good. If you leave this field blank, the default SQL statement, SELECT 1 FROM DUAL, will be used at runtime. This will slow down the execution because of the exception handling if table DUAL is not defined in the database. Users are recommended to provide their own SQL statement to improve the performance." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287126" name="validateNewConnection" type="java.lang.Boolean" value="false" description="Setting this flag to true will cause to WebSphere Application Server to validate connections when they first get created and to keep trying to get a good connection from the database if the validation fails. Setting this flag to false prevents any additional validation from being performed - newly created connections are assumed to be valid and usable. " required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287127" name="validateNewConnectionRetryCount" type="java.lang.Integer" value="100" description="This is useful only if validateNewConnection flag is true.  This property controls how many times WebSphere will try to get a connection from the database before giving up" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287128" name="validateNewConnectionRetryInterval" type="java.lang.Long" value="3" description="This is useful only if validateNewConnection flag is true.  This property controls the interval between retries to retrieve a connection from the database.  Unit is seconds" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287129" name="validateNewConnectionTimeout" type="java.lang.Integer" value="" description="Specifies the timeout in seconds for testing connections (either new or pooled by the application server) to the database.  If the timeout expires before validating then the connection is considered unusable.  If retries are configured, the full value of the timeout applies to each retry.  A value of 0 indicates the JDBC driver does not impose a timeout on validation attempts. This data source attribute applies to JDBC 4.0 drivers and above. Unit is seconds" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287130" name="dbFailOverEnabled" type="java.lang.Boolean" value="" description="Deprecated. Please use the validateNewConnection property instead. This flag should be set to true only if the backend database is configured with failover capability.  This flag will indicate to WebSphere to validate connections when they first get created and to keep trying to get a good connection from the database when the validation fails." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287131" name="connRetriesDuringDBFailover" type="java.lang.Integer" value="" description="Deprecated. Please use the validateNewConnectionRetryCount property instead. This is useful only if dbFailOverEnabled flag is true.  This property controls how many times WebSphere will try to get a connection from the database before giving up" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287132" name="connRetryIntervalDuringDBFailover" type="java.lang.Long" value="" description="Deprecated. Please use the validateNewConnectionRetryInterval instead. This is useful only if dbFailOverEnabled flag is true.  This property controls the interval between retries to retrieve a connection from the database." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287133" name="errorDetectionModel" type="java.lang.String" value="ExceptionMapping" description="The error detection model determines how fatal connection and statement errors are detected, including which types of exceptions are raised to the application. Under the ExceptionChecking model, the application server uses the error mapping facility defined in the Data Store Helper only to identify errors. The application server does not replace exceptions thrown by the JDBC driver with exceptions defined in the error map of the Data Store Helper.  Under the ExceptionMapping model, the application server uses the error mapping facility defined in the Data Store Helper to detect fatal connection and statement errors. The application server overrides exceptions thrown by the JDBC driver with exceptions defined in the error map of the Data Store Helper. The ExceptionMapping setting is not compliant with JDBC 4.0 and above, but is necessary for applications written according to the WebSphere Application Server exception mapping model." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287134" name="nonTransactionalDataSource" type="java.lang.Boolean" value="false" description="Setting this flag to true will cause the Application Server to never enlist the connections from this datasource in global or local transactions.  Applications must explicitly call setAutoCommit(false) on the connection if they want to start a local transaction on the connection and they must commit or rollback the transaction that they started." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287135" name="freeResourcesOnClose" type="java.lang.Boolean" value="false" description="Controls whether or not the application server automatically frees Arrays, Blobs, Clobs, NClobs, SQLXMLs, InputStream, and Readers when the object that created them is closed. The ability to free resources is contingent on the JDBC driver supporting the free (or close) method." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287136" name="userDefinedErrorMap" type="java.lang.String" value="" description="Overlays existing entries in the error map by invoking DataStoreHelper.setUserDefinedMap. The userDefinedErrorMap can be used to add, change, or remove entries from the error map. Entries are delimited by ; (semicolon). Each entry consists of a key and value, where the key is an error code (numeric value) or SQLState (text enclosed in double quotes). Keys and values are are separated by = (equals sign). For example, to remove the mapping of SQLState S1000, add a mapping of error code 1062 to DuplicateKeyException, and add a mapping of SQLState 08004 to StaleConnectionException, the following can be specified for userDefinedErrorMap: &quot;S1000&quot;=;1062=com.ibm.websphere.ce.cm.DuplicateKeyException;&quot;08004&quot;=com.ibm.websphere.ce.cm.StaleConnectionException" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287137" name="beginTranForResultSetScrollingAPIs" type="java.lang.Boolean" value="false" description="If beginTranForResultSetScrollingAPIs is enabled, the application server attempts to begin a transaction or enlist in a transaction when the connection is not currently enlisted in a transaction and a result set scrolling operation is performed." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287138" name="beginTranForVendorAPIs" type="java.lang.Boolean" value="false" description="If beginTranForVendorAPIs is enabled, the application server attempts to begin a transaction or enlist in a transaction when the connection is not currently enlisted in a transaction and a vendor API is invoked with the wrapper pattern or with WSCallHelper.jdbcCall or WSCallHelper.jdbcPass." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287139" name="connectionSharing" type="java.lang.Integer" value="1" description="Determines whether connections are shared based on the current state of the connection (-1) or the original connection request (0). To specify with greater granularity which connection properties are matched based on the current state, you may combine the following constants by adding them together: 1=transaction isolation level, 2=read only, 4=holdability, 8=type map, 16=catalog." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287140" name="oracleRACXARecoveryDelay" type="java.lang.Integer" value="0" description="Specifies the number of seconds for the application server, after detecting a stale connection, to defer two-phase xa.commit or xa.rollback operations that are made by the transaction manager. The application server defers XA operations by raising XAException with an error code of XA_RETRY. Use this property when an Oracle RAC node fails over after the xa.prepare method takes place. The delay allows time for the transaction to become visible to the node on which the failover occurs." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287141" name="syncQueryTimeoutWithTransactionTimeout" type="java.lang.Boolean" value="" description="Use the time remaining (if any) in a JTA transaction as the default query timeout for SQL statements." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287142" name="webSphereDefaultIsolationLevel" type="java.lang.Integer" value="" description="Specifies a default transaction isolation level for new connections. Resource References and Access Intents override this value. To configure a default transaction isolation level, use the constants defined by JDBC: 1 (READ UNCOMMITTED), 2 (READ COMMITTED), 4 (REPEATABLE READ), 8 (SERIALIZABLE)." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287143" name="webSphereDefaultQueryTimeout" type="java.lang.Integer" value="" description="Sets a default query timeout, which is the number of seconds (0 means infinite) that a SQL statement may execute before timing out. This default value is overridden during a JTA transaction if custom property syncQueryTimeoutWithTransactionTimeout is enabled." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1429613287144" name="enableClientInformation" type="java.lang.Boolean" value="false" description="Enables the implicit passing of client information on database connections. The client information provided on each connection is the same as for the WAS.clientinfo trace group. Whereas the WAS.clientinfo trace is configured on an application server, the enableClientInformation property applies to a data source configuration." required="false"/>
+      </propertySet>
+      <connectionPool xmi:id="ConnectionPool_1429613287108" connectionTimeout="180" maxConnections="10" minConnections="1" reapTime="180" unusedTimeout="1800" agedTimeout="0" purgePolicy="EntirePool"/>
+      <mapping xmi:id="MappingModule_1429613287109" mappingConfigAlias="DefaultPrincipalMapping" authDataAlias="ORIG_APP Alias"/>
+    </factories>
+    <factories xmi:type="resources.jdbc:DataSource" xmi:id="DataSource_1460451143242" name="jdbc/dm" jndiName="jdbc/dm" description="New JDBC Datasource" category="" authDataAlias="DM Alias" relationalResourceAdapter="builtin_rra" statementCacheSize="10" datasourceHelperClassname="com.ibm.websphere.rsadapter.Oracle11gDataStoreHelper">
+      <propertySet xmi:id="J2EEResourcePropertySet_1460451143273">
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143273" name="driverType" type="java.lang.String" value="" description="The type of the driver. The possible values are: thin, oci." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143274" name="oracleLogFileSizeLimit" type="java.lang.Integer" value="0" description="Oracle10g and beyond: The oracleLogFileSizeLimit specifies the maximum number of bytes to be written to any one file.  Property is relevant only if trace file is specified. Default is unlimited" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143275" name="oracleLogFileCount" type="java.lang.Integer" value="1" description="Oracle10g and beyond: The oracleLogFileCount specifies the number of files to use.  Property is relevant only if trace file is specified. Default is 1." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143276" name="oracleLogFileName" type="java.lang.String" value="" description="Oracle10g and beyond: The oracleLogFileName indicates which file to write the traces to" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143277" name="oracleLogTraceLevel" type="java.lang.String" value="INFO" description="Oracle10g and beyond: The oracleLogTraceLevel specifies which message levels will be logged .Default is INFO. Property is relevant only if trace file is specified.  Possible values from highest to lowest: SEVERE, WARNING, INFO, CONFIG, FINE, FINER ,FINEST.  Note that each value includes all above it, for example INFO includes SEVERE and WARNING" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143278" name="oracleLogFormat" type="java.lang.String" value="SimpleFormat" description="Oracle10g and beyond: The trace output format. Default is SimpleFormat.  Property is relevant only if trace file is specified. Possible values (SimpleFormat/ XMLFormat)" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143279" name="oracleLogPackageName" type="java.lang.String" value="oracle.jdbc.driver" description="Oracle10g and beyond: The Oracle package to trace. Default is oracle.jdbc.driver" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143280" name="TNSEntryName" type="java.lang.String" value="" description="The entry name which is used for the Oracle OCI driver." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143281" name="networkProtocol" type="java.lang.String" value="" description="Whether to use TCP/IP or IPC or any other protocol" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143282" name="databaseName" type="java.lang.String" value="" description="The database name. For example, enter sample to make your Data Source point to sample.  used for thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143283" name="serverName" type="java.lang.String" value="" description="The name of the server. used for thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143284" name="portNumber" type="java.lang.Integer" value="1521" description="The TCP/IP port number where the jdbc driver resides. used for thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143285" name="dataSourceName" type="java.lang.String" value="" description="The name of the Data Source." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143286" name="URL" type="java.lang.String" value="jdbc:oracle:thin:@172.30.140.192:1525:ulodb" description="adminRequired=true - This is a required property. The URL indicating the database from which the Data Source will obtain connections, such as 'jdbc:oracle:thin:@//localhost:1521/sample' for thin driver and 'jdbc:oracle:oci:@//localhost:1521/sample' for thick driver." required="true"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143287" name="loginTimeout" type="java.lang.Integer" value="" description="The maximum time to attempt to connect to the database. If this value is non-zero, the attempt to connect to the database will time out when this specified value is reached." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143288" name="description" type="java.lang.String" value="" description="The description of this datasource." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143289" name="transactionBranchesLooselyCoupled" type="java.lang.Boolean" value="false" description="This property is introduced as a result of Oraclebug 2511780, Oracle Patch for 2511780 must be installed before setting this property to true, failure to do that would cause a program error.  Please check the WebSphere readme file for more info ." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143290" name="enableMultithreadedAccessDetection" type="java.lang.Boolean" value="false" description="Indicates whether or not to detect multithreaded access to a Connection and its corresponding Statements, ResultSets, and MetaDatas." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143291" name="reauthentication" type="java.lang.Boolean" value="false" description="Specifies whether to allow reauthentication of connections.  This option requires implementation of the doConnectionSetupPerTransaction() method on the DataStoreHelper where the reauthentication is expected to take place." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143292" name="preTestSQLString" type="java.lang.String" value="SELECT 1 FROM DUAL" description="This SQL statement is used for pre-test connection function. For example, SELECT 1 FROM [TESTTABLE]. If pre-testing of connection is enabled for the connection pool, this SQL statement will be executed to the connection to make sure the connection is good. If you leave this field blank, the default SQL statement, SELECT 1 FROM DUAL, will be used at runtime. This will slow down the execution because of the exception handling if table DUAL is not defined in the database. Users are recommended to provide their own SQL statement to improve the performance." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143293" name="validateNewConnection" type="java.lang.Boolean" value="false" description="Setting this flag to true will cause to WebSphere Application Server to validate connections when they first get created and to keep trying to get a good connection from the database if the validation fails. Setting this flag to false prevents any additional validation from being performed - newly created connections are assumed to be valid and usable. " required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143294" name="validateNewConnectionRetryCount" type="java.lang.Integer" value="100" description="This is useful only if validateNewConnection flag is true.  This property controls how many times WebSphere will try to get a connection from the database before giving up" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143295" name="validateNewConnectionRetryInterval" type="java.lang.Long" value="3" description="This is useful only if validateNewConnection flag is true.  This property controls the interval between retries to retrieve a connection from the database.  Unit is seconds" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143296" name="validateNewConnectionTimeout" type="java.lang.Integer" value="" description="Specifies the timeout in seconds for testing connections (either new or pooled by the application server) to the database.  If the timeout expires before validating then the connection is considered unusable.  If retries are configured, the full value of the timeout applies to each retry.  A value of 0 indicates the JDBC driver does not impose a timeout on validation attempts. This data source attribute applies to JDBC 4.0 drivers and above. Unit is seconds" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143297" name="dbFailOverEnabled" type="java.lang.Boolean" value="" description="Deprecated. Please use the validateNewConnection property instead. This flag should be set to true only if the backend database is configured with failover capability.  This flag will indicate to WebSphere to validate connections when they first get created and to keep trying to get a good connection from the database when the validation fails." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143298" name="connRetriesDuringDBFailover" type="java.lang.Integer" value="" description="Deprecated. Please use the validateNewConnectionRetryCount property instead. This is useful only if dbFailOverEnabled flag is true.  This property controls how many times WebSphere will try to get a connection from the database before giving up" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143299" name="connRetryIntervalDuringDBFailover" type="java.lang.Long" value="" description="Deprecated. Please use the validateNewConnectionRetryInterval instead. This is useful only if dbFailOverEnabled flag is true.  This property controls the interval between retries to retrieve a connection from the database." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143300" name="errorDetectionModel" type="java.lang.String" value="ExceptionMapping" description="The error detection model determines how fatal connection and statement errors are detected, including which types of exceptions are raised to the application. Under the ExceptionChecking model, the application server uses the error mapping facility defined in the Data Store Helper only to identify errors. The application server does not replace exceptions thrown by the JDBC driver with exceptions defined in the error map of the Data Store Helper.  Under the ExceptionMapping model, the application server uses the error mapping facility defined in the Data Store Helper to detect fatal connection and statement errors. The application server overrides exceptions thrown by the JDBC driver with exceptions defined in the error map of the Data Store Helper. The ExceptionMapping setting is not compliant with JDBC 4.0 and above, but is necessary for applications written according to the WebSphere Application Server exception mapping model." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143301" name="nonTransactionalDataSource" type="java.lang.Boolean" value="false" description="Setting this flag to true will cause the Application Server to never enlist the connections from this datasource in global or local transactions.  Applications must explicitly call setAutoCommit(false) on the connection if they want to start a local transaction on the connection and they must commit or rollback the transaction that they started." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143302" name="freeResourcesOnClose" type="java.lang.Boolean" value="false" description="Controls whether or not the application server automatically frees Arrays, Blobs, Clobs, NClobs, SQLXMLs, InputStream, and Readers when the object that created them is closed. The ability to free resources is contingent on the JDBC driver supporting the free (or close) method." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143303" name="userDefinedErrorMap" type="java.lang.String" value="" description="Overlays existing entries in the error map by invoking DataStoreHelper.setUserDefinedMap. The userDefinedErrorMap can be used to add, change, or remove entries from the error map. Entries are delimited by ; (semicolon). Each entry consists of a key and value, where the key is an error code (numeric value) or SQLState (text enclosed in double quotes). Keys and values are are separated by = (equals sign). For example, to remove the mapping of SQLState S1000, add a mapping of error code 1062 to DuplicateKeyException, and add a mapping of SQLState 08004 to StaleConnectionException, the following can be specified for userDefinedErrorMap: &quot;S1000&quot;=;1062=com.ibm.websphere.ce.cm.DuplicateKeyException;&quot;08004&quot;=com.ibm.websphere.ce.cm.StaleConnectionException" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143304" name="beginTranForResultSetScrollingAPIs" type="java.lang.Boolean" value="false" description="If beginTranForResultSetScrollingAPIs is enabled, the application server attempts to begin a transaction or enlist in a transaction when the connection is not currently enlisted in a transaction and a result set scrolling operation is performed." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143305" name="beginTranForVendorAPIs" type="java.lang.Boolean" value="false" description="If beginTranForVendorAPIs is enabled, the application server attempts to begin a transaction or enlist in a transaction when the connection is not currently enlisted in a transaction and a vendor API is invoked with the wrapper pattern or with WSCallHelper.jdbcCall or WSCallHelper.jdbcPass." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143306" name="connectionSharing" type="java.lang.Integer" value="1" description="Determines whether connections are shared based on the current state of the connection (-1) or the original connection request (0). To specify with greater granularity which connection properties are matched based on the current state, you may combine the following constants by adding them together: 1=transaction isolation level, 2=read only, 4=holdability, 8=type map, 16=catalog." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143307" name="oracleRACXARecoveryDelay" type="java.lang.Integer" value="0" description="Specifies the number of seconds for the application server, after detecting a stale connection, to defer two-phase xa.commit or xa.rollback operations that are made by the transaction manager. The application server defers XA operations by raising XAException with an error code of XA_RETRY. Use this property when an Oracle RAC node fails over after the xa.prepare method takes place. The delay allows time for the transaction to become visible to the node on which the failover occurs." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143308" name="syncQueryTimeoutWithTransactionTimeout" type="java.lang.Boolean" value="" description="Use the time remaining (if any) in a JTA transaction as the default query timeout for SQL statements." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143309" name="webSphereDefaultIsolationLevel" type="java.lang.Integer" value="" description="Specifies a default transaction isolation level for new connections. Resource References and Access Intents override this value. To configure a default transaction isolation level, use the constants defined by JDBC: 1 (READ UNCOMMITTED), 2 (READ COMMITTED), 4 (REPEATABLE READ), 8 (SERIALIZABLE)." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143310" name="webSphereDefaultQueryTimeout" type="java.lang.Integer" value="" description="Sets a default query timeout, which is the number of seconds (0 means infinite) that a SQL statement may execute before timing out. This default value is overridden during a JTA transaction if custom property syncQueryTimeoutWithTransactionTimeout is enabled." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1460451143311" name="enableClientInformation" type="java.lang.Boolean" value="false" description="Enables the implicit passing of client information on database connections. The client information provided on each connection is the same as for the WAS.clientinfo trace group. Whereas the WAS.clientinfo trace is configured on an application server, the enableClientInformation property applies to a data source configuration." required="false"/>
+      </propertySet>
+      <connectionPool xmi:id="ConnectionPool_1460451143273" connectionTimeout="180" maxConnections="10" minConnections="1" reapTime="180" unusedTimeout="1800" agedTimeout="0" purgePolicy="EntirePool"/>
+      <mapping xmi:id="MappingModule_1460451215599" mappingConfigAlias="DefaultPrincipalMapping" authDataAlias="DM Alias"/>
+    </factories>
+  </resources.jdbc:JDBCProvider>
+  <resources.jdbc:JDBCProvider xmi:id="JDBCProvider_1524712034321" name="Composite JDBC Driver" description="Composite JDBC Driver" implementationClassName="cs.jdbc.driver.CompositeConnectionPoolDataSource">
+    <classpath>D:\FLP_Code\ULO\Lib\csjdbc.jar</classpath>
+    <factories xmi:type="resources.jdbc:DataSource" xmi:id="DataSource_1524712034319" name="jdbc/dih" jndiName="jdbc/dih" description="Composite JDBC Datasource" category="" authDataAlias="DIH Alias" relationalResourceAdapter="builtin_rra" statementCacheSize="10" datasourceHelperClassname="com.ibm.websphere.rsadapter.GenericDataStoreHelper">
+      <propertySet xmi:id="J2EEResourcePropertySet_1524712034321">
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034321" name="enableMultithreadedAccessDetection" type="java.lang.Boolean" value="false" description="Indicates whether or not to detect multithreaded access to a Connection and its corresponding Statements, ResultSets, and MetaDatas." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034322" name="reauthentication" type="java.lang.Boolean" value="false" description="Specifies whether to allow reauthentication of connections.  This option requires implementation of the doConnectionSetupPerTransaction() method on the DataStoreHelper where the reauthentication is expected to take place." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034323" name="jmsOnePhaseOptimization" type="java.lang.Boolean" value="false" description="Specifies whether to allow JMS to get optimized connections from this datasource.  This option will prevent JDBC Applications from getting connections." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034324" name="preTestSQLString" type="java.lang.String" value="SELECT 1 FROM DUMMYTABLE" description="This SQL statement is used for pre-test connection function. For example, SELECT 1 FROM [TESTTABLE]. If pre-testing of connection is enabled for the connection pool, this SQL statement will be executed to the connection to make sure the connection is good. If you leave this field blank, the default SQL statement, SELECT 1 FROM DUMMYTABLE, will be used at runtime. This will slow down the execution because of the exception handling if table DUMMYTABLE is not defined in the database. Users are recommended to provide their own SQL statement to improve the performance." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034325" name="validateNewConnection" type="java.lang.Boolean" value="false" description="Setting this flag to true will cause to WebSphere Application Server to validate connections when they first get created and to keep trying to get a good connection from the database if the validation fails. Setting this flag to false prevents any additional validation from being performed - newly created connections are assumed to be valid and usable. " required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034326" name="validateNewConnectionRetryCount" type="java.lang.Integer" value="100" description="This is useful only if validateNewConnection flag is true.  This property controls how many times WebSphere will try to get a connection from the database before giving up" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034327" name="validateNewConnectionRetryInterval" type="java.lang.Long" value="3" description="This is useful only if validateNewConnection flag is true.  This property controls the interval between retries to retrieve a connection from the database. Unit is seconds" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034328" name="validateNewConnectionTimeout" type="java.lang.Integer" value="" description="Specifies the timeout in seconds for testing connections (either new or pooled by the application server) to the database.  If the timeout expires before validating then the connection is considered unusable.  If retries are configured, the full value of the timeout applies to each retry.  A value of 0 indicates the JDBC driver does not impose a timeout on validation attempts. This data source attribute applies to JDBC 4.0 drivers and above. Unit is seconds" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034329" name="dbFailOverEnabled" type="java.lang.Boolean" value="" description="Deprecated. Please use the validateNewConnection property instead. This flag should be set to true only if the backend database is configured with failover capability.  This flag will indicate to WebSphere to validate connections when they first get created and to keep trying to get a good connection from the database when the validation fails." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034330" name="connRetriesDuringDBFailover" type="java.lang.Integer" value="" description="Deprecated. Please use the validateNewConnectionRetryCount property instead. This is useful only if dbFailOverEnabled flag is true.  This property controls how many times WebSphere will try to get a connection from the database before giving up" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034331" name="connRetryIntervalDuringDBFailover" type="java.lang.Long" value="" description="Deprecated. Please use the validateNewConnectionRetryInterval instead. This is useful only if dbFailOverEnabled flag is true.  This property controls the interval between retries to retrieve a connection from the database." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034332" name="errorDetectionModel" type="java.lang.String" value="ExceptionMapping" description="The error detection model determines how fatal connection and statement errors are detected, including which types of exceptions are raised to the application. Under the ExceptionChecking model, the application server uses the error mapping facility defined in the Data Store Helper only to identify errors. The application server does not replace exceptions thrown by the JDBC driver with exceptions defined in the error map of the Data Store Helper.  Under the ExceptionMapping model, the application server uses the error mapping facility defined in the Data Store Helper to detect fatal connection and statement errors. The application server overrides exceptions thrown by the JDBC driver with exceptions defined in the error map of the Data Store Helper. The ExceptionMapping setting is not compliant with JDBC 4.0 and above, but is necessary for applications written according to the WebSphere Application Server exception mapping model." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034333" name="nonTransactionalDataSource" type="java.lang.Boolean" value="false" description="Setting this flag to true will cause the Application Server to never enlist the connections from this datasource in global or local transactions.  Applications must explicitly call setAutoCommit(false) on the connection if they want to start a local transaction on the connection and they must commit or rollback the transaction that they started." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034334" name="freeResourcesOnClose" type="java.lang.Boolean" value="false" description="Controls whether or not the application server automatically frees Arrays, Blobs, Clobs, NClobs, SQLXMLs, InputStream, and Readers when the object that created them is closed. The ability to free resources is contingent on the JDBC driver supporting the free (or close) method." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034335" name="userDefinedErrorMap" type="java.lang.String" value="" description="Overlays existing entries in the error map by invoking DataStoreHelper.setUserDefinedMap. The userDefinedErrorMap can be used to add, change, or remove entries from the error map. Entries are delimited by ; (semicolon). Each entry consists of a key and value, where the key is an error code (numeric value) or SQLState (text enclosed in double quotes). Keys and values are are separated by = (equals sign). For example, to remove the mapping of SQLState S1000, add a mapping of error code 1062 to DuplicateKeyException, and add a mapping of SQLState 08004 to StaleConnectionException, the following can be specified for userDefinedErrorMap: &quot;S1000&quot;=;1062=com.ibm.websphere.ce.cm.DuplicateKeyException;&quot;08004&quot;=com.ibm.websphere.ce.cm.StaleConnectionException" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034336" name="beginTranForResultSetScrollingAPIs" type="java.lang.Boolean" value="false" description="If beginTranForResultSetScrollingAPIs is enabled, the application server attempts to begin a transaction or enlist in a transaction when the connection is not currently enlisted in a transaction and a result set scrolling operation is performed." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034337" name="beginTranForVendorAPIs" type="java.lang.Boolean" value="false" description="If beginTranForVendorAPIs is enabled, the application server attempts to begin a transaction or enlist in a transaction when the connection is not currently enlisted in a transaction and a vendor API is invoked with the wrapper pattern or with WSCallHelper.jdbcCall or WSCallHelper.jdbcPass." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034338" name="connectionSharing" type="java.lang.Integer" value="1" description="Determines whether connections are shared based on the current state of the connection (-1) or the original connection request (0). To specify with greater granularity which connection properties are matched based on the current state, you may combine the following constants by adding them together: 1=transaction isolation level, 2=read only, 4=holdability, 8=type map, 16=catalog." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034339" name="syncQueryTimeoutWithTransactionTimeout" type="java.lang.Boolean" value="" description="Use the time remaining (if any) in a JTA transaction as the default query timeout for SQL statements." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034340" name="webSphereDefaultIsolationLevel" type="java.lang.Integer" value="" description="Specifies a default transaction isolation level for new connections. Resource References and Access Intents override this value. To configure a default transaction isolation level, use the constants defined by JDBC: 1 (READ UNCOMMITTED), 2 (READ COMMITTED), 4 (REPEATABLE READ), 8 (SERIALIZABLE)." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034341" name="webSphereDefaultQueryTimeout" type="java.lang.Integer" value="" description="Sets a default query timeout, which is the number of seconds (0 means infinite) that a SQL statement may execute before timing out. This default value is overridden during a JTA transaction if custom property syncQueryTimeoutWithTransactionTimeout is enabled." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712034342" name="url" type="java.lang.String" value="jdbc:compositesw:dbapi@172.30.149.195:9401?domain=composite&amp;dataSource=DIH_FLP&amp;unsupportedMode=silent" description="" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524712081345" name="dataSourceName" type="java.lang.String" value="DIH_FLP" description="" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1524723050507" name="domain" type="java.lang.String" value="composite" description="" required="false"/>
+      </propertySet>
+      <connectionPool xmi:id="ConnectionPool_1524712034321" connectionTimeout="180" maxConnections="10" minConnections="1" reapTime="180" unusedTimeout="1800" agedTimeout="0" purgePolicy="EntirePool"/>
+      <mapping xmi:id="MappingModule_1524722963810" mappingConfigAlias="DefaultPrincipalMapping" authDataAlias="DIH Alias"/>
+    </factories>
+  </resources.jdbc:JDBCProvider>
+</xmi:XMI>

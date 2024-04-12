@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Circle Widget Fragments</title>
+
+</head>
+<body>
+
+				<th:block th:fragment="wg-stacked-bar(widget)">
+					<div class="widget">
+<!-- 						<div id="stacked-bar-1" th:id="'wg_sb_'+${widget.id}" style="margin: 0 auto;" th:styleappend="'height:'+${widget.height==null?300:widget.height}+'px'"></div> -->
+							<div id="stacked-bar-1" th:id="'wg_sb_'+${widget.id}" style="margin: 0 auto; height: 300px; min-width: 150px; max-width: 100%;"></div>
+					</div>
+					<script th:inline="javascript">
+					//<![CDATA[
+					$(function() {
+						var stackedBarId = /*[['wg_sb_'+${widget.id}]]*/'stack-bar';
+					    var categories = /*[[${widget.categories}]]*/;
+					    var series = /*[[${widget.series}]]*/;
+					    if(series && series.length){
+					    	for(var i = 0; i < series.length; i++){
+					    		if(series[i] && series[i].stack)
+					    		delete series[i].stack;
+					    	}
+					    }
+					    var yAxisTitle = /*[[${widget.yAxisTitle}]]*/;
+					    var yAxisMin = /*[[${widget.yAxisMin}]]*/;
+					    var yAxisMax = /*[[${widget.yAxisMax}]]*/;
+					    var tooltipSuffix = /*[[${widget.toolTipSuffix}]]*/;
+						$('#'+stackedBarId).highcharts(
+							{
+								exporting: {
+						        	enabled: false
+						        },
+								chart : {
+									type : 'column'
+								},
+								title : {
+									text : ''
+								},
+								xAxis : {
+									categories : categories
+								},
+								yAxis : {
+									min : 0,
+									title : {
+										text : yAxisTitle
+									},
+									stackLabels : {
+										enabled : true,
+										style : {
+											fontWeight : 'bold',
+											color : (Highcharts.theme && Highcharts.theme.textColor)
+													|| 'gray'
+										}
+									}
+								},
+								legend : {
+									align : 'right',
+									x : -30,
+									verticalAlign : 'top',
+									y : -10,
+									floating : true,
+									backgroundColor : (Highcharts.theme && Highcharts.theme.background2)
+											|| 'white',
+									borderColor : '#CCC',
+									borderWidth : 1,
+									shadow : false
+								},
+								tooltip : {
+									formatter : function() {
+										return '<b>' + this.x + '</b><br/>'
+												+ this.series.name + ': '
+												+ this.y + '<br/>'
+												+ 'Total: '
+												+ this.point.stackTotal;
+									}
+								},
+								plotOptions : {
+									column : {
+										stacking : 'normal',
+										dataLabels : {
+											enabled : true,
+											color : (Highcharts.theme && Highcharts.theme.dataLabelsColor)
+													|| 'white',
+											style : {
+												textShadow : '0 0 3px black'
+											}
+										}
+									}
+								},
+								series : series
+							});
+							
+							$(window).resize(function() {
+								var chartele = $('#'+stackedBarId);
+								var hc = chartele.highcharts();
+								var newWidth = chartele.parents('.panel-body').width();
+								hc.setSize(newWidth,150);
+							});
+							
+							var widget = /*[[${widget}]]*/{id:1234};
+							var intervalTime = widget.intervalTime;
+							if(null!=intervalTime&&intervalTime>0){
+								var interval = setInterval(function(){
+									$.ajax({
+										method: 'POST',
+										url: "/Widget/grid/chart/load-data",
+										contentType: 'application/json',
+										data: JSON.stringify(widget),
+										success: function(data) {	
+											//console.log(data);
+											if(data && data.series && data.series.length){
+												for(var i =0, l = data.series.length; i < l; i++){
+													$('#'+stackedBarId).highcharts().series[i].setData(data.series[i].data); 
+												}
+											}
+											
+										},
+										error: function(e) {
+											log.error('Error');
+										}
+									});
+								}, intervalTime);
+							}
+						});
+						//]]>
+					</script>
+				</th:block>
+
+		
+		<div class="box span8">
+			<div class="box-header">
+				<h2>
+					<i class="halflings-icon tasks"></i><span class="break"></span>WIP Per station
+				</h2>
+			</div>
+			<div class="box-content">
+				<div id="stacked-bar-2" style="min-width: 310px; margin: 0 auto" th:styleappend="'height:'+${widget.height==null?300:widget.height}+'px'"></div>
+			</div>
+		</div>
+		<!--/span-->
+		<script>
+			//<![CDATA[
+			$(function() {
+				$('#stacked-bar-2').highcharts(
+								{
+									chart : {
+										type : 'column'
+									},
+									title : {
+										text : 'Stacked column chart'
+									},
+									xAxis : {
+										categories : [ 'IA', 'DE1.1',
+												'DE1.2', 'DV1', 'CA' ]
+									},
+									yAxis : {
+										min : 0,
+										title : {
+											text : 'Total fruit consumption'
+										},
+										stackLabels : {
+											enabled : true,
+											style : {
+												fontWeight : 'bold',
+												color : (Highcharts.theme && Highcharts.theme.textColor)
+														|| 'gray'
+											}
+										}
+									},
+									legend : {
+										align : 'right',
+										x : -30,
+										verticalAlign : 'top',
+										y : 25,
+										floating : true,
+										backgroundColor : (Highcharts.theme && Highcharts.theme.background2)
+												|| 'white',
+										borderColor : '#CCC',
+										borderWidth : 1,
+										shadow : false
+									},
+									tooltip : {
+										formatter : function() {
+											return '<b>' + this.x + '</b><br/>'
+													+ this.series.name + ': '
+													+ this.y + '<br/>'
+													+ 'Total: '
+													+ this.point.stackTotal;
+										}
+									},
+									plotOptions : {
+										column : {
+											stacking : 'normal',
+											dataLabels : {
+												enabled : true,
+												color : (Highcharts.theme && Highcharts.theme.dataLabelsColor)
+														|| 'white',
+												style : {
+													textShadow : '0 0 3px black'
+												}
+											}
+										}
+									},
+									series : [ {
+										name : 'Urgent',
+										data : [ 5, 3, 4, 7, 2 ]
+									}, {
+										name : 'Normal',
+										data : [ 2, 2, 3, 2, 1 ]
+									}
+// 									, {
+// 										name : 'Joe',
+// 										data : [ 3, 4, 4, 2, 5 ]
+// 									} 
+									]
+								});
+								
+				$(window).resize(function() {
+					var chartele = $('#stacked-bar-2');
+					var hc = chartele.highcharts();
+					var newWidth = chartele.parents('.panel-body').width();
+					hc.setSize(newWidth,300);
+				});
+				
+				var widget = /*[[${widget}]]*/{id:1234};
+				var intervalTime = widget.intervalTime;
+				if(null!=intervalTime&&intervalTime>0){
+					var interval = setInterval(function(){
+						$.ajax({
+							method: 'POST',
+							url: "/Widget/grid/chart/load-data",
+							contentType: 'application/json',
+							data: JSON.stringify(widget),
+							success: function(data) {	
+								//console.log(data);
+								if(data && data.series && data.series.length){
+									for(var i =0, l = data.series.length; i < l; i++){
+										$('#stacked-bar-2').highcharts().series[i].setData(data.series[i].data); 
+									}
+								}			
+							},
+							error: function(e) {
+								log.error('Error');
+							}
+						});
+					}, intervalTime);
+				}
+			});
+			//]]>
+		</script>
+
+	
+	<div th:fragment="wg-stacked-n-group-bar(widget)">
+<!-- 				<div th:id="'wg_s_n_g_'+${widget.id}" style="min-width: 310px; margin: 0 auto;"  th:styleappend="'height:'+${widget.height==null?300:widget.height}+'px'"></div> -->
+				<div th:id="'wg_s_n_g_'+${widget.id}" style="max-width: 100%; height: 300px; margin: 0 auto;"></div>
+		<script th:inline="javascript">
+			//<![CDATA[
+			$(function () {
+				var chartId = /*[['wg_s_n_g_'+${widget.id}]]*/'stacked-n-group-bar-1';
+				var widgetCates = /*[[${widget.categories}]]*/["IA", "DE1.1", "DE1_2", "DE2", "DV", "CA", "VT"];
+				var widgetSeries = /*[[${widget.series}]]*/[{"name" : "WIP Infinite","data" : [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}];
+			    var yAxisTitle = /*[[${widget.yAxisTitle}]]*/;
+			    var yAxisMin = /*[[${widget.yAxisMin}]]*/;
+			    var yAxisMax = /*[[${widget.yAxisMax}]]*/;
+			    var tooltipSuffix = /*[[${widget.toolTipSuffix}]]*/;			    
+			    $('#'+chartId).highcharts({
+					exporting: {
+						enabled: false
+					},
+			        chart: {
+			            type: 'column'
+			        },
+			
+			        title: {
+			            text: ''
+			        },
+			
+			        xAxis: {
+			            categories: widgetCates
+			        },
+			
+			        yAxis: {
+			            allowDecimals: false,
+			            min: 0,
+			            title: {
+			                text: yAxisTitle
+			            }
+			        },
+			
+			        tooltip: {
+			            formatter: function () {
+			                return '<b>' + this.x + '</b><br/>' +
+			                    this.series.name + ': ' + this.y + '<br/>' +
+			                    'Total: ' + this.point.stackTotal;
+			            }
+			        },
+			
+			        plotOptions: {
+			            column: {
+			                stacking: 'normal'
+			            }
+			        },
+			
+			        series: widgetSeries
+			    });
+			    
+			    $(window).resize(function() {
+					var chartele = $('#'+chartId);
+					var hc = chartele.highcharts();
+					var newWidth = chartele.parents('.panel-body').width();
+					hc.setSize(newWidth,300);
+				});
+				
+				var widget = /*[[${widget}]]*/{id:1234};
+				var intervalTime = widget.intervalTime;
+				if(null!=intervalTime&&intervalTime>0){
+					var interval = setInterval(function(){
+						$.ajax({
+							method: 'POST',
+							url: "/Widget/grid/chart/load-data",
+							contentType: 'application/json',
+							data: JSON.stringify(widget),
+							success: function(data) {	
+								//console.log(data);
+								if(data && data.series && data.series.length){
+									for(var i =0, l = data.series.length; i < l; i++){
+										$('#'+chartId).highcharts().series[i].setData(data.series[i].data); 
+									}
+								}			
+							},
+							error: function(e) {
+								log.error('Error');
+							}
+						});
+					}, intervalTime);
+				}
+			});
+			//]]>
+		</script>
+	</div>
+	<!--/row-->
+
+
+</body>
+</html>

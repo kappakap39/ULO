@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://workflow.ava.com/" version="1.0" xmlns:tns="http://workflow.ava.com/">
+
+  <xs:element name="inquiry" type="tns:request"/>
+
+  <xs:element name="inquiryResponse" type="tns:response"/>
+
+  <xs:complexType name="request">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:wfInquiryReqM"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="wfInquiryReqM">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="app_date_from" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="app_date_to" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="app_status" type="xs:string"/>
+      <xs:element minOccurs="0" name="booked_flag" type="xs:string"/>
+      <xs:element minOccurs="0" name="cis_no" type="xs:string"/>
+      <xs:element minOccurs="0" name="dob" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="doc_no" type="xs:string"/>
+      <xs:element minOccurs="0" name="doc_type" type="xs:string"/>
+      <xs:element minOccurs="0" name="product_code" type="xs:string"/>
+      <xs:element minOccurs="0" name="th_first_name" type="xs:string"/>
+      <xs:element minOccurs="0" name="th_last_name" type="xs:string"/>
+      <xs:element maxOccurs="1" minOccurs="1" name="kBankRqHeader" type="tns:kBankRqHeader"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="kBankRqHeader">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="corrID" type="xs:string"/>
+      <xs:element maxOccurs="1" minOccurs="1" name="funcNm" type="xs:string"/>
+      <xs:element maxOccurs="1" minOccurs="1" name="rqAppId" type="xs:string"/>
+      <xs:element maxOccurs="1" minOccurs="1" name="rqDt" type="xs:dateTime"/>
+      <xs:element maxOccurs="1" minOccurs="1" name="rqUID" type="xs:string"/>
+      <xs:element minOccurs="0" name="terminalId" type="xs:string"/>
+      <xs:element maxOccurs="1" minOccurs="1" name="userId" type="xs:string"/>
+      <xs:element minOccurs="0" name="userLangPref" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="response">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:wfInquiryRespM"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="wfInquiryRespM">
+    <xs:sequence>
+    	<xs:element maxOccurs="unbounded" minOccurs="0" name="applicationGroupM" nillable="true" type="tns:applicationGroupM"/>
+    	<xs:element name="no_record" type="xs:int"/>
+    	<xs:element minOccurs="0" name="kBankHeader" type="tns:kBankRsHeader"/>
+    	<xs:element maxOccurs="1" minOccurs="0" name="personal_id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="applicationGroupM">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="app_date" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="app_no" type="xs:string"/>
+
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="applicationM" nillable="true" type="tns:applicationM" />
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="personalInfoM" nillable="true" type="tns:personalInfoM"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="applicationM">
+    <xs:sequence>
+    	<xs:element minOccurs="0" name="app_item_no" type="xs:string"/>
+    	<xs:element minOccurs="0" name="app_status" type="xs:string"/>
+    	<xs:element minOccurs="0" name="app_status_date" type="xs:dateTime"/>
+    	<xs:element minOccurs="0" name="booking_date" type="xs:dateTime"/>
+    	<xs:element minOccurs="0" name="apply_type" type="xs:string"/>
+    	<xs:element minOccurs="0" name="bundle_product" type="xs:string"/>
+    	<xs:element minOccurs="0" name="bundle_product_credit_limit" type="xs:decimal"/>
+    	<xs:element minOccurs="0" name="kbank_product_code" type="xs:string"/>
+    	<xs:element maxOccurs="unbounded" minOccurs="0" name="loanM" nillable="true" type="tns:loanM"/>
+    	<xs:element maxOccurs="unbounded" minOccurs="0" name="personalRefM" nillable="true" type="tns:personalRefM"/>
+    	<xs:element minOccurs="0" name="policy_program_id" type="xs:string"/>
+    	<xs:element minOccurs="0" name="project_code" type="xs:string"/>
+    	<xs:element minOccurs="0" name="reject_code" type="xs:string"/>
+    	<xs:element minOccurs="0" name="verResultM" type="tns:verResultM"/>
+    	<xs:element minOccurs="0" name="veto_flag" type="xs:string"/>
+    	<xs:element maxOccurs="1" minOccurs="0" name="main_app_item_no" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="loanM">
+    <xs:sequence>
+    	<xs:element minOccurs="0" name="account_no" type="xs:string" />
+    	<xs:element minOccurs="0" name="booked_flag" type="xs:string" />
+    	<xs:element minOccurs="0" name="cardM" type="tns:cardM" />
+    	<xs:element minOccurs="0" name="cycle_cut" type="xs:string" />
+    	<xs:element minOccurs="0" name="final_credit_limit"
+    		type="xs:decimal" />
+    	<xs:element minOccurs="0" name="installment_amt"
+    		type="xs:decimal" />
+    	<xs:element maxOccurs="unbounded" minOccurs="0"
+    		name="personalRefM" nillable="true" type="tns:personalRefM" />
+    	<xs:element maxOccurs="1" minOccurs="0" name="payment_method"
+    		type="xs:string">
+    	</xs:element>
+    	<xs:element maxOccurs="1" minOccurs="0"
+    		name="autopay_account_no" type="xs:string" />
+    	<xs:element name="loan_amt" type="xs:decimal" maxOccurs="1" minOccurs="0"></xs:element>
+    	<xs:element name="term" type="xs:decimal" maxOccurs="1" minOccurs="0"></xs:element>
+    	<xs:element name="account_open_date" type="xs:dateTime" maxOccurs="1" minOccurs="0"></xs:element>
+    	<xs:element name="payment_ratio" type="xs:decimal" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cardM">
+    <xs:sequence>
+    	<xs:element minOccurs="0" name="card_apply_type" type="xs:string"/>
+    	<xs:element minOccurs="0" name="card_code" type="xs:string"/>
+    	<xs:element minOccurs="0" name="card_level" type="xs:string"/>
+    	<xs:element minOccurs="0" name="doc_no" type="xs:string"/>
+
+    	<xs:element minOccurs="0" name="plastic_type" type="xs:string"/>
+    	<xs:element minOccurs="0" name="card_no" type="xs:string"/>
+    	<xs:element maxOccurs="1" minOccurs="0" name="card_no_encrypted" type="xs:string">
+    	</xs:element>
+    	<xs:element maxOccurs="1" minOccurs="0" name="priority_pass_no" type="xs:string">
+    	</xs:element>
+    	<xs:element maxOccurs="1" minOccurs="0" name="card_type" type="xs:string">
+    	</xs:element>
+    	<xs:element maxOccurs="1" minOccurs="0" name="cardlink_cust_no" type="xs:string">
+    	</xs:element>
+    	<xs:element maxOccurs="1" minOccurs="0" name="cardlink_org_no" type="xs:string">
+    	</xs:element>
+    	<xs:element maxOccurs="1" minOccurs="0" name="main_card_no" type="xs:string"/>
+    	<xs:element maxOccurs="1" minOccurs="0" name="maincard_no_encrypted" type="xs:string"/>
+    	<xs:element maxOccurs="1" minOccurs="0" name="main_cust_no" type="xs:string"/>
+    	<xs:element maxOccurs="1" minOccurs="0" name="main_org_no" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="personalRefM">
+    <xs:sequence>
+      <xs:element maxOccurs="1" minOccurs="0" name="pesonal_id" type="xs:string"/>
+      <xs:element maxOccurs="1" minOccurs="0" name="applicant_type" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="verResultM">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="orCodeM" type="tns:orCodeM"/>
+      <xs:element minOccurs="0" name="verify_cust_result" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="websiteM" nillable="true" type="tns:websiteM"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="orCodeM">
+    <xs:sequence>
+    	<xs:element minOccurs="0" name="orCode" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="websiteM">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="website_code" type="xs:string"/>
+      <xs:element minOccurs="0" name="website_reusult" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cardlinkCustM">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cardlink_cust_no" type="xs:string"/>
+      <xs:element minOccurs="0" name="org_id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="personalInfoM">
+    <xs:sequence>
+    	<xs:element minOccurs="0" name="applicant_type"
+    		type="xs:string" />
+    	<xs:element minOccurs="0" name="doc_no" type="xs:string" />
+    	<xs:element minOccurs="0" name="doc_type" type="xs:string" />
+    	<xs:element minOccurs="0" name="final_verified_income"
+    		type="xs:decimal" />
+    	<xs:element maxOccurs="unbounded" minOccurs="0"
+    		name="incomeInfoM" nillable="true" type="tns:incomeInfoM" />
+
+    	<xs:element minOccurs="0" name="personal_id" type="xs:string" />
+    	<xs:element minOccurs="0" name="th_firstname" type="xs:string" />
+    	<xs:element minOccurs="0" name="th_lastname" type="xs:string" />
+    	<xs:element minOccurs="0" name="th_midname" type="xs:string" />
+    	<xs:element minOccurs="0" name="verResultM"
+    		type="tns:verResultM" />
+    	<xs:element minOccurs="0" name="cardlinkCustM"
+    		type="tns:cardlinkCustM" />
+    	<xs:element maxOccurs="1" minOccurs="0" name="cis_no"
+    		type="xs:string">
+    	</xs:element>
+    	<xs:element maxOccurs="1" minOccurs="0" name="dob"
+    		type="xs:string">
+    	</xs:element>
+    	<xs:element maxOccurs="1" minOccurs="0" name="mailing_address"
+    		type="xs:string">
+    	</xs:element>
+    	<xs:element maxOccurs="1" minOccurs="0" name="type_of_fin"
+    		type="xs:string">
+    	</xs:element>
+    	<xs:element maxOccurs="1" minOccurs="0" name="mobile_no"
+    		type="xs:string">
+    	</xs:element>
+
+    	<xs:element maxOccurs="1" minOccurs="0" name="vat_code"
+    		type="xs:string">
+    	</xs:element>
+    	<xs:element maxOccurs="unbounded" minOccurs="0" name="addressM"
+    		type="tns:addressM">
+    	</xs:element>
+    	<xs:element maxOccurs="unbounded" minOccurs="0"
+    		name="incomeSourceM" type="tns:incomeSourceM" />
+    	<xs:element name="ncbInfoM" type="tns:ncbInfoM" maxOccurs="1" minOccurs="0"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incomeInfoM">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="income_type" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="previousIncomeM" type="tns:previousIncomeM"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="previousIncomeM">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="income" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="incomeDate" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="kBankRsHeader">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="corrID" type="xs:string"/>
+      <xs:element minOccurs="0" name="funcNm" type="xs:string"/>
+      <xs:element minOccurs="0" name="rqUID" type="xs:string"/>
+      <xs:element minOccurs="0" name="rsAppId" type="xs:string"/>
+      <xs:element minOccurs="0" name="rsDt" type="xs:dateTime"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="rsError" nillable="true" type="tns:rsError"/>
+      <xs:element minOccurs="0" name="rsUID" type="xs:string"/>
+      <xs:element minOccurs="0" name="statusCode" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rsError">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="errorAppAbbrv" type="xs:string"/>
+      <xs:element minOccurs="0" name="errorAppId" type="xs:string"/>
+      <xs:element minOccurs="0" name="errorCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="errorDesc" type="xs:string"/>
+      <xs:element minOccurs="0" name="errorSeverity" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addressM">
+  	<xs:sequence>
+  		<xs:element maxOccurs="1" minOccurs="0" name="addressType" type="xs:string">
+  		</xs:element>
+  		<xs:element maxOccurs="1" minOccurs="0" name="houseNumber" type="xs:string">
+  		</xs:element>
+  		<xs:element maxOccurs="1" minOccurs="0" name="village" type="xs:string">
+  		</xs:element>
+  		<xs:element maxOccurs="1" minOccurs="0" name="floorNumber" type="xs:string">
+  		</xs:element>
+  		<xs:element maxOccurs="1" minOccurs="0" name="room" type="xs:string">
+  		</xs:element>
+  		<xs:element maxOccurs="1" minOccurs="0" name="buildingName" type="xs:string">
+  		</xs:element>
+  		<xs:element maxOccurs="1" minOccurs="0" name="moo" type="xs:string">
+  		</xs:element>
+  		<xs:element maxOccurs="1" minOccurs="0" name="soi" type="xs:string">
+  		</xs:element>
+  		<xs:element maxOccurs="1" minOccurs="0" name="street" type="xs:string">
+  		</xs:element>
+  		<xs:element maxOccurs="1" minOccurs="0" name="district" type="xs:string">
+  		</xs:element>
+  		<xs:element maxOccurs="1" minOccurs="0" name="province" type="xs:string">
+  		</xs:element>
+  		<xs:element maxOccurs="1" minOccurs="0" name="postalCode" type="xs:string">
+  		</xs:element>
+  		<xs:element maxOccurs="1" minOccurs="0" name="country" type="xs:string">
+  		</xs:element>
+  		<xs:element maxOccurs="1" minOccurs="0" name="subDistrict" type="xs:string"/>
+  	</xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incomeSourceM">
+  	<xs:sequence>
+  		<xs:element maxOccurs="1" minOccurs="0" name="incomeSource" type="xs:string"/>
+  	</xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ncbInfoM">
+  	<xs:sequence>
+  		<xs:element name="tracking_code" type="xs:string"
+  			maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="personal_id" type="xs:string" maxOccurs="1"
+  			minOccurs="0">
+  		</xs:element>
+  		<xs:element name="fico_score" type="xs:string" maxOccurs="1"
+  			minOccurs="0">
+  		</xs:element>
+  		<xs:element name="fico_error_code" type="xs:string"
+  			maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="fico_error_msg" type="xs:string"
+  			maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="fico_reason1_code" type="xs:string"
+  			maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="fico_reason1_desc" type="xs:string"
+  			maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="fico_reason2_code" type="xs:string"
+  			maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="fico_reason2_desc" type="xs:string"
+  			maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="fico_reason3_code" type="xs:string"
+  			maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="fico_reason3_desc" type="xs:string"
+  			maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="fico_reason4_code" type="xs:string"
+  			maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="fico_reason4_desc" type="xs:string"
+  			maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="consent_ref_no" type="xs:string"
+  			maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="no_times_enquiry" type="xs:int"
+  			maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="no_times_enquiry_6m" type="xs:int"
+  			maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="no_cc_card" type="xs:int" maxOccurs="1"
+  			minOccurs="0">
+  		</xs:element>
+  		<xs:element name="tot_cc_out_statding" type="xs:int"
+  			maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="personal_loan_under_bot_issuer"
+  			type="xs:int" maxOccurs="1" minOccurs="0">
+  		</xs:element>
+  		<xs:element name="oldest_ncb_new" type="xs:dateTime" maxOccurs="1" minOccurs="0"></xs:element>
+  	</xs:sequence>
+  </xs:complexType>
+</xs:schema>

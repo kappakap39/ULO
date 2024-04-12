@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libraries:Library xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:libraries="http://www.ibm.com/websphere/appserver/schemas/5.0/libraries.xmi" xmi:id="Library_1546505569282" name="wm-lib" isolatedClassLoader="false">
+  <classPath>C:\WorkSpace\git\ULO\Lib\spring-framework</classPath>
+  <classPath>C:\WorkSpace\git\ULO\wm-core\bin</classPath>
+  <classPath>C:\WorkSpace\git\ULO\Lib</classPath>
+  <classPath>C:\WorkSpace\git\ULO\Lib\core-lib</classPath>
+  <classPath>C:\WorkSpace\git\ULO\FLPCore\bin</classPath>
+  <classPath>C:\WorkSpace\git\ULO\FLPModel\bin</classPath>
+  <classPath>C:\WorkSpace\git\ULO\ServiceCenterProxy\build\classes</classPath>
+  <classPath>C:\WorkSpace\git\ULO\InfBatchCore\bin</classPath>
+</libraries:Library>

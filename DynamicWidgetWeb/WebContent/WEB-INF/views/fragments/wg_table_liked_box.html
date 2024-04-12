@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Line Chart Widget Fragments</title>
+
+</head>
+<body>
+	<div class="row-fluid" th:fragment="text-n-box-row">
+		<div class="box span8" onTablet="span6" onDesktop="span8" id="increment-val">
+
+			<div class="box-header">
+				<h2>
+					<i class="halflings-icon tasks"></i><span class="break"></span>WIP Per station
+				</h2>
+			</div>
+
+			<div class="content">
+				<div class="textAndBox" th:fragment="wg-text-n-box(widget)">
+					<div th:each="ele : ${widget.series}">
+						<span th:text="${ele.data[0]}+' %'">35 %</span>
+						<button class="btn btn-large" th:text="${ele.name}">Large button</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(function() {
+				var idToAnimate = /*[[${"increment-val"}]]*/'increment-val';
+				progressNumber($('#' + idToAnimate + ' .textAndBox span'), 0,90, '%');
+			});
+		</script>
+	</div>
+	<!--/row-->
+
+
+	<th:block class="singleStatBoxGroup" th:fragment="wg-single-stat-box(widget)">
+		<div class="singleStatBoxGroup" th:id="'wg_ssb_'+${widget.id}">	
+			<div class="header" th:if="${widget.title} != null" th:text="${widget.title}">Title</div>
+			<div class="body">
+				<div th:each="data : ${widget.dataList}">						
+					<div th:id="'wg_ssb_header_'+${dataStat.index}" class="header" th:text="${data.firstBoxUnit}">Capacity</div>			
+					<div>
+						<span th:id="'wg_ssb_val1_'+${dataStat.index}" th:text="${#numbers.formatInteger(data.value1,1,'COMMA')}">3,000</span>
+						<th:block th:if="${data.value2 &gt; -1}">
+							<i>/</i> 
+							<span th:id="'wg_ssb_val2_'+${dataStat.index}" th:text="${#numbers.formatInteger(data.value2,1,'COMMA')}">2,600</span>
+						</th:block>
+					</div>
+				</div>
+			</div>
+			<div class="footer"></div>
+		</div>
+		<script th:inline="javascript">
+			//<![CDATA[
+			function commaSeparateNumber(val){
+				while (/(\d+)(\d{3})/.test(val.toString())){
+					val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+				}
+				return val;
+			}
+			
+			$(function() {
+				var widget = /*[[${widget}]]*/{id:1234};
+				var intervalTime = widget.intervalTime;
+				if(null!=intervalTime&&intervalTime>0){
+					var interval = setInterval(function(){
+						$.ajax({
+							method: 'POST',
+							url: "/Widget/grid/statbox/load-data",
+							contentType: 'application/json',
+							data: JSON.stringify(widget),
+							success: function(data) {
+								//console.log(data);
+								if(data && data.dataList && data.dataList.length){
+									for(var i =0, l = data.dataList.length; i < l; i++){
+										$('#wg_ssb_header_'+i).text(data.dataList[i].firstBoxUnit);
+										$('#wg_ssb_val1_'+i).text(commaSeparateNumber(data.dataList[i].value1));
+										$('#wg_ssb_val2_'+i).text(commaSeparateNumber(data.dataList[i].value2));
+									}
+								}	
+							},
+							error: function(e) {
+								log.error('Error');
+							}
+						});
+					}, intervalTime);
+				}
+			});
+			//]]>
+		</script>
+	</th:block>
+
+
+
+	<th:block th:fragment="wg-double-stat-box(widget)">
+		<div class="doubleStatBoxGroup" th:id="'wg_dsb_'+${widget.id}">
+			<div th:each="data : ${widget.dataList}">
+				<div>
+					<span th:id="'wg_dsb_val1_'+${dataStat.index}" th:text="${#numbers.formatInteger(data.value1,1,'COMMA')}">3,000</span>
+					<i th:if="${data.value2 != null}">/</i> 
+					<span th:id="'wg_dsb_val2_'+${dataStat.index}" th:text="${#numbers.formatInteger(data.value2,1,'COMMA')}">2,600</span>
+				</div>
+				<div th:id="'wg_dsb_header1_'+${dataStat.index}" class="unit" th:text="${data.firstBoxUnit}">Point per duty</div>
+				<div>
+					<i th:id="'wg_dsb_desc1_'+${dataStat.index}" th:text="${data.firstBoxUnitDesc}">(Actual/Target)</i>
+				</div>
+				<br />
+				<div>
+					<span th:id="'wg_dsb_val3_'+${dataStat.index}" th:text="${#numbers.formatInteger(data.value3,1,'COMMA')}">3,000</span>
+					<i th:if="${data.value4 != null}">/</i> 
+					<span th:id="'wg_dsb_val4_'+${dataStat.index}" th:text="${#numbers.formatInteger(data.value4,1,'COMMA')}">2,600</span>
+				</div>
+				<div th:id="'wg_dsb_header2_'+${dataStat.index}" class="unit" th:text="${data.secondBoxUnit}">Point per duty</div>
+				<div>
+					<i th:id="'wg_dsb_desc2_'+${dataStat.index}" th:text="${data.secondBoxUnitDesc}">(Actual/Target)</i>
+				</div>
+			</div>
+			<div th:remove="all">
+				<div>
+					<span>3,000</span>/<span>2,600</span>
+				</div>
+				<div class="unit">Point per duty</div>
+				<div>
+					<i>(Actual/Target)</i>
+				</div>
+				<br />
+				<div>
+					<span>3,000</span>/<span>2,600</span>
+				</div>
+				<div class="unit">Point per duty</div>
+				<div>
+					<i>(Actual/Target)</i>
+				</div>
+			</div>
+		</div>
+		<script th:inline="javascript">
+			//<![CDATA[
+			function commaSeparateNumber(val){
+				while (/(\d+)(\d{3})/.test(val.toString())){
+					val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+				}
+				return val;
+			}
+			
+			$(function() {
+				var widget = /*[[${widget}]]*/{id:1234};
+				var intervalTime = widget.intervalTime;
+				if(null!=intervalTime&&intervalTime>0){
+					var interval = setInterval(function(){
+						$.ajax({
+							method: 'POST',
+							url: "/Widget/grid/statbox/load-data",
+							contentType: 'application/json',
+							data: JSON.stringify(widget),
+							success: function(data) {
+								//console.log(data);
+								if(data && data.dataList && data.dataList.length){
+									for(var i =0, l = data.dataList.length; i < l; i++){
+										$('#wg_dsb_header1_'+i).text(data.dataList[i].firstBoxUnit);
+										$('#wg_dsb_desc1_'+i).text(data.dataList[i].firstBoxUnitDesc);
+										$('#wg_dsb_val1_'+i).text(commaSeparateNumber(data.dataList[i].value1));
+										$('#wg_dsb_val2_'+i).text(commaSeparateNumber(data.dataList[i].value2));
+										$('#wg_dsb_header2_'+i).text(data.dataList[i].secondBoxUnit);
+										$('#wg_dsb_desc2_'+i).text(data.dataList[i].secondBoxUnitDesc);
+										$('#wg_dsb_val3_'+i).text(commaSeparateNumber(data.dataList[i].value3));
+										$('#wg_dsb_val4_'+i).text(commaSeparateNumber(data.dataList[i].value4));
+									}
+								}	
+							},
+							error: function(e) {
+								log.error('Error');
+							}
+						});
+					}, intervalTime);
+				}
+			});
+			//]]>
+		</script>
+	</th:block>
+	
+	<th:block class="singleStatBoxGroup2" th:fragment="wg-single-stat-box-custom(widget)">
+		<div class="singleStatBoxGroup2" th:id="'wg_ssb_custom_'+${widget.id}">	
+			<div class="header" th:if="${widget.title} != null" th:text="${widget.title}" >Title</div>
+			<div class="body">
+				<div th:each="data : ${widget.dataList}">						
+					<div th:id="'wg_ssb_header_custom_'+${dataStat.index}" class="header" th:text="${data.firstBoxUnit}" th:style="${#numbers.formatDecimal(data.value1,1,2)} >99.40?'color:green':'color:RED' ">Capacity</div>			
+					<div>
+						<span th:id="'wg_ssb_val1_custom_'+${dataStat.index}" th:text="${#numbers.formatDecimal(data.value1,1,2)}+ ' %'" th:style="${#numbers.formatDecimal(data.value1,1,2)} >99.40?'color:green':'color:RED' " >3,000</span>
+					</div>
+				</div>
+			</div>
+			<div class="footer"></div>
+		</div>
+		<script th:inline="javascript">
+			//<![CDATA[
+			function commaSeparateNumber(val){
+				while (/(\d+)(\d{3})/.test(val.toString())){
+					val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+				}
+				return val;
+			}
+			
+			$(function() {
+				var widget = /*[[${widget}]]*/{id:1234};
+				var intervalTime = widget.intervalTime;
+				if(null!=intervalTime&&intervalTime>0){
+					var interval = setInterval(function(){
+						$.ajax({
+							method: 'POST',
+							url: "/Widget/grid/statbox/load-data",
+							contentType: 'application/json',
+							data: JSON.stringify(widget),
+							success: function(data) {
+								//console.log(data);
+								if(data && data.dataList && data.dataList.length){
+									for(var i =0, l = data.dataList.length; i < l; i++){
+										$('#wg_ssb_header_custom_'+i).text(data.dataList[i].firstBoxUnit);
+										$('#wg_ssb_val1_custom_'+i).text(data.dataList[i].value1+' %');
+										if(data.dataList[i].value1 > 99.40){
+											$('#wg_ssb_header_custom_'+i).css({'color':'green'});
+											$('#wg_ssb_val1_custom_'+i).css({'color':'green'});
+										}
+										else{
+											$('#wg_ssb_header_custom_'+i).css({'color':'red'});
+											$('#wg_ssb_val1_custom_'+i).css({'color':'red'});
+										}
+										
+									}
+								}	
+							},
+							error: function(e) {
+								log.error('Error');
+							}
+						});
+					}, intervalTime);
+				}
+			});
+			//]]>
+		</script>
+	</th:block>
+
+
+
+</body>
+</html>

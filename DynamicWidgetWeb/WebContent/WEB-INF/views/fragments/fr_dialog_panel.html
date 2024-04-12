@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Bootstrap Dialog Panel Fragment</title>
+<meta name="description" content="Bootstrap Metro Dashboard" />
+<meta name="author" content="Topkung" />
+<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+<!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- end: Mobile Specific -->
+<th:block th:replace="fragments/inc_header :: grid-resources" />
+
+</head>
+<body class="kstyle">
+	<!-- Modal Adding item -->
+	<th:block th:fragment="grid-widget-editor">
+
+		<div class="hidden modal fade" id="addGridItem" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Add Grid item</h4>
+					</div>
+					<div class="GridItem modal-body">
+						<form name="formaddgriditem" id="formaddgriditem" method="post" action="">
+							<label>Configuration for Grid item.</label>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">Title</div>
+								</div>
+								<input name="title" type="text" class="form-control" />
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">Icon</div>
+								</div>
+								<input name="header_icon" type="text" class="form-control" />
+							</div>
+							<div class="well">
+								<button type="button" class="btn btn-outline btn-primary btn-md btn-block editwidget">Open Widgets Editor</button>
+							</div>
+							<label>Sizing</label>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">Width</div>
+								</div>
+								<input name="width" type="text" class="form-control" value="2" />
+								<div class="input-group-addon" style="border-left: none;">
+									<div style="width: 90px;">Height</div>
+								</div>
+								<input name="height" type="text" class="form-control" value="2" style="border-left: none;" />
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">
+										<b>Max</b> Width
+									</div>
+								</div>
+								<input name="max_width" type="text" class="form-control" />
+								<div class="input-group-addon" style="border-left: none;">
+									<div style="width: 90px;">
+										<b>Max</b> Height
+									</div>
+								</div>
+								<input name="max_height" type="text" class="form-control" style="border-left: none;" />
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">
+										<b>Min</b> Width
+									</div>
+								</div>
+								<input name="min_width" type="text" class="form-control" value="2" />
+								<div class="input-group-addon" style="border-left: none;">
+									<div style="width: 90px;">
+										<b>Min</b> Height
+									</div>
+								</div>
+								<input name="min_height" type="text" class="form-control" value="2" style="border-left: none;" />
+							</div>
+
+							<label>Options</label>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">Widget Align</div>
+								</div>
+								<select name="widget_alignment" class="form-control">
+									<option value="V" selected="selected">Vertical</option>
+									<option value="H">Horizontal</option>
+								</select>
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">Movable</div>
+								</div>
+								<span class="form-control"><input type="checkbox" name="no_move" value="0" style="margin-top: 4px;" checked="checked" /></span>
+								<div class="input-group-addon" style="border-left: none;">
+									<div style="width: 90px;">Resizable</div>
+								</div>
+								<span class="form-control" style="border-left: none;"><input type="checkbox" name="no_resize" value="0" style="margin-top: 4px;" checked="checked" /></span>
+							</div>
+						</form>
+					</div>
+
+					<!-- for Widget Editor -->
+					<div th:fragment="widget-list" class="widgeteditor modal-body">
+
+						<label>Manage widgets for grid item.</label>
+						<div class="well well-sm">
+							<button type="button" class="btn btn-default addwidget">Add widget</button>
+						</div>
+						<div class="">
+							<table class="widget-list table table-hover">
+								<thead>
+									<tr>
+										<td>Seq</td>
+										<td>Title</td>
+										<td>Type</td>
+										<td>Action</td>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<!-- for Widget Editor / Add widget -->
+					<div th:fragment="widget-editor" class="widgetitemedit modal-body">
+						<form name="formaddwidgetitem" id="formaddwidgetitem" method="post" action="">
+							<label>Widget properties</label> <input type="hidden" name="id" value="0" /> <input type="hidden" name="seq" value="new" />
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">Title</div>
+								</div>
+								<input name="title" type="text" class="form-control" />
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">Widget Type</div>
+								</div>
+								<select name="type_id" class="form-control" th:if="${widget_props != null}">
+									<option th:each="entry : ${widget_props}" th:value="${entry.value.id}" th:text="${entry.value.name}">Solid Gauge</option>
+								</select>
+								<select name="type_id" class="form-control" th:if="${widget_props == null}">
+									<option value="" selected="selected">No option available</option>
+								</select>
+								<select th:remove="all" name="type_id" class="form-control">
+									<option value="13">Performance</option>
+									<option value="3">Total  Application </option>
+									<option value="1">Total Capacity Utilization </option>
+									<option value="6">Quality</option>
+									<option value="11">Urgent Application</option>
+									<option value="15">OT Call</option>
+									<option value="12">%Achievement OLA</option>
+									<option value="2">%SLA &amp; OLA Achievement</option>
+									<option value="4">Work in process per station</option>
+									<option value="7">SLA Achievement Monthly</option>
+									<option value="16">%Achievement OLA by leg</option>
+									<option value="14">WIP-Product application by station</option>
+								</select>
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">Y-Axis Title</div>
+								</div>
+								<input name="yaxis_title" type="text" class="form-control" />
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">Y-Axis Min</div>
+								</div>
+								<input name="yaxis_min" type="text" class="form-control" />
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">Y-Axis Max</div>
+								</div>
+								<input name="yaxis_max" type="text" class="form-control" />
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">Data Suffix</div>
+								</div>
+								<input name="data_suffix" type="text" class="form-control" />
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">Tooltip Suffix</div>
+								</div>
+								<input name="tooltip_suffix" type="text" class="form-control" />
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">Width</div>
+								</div>
+								<input name="width" type="text" class="form-control" />
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">Height</div>
+								</div>
+								<input name="height" type="text" class="form-control" />
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon">
+									<div style="width: 90px;">CSS Class</div>
+								</div>
+								<input name="css_class" type="text" class="form-control" />
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							<i class="fa fa-times fa-fw"></i> Cancel
+						</button>
+						<button type="submit" class="btn btn-primary">
+							<i class="fa fa-save fa-fw"></i> Save
+						</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- END Modal Adding item -->
+	</th:block>
+</body>
+
+</html>

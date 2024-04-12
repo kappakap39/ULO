@@ -1,0 +1,2 @@
+isDocumentComplete1,true,01,1000.00,incomeSource1,5,2,IsPrivilageScreenRequired1,CCAManualVerification1,ThaiBevMembershipNo1,CardOpenDateFromCardlink1
+isDocumentComplete2,false,02,1500.00,incomeSource2,10,7,IsPrivilageScreenRequired2,CCAManualVerification2,ThaiBevMembershipNo2,CardOpenDateFromCardlink2

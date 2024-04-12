@@ -1,0 +1,2 @@
+SegmentTag1,IdType1,IdNumber1,IdIssueCountry1
+SegmentTag2,IdType2,IdNumber2,IdIssueCountry2

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security:Security xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:security="http://www.ibm.com/websphere/appserver/schemas/5.0/security.xmi" xmi:id="Security_1432632247218">
+  <authDataEntries xmi:id="JAASAuthData_1434681440970" alias="orig_widget" userId="orig_widget" password="{xor}Lz4sLCgwLTs="/>
+  <authDataEntries xmi:id="JAASAuthData_1434681440971" alias="orig_app" userId="orig_app" password="{xor}Lz4sLCgwLTs="/>
+</security:Security>

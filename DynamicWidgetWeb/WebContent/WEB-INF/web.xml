@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="3.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<display-name>DynamicWidget</display-name>
+	<servlet>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>-1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<!-- <servlet> -->
+	<!-- <servlet-name>rest</servlet-name> -->
+	<!-- <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> -->
+	<!-- <load-on-startup>1</load-on-startup> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>rest</servlet-name> -->
+	<!-- <url-pattern>/rest/controller/*</url-pattern> -->
+	<!-- </servlet-mapping> -->
+	<!-- For root context -->
+	<!-- <listener> -->
+	<!-- <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> -->
+	<!-- </listener> -->
+	<!-- <context-param> -->
+	<!-- <param-name>contextConfigLocation</param-name> -->
+	<!-- <param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value> -->
+	<!-- </context-param> -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>OmitAuth</web-resource-name>
+			<url-pattern>/login</url-pattern>
+			<url-pattern>/resources/*</url-pattern>
+			<url-pattern>/rest/controller/service/*</url-pattern>
+			<url-pattern>/error/*</url-pattern>
+		</web-resource-collection>
+		<!-- OMIT auth-constraint -->
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>UsersCollection</web-resource-name>
+			<url-pattern>/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>PUT</http-method>
+			<http-method>HEAD</http-method>
+			<http-method>TRACE</http-method>
+			<http-method>POST</http-method>
+			<http-method>DELETE</http-method>
+			<http-method>OPTIONS</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>AllUserLogin</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/login</form-login-page>
+			<form-error-page>/login?msg=ERROR</form-error-page>
+		</form-login-config>
+	</login-config>
+	<security-role>
+		<description></description>
+		<role-name>AllUserLogin</role-name>
+	</security-role>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/404</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/500</location>
+	</error-page>
+<!-- 	<error-page> -->
+<!-- 		<location>/error</location> -->
+<!-- 	</error-page> -->
+<!-- 	<resource-ref> -->
+<!-- 		<description /> -->
+<!-- 		<res-ref-name>jdbc/widget</res-ref-name> -->
+<!-- 		<res-type>javax.sql.DataSource</res-type> -->
+<!-- 		<res-auth>Container</res-auth> -->
+<!-- 		<res-sharing-scope>Shareable</res-sharing-scope> -->
+<!-- 	</resource-ref> -->
+<!-- 	<resource-ref> -->
+<!-- 		<description /> -->
+<!-- 		<res-ref-name>jdbc/orig</res-ref-name> -->
+<!-- 		<res-type>javax.sql.DataSource</res-type> -->
+<!-- 		<res-auth>Container</res-auth> -->
+<!-- 		<res-sharing-scope>Shareable</res-sharing-scope> -->
+<!-- 	</resource-ref> -->
+</web-app>

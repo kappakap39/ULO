@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Circle Widget Fragments</title>
+</head>
+<body>
+	<th:block th:fragment="wg-circle(widget)">
+		<div class="circleStats">
+			<div class="circleStatsItemBox green">
+				<div class="header" th:text="${widget.title}">% Near miss</div>
+				<span class="percent">%</span>
+				<div class="circleStat">
+					<th:block th:if="${!#lists.isEmpty(widget.series)}">
+						<input type="text" value="58" th:value="${widget.series[0].data[0]}" class="whiteCircle" />
+					</th:block>
+				</div>
+				<div class="footer"></div>
+			</div>
+		</div>
+		<script th:inline="javascript">
+			//<![CDATA[
+			$(function() {
+				var widget = /*[[${widget}]]*/{id:1234};
+				var intervalTime = widget.intervalTime;
+				if(null!=intervalTime&&intervalTime>0){
+					var interval = setInterval(function(){
+						$.ajax({
+							method: 'POST',
+							url: "/Widget/grid/chart/load-data",
+							contentType: 'application/json',
+							data: JSON.stringify(widget),
+							success: function(data) {
+								//console.log(data);	
+								$('.whiteCircle').val(data.series[0].data).trigger('change');
+							},
+							error: function(e) {
+								log.error('Error');
+							}
+						});
+					}, intervalTime);
+				}
+			}
+			//]]>
+		</script>
+	</th:block>
+
+	<th:block th:fragment="wg-multi-circle(widget)">
+		<div class="multi-circle" >
+			<div class="circleStats" th:each="cate : ${widget.categories}">
+				<div class="circleStatsItemBox green">
+					<div class="header" th:text="${cate}">% Near miss</div>
+					<span class="percent">%</span>
+					<div class="circleStat">
+						<th:block th:if="${!#lists.isEmpty(widget.series)}">
+							<input type="text" th:id="'wg_mc_'+${cateStat.index}" value="58" th:value="${widget.series[0].data[__${cateStat.index}__]}" class="whiteCircle" />
+						</th:block>
+					</div>
+					<div class="footer"></div>
+				</div>
+			</div>
+		</div>
+		<script th:inline="javascript">
+			//<![CDATA[
+			$(function() {
+				var circleChartId = /*[['wg_lc_'+${widget.id}]]*/'circlexx';
+				var widget = /*[[${widget}]]*/{id:1234};
+				var series = /*[[${widget.series}]]*/;
+				var intervalTime = widget.intervalTime;
+				if(null!=intervalTime&&intervalTime>0){
+					var interval = setInterval(function(){
+						$.ajax({
+							method: 'POST',
+							url: "/Widget/grid/chart/load-data",
+							contentType: 'application/json',
+							data: JSON.stringify(widget),
+							success: function(data) {
+								//console.log(data);
+								if(data && data.series && data.series.length){
+									for(var i =0, l = data.series[0].data.length; i < l; i++){
+										$('#wg_mc_'+i).val(data.series[0].data[i]).trigger('change');
+									}
+								}			
+							},
+							error: function(e) {
+								log.error('Error');
+							}
+						});
+					}, intervalTime);
+				}
+			});
+			//]]>
+		</script>
+	</th:block>
+
+	<div class="row-fluid " th:fragment="wg-circle-admin">
+		<div class="hideInIE8 circleStats">
+			<div class="span10" onTablet="span4" onDesktop="span4">
+				<div class="circleStatsItemBox green">
+					<div class="header">% Near miss</div>
+					<span class="percent">percent</span>
+					<div class="circleStat">
+						<input type="text" value="58" class="whiteCircle" />
+					</div>
+					<div class="footer">
+						<span class="count"> <span class="number">20000</span> <span class="unit">Times</span>
+						</span> <span class="sep"> / </span> <span class="value"> <span class="number">50000</span> <span class="unit">Times</span>
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="span2" onTablet="span4" onDesktop="span2">
+				<div class="circleStatsItemBox green">
+					<div class="header">% miss</div>
+					<span class="percent">percent</span>
+					<div class="circleStat">
+						<input type="text" value="78" class="whiteCircle" />
+					</div>
+					<div class="footer">
+						<span class="count"> <span class="number">20000</span> <span class="unit">Times</span>
+						</span> <span class="sep"> / </span> <span class="value"> <span class="number">50000</span> <span class="unit">Times</span>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			//<![CDATA[
+			
+			//]]>
+		</script>
+	</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ibm.rational.test.lt.models.wscore.configuration:WSDLInformationContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.ibm.rational.test.lt.models.wscore.configuration="http:///com/ibm/rational/test/lt/models/wscore/configuration.ecore">
+  <securityOperationConfiguration>
+    <SecurityPortConfiguration aliasName="DEFAULTCONFIGURATION"/>
+  </securityOperationConfiguration>
+  <keyStore/>
+  <wsdl name="CBS1215I01Definitions" key="CBS1215I01Definitions">
+    <SimpleProperty value="http://eai.kasikornbank.com/EAIWS/CBS1215I01/v2" name="WSDLPROPERTY_TARGETNAMESPACE"/>
+    <SimpleProperty value="853d07b0414a96883632bade86ebdb7c677fb2b2853d07b0414a96883632bade86ebdb7c677fb2b280028e01f79c5377d5b91853173a2a7b910e90a8" name="WSDLPROPERTY_HASH"/>
+    <SimpleProperty value="1430189658524" name="WSDLPROPERTY_SYNCHROSTAMP"/>
+    <ResourceProxy portablePath="/ServiceCenterProxy/appClientModule/wsdl/CBS1215I01.wsdl" timeStamp="1430189658524"/>
+    <WsdlInformationContainer versionContainer="8.5.1"/>
+    <WsdlBinding name="http://eai.kasikornbank.com/EAIWS/CBS1215I01/v2:CBS1215I01SoapBinding">
+      <SimpleProperty value="SoapDocumentBinding" name="WSDLBINDINGPROPERTY_TYPE"/>
+      <SimpleProperty value="http://schemas.xmlsoap.org/soap/http" name="WSDLBINDINGPROPERTY_TRANSPORT_TYPE"/>
+      <SimpleProperty value="false" name="Soap12Binding"/>
+      <SimpleProperty value="{http://eai.kasikornbank.com/EAIWS/CBS1215I01/v2}CBS1215I01Soap" name="WSDLBINDING_SERVICE_NAME"/>
+      <WsdlOperation name="doService" key="doService">
+        <WsdlPort name="CBS1215I01SoapPort" uniqueID="1558698182SEPARATORcf4eea92-3e62-400c-b837-8a832a2c895f">
+          <SimpleProperty value="http://localhost:7001/EAIWS/CBS1215I01.jws" name="WSDLPORTPROPERTY_HTTP_URL"/>
+          <in>
+            <SimpleProperty value="DEFAULTCONFIGURATION" name="operation_security_information"/>
+          </in>
+          <out>
+            <SimpleProperty value="DEFAULTCONFIGURATION" name="operation_security_information"/>
+          </out>
+        </WsdlPort>
+        <in>
+          <SimpleProperty value="literal" name="WSDLOPERATIONPROPERTY_ENCODING_STYLE"/>
+          <WsdlPart element="true" nameSpaceURI="http://eai.kasikornbank.com/EAIWS/CBS1215I01/v2" localPart="doService" partName="parameters"/>
+        </in>
+        <SimpleProperty value="SoapDocumentBinding" name="WSDLOPERATIONPROPERTY_STYLE_TYPE"/>
+        <SimpleProperty value="true" name="WSDLOPERATIONPROPERTY_SOAP_ACTION_REQUIRED"/>
+        <SimpleProperty value="" name="WSDLOPERATIONPROPERTY_SOAP_ACTION_URI"/>
+        <out>
+          <SimpleProperty value="literal" name="WSDLOPERATIONPROPERTY_ENCODING_STYLE"/>
+          <SimpleProperty name="MESSAGENAME"/>
+          <WsdlPart element="true" nameSpaceURI="http://eai.kasikornbank.com/EAIWS/CBS1215I01/v2" localPart="doServiceResponse" partName="parameters"/>
+        </out>
+      </WsdlOperation>
+    </WsdlBinding>
+  </wsdl>
+</com.ibm.rational.test.lt.models.wscore.configuration:WSDLInformationContainer>

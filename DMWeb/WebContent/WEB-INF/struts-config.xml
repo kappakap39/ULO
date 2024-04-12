@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.5 NT (http://www.xmlspy.com) by  () -->
+<!--DOCTYPE struts-config SYSTEM "struts-config_1_1.dtd"-->
+<struts-config> 
+	<form-beans>
+		<form-bean name="loginForm" type="com.oreilly.struts.banking.form.LoginForm" />
+	</form-beans>
+	<global-exceptions>
+		<exception key="global.error.invalidlogin" path="/login.jsp" scope="request" type="com.oreilly.struts.banking.service.InvalidLoginException" />
+	</global-exceptions>
+	<global-forwards>
+		<forward name="SystemFailure" path="/systemerror.jsp" />
+		<forward name="SessionTimeOut" path="/sessiontimeout.jsp" />
+	</global-forwards>
+
+	<action-mappings>
+		<action path="NaosUserLogon" type="com.eaf.orig.logon.view.webaction.NaosUserWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="WELCOME_SCREEN"></action>
+		<action path="Menu_Show" type="com.eaf.orig.menu.view.webaction.Menu_ShowWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="INDEX_SCREEN"></action>		
+		<action path="ActionControl" type="com.eaf.orig.ulo.app.view.webaction.ActionController" scope="request" name="LoadCompletedForm" validate="true"></action>
+		<action path="SearchControl" type="com.eaf.orig.ulo.app.view.webaction.SearchControlWebAction" scope="request" name="LoadCompletedForm" validate="true"></action>
+		
+		<!-- ACTION SAVE DM SCREEN -->
+		<action path="SaveDmStore" type="com.eaf.orig.ulo.app.view.webaction.SaveDMStoreWebAction" scope="request" name="SaveDmStore" validate="true" input="" zForwardSuccess="SEARCH_WAREHOUSE_SCREEN"></action>
+		<action path="SaveDmBorrow" type="com.eaf.orig.ulo.app.view.webaction.SaveDMBorrowWebAction" scope="request" name="SaveDmBorrow" validate="true" input="" zForwardSuccess="SEARCH_DOC_MANAGEMENT"></action>
+		
+		<!-- ACTION SEARCH DM SCREEN -->
+		<action path="SearchDmWareHouse" type="com.eaf.orig.ulo.app.view.webaction.SearchDMWareHouseWebAction" scope="request" name="SearchDmWareHouse" validate="true" input="" zForwardSuccess="SEARCH_WAREHOUSE_SCREEN"></action>
+		<action path="SearchDmDocmanagement" type="com.eaf.orig.ulo.app.view.webaction.SearchDMDocManagementWebAction" scope="request" name="SearchDmDocmanagement" validate="true" input="" zForwardSuccess="SEARCH_DOC_MANAGEMENT"></action>
+		
+		<!-- ACTION LOAD DM SCREEN -->
+		<action path="loadDmWareHouse" type="com.eaf.orig.ulo.app.view.webaction.LoadDMWareHouseWebAction" scope="request" name="loadDmWareHouse" validate="true" input=""    zForwardSuccess="DM_STORE_DOCUMENT_FORM"></action>
+		<action path="loadDmDocManagement" type="com.eaf.orig.ulo.app.view.webaction.LoadDMDocManagementWebAction" scope="request" name="loadDmDocManagement" validate="true" input=""    zForwardSuccess="DM_BORROW_DOCUMENT_FORM"></action>	
+	</action-mappings>
+
+	<event-mappings>
+		<event name="DMEvent" type="com.eaf.orig.ulo.control.action.DMAction" />					
+	</event-mappings>
+
+	<screen-definitions>
+		<screen zname="LOGOUT_SCREEN" HtmlTitle="TEMPLATE_SCREEN" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="logout.jsp" BottomNav="blank.jsp"></screen>				
+		<screen zname="INDEX_SCREEN" HtmlTitle="TEMPLATE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="login.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="BLANK_SCREEN" HtmlTitle="TEMPLATE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="blank.jsp" BottomNav="footer.jsp"></screen>	
+		<screen zname="WELCOME_SCREEN" HtmlTitle="" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="EAF_Welcome.jsp" BottomNav="footer.jsp"></screen>
+		
+		<!--SEARCH SCREEN-->
+		<screen zname="SEARCH_WAREHOUSE_SCREEN" HtmlTitle="TEMPLATE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/search/searchWareHouse.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="SEARCH_DOC_MANAGEMENT" HtmlTitle="TEMPLATE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/search/searchDocManagement.jsp" BottomNav="footer.jsp"></screen>
+		
+		<!--DM SCREEN-->
+		<screen zname="DM_STORE_DOCUMENT_FORM" HtmlTitle="TEMPLATE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/form/DMStoreForm.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="DM_BORROW_DOCUMENT_FORM" HtmlTitle="TEMPLATE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/form/DMBorrowForm.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="DM_IMPORT_WITHDRAW_AUTHORITY" HtmlTitle="Import Withdraw Authority" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/screen/DMImportWithdrawAuthority.jsp" BottomNav="footer.jsp"></screen>
+	
+	</screen-definitions>
+	
+	<initial-aval>
+		<init-jsp id="1" itemPerPage="20" />
+		<init-jsp id="1" pagePerPage="5" />
+	</initial-aval>
+	
+	<controller contentType="text/html;charset=UTF-8" debug="3" locale="true" nocache="true" />
+	<message-resources parameter="BankingMessageResources" null="false" />
+</struts-config> 
+
+

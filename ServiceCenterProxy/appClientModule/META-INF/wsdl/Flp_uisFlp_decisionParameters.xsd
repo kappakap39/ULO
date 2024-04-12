@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.ibm.com/rules/decisionservice/Flp_uis/Flp_decision/param" xmlns:param="http://www.ibm.com/rules/decisionservice/Flp_uis/Flp_decision/param" xmlns:xom1="http://www.ibm.com/rules/decisionservice/Flp_uis/Flp_decision">
+  <xsd:import namespace="http://www.ibm.com/rules/decisionservice/Flp_uis/Flp_decision" schemaLocation="Flp_uisFlp_decisionSchema1.xsd"/>
+  <xsd:element name="Request">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="1" minOccurs="0" name="DecisionID" type="xsd:string"/>
+        <xsd:element maxOccurs="1" minOccurs="0" name="applicationGroup" type="xom1:applicationGroup"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Response">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="DecisionID" type="xsd:string"/>
+        <xsd:element maxOccurs="1" minOccurs="0" name="applicationGroup" type="xom1:applicationGroup"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="applicationGroup" type="xom1:applicationGroup"></xsd:element>
+  
+    <xsd:element name="DecisionID" type="xsd:string"></xsd:element>
+</xsd:schema>

@@ -1,0 +1,6 @@
+.pace {
+	overflow: hidden;
+}
+.pace-running {
+	overflow-y: hidden;
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security:Security xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:security="http://www.ibm.com/websphere/appserver/schemas/5.0/security.xmi" xmi:id="Security_1423476193667">
+  <authDataEntries xmi:id="JAASAuthData_1423476261452" alias="ORIG Alias" userId="orig_app" password="{xor}Lz4sLCgwLTs="/>
+  <authDataEntries xmi:id="JAASAuthData_1423476282631" alias="DM Alias" userId="dm_app" password="{xor}Lz4sLCgwLTs="/>
+  <authDataEntries xmi:id="JAASAuthData_1434451960681" alias="DIH Alias" userId="dih" password="{xor}Lz4sLCgwLTs="/>
+</security:Security>

@@ -1,0 +1,2 @@
+1864,PR,CC-NEW,10,20,policySegmentID1,5.00,1.00,11.00,111.00,20,40.55,flpCardLevel1,flpCardCode1,flpCardType1,plasticCardCode1
+18642,AP,CC-NEW2,15,30,policySegmentID2,10.00,2.00,22.00,222.00,30,50.55,flpCardLevel2,flpCardCode2,flpCardType2,plasticCardCode2

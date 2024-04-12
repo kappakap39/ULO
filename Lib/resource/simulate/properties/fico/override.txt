@@ -1,0 +1,2 @@
+overrideCode1,minimumCreditAuthority1,overrideResult1,minApprovalAuthority1,specialSegmentCriteria1
+overrideCode2,minimumCreditAuthority2,overrideResult2,minApprovalAuthority2,specialSegmentCriteria2

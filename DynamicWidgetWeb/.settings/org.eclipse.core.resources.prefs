@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/jsp/welcome.jsp=ISO-8859-1
+encoding//WebContent/WEB-INF/views/dashboard.html=UTF-8
+encoding//WebContent/WEB-INF/views/email.html=UTF-8
+encoding//WebContent/WEB-INF/views/fragments/fr_navigation.html=UTF-8
+encoding//WebContent/WEB-INF/views/fragments/inc_header.html=UTF-8
+encoding//WebContent/WEB-INF/views/fragments/wg_compare_group.html=UTF-8
+encoding//WebContent/WEB-INF/views/fragments/wg_team_perf_table.html=UTF-8
+encoding//WebContent/index.html=ISO-8859-1
+encoding//WebContent/resources/highcharts/highcharts.js=UTF-8
+encoding//resources/database.properties=UTF-8

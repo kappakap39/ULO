@@ -1,0 +1,21 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body,html{
+	background-color:#E6E6E6;
+	color: #424242;
+	font-family: "Verdana";
+	font-size: 13px;
+}
+a {color: #424242;text-decoration: none;}
+a:visited {color:#424242;text-decoration: none;}
+a:hover {color: #564b47;text-decoration: none;}
+a:active { color:#000000;text-decoration: none;}
+.div-menu-list{
+	width: 200px;
+	text-align: right;
+}
+.div-menu{
+	border-bottom: 1px solid #FFF;
+}

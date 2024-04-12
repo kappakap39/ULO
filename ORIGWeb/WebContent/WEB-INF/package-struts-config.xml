@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.5 NT (http://www.xmlspy.com) by  () -->
+<!--DOCTYPE struts-config SYSTEM "struts-config_1_1.dtd"-->
+<struts-config> 
+	<form-beans>
+		<form-bean name="loginForm" type="com.oreilly.struts.banking.form.LoginForm" />
+		<form-bean name="accountInformationForm" dynamic="true" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="accounts" type="java.util.ArrayList" />
+		</form-bean> 
+		<form-bean name="accountDetailForm" dynamic="true" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="view" type="com.oreilly.struts.banking.view.AccountDetailView" />
+		</form-bean>
+	</form-beans>
+	<global-exceptions>
+		<exception key="global.error.invalidlogin" path="/login.jsp" scope="request" type="com.oreilly.struts.banking.service.InvalidLoginException" />
+	</global-exceptions>
+	<global-forwards>
+		<forward name="SystemFailure" path="/systemerror.jsp" />
+		<forward name="SessionTimeOut" path="/sessiontimeout.jsp" />
+	</global-forwards>
+
+	<action-mappings>
+		<action path="VALUE_LIST_UTIL_WEB_ACTION" type="com.avalant.utility.valuelist.webaction.ValueListUtilWebAction" scope="request" name="SearchCA" validate="true" input="" ></action>  
+  	    <action path="GeneralEnquiryForm" type="com.eaf.orig.shared.view.webaction.GeneralEnquiryWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="GENERAL_ENQUIRY"></action>	
+  	   	<action path="RenderPageWebAction" type="com.eaf.orig.shared.view.form.util.RenderPageWebAction" scope="request" name="RenderPage" validate="true" input=""></action>	
+  	   	   
+	<!-- K-BANK -->
+	<!-- logon and logout -->
+		<action path="userLogOn" type="com.eaf.orig.logon.view.webaction.UserLogOnWebAction" scope="request" name="LoadCompletedForm" validate="true" input=""> </action>
+		<action path="NaosUserLogon" type="com.eaf.orig.logon.view.webaction.NaosUserWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="Q_SCREEN"></action>
+		<action path="NaosUserLogout" type="com.eaf.orig.logon.view.webaction.NaosUserWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="Q_SCREEN"></action> 
+	<!-- logon and logout -->  
+	
+	<!-- Form Control --> 
+		<action path="loadMenuAppForm" type="com.eaf.orig.formcontrol.view.webaction.LoadMenuFormWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MAIN_APPFORM"></action>						
+	<!-- Form Control -->
+	
+	<!-- Valuelist --> 
+		<action path="ValueListWebAction" type="com.eaf.orig.shared.valuelist.view.webaction.ValueListWebAction" scope="request" name="LoadCompletedForm" validate="true" input=""></action>
+		<action path="ValueListCacheWebAction" type="com.eaf.orig.shared.valuelist.view.webaction.ValueListCacheWebAction" scope="request" name="LoadCompletedForm" validate="true" input=""></action>
+		<action path="SearchMWebAction" type="com.eaf.orig.shared.valuelist.view.webaction.SearchMWebAction" scope="request" name="LoadCompletedForm" validate="true" input=""></action>
+		
+	<!-- Valuelist --> 
+	
+	<!-- Popup ValueList -->
+	<action path="ValueListPopupWebAction" type="com.eaf.orig.shared.valuelist.view.webaction.ValueListPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" ></action>
+	<action path="ValueListDialogPopup" type="com.eaf.orig.shared.valuelist.view.webaction.ValueListDialogPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input=""></action>
+	<action path="ValueListDialog" type="com.eaf.orig.shared.valuelist.view.webaction.ValueListDialogWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" ></action>
+	<!-- Popup ValueList -->
+	
+	<!-- Menu --> 
+		<action path="Menu_Show" type="com.eaf.orig.menu.view.webaction.Menu_ShowWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="INDEX_SCREEN"></action>
+		<action path="Menu_Link" type="com.eaf.orig.menu.view.webaction.LinkToMenuWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="INDEX_SCREEN"></action>
+	<!-- Menu --> 	
+		
+		<action path="LoadAppForm" type="com.eaf.orig.de.view.webaction.LoadMainApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MAIN_APPFORM"></action>
+		
+		
+		
+		<action path="LoadAppImageForm" type="com.eaf.orig.de.view.webaction.LoadImageApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MAIN_APPFORM"></action>		
+		<action path="FristApp" type="com.eaf.orig.de.view.webaction.FristAppWebAction" scope="request" name="DE_SCREEN" validate="true" input="" zForwardSuccess="SEARCH_SCREEN" zForwardFailure="SEARCH_SCREEN"></action>
+		<action path="searchImg" type="com.eaf.orig.de.view.webaction.SearchImageWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_IMG_SCREEN" zForwardFailure="SEARCH_IMG_SCREEN"></action>
+		<action path="SearchApplication" type="com.eaf.orig.de.view.webaction.SearchApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_SCREEN" zForwardFailure="SEARCH_SCREEN"></action>
+		<action path="SearchCMR" type="com.eaf.orig.de.view.webaction.SearchCMRWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CMR_SEARCH_SCREEN" zForwardFailure="CMR_SEARCH_SCREEN"></action>
+		<action path="SearchUW" type="com.eaf.orig.de.view.webaction.SearchUWWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="UW_SEARCH_SCREEN" zForwardFailure="UW_SEARCH_SCREEN"></action>
+		<action path="SearchPD" type="com.eaf.orig.de.view.webaction.SearchPDWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PD_SEARCH_SCREEN" zForwardFailure="PD_SEARCH_SCREEN"></action>
+		<action path="SearchXCMR" type="com.eaf.orig.de.view.webaction.SearchXCMRWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XCMR_SEARCH_SCREEN" zForwardFailure="XCMR_SEARCH_SCREEN"></action>
+		<action path="CancelApp" type="com.eaf.orig.shared.view.webaction.CancelApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MAIN_APPFORM"></action>
+		<action path="ManualCancelApp" type="com.eaf.orig.shared.view.webaction.ManualCancelApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="UW_SUMMARY_SCREEN"></action>
+		<action path="SearchXUW" type="com.eaf.orig.de.view.webaction.SearchXUWWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XUW_SEARCH_SCREEN" zForwardFailure="XUW_SEARCH_SCREEN"></action>
+		
+		<action path="CMRSaveApplication" type="com.eaf.orig.cmr.view.webaction.CMRSaveApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CMR_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>
+		<action path="CMRSubmitApplication" type="com.eaf.orig.cmr.view.webaction.CMRSubmitApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CMR_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>
+		<action path="UWSaveApplication" type="com.eaf.orig.uw.view.webaction.UWSaveApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="UW_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>
+		<action path="UWSubmitApplication" type="com.eaf.orig.uw.view.webaction.UWSubmitApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="UW_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>				
+		<action path="UWSetPriority" type="com.eaf.orig.uw.view.webaction.UWSetPriorityWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="UW_SEARCH_SCREEN" zForwardFailure="UW_SEARCH_SCREEN"></action>
+		<action path="UWReassignApp" type="com.eaf.orig.uw.view.webaction.UWReassignAppWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="UW_SEARCH_SCREEN" zForwardFailure="UW_SEARCH_SCREEN"></action>
+
+		<action path="PDSaveApplication" type="com.eaf.orig.pd.view.webaction.PDSaveApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PD_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>
+		<action path="PDSubmitApplication" type="com.eaf.orig.pd.view.webaction.PDSubmitApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PD_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>
+		<action path="PDReverseApplication" type="com.eaf.orig.pd.view.webaction.PDReverseApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PD_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>				
+		<action path="XCMRSaveApplication" type="com.eaf.orig.xcmr.view.webaction.XCMRSaveApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XCMR_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>
+		<action path="XCMRSubmitApplication" type="com.eaf.orig.xcmr.view.webaction.XCMRSubmitApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XCMR_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>
+		<action path="XUWSaveApplication" type="com.eaf.orig.xuw.view.webaction.XUWSaveApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XUW_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>
+		<action path="XUWSubmitApplication" type="com.eaf.orig.xuw.view.webaction.XUWSubmitApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XUW_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>
+		
+		<action path="LoadAddressPopup" type="com.eaf.orig.shared.view.webaction.LoadAddressPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="ADDRESS_POPUP"></action>
+		<action path="LoadFinancePopup" type="com.eaf.orig.shared.view.webaction.LoadFinancePopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="FINANCE_POPUP"></action>
+		<action path="LoadChangeNamePopup" type="com.eaf.orig.shared.view.webaction.LoadChangeNamePopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CHANGE_NAME_POPUP"></action>
+		<action path="LoadOtherNamePopup" type="com.eaf.orig.shared.view.webaction.LoadOtherNamePopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="OTHER_NAME_POPUP"></action>
+		<action path="LoadLoanPopup" type="com.eaf.orig.shared.view.webaction.LoadLoanPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="LOAN_POPUP"></action>
+		<action path="LoadPLoanLoanPopup" type="com.eaf.orig.shared.view.webaction.LoadPLoanLoanPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="LOAN_POPUP"></action>
+		<action path="LoadCarPopup" type="com.eaf.orig.shared.view.webaction.LoadCarPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CAR_POPUP"></action>
+		<action path="LoadCorperatedPopup" type="com.eaf.orig.shared.view.webaction.LoadCorperatedPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CORPERATED_POPUP"></action>
+		<action path="LoadActualPopup" type="com.eaf.orig.shared.view.webaction.LoadActualPriceWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="ACTUAL_PRICE_POPUP"></action>
+		<action path="LoadStepInstallmentPopup" type="com.eaf.orig.shared.view.webaction.LoadStepInstallmentPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="STEP_INSTALLMENT_POPUP"></action>
+		
+		
+		<action path="SaveAddress" type="com.eaf.orig.shared.view.webaction.SaveAddressWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="ADDRESS_POPUP" zForwardFailure="ADDRESS_POPUP"></action>
+		<action path="ClearDataAddressWebAction" type="com.eaf.orig.shared.view.webaction.ClearDataAddressWebAction" scope="request" name="LoadCompletedForm" validate="true" input=""></action>
+		<action path="SaveFinance" type="com.eaf.orig.shared.view.webaction.SaveFinanceWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="FINANCE_POPUP" zForwardFailure="FINANCE_POPUP"></action>
+		<action path="SaveChangeName" type="com.eaf.orig.shared.view.webaction.SaveChangeNameWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CHANGE_NAME_POPUP" zForwardFailure="CHANGE_NAME_POPUP"></action>
+		<action path="SaveOtherName" type="com.eaf.orig.shared.view.webaction.SaveOtherNameWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="OTHER_NAME_POPUP" zForwardFailure="OTHER_NAME_POPUP"></action>		
+		<action path="SaveCorperated" type="com.eaf.orig.shared.view.webaction.SaveCorperatedWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MAIN_APPFORM" zForwardFailure="CORPERATED_POPUP"></action>		
+		<action path="SaveLoan" type="com.eaf.orig.shared.view.webaction.SaveLoanWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="LOAN_POPUP" zForwardFailure="LOAN_POPUP"></action>		
+		<action path="SavePLoanLoan" type="com.eaf.orig.shared.view.webaction.SavePLoanLoanWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="LOAN_PLOAN_POPUP" zForwardFailure="LOAN_PLOAN_POPUP"></action>
+		<action path="LoadGuarantorPopup" type="com.eaf.orig.shared.view.webaction.LoadGuarantorPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="POPUP_APPFORM"></action>
+		<action path="SaveGuarantor" type="com.eaf.orig.shared.view.webaction.SaveGuarantorWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MAIN_APPFORM" zForwardFailure="POPUP_APPFORM"></action>
+		<action path="CloseGuarantor" type="com.eaf.orig.shared.view.webaction.CloseGuarantorPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_CLOSE" zForwardFailure="POPUP_APPFORM"></action>
+		<action path="SaveCarPopup" type="com.eaf.orig.shared.view.webaction.SaveSelectCarWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CAR_POPUP" zForwardFailure="CAR_POPUP"></action>
+		<action path="SaveActualPopup" type="com.eaf.orig.shared.view.webaction.SaveActualPriceWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="ACTUAL_PRICE_POPUP" zForwardFailure="ACTUAL_PRICE_POPUP"></action>
+		<action path="SaveStepInstallmentPopup" type="com.eaf.orig.shared.view.webaction.SaveStepInstallmentPopupWebaction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_CLOSE" zForwardFailure="STEP_INSTALLMENT_POPUP"></action>
+		
+		<action path="LoadCachePopup" type="com.eaf.orig.shared.popup.view.webaction.LoadCachePopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CACHE_POPUP"></action>
+		<action path="LoadClientGroup" type="com.eaf.orig.shared.popup.view.webaction.LoadClientGroupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadZipCode" type="com.eaf.orig.shared.popup.view.webaction.LoadZipCodeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadSeller" type="com.eaf.orig.shared.popup.view.webaction.LoadSellerWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadSalesman" type="com.eaf.orig.shared.popup.view.webaction.LoadSalesmanWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadCampaign" type="com.eaf.orig.shared.popup.view.webaction.LoadCampaignWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadDealer" type="com.eaf.orig.shared.popup.view.webaction.LoadDealerWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadCarModel" type="com.eaf.orig.shared.popup.view.webaction.LoadCarModelWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadBranch" type="com.eaf.orig.shared.popup.view.webaction.LoadBranchWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		
+		<action path="LoadArea" type="com.eaf.orig.shared.popup.view.webaction.LoadAreaWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadCarBrand" type="com.eaf.orig.shared.popup.view.webaction.LoadCarBrandWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadCarColor" type="com.eaf.orig.shared.popup.view.webaction.LoadCarColorWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadCategory" type="com.eaf.orig.shared.popup.view.webaction.LoadCategoryWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadCollectionCode" type="com.eaf.orig.shared.popup.view.webaction.LoadCollectionCodeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadCollectorCode" type="com.eaf.orig.shared.popup.view.webaction.LoadCollectorCodeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadCreditApproval" type="com.eaf.orig.shared.popup.view.webaction.LoadCreditApprovalWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadExternalChecker" type="com.eaf.orig.shared.popup.view.webaction.LoadExternalCheckerWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadInsuranceCompany" type="com.eaf.orig.shared.popup.view.webaction.LoadInsuranceCompanyWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadInsuranceType" type="com.eaf.orig.shared.popup.view.webaction.LoadInsuranceTypeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadInternalChecker" type="com.eaf.orig.shared.popup.view.webaction.LoadInternalCheckerWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadLicenseType" type="com.eaf.orig.shared.popup.view.webaction.LoadLicenseTypeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadLoanType" type="com.eaf.orig.shared.popup.view.webaction.LoadLoanTypeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadMarkettingCode" type="com.eaf.orig.shared.popup.view.webaction.LoadMarkettingCodeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadProvince" type="com.eaf.orig.shared.popup.view.webaction.LoadProvinceWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_DIALOG_POPUP"></action>
+		<action path="LoadReasonCampaign" type="com.eaf.orig.shared.popup.view.webaction.LoadReasonCampaignWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadTitleEng" type="com.eaf.orig.shared.popup.view.webaction.LoadTitleEngWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PL_MASTER_POPUP"></action>
+		<action path="LoadTitleThai" type="com.eaf.orig.shared.popup.view.webaction.LoadTitleThaiWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PL_MASTER_POPUP"></action>
+		<action path="LoadBlackListSource" type="com.eaf.orig.shared.popup.view.webaction.LoadBlackListSourceWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadBlackListReason" type="com.eaf.orig.shared.popup.view.webaction.LoadBlackListReasonWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		
+		<action path="LoadRaceWebAction" type="com.eaf.orig.shared.popup.view.webaction.LoadRaceWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		
+		
+		<action path="LoadRepfOfficeCode" type="com.eaf.orig.shared.popup.view.webaction.LoadRepfOfficeCodeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+	    <action path="LoadReptOfficeCode" type="com.eaf.orig.shared.popup.view.webaction.LoadReptOfficeCodeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+	    <action path="LoadRepfCmrCode" type="com.eaf.orig.shared.popup.view.webaction.LoadRepfCmrCodeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+	    <action path="LoadReptCmrCode" type="com.eaf.orig.shared.popup.view.webaction.LoadReptCmrCodeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+	    <action path="LoadRepfCaCode" type="com.eaf.orig.shared.popup.view.webaction.LoadRepfCaCodeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+	    <action path="LoadReptCaCode" type="com.eaf.orig.shared.popup.view.webaction.LoadReptCaCodeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+	    <action path="LoadRepfCaCodeCredit" type="com.eaf.orig.shared.popup.view.webaction.LoadRepfCaCodeCreditWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+	    <action path="LoadReptCaCodeCredit" type="com.eaf.orig.shared.popup.view.webaction.LoadReptCaCodeCreditWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+	    <action path="LoadDealerCode" type="com.eaf.orig.shared.popup.view.webaction.LoadDealerCodeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadSchemeCode" type="com.eaf.orig.shared.popup.view.webaction.LoadSchemeCodeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+
+		
+		<action path="LoadNotepadWebAction" type="com.eaf.orig.shared.view.webaction.LoadNotepadWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="POPUP_NOTEPAD"></action>
+		<action path="AddNotepad" type="com.eaf.orig.shared.view.webaction.AddNotepadWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="POPUP_NOTEPAD"></action>
+		<action path="SaveNotePadWebAction" type="com.eaf.orig.shared.view.webaction.SaveNotePadWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="POPUP_NOTEPAD"></action>
+		<action path="LoadDocumentList" type="com.eaf.orig.shared.view.webaction.LoadDocumentListWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="POPUP_DOCUMENTLIST"></action>
+		<action path="LoadTailorDocumentList" type="com.eaf.orig.shared.view.webaction.LoadTailorDocumentListWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="POPUP_TAILORDOCLIST"></action>
+		<action path="SaveDocumentList" type="com.eaf.orig.shared.view.webaction.SaveDocumentCheckList" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="POPUP_DOCUMENTLIST"></action>
+		<action path="LoadActionFlowPopup" type="com.eaf.orig.shared.view.webaction.LoadActionFlowWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="POPUP_ACTION_FLOW"></action>
+		
+		<action path="LoadViewAddressPopup" type="com.eaf.orig.shared.view.webaction.LoadViewAddressPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="VIEW_ADDRESS_POPUP"></action>
+		
+		<action path="SaveSelectAddress" type="com.eaf.orig.shared.view.webaction.SaveSelectAddressWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="VIEW_ADDRESS_POPUP" zForwardFailure="VIEW_ADDRESS_POPUP"></action>
+		<action path="CloseCorperate" type="com.eaf.orig.shared.view.webaction.CloseCorperatePopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MAIN_APPFORM"></action>
+		
+		<action path="SearchUserDetail" type="com.eaf.orig.master.view.webaction.SearchUsrDetailWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_DETAIL_SEARCHING_SCREEN"></action>
+		<action path="SearchListBox" type="com.eaf.orig.master.view.webaction.SearchListBoxWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_LISTBOX_MASTER_SEARCHING_SCREEN"></action>
+		<action path="SearchFieldId" type="com.eaf.orig.master.view.webaction.SearchFieldIdWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_FIELD_ID_SEARCHING_SCREEN"></action>
+		<action path="SearchRunningParam" type="com.eaf.orig.master.view.webaction.SearchRunningParamWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_RUNNING_PARAMETER_SEARCHING_SCREEN"></action>
+		<action path="SearchGenParam" type="com.eaf.orig.master.view.webaction.SearchGenParamWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_GENERAL_PARAMETER_SEARCHING_SCREEN"></action>
+		<action path="SearchMandField" type="com.eaf.orig.master.view.webaction.SearchMandFieldWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_MANDATORY_FIELD_SEARCHING_SCREEN"></action>
+		<action path="SearchHoliday" type="com.eaf.orig.master.view.webaction.SearchHolidayWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_HOLIDAY_MASTER_SEARCHING_SCREEN"></action>
+		<action path="SearchQueueTime" type="com.eaf.orig.master.view.webaction.SearchQueueTimeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_QUEUE_TIMEOUT_SEARCHING_SCREEN"></action>
+		<action path="SearchUserTeam" type="com.eaf.orig.master.view.webaction.SearchUserTeamWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_TEAM_SEARCHING_SCREEN"></action>
+		<action path="SearchExceptAction" type="com.eaf.orig.master.view.webaction.SearchExceptWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_EXCEPT_ACT_SEARCHING_SCREEN"></action>
+		<action path="SearchCarBlacklist" type="com.eaf.orig.master.view.webaction.SearchCarBlacklistWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_CAR_BLACKLIST_SEARCHING_SCREEN"></action>
+
+		<action path="SearchAppScore" type="com.eaf.orig.master.view.webaction.SearchAppScoreWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="SearchPolicyRules" type="com.eaf.orig.master.view.webaction.SearchPolicyRulesWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_POLICY_RULES_SEARCHING_SCREEN"></action>
+		
+		<action path="DeleteUsrDetail" type="com.eaf.orig.master.view.webaction.DeleteUsrDetailWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_DETAIL_SEARCHING_SCREEN" zForwardFailure="MS_USER_DETAIL_SEARCHING_SCREEN"></action>
+		<action path="DeleteFieldId" type="com.eaf.orig.master.view.webaction.DeleteFieldIdWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_FIELD_ID_SEARCHING_SCREEN" zForwardFailure="MS_FIELD_ID_SEARCHING_SCREEN"></action>
+		<action path="DeleteListBox" type="com.eaf.orig.master.view.webaction.DeleteListBoxWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_LISTBOX_MASTER_SEARCHING_SCREEN" zForwardFailure="MS_LISTBOX_MASTER_SEARCHING_SCREEN"></action>
+		<action path="DeleteGenParam" type="com.eaf.orig.master.view.webaction.DeleteGenParamWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_GENERAL_PARAMETER_SEARCHING_SCREEN" zForwardFailure="MS_GENERAL_PARAMETER_SEARCHING_SCREEN"></action>
+		<action path="DeleteHolMaster" type="com.eaf.orig.master.view.webaction.DeleteHolMasterWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_HOLIDAY_MASTER_SEARCHING_SCREEN" zForwardFailure="MS_HOLIDAY_MASTER_SEARCHING_SCREEN"></action>
+		<action path="DeleteQTime" type="com.eaf.orig.master.view.webaction.DeleteQTimeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_QUEUE_TIMEOUT_SEARCHING_SCREEN" zForwardFailure="MS_QUEUE_TIMEOUT_SEARCHING_SCREEN"></action>
+		<action path="DeleteUserTeam" type="com.eaf.orig.master.view.webaction.DeleteUserTeamWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_TEAM_SEARCHING_SCREEN" zForwardFailure="MS_USER_TEAM_SEARCHING_SCREEN"></action>
+		<action path="DeleteExceptAction" type="com.eaf.orig.master.view.webaction.DeleteExceptActionWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_EXCEPT_ACT_SEARCHING_SCREEN" zForwardFailure="MS_EXCEPT_ACT_SEARCHING_SCREEN"></action>
+		<action path="DeleteAppScore" type="com.eaf.orig.master.view.webaction.DeleteAppScoreWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN" zForwardFailure="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="DeleteCarBlacklist" type="com.eaf.orig.master.view.webaction.DeleteCarBlacklistWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_CAR_BLACKLIST_SEARCHING_SCREEN" zForwardFailure="MS_CAR_BLACKLIST_SEARCHING_SCREEN"></action>
+		<action path="DeleteRunParam" type="com.eaf.orig.master.view.webaction.DeleteRunParamWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_RUNNING_PARAMETER_SEARCHING_SCREEN" zForwardFailure="MS_RUNNING_PARAMETER_SEARCHING_SCREEN"></action>
+		<action path="DeletePolicyRules" type="com.eaf.orig.master.view.webaction.DeletePolicyRulesWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_POLICY_RULES_SEARCHING_SCREEN" zForwardFailure="MS_POLICY_RULES_SEARCHING_SCREEN"></action>
+		
+		<action path="UpdateUsrDetail" type="com.eaf.orig.master.view.webaction.UpdateUsrDetailWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_DETAIL_SEARCHING_SCREEN"></action>
+		<action path="UpdateFieldId" type="com.eaf.orig.master.view.webaction.UpdateFieldIdWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_FIELD_ID_SEARCHING_SCREEN"></action>
+		<action path="UpdateListBox" type="com.eaf.orig.master.view.webaction.UpdateListBoxWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_LISTBOX_MASTER_SEARCHING_SCREEN"></action>
+		<action path="UpdateRunParam" type="com.eaf.orig.master.view.webaction.UpdateRunParamWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_RUNNING_PARAMETER_SEARCHING_SCREEN"></action>
+		<action path="UpdateGenParam" type="com.eaf.orig.master.view.webaction.UpdateGenParamWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_GENERAL_PARAMETER_SEARCHING_SCREEN"></action>
+		<action path="UpdateMandField" type="com.eaf.orig.master.view.webaction.UpdateMandFieldWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_MANDATORY_FIELD_SEARCHING_SCREEN"></action>
+		<action path="UpdateHolMaster" type="com.eaf.orig.master.view.webaction.UpdateHolMasterWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_HOLIDAY_MASTER_SEARCHING_SCREEN"></action>
+		<action path="UpdateQTime" type="com.eaf.orig.master.view.webaction.UpdateQTimeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_QUEUE_TIMEOUT_SEARCHING_SCREEN"></action>
+		<action path="UpdateUserTeam" type="com.eaf.orig.master.view.webaction.UpdateUserTeamWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_TEAM_SEARCHING_SCREEN"></action>
+		<action path="UpdateExceptAction" type="com.eaf.orig.master.view.webaction.UpdateExceptActionWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_EXCEPT_ACT_SEARCHING_SCREEN"></action>
+		<action path="UpdateApprovAuthor" type="com.eaf.orig.master.view.webaction.UpdateApprovAuthorWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_SEARCHING_SCREEN"></action>
+		<action path="UpdateAppScore" type="com.eaf.orig.master.view.webaction.UpdateAppScoreWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="UpdateCarBlacklist" type="com.eaf.orig.master.view.webaction.UpdateCarBlacklistWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_CAR_BLACKLIST_SEARCHING_SCREEN"></action>
+		<action path="UpdatePolicyRules" type="com.eaf.orig.master.view.webaction.UpdatePolicyRulesWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_POLICY_RULES_SEARCHING_SCREEN"></action>
+		
+		<action path="SaveUserDetail" type="com.eaf.orig.master.view.webaction.SaveUsrDetailWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_DETAIL_SEARCHING_SCREEN"></action>
+		<action path="SaveListBox" type="com.eaf.orig.master.view.webaction.SaveListBoxWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_LISTBOX_MASTER_SEARCHING_SCREEN"></action>
+		<action path="SaveFieldID" type="com.eaf.orig.master.view.webaction.SaveFieldIDWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_FIELD_ID_SEARCHING_SCREEN"></action>
+		<action path="SaveGenParam" type="com.eaf.orig.master.view.webaction.SaveGenParamWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_GENERAL_PARAMETER_SEARCHING_SCREEN"></action>
+		<action path="SaveHolMaster" type="com.eaf.orig.master.view.webaction.SaveHolMasterWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_HOLIDAY_MASTER_SEARCHING_SCREEN"></action>
+		<action path="SaveQTime" type="com.eaf.orig.master.view.webaction.SaveQTimeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_QUEUE_TIMEOUT_SEARCHING_SCREEN"></action>
+		<action path="SaveUserTeam" type="com.eaf.orig.master.view.webaction.SaveUserTeamWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_TEAM_SEARCHING_SCREEN"></action>
+		<action path="SaveExceptAction" type="com.eaf.orig.master.view.webaction.SaveExceptActionWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_EXCEPT_ACT_SEARCHING_SCREEN"></action>
+		<action path="SaveAppScore" type="com.eaf.orig.master.view.webaction.SaveAppScoreWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN" zForwardFailure="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="SaveCarBlacklist" type="com.eaf.orig.master.view.webaction.SaveCarBlacklistWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_CAR_BLACKLIST_SEARCHING_SCREEN"></action>
+		<action path="SaveHolMaster" type="com.eaf.orig.master.view.webaction.SaveHolMasterWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_HOLIDAY_MASTER_SEARCHING_SCREEN"></action>
+		<action path="SaveFicoScore" type="com.eaf.orig.master.view.webaction.SaveFicoScoreWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_FICO_SCORE_SCREEN"></action>
+		
+		
+		<action path="ShowUserDetail" type="com.eaf.orig.master.view.webaction.ShowUserDetailWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_DETAIL_SEARCHING_SCREEN" zForwardFailure="MS_USER_DETAIL_SEARCHING_SCREEN"></action>
+		<action path="ShowListBoxMaster" type="com.eaf.orig.master.view.webaction.ShowListBoxMasterWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_LISTBOX_MASTER_SEARCHING_SCREEN" zForwardFailure="MS_LISTBOX_MASTER_SEARCHING_SCREEN"></action>
+		<action path="ShowFieldID" type="com.eaf.orig.master.view.webaction.ShowFieldIDWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_FIELD_ID_SEARCHING_SCREEN" zForwardFailure="MS_FIELD_ID_SEARCHING_SCREEN"></action>
+		<action path="ShowRunningParam" type="com.eaf.orig.master.view.webaction.ShowRunningParamWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_RUNNING_PARAMETER_SEARCHING_SCREEN" zForwardFailure="MS_RUNNING_PARAMETER_SEARCHING_SCREEN"></action>
+		<action path="ShowGenParam" type="com.eaf.orig.master.view.webaction.ShowGenParamWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_GENERAL_PARAMETER_SEARCHING_SCREEN" zForwardFailure="MS_GENERAL_PARAMETER_SEARCHING_SCREEN"></action>
+		<action path="ShowMandField" type="com.eaf.orig.master.view.webaction.ShowMandFieldWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_MANDATORY_FIELD_SEARCHING_SCREEN" zForwardFailure="MS_MANDATORY_FIELD_SEARCHING_SCREEN"></action>
+		<action path="ShowHolidayMaster" type="com.eaf.orig.master.view.webaction.ShowHolidayMasterWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_HOLIDAY_MASTER_SEARCHING_SCREEN" zForwardFailure="MS_HOLIDAY_MASTER_SEARCHING_SCREEN"></action>
+		<action path="ShowQueueTime" type="com.eaf.orig.master.view.webaction.ShowQueueTimeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_QUEUE_TIMEOUT_SEARCHING_SCREEN" zForwardFailure="MS_QUEUE_TIMEOUT_SEARCHING_SCREEN"></action>
+		<action path="ShowUserTeam" type="com.eaf.orig.master.view.webaction.ShowUserTeamWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_TEAM_SEARCHING_SCREEN" zForwardFailure="MS_USER_TEAM_SEARCHING_SCREEN"></action>
+		<action path="ShowExceptAction" type="com.eaf.orig.master.view.webaction.ShowExceptActionWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_EXCEPT_ACT_SEARCHING_SCREEN" zForwardFailure="MS_EXCEPT_ACT_SEARCHING_SCREEN"></action>
+		<action path="ShowCarBlacklist" type="com.eaf.orig.master.view.webaction.ShowCarBlacklistWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_CAR_BLACKLIST_SEARCHING_SCREEN" zForwardFailure="MS_CAR_BLACKLIST_SEARCHING_SCREEN"></action>
+		
+		<action path="ShowAppScore" type="com.eaf.orig.master.view.webaction.ShowAppScoreWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN" zForwardFailure="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="SearchBusinessClass" type="com.eaf.orig.master.view.webaction.SearchBusinessClassWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_LISTBOX_MASTER_SEARCHING_SCREEN" zForwardFailure="MS_LISTBOX_MASTER_SEARCHING_SCREEN"></action>
+		<action path="AddRemoveBus" type="com.eaf.orig.master.view.webaction.AddRemoveBusWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_LISTBOX_MASTER_SEARCHING_SCREEN" zForwardFailure="MS_LISTBOX_MASTER_SEARCHING_SCREEN"></action>
+		<action path="SaveQTimeLoanType" type="com.eaf.orig.master.view.webaction.SaveQTimeLoanTypeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_QUEUE_TIMEOUT_SEARCHING_SCREEN" zForwardFailure="MS_QUEUE_TIMEOUT_SEARCHING_SCREEN"></action>
+		<action path="ShowUsrDetFromProfile" type="com.eaf.orig.master.view.webaction.ShowUsrDetFromProfileWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_DETAIL_SEARCHING_SCREEN" zForwardFailure="MS_USER_DETAIL_SEARCHING_SCREEN"></action>
+		<action path="SearchBranch" type="com.eaf.orig.master.view.webaction.SearchBranchWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_DETAIL_SEARCHING_SCREEN" zForwardFailure="MS_USER_DETAIL_SEARCHING_SCREEN"></action>
+		<action path="SearchExceptAct" type="com.eaf.orig.master.view.webaction.SearchExceptActWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_DETAIL_SEARCHING_SCREEN" zForwardFailure="MS_USER_DETAIL_SEARCHING_SCREEN"></action>
+		<action path="SearchUsername" type="com.eaf.orig.master.view.webaction.SearchUsernameWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_DETAIL_SEARCHING_SCREEN" zForwardFailure="MS_USER_DETAIL_SEARCHING_SCREEN"></action>
+		<action path="AddRemoveUserBranch" type="com.eaf.orig.master.view.webaction.AddRemoveUserBranchWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_DETAIL_SEARCHING_SCREEN" zForwardFailure="MS_USER_DETAIL_SEARCHING_SCREEN"></action>
+		<action path="AddRemoveUserName" type="com.eaf.orig.master.view.webaction.AddRemoveUserNameWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_DETAIL_SEARCHING_SCREEN" zForwardFailure="MS_USER_DETAIL_SEARCHING_SCREEN"></action>
+		<action path="AddRemoveUserExceptAct" type="com.eaf.orig.master.view.webaction.AddRemoveUserExceptActWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_DETAIL_SEARCHING_SCREEN" zForwardFailure="MS_USER_DETAIL_SEARCHING_SCREEN"></action>
+		<action path="SaveProfile" type="com.eaf.orig.master.view.webaction.SaveProfileWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_DETAIL_SEARCHING_SCREEN" zForwardFailure="MS_USER_DETAIL_SEARCHING_SCREEN"></action>
+		<action path="ShowProfile" type="com.eaf.orig.master.view.webaction.ShowProfileWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_DETAIL_SEARCHING_SCREEN" zForwardFailure="MS_USER_DETAIL_SEARCHING_SCREEN"></action>
+		<action path="AddRemoveUsrTeamMember" type="com.eaf.orig.master.view.webaction.AddRemoveUsrTeamMemberWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_USER_TEAM_SEARCHING_SCREEN" zForwardFailure="MS_USER_TEAM_SEARCHING_SCREEN"></action>
+		<action path="GetCharTypeVect" type="com.eaf.orig.master.view.webaction.GetCharTypeVectWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN" zForwardFailure="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="SelectCharM" type="com.eaf.orig.master.view.webaction.SelectCharMWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN" zForwardFailure="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="GetCharEdit" type="com.eaf.orig.master.view.webaction.GetCharEditWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN" zForwardFailure="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="EditAppScore" type="com.eaf.orig.master.view.webaction.EditAppScoreWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN" zForwardFailure="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="AddAppScore" type="com.eaf.orig.master.view.webaction.AddAppScoreWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN" zForwardFailure="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="ShowScoreAddForm" type="com.eaf.orig.master.view.webaction.ShowScoreAddFormWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN" zForwardFailure="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="CancelScoreType" type="com.eaf.orig.master.view.webaction.CancelScoreTypeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN" zForwardFailure="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="PopupAppScoreSummary" type="com.eaf.orig.master.view.webaction.PopupAppScoreSummaryWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SUMMARY_SCREEN" zForwardFailure="MS_SCORE_SUMMARY_SCREEN"></action>
+		<action path="SearchAppScorebyCusType" type="com.eaf.orig.master.view.webaction.SearchAppScorebyCusTypeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN" zForwardFailure="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="BackToAppScore" type="com.eaf.orig.master.view.webaction.BackToAppScoreWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN" zForwardFailure="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="DeleteAppScore" type="com.eaf.orig.master.view.webaction.DeleteAppScoreWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN" zForwardFailure="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="DisableAppScore" type="com.eaf.orig.master.view.webaction.DisableAppScoreWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN" zForwardFailure="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="RefreshCache" type="com.eaf.orig.master.view.webaction.RefreshCacheWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_REFRESH_CACHE_SCREEN" zForwardFailure="MS_REFRESH_CACHE_SCREEN"></action>
+		<action path="GetLastFicoInfo" type="com.eaf.orig.master.view.webaction.GetLastFicoInfoWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_FICO_SCORE_SCREEN" zForwardFailure="MS_FICO_SCORE_SCREEN"></action>
+		<action path="RefreshAppScore" type="com.eaf.orig.master.view.webaction.RefreshAppScoreWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SCORE_SEARCHING_SCREEN" zForwardFailure="MS_SCORE_SEARCHING_SCREEN"></action>
+		<action path="SearchSLA" type="com.eaf.orig.master.view.webaction.SearchSLAWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SLA_SCREEN" zForwardFailure="MS_SLA_SCREEN"></action>
+		<action path="SaveSLA" type="com.eaf.orig.master.view.webaction.SaveSLAWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SLA_SCREEN" zForwardFailure="MS_SLA_SCREEN"></action>
+		<action path="EditSLA" type="com.eaf.orig.master.view.webaction.EditSLAWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SLA_SCREEN" zForwardFailure="MS_SLA_SCREEN"></action>
+		<action path="CancelSLA" type="com.eaf.orig.master.view.webaction.CancelSLAWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_SLA_SCREEN" zForwardFailure="MS_SLA_SCREEN"></action>		
+		<action path="ShowPolicyRules" type="com.eaf.orig.master.view.webaction.ShowPolicyRulesWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_POLICY_RULES_SEARCHING_SCREEN" zForwardFailure="MS_POLICY_RULES_SEARCHING_SCREEN"></action>
+		
+		<action path="RefreshCacheManual" type="com.eaf.orig.master.view.webaction.RefreshCacheManualWebAction" scope="request" name="LoadCompletedForm" validate="true" input=""></action>
+		
+		
+		<action path="LoadLPMLoanType" type="com.eaf.orig.shared.popup.view.webaction.LoadLPMLoanTypeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadLPMStatus" type="com.eaf.orig.shared.popup.view.webaction.LoadLPMStatusWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<!-- Approval Master By sankom Sep 29 2008 -->
+		<action path="SearchApprovAuthor" type="com.eaf.orig.master.approval.view.webaction.SearchApprovAuthorWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_SEARCHING_SCREEN"></action>
+		<action path="DeleteAppAuthor" type="com.eaf.orig.master.approval.view.webaction.DeleteAppAuthorWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_SEARCHING_SCREEN" zForwardFailure="MS_APPROV_AUTHOR_SEARCHING_SCREEN"></action>
+		<action path="ShowApprovAuthor" type="com.eaf.orig.master.approval.view.webaction.ShowApprovAuthorWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_SEARCHING_SCREEN" zForwardFailure="MS_APPROV_AUTHOR_SEARCHING_SCREEN"></action>
+		<action path="SaveApprovAuthor" type="com.eaf.orig.master.view.approval.webaction.SaveApprovAuthorWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_SEARCHING_SCREEN"></action>
+		<action path="LoadApprovAuthor" type="com.eaf.orig.master.approval.view.webaction.LoadApprovAuthorWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_SETUP_SCREEN"></action>
+		<action path="SaveUpdateApprovAuthor" type="com.eaf.orig.master.approval.view.webaction.SaveUpdateApprovAuthorWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_SETUP_SCREEN" zForwardFailure="MS_APPROV_AUTHOR_SETUP_SCREEN"></action>		
+		<action path="CreateCopyApprovAuthor" type="com.eaf.orig.master.approval.view.webaction.CreateCopyApprovAuthorWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_SETUP_SCREEN" zForwardFailure="MS_APPROV_AUTHOR_SETUP_SCREEN"></action>		
+		<action path="LoadApprovAuthorPolicyLevels" type="com.eaf.orig.master.approval.view.webaction.LoadApprovAuthorPolicyLevelWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_POLICY_LEVELS_SCREEN"></action>
+		<action path="UpdateApprovAuthorPolicyLevels" type="com.eaf.orig.master.approval.view.webaction.UpdateApprovAuthorPolicyLevelWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_CLOSE"></action> 
+		<action path="LoadApprovAuthorPolicyGroups" type="com.eaf.orig.master.approval.view.webaction.LoadApprovAuthorPolicyGroupsWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_POLICY_GROUPS_SCREEN"></action>
+        <action path="UpdateApprovAuthorPolicyGroups" type="com.eaf.orig.master.approval.view.webaction.UpdateApprovAuthorPolicyGroupsWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_POLICY_GROUPS_SCREEN"></action>
+		<action path="LoadApprovAuthorPolicyMapRules" type="com.eaf.orig.master.approval.view.webaction.LoadApprovAuthorPolicyMapRulesWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_MAP_POLICY_RULES_SCREEN"></action>
+		<action path="UpdateApprovAuthorPolicyMapRules" type="com.eaf.orig.master.approval.view.webaction.UpdateApprovAuthorPolicyMapRulesWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_MAP_POLICY_RULES_SCREEN"></action>
+		<action path="LoadApprovAuthorPolicyDetail" type="com.eaf.orig.master.approval.view.webaction.LoadApprovAuthorPolicyDetailWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_DETAIL_SCREEN"></action>
+		<action path="UpdateApprovAuthorPolicyDetail" type="com.eaf.orig.master.approval.view.webaction.UpdateApprovAuthorPolicyDetailWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_DETAIL_SCREEN"></action>		
+	    <action path="LoadApprovAuthorCreateCopy" type="com.eaf.orig.master.approval.view.webaction.LoadCreateCopyApprovAuthorWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_CREATE_NEW_COPY_SCREEN"></action>
+	    <action path="SaveApprovAuthorCreateCopy" type="com.eaf.orig.master.approval.view.webaction.CreateCopyApprovAuthorWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MS_APPROV_AUTHOR_CLOSE_SCREEN"></action>		
+		<!--XRules Popup-->
+        <!-- By Sankom -->
+      	<!-- Oct 30, 2007 -->
+  		 <action path="LoadXruleNCBSummaryPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesNCBSummaryPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_NCB_SUMMARY_POPUP"></action>
+  	     <action path="SaveXruleNCBSummaryPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.SaveXrulesNCBSummaryPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_NCB_SUMMARY_POPUP" zForwardFailure="XRULES_NCB_SUMMARY_POPUP"></action>		
+  		 <action path="LoadXruleNCBDetailPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesNCBDetailPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_NCB_DETAIL_POPUP"></action>
+  	     <action path="SaveXruleNCBDetailPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.SaveXrulesNCBDetailPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_NCB_DETAIL_POPUP" zForwardFailure="XRULES_NCB_DETAIL_POPUP"></action>			      
+  		 <action path="LoadXruleBlacklistCustomerPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesBlacklistCustomerPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_BLACKLIST_CUSTOMER_POPUP"></action>
+  	     <action path="SaveXruleBlacklistCustomerPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.SaveXrulesBlacklistCustomerPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_REWRITE_VERIFICATION_SCREEN" zForwardFailure="XRULES_BLACKLIST_CUSTOMER_POPUP"></action>
+  		 <action path="LoadXruleBlacklistVehiclePopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesBlacklistVehiclePopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_BLACKLIST_VEHICLE_POPUP"></action>
+  	     <action path="SaveXruleBlacklistVehiclePopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.SaveXrulesBlacklistVehiclePopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_REWRITE_VERIFICATION_SCREEN" zForwardFailure="XRULES_BLACKLIST_VEHICLE_POPUP"></action>  	     			        	     		
+  	     <action path="LoadXruleExistingCustomerPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesExistingCustomerPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_EXISTING_CUSTOMER_POPUP"></action>
+   		 <action path="LoadXrulesDedupPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesDedupPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_DEDUP_POPUP"></action>
+    	 <action path="LoadXrulesDupVehiclePopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesDupVehiclePopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_DUP_VEHICLE_POPUP"></action>
+    	 <action path="LoadXrulesLPMmainPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesLPMmainPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_LPM_MAIN_POPUP"></action>
+  	     <action path="SaveXrulesLPMmainPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.SaveXrulesLPMmainPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_REWRITE_VERIFICATION_SCREEN" zForwardFailure="XRULES_LPM_MAIN_POPUP"></action>
+  	     <action path="LoadXrulesLPMItemPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesLPMItemPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_LPM_ITEM_POPUP"></action>
+  	     <action path="SaveXrulesLPMItemPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.SaveXrulesLPMItemPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_LPM_INPUT_CLOSE" zForwardFailure="XRULES_LPM_ITEM_POPUP"></action>
+  	     <action path="LoadXrulesPolicyRulesPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesPolicyRulesPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_POLICYRULES_POPUP"></action>
+  	     <action path="SaveXrulesPolicyRulesPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.SaveXrulesPolicyRulesPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_REWRITE_VERIFICATION_SCREEN" zForwardFailure="XRULES_POLICYRULES_POPUP"></action>
+ 	     <action path="LoadXrulesDebtBurdenPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesDebtBurdenPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_DEBT_BURDEN_POPUP"></action>
+  	     <action path="SaveXrulesDebtBurdenPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.SaveXrulesDebtBurdenPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_REWRITE_VERIFICATION_SCREEN" zForwardFailure="XRULES_DEBT_BURDEN_POPUP"></action>
+  	     <action path="LoadXrulesFICOPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesFICOPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_FICO_POPUP"></action>
+ 	     <action path="LoadXrulesPhoneVerPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesPhoneVerPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_PHONEVER_POPUP"></action>
+ 	     <action path="AddXrulesPhoneVerPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.AddXrulesPhoneVerPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_PHONEVER_POPUP" zForwardFailure="XRULES_PHONEVER_POPUP"></action>
+  	     <action path="SaveXrulesPhoneVerPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.SaveXrulesPhoneVerPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_REWRITE_VERIFICATION_SCREEN" zForwardFailure="XRUlES_REWRITE_VERIFICATION_SCREEN"></action>
+  	     <action path="LoadXrulesWebVerPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesWebverPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_WEBVER_POPUP"></action>
+  	     <action path="SaveXrulesWebVerPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.SaveXrulesWebverPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_REWRITE_VERIFICATION_SCREEN" zForwardFailure="XRUlES_REWRITE_VERIFICATION_SCREEN"></action>  	     
+	     <action path="ExecuteXrules" type="com.eaf.orig.shared.popup.xrules.view.webaction.ExecuteVerificationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_REWRITE_VERIFICATION_SCREEN"></action>
+	     <action path="DeleteXrulesLPMItemPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.DeleteXrulesLPMItemPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_LPM_MAIN_POPUP" zForwardFailure="XRULES_LPM_MAIN_POPUP"></action>
+     	 <action path="CalculateXrulesDebtBurdenPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.CalculateXrulesDebtBurdenPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_DEBT_BURDEN_POPUP" zForwardFailure="XRULES_DEBT_BURDEN_POPUP"></action>
+     	 <action path="CalculateScoring" type="com.eaf.orig.shared.popup.xrules.view.webaction.CalculateScoringWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SCORING_REWRITE_POPUP_SCREEN" zForwardFailure="SCORING_REWRITE_POPUP_SCREEN"></action>
+     	 <action path="ExecuteAllXrules" type="com.eaf.orig.shared.popup.xrules.view.webaction.ExecuteAllVerificationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_REWRITE_ALL_VERIFICATION_SCREEN"></action>
+	     <action path="CalculatePreScoring" type="com.eaf.orig.shared.popup.xrules.view.webaction.CalculatePreScoringWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SCORING_REWRITE_POPUP_SCREEN" zForwardFailure="SCORING_REWRITE_POPUP_SCREEN"></action>
+     	 <action path="LoadXruleNCBPaymentDetailPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesNCBPaymentDetailPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_NCB_PAYMENT_DETAIL_POPUP"></action> 
+  	   	 <action path="SaveXruleNCBPaymentDetailPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.SaveXrulesNCBPaymentDetailPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_NCB_PAYMENT_DETAIL_POPUP" zForwardFailure="XRULES_NCB_PAYMENT_DETAIL_POPUP"></action>
+  	   	 
+  	   	 <action path="LoadXrulesEligibility" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesEligibilityWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_ELIGIBILITY_POPUP"></action>
+  	   	 <action path="SaveXrulesEligibilityPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.SaveXrulesEligibilityPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_REWRITE_VERIFICATION_SCREEN" zForwardFailure="XRULES_ELIGIBILITY_POPUP"></action>
+  	   	 <action path="LoadXrulesLTV" type="com.eaf.orig.shared.popup.xrules.view.webaction.LoadXrulesLTVWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRULES_LTV_POPUP"></action>
+  	   	 <action path="SaveXrulesLTVPopup" type="com.eaf.orig.shared.popup.xrules.view.webaction.SaveXrulesLTVPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_REWRITE_VERIFICATION_SCREEN" zForwardFailure="XRULES_ELIGIBILITY_POPUP"></action>
+		<!-- End Xrules-->
+		<!--Ilog -->
+		<action path="CalculateILOGScoring" type="com.eaf.orig.shared.popup.xrules.view.webaction.CalculateILOGScoringWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SCORING_ILOG_REWRITE_POPUP_SCREEN" zForwardFailure="SCORING_ILOG_REWRITE_POPUP_SCREEN"></action>
+		<!-- -->
+		<!--Proposal Screen-->
+ 		<!--By Baworn-->
+ 		<!--Oct 31, 2007-->   
+ 		<action path="FirstAccess" type="com.eaf.orig.proposal.view.webaction.FirstAccessWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess= "CREATE_PROPOSAL" zForwardFailure="CREATE_PROPOSAL"></action>  
+ 		<action path="SearchClientGroup" type="com.eaf.orig.proposal.view.webaction.SearchClientGroupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_CLIENT_GROUP" zForwardFailure="SEARCH_CLIENT_GROUP"></action>  
+ 		<action path="LoadCarDetail" type="com.eaf.orig.proposal.view.webaction.LoadCreateCarDetailWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CREATE_CAR_DETAIL" zForwardFailure="CREATE_CAR_DETAIL"></action>
+ 		<action path="LoadCarDetailPopUp" type="com.eaf.orig.proposal.view.webaction.LoadCarDetailWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="POPUP_APPFORM"></action> 
+ 		<action path="SaveCarDetailPopUp" type="com.eaf.orig.proposal.view.webaction.SaveCarDetailPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="REWRITE_CAR_DETAIL"></action> 
+ 		<action path="SaveCarDetailApp" type="com.eaf.orig.proposal.view.webaction.SaveCarAppWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_CLIENT_GROUP" zForwardFailure="SEARCH_CLIENT_GROUP"></action>  	     	     	     	       	     	     	     	      	     	     	     	       	     	     	     	      	     	     	     	       	     	     	     	      	     	     	     	       	     	     	     	     
+ 		<action path="LoadProposal" type="com.eaf.orig.proposal.view.webaction.LoadProposalFormWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_CLIENT_GROUP" zForwardFailure="SEARCH_CLIENT_GROUP"></action> 
+ 		<action path="ProposalSaveApplication" type="com.eaf.orig.proposal.view.webaction.ProposalSaveApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess= "UW_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>  
+ 		<action path="ProposalSubmitApplication" type="com.eaf.orig.proposal.view.webaction.ProposalSubmitApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess= "UW_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>   	     	     	     	       	     	     	     	      	     	     	     	       	     	     	     	      	     	     	     	       	     	     	     	      	     	     	     	       	     	     	     	     
+ 		<!--End Proposal-->
+ 	    <!--Report--> 
+ 		<action path="SearchConsentReport" type="com.eaf.orig.report.view.webaction.SearchConsentReportWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="RPT_CONSENT_SCREEN"></action>
+		<action path="SaveConsentReport" type="com.eaf.orig.report.view.webaction.SaveConsentReportWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="RPT_CONSENT_SCREEN"></action>
+		<action path="SearchVerificationListReport" type="com.eaf.orig.report.view.webaction.SearchVerificationListReportWebaction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="RPT_VERIFICATION_SCREEN"></action>
+ 		<!--Report-->
+ 		
+ 		<!-- Recovery Application -->
+ 		<action path="SearchCriticalProcess" type="com.eaf.orig.master.view.webaction.SearchCriticalProcessWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="RECOVERY_APP_SCREEN"></action>
+ 		<action path="RecoveryApp" type="com.eaf.orig.master.view.webaction.RecoveryAppWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="RECOVERY_APP_SCREEN"></action>
+ 		<action path="LoadSupplementaryCardPopup" type="com.eaf.orig.shared.view.webaction.LoadSupplementaryCardPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="POPUP_APPFORM"></action>
+		<action path="SaveSupplementaryCardPopup" type="com.eaf.orig.shared.view.webaction.SaveSupplementaryCardPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MAIN_APPFORM" zForwardFailure="POPUP_APPFORM"></action>
+ 		<!-- End Recovery Application -->
+ 		
+ 		<!--  Mortgage Loan  -->
+ 		<action path="LoadMortgagePopup" type="com.eaf.orig.shared.view.webaction.LoadMortgageLoanPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="POPUP_APPFORM"></action>
+		<action path="SaveMortgagePopup" type="com.eaf.orig.shared.view.webaction.SaveMortgageLoanPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MAIN_APPFORM" zForwardFailure="POPUP_APPFORM"></action>
+		<action path="CloseMortgagePopup" type="com.eaf.orig.shared.view.webaction.CloseMortgagePopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_CLOSE" zForwardFailure="POPUP_APPFORM"></action>
+ 		<action path="LoadAppraisalPopup" type="com.eaf.orig.shared.view.webaction.LoadAppraisalPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="POPUP_APPFORM"></action>
+		<action path="SaveAppraisalPopup" type="com.eaf.orig.shared.view.webaction.SaveAppraisalPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MAIN_APPFORM" zForwardFailure="POPUP_APPFORM"></action>
+		<action path="CloseAppraisalPopup" type="com.eaf.orig.shared.view.webaction.CloseAppraisalPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="XRUlES_CLOSE" zForwardFailure="POPUP_APPFORM"></action>
+ 		<action path="LoadFeeInformationPopup" type="com.eaf.orig.shared.view.webaction.LoadFeeInformationPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="POPUP_APPFORM"></action>
+		<action path="SaveFeeInformationPopup" type="com.eaf.orig.shared.view.webaction.SaveFeeInformationPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MAIN_APPFORM" zForwardFailure="POPUP_APPFORM"></action>
+ 		<!--End Mortgage Loan-->
+ 		
+ 		<!--  Multi App  -->
+ 	 	<action path="loadMultiApp" type="com.eaf.orig.de.view.webaction.LoadMultiAppWebAction" scope="request" name="DE_SCREEN" validate="true" input="" zForwardSuccess="MULTI_APPFORM"></action>
+ 	 	<action path="saveAppMulti" type="com.eaf.orig.de.view.webaction.SaveAppMultiWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MULTI_APPFORM" zForwardFailure="MAIN_APPFORM"></action>
+ 	 	<action path="loadRekeyApp" type="com.eaf.orig.de.view.webaction.LoadReKeyAppWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="" zForwardFailure="REKEY_SCREEN"></action>
+ 	 	<!-- End Multi App  -->	
+ 	 	
+ 	 	<!--  Change Languages  -->
+ 	 	<action path="SwitchToTH" type="com.eaf.j2ee.pattern.view.webaction.language.SwitchToTHWebAction" scope="request" name="" validate="false" input="" zForwardSuccess="MAIN_APPFORM"></action>
+ 	 	<action path="SwitchToEN" type="com.eaf.j2ee.pattern.view.webaction.language.SwitchToENWebAction" scope="request" name="" validate="false" input="" zForwardSuccess="MAIN_APPFORM"></action>
+ 	 	
+ 	 	<!-- Personal Loan -->
+ 	 	<action path="LoadPLAppForm" type="com.eaf.orig.ubo.pl.app.view.webaction.LoadMainPLApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PL_MAIN_APPFORM"></action>
+ 	 	<action path="LoadUnLockAppForm" type="com.eaf.orig.ubo.pl.app.view.webaction.LoadUnLockApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PL_MAIN_APPFORM"></action>
+ 	 	<action path="LoadViewModeAppForm" type="com.eaf.orig.ubo.pl.app.view.webaction.LoadViewModeApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PL_MAIN_APPFORM"></action>
+ 	 	<action path="LoadPLReopenAppForm" type="com.eaf.orig.ubo.pl.app.view.webaction.LoadMainPLReopenApplicationWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PL_MAIN_APPFORM"></action>
+ 	 	<action path="LoadSearchBundleCCAppForm" type="com.eaf.orig.ubo.pl.app.view.webaction.LoadSearchBundlingCCWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PL_MAIN_APPFORM"></action>
+ 	 	<action path="FristPLApp" type="com.eaf.orig.ubo.pl.app.view.webaction.FirstPLAppWebAction" scope="request" name="KEC_SCREEN" validate="true" input="" zForwardSuccess="BLANK_SCREEN" zForwardFailure="BLANK_SCREEN"></action>
+ 	 	<action path="ValidateICDCCardNo" type="com.eaf.orig.ulo.pl.app.view.webaction.ValidateICDCCardNoWebAction" scope="request" name="ValidateICDCCardNo" validate="true" input=""></action>
+	<!-- END K-BANK -->
+	
+	<!-- KLOP 2012 -->
+		<action path="NewApp" type="com.eaf.orig.ulo.pl.app.view.webaction.NewAppWebAction" scope="request" name="DE_SCREEN" validate="true" input="" zForwardSuccess="CREATE_APP_FORM" zForwardFailure="CREATE_APP_FORM"></action>
+		<action path="ManualCreateApp" type="com.eaf.orig.ulo.pl.app.view.webaction.ManualCreateAppWebAction" scope="request" name="LoadCompletedForm2" validate="true" input="" zForwardSuccess="PL_MAIN_APPFORM" zForwardFailure="CREATE_APP_FORM"></action>
+		<action path ="LoadProjectCode" type="com.eaf.orig.ulo.pl.app.view.webaction.LoadProjectCodeWebAction" scope="request"  name="LoadCompletedForm3" validate="true" input="" zForwardSuccess="PROJECTCODE_MASTER_POPUP" zForwardFailure="PROJECTCODE_MASTER_POPUP"></action>
+		<action path ="DESaveApplication" type="com.eaf.orig.ulo.pl.app.view.webaction.SaveDEWebAction" scope="request"  name="SaveData" validate="true" input="" zForwardSuccess="DE_PL_SUMMARY_SCREEN" zForwardFailure="PL_MAIN_APPFORM"></action>
+		<action path ="DEFullSaveApplication" type="com.eaf.orig.ulo.pl.app.view.webaction.SaveDEFullWebAction" scope="request"  name="SavePLData" validate="true" input="" zForwardSuccess="DE_PL_SUMMARY_SCREEN" zForwardFailure="PL_MAIN_APPFORM"></action>
+		<action path ="DFSaveApplication" type="com.eaf.orig.ulo.pl.app.df.view.webaction.SaveDFWebAction" scope="request"  name="SavePLData" validate="true" input="" zForwardSuccess="DF_PL_SUMMARY_SCREEN" zForwardFailure="PL_MAIN_APPFORM"></action>
+		<action path ="LoadDEFullForm" type="com.eaf.orig.ulo.pl.app.view.webaction.LoadDEFullFormWebAction" scope="request"  name="LoadFullForm" validate="true" input="" zForwardSuccess="PL_MAIN_APPFORM"></action>
+		<action path ="LoadPLAppFormWithOutClaim" type="com.eaf.orig.ubo.pl.app.view.webaction.LoadMainPLWithOutClaimApplicationWebAction" scope="request"  name="LoadFullForm" validate="true" input="" zForwardSuccess="PL_MAIN_APPFORM"></action>
+		<action path ="LoadCashDay5Application" type="com.eaf.orig.ubo.pl.app.view.webaction.LoadCashDay5ApplicationWebAction" scope="request"  name="LoadFullForm" validate="true" input="" zForwardSuccess="PL_MAIN_APPFORM"></action>
+		<action path ="SaveCashDay5Application" type="com.eaf.orig.ulo.pl.app.dc.view.webaction.SaveCashDay5ApplicationWebAction" scope="request"  name="LoadFullForm" validate="true" input="" zForwardSuccess="DF_PL_SUMMARY_SCREEN"></action>
+		<action path ="DownloadReportAction" type="com.eaf.orig.ulo.pl.app.view.webaction.LoadReportMWebaction" scope="request"  name="LoadReportScreen" validate="true" input="" zForwardSuccess="REPORT_SCREEN_DL" zForwardFailure="REPORT_SCREEN_DL"></action>
+		<action path ="LoadPLAppFormReopenWebAction" type="com.eaf.orig.ubo.pl.app.view.webaction.LoadPLAppFormReopenWebAction" scope="request"  name="LoadFullForm" validate="true" input="" zForwardSuccess="PL_MAIN_APPFORM"></action>
+		<action path ="SearchDownLoadAction" type="com.eaf.orig.ulo.pl.app.view.webaction.SearchDownLoadWebaction" scope="request"  name="LoadReportScreen" validate="true" input="" zForwardSuccess="REPORT_SCREEN_DL" zForwardFailure="REPORT_SCREEN_DL"></action>
+		
+		<!--Popup -->  
+        <action path="LoadFileCategoryPopup" type="com.eaf.orig.ulo.pl.popup.view.webaction.LoadFileCategoryPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_DIALOG_POPUP" zForwardFailure="MASTER_DIALOG_POPUP"></action>
+        <action path="LoadPLAddressPopup" type="com.eaf.orig.ulo.pl.popup.view.webaction.LoadPLAddressPopupWebAction" scope="request" name="LoadPlAddress" validate="true" input="" zForwardSuccess="PL_ADDRESS_POPUP" zForwardFailure="PL_ADDRESS_POPUP"></action>
+  	   	<action path="SavePLAddress" type="com.eaf.orig.ulo.pl.app.view.webaction.SavePLAddressWebaction" scope="request" name="LoadCompletedForm" validate="true" input=""></action>
+		<action path="SavePLSaving" type="com.eaf.orig.ulo.pl.app.view.webaction.GetSavingDetailsWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SAVING_POPUP" zForwardFailure="SAVING_POPUP"></action>
+		<action path="DeletePLAddress" type="com.eaf.orig.ulo.pl.app.view.webaction.DeletePLAddressWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" ></action>
+	
+		<action path="LoadSubDistrict" type="com.eaf.orig.ulo.pl.popup.view.webaction.LoadSubDistrictPopupWebAction" scope="request" name="LoadPLTambol" validate="true" input="" zForwardSuccess="MASTER_DIALOG_POPUP" zForwardFailure="MASTER_DIALOG_POPUP"></action>
+		<action path="LoadPLZipCode" type="com.eaf.orig.ulo.pl.app.view.webaction.LoadZipCodeWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_DIALOG_POPUP" zForwardFailure="MASTER_DIALOG_POPUP"></action>
+		<action path="LoadDistrict" type="com.eaf.orig.ulo.pl.popup.view.webaction.LoadDistrictPopupWebaction" scope="request" name="LoadPLAmphur" validate="true" input="" zForwardSuccess="MASTER_DIALOG_POPUP" zForwardFailure="MASTER_DIALOG_POPUP"></action>
+		<action path="LoadNational" type="com.eaf.orig.ulo.pl.app.view.webaction.LoadNationalWebAction" scope="request" name="LoadNational" validate="true" input="" zForwardSuccess="MASTER_DIALOG_POPUP" zForwardFailure="MASTER_DIALOG_POPUP"></action>
+		
+		<action path="LoadTitleWorkPlace" type="com.eaf.orig.ulo.pl.app.view.webaction.LoadTitleWorkPlaceWebAction" scope="request" name="LoadWorkPlace" validate="true" input="" zForwardSuccess="MASTER_POPUP_FIELDID_DESC" zForwardFailure="MASTER_POPUP_FIELDID_DESC"></action>
+		<action path="LoadOldTitleWorkPlaceThai" type="com.eaf.orig.ulo.pl.app.view.webaction.LoadTitleOldWorkPlaceWebAction" scope="request" name="LoadWorkPlace" validate="true" input="" zForwardSuccess="MASTER_POPUP"></action>
+		<action path="LoadTitleThaiNew" type="com.eaf.orig.ulo.pl.app.view.webaction.LoadTitleThaiNewWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP_FIELDID_DESC" zForwardFailure="MASTER_POPUP_FIELDID_DESC" ></action>
+		<action path="LoadTitleEngNew" type="com.eaf.orig.ulo.pl.app.view.webaction.LoadTitleEngNewWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP_FIELDID_DESC" zForwardFailure="MASTER_POPUP_FIELDID_DESC" ></action>
+		<action path="LoadPLSavingPopup" type="com.eaf.orig.ulo.pl.popup.view.webaction.LoadPLSavingWebaction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SAVING_POPUP"></action>
+		<action path="LoadSellInformation" type="com.eaf.orig.ulo.pl.popup.view.webaction.LoadSellInformationWebaction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PL_MASTER_POPUP"></action>
+		<action path="LoadRecommendInformation" type="com.eaf.orig.ulo.pl.popup.view.webaction.LoadRecommendNameWebaction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP_CODE" zForwardFailure="MASTER_POPUP_CODE"></action>
+		<action path="LoadRecomendBranch" type="com.eaf.orig.ulo.pl.popup.view.webaction.LoadRecomendBranchCode" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MASTER_POPUP_CODE" zForwardFailure="MASTER_POPUP_CODE"></action>
+		<action path="LoadSellerBranch" type="com.eaf.orig.ulo.pl.popup.view.webaction.LoadSellerBranchCode" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PL_MASTER_POPUP"></action>
+		<action path="LoadTitleThaiSpouse" type="com.eaf.orig.ulo.pl.app.view.webaction.LoadTitleThaiSpouseWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PL_MASTER_POPUP"></action>
+		<action path="LoadTitleThaiRef" type="com.eaf.orig.ulo.pl.app.view.webaction.LoadTitleThaiRefWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PL_MASTER_POPUP"></action>
+		<action path="LoadSubformByBusClass" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.LoadSubformByBusClassWebaction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PL_MAIN_APPFORM"></action>
+		<action path="LoadProjectCodeAll" type="com.eaf.orig.ulo.pl.app.view.webaction.LoadProjectCodeAllWebAction" scope="request"  name="LoadCompletedForm3" validate="true" input="" zForwardSuccess="PROJECT_CODE_ALL_POPUP" zForwardFailure="PROJECT_CODE_ALL_POPUP"></action>
+		
+		<!--Popup -->  
+		 
+  		<action path="RefreshICDCData" type="com.eaf.orig.ulo.pl.app.view.webaction.RefreshICDCDataWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PL_MAIN_APPFORM" zForwardFailure="PL_MAIN_APPFORM"></action>
+        <action path="LoadFileCategoryPopup" type="com.eaf.orig.ulo.pl.popup.view.webaction.LoadFileCategoryPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="PL_MASTER_NORMAL_POPUP"></action>  	   
+	    <action path="DEPLInbox" type="com.eaf.orig.ulo.pl.app.de.view.webaction.InboxDEWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="DE_PL_INBOX_SCREEN" zForwardFailure="DE_PL_INBOX_SCREEN"></action>      	
+  		<!--DC  -->
+  		<action path="DCPLInbox" type="com.eaf.orig.ulo.pl.app.dc.view.webaction.InboxDCWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="DC_PL_INBOX_SCREEN" zForwardFailure="DC_PL_INBOX_SCREEN"></action>
+  		<action path="DCPLICDCInbox" type="com.eaf.orig.ulo.pl.app.dc.view.webaction.InboxDCIcdcWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="DC_PL_INBOX_ICDC_SCREEN" zForwardFailure="DC_PL_INBOX_ICDC_SCREEN"></action>
+  		<action path="CreateICDC" type="com.eaf.orig.ulo.pl.app.dc.view.webaction.CreateICDCWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MAIN_APPFORM" zForwardFailure="DC_CREATE_ICDC_SCREEN"></action>
+  		<action path="DCSaveApplication" type="com.eaf.orig.ulo.pl.app.dc.view.webaction.SaveDCWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="DC_PL_SUMMARY_SCREEN" zForwardFailure="PL_MAIN_APPFORM"></action>
+  		<action path="DCICDCSaveApplication" type="com.eaf.orig.ulo.pl.app.dc.view.webaction.SaveDCICDCWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="DC_PL_SUMMARY_SCREEN" zForwardFailure="PL_MAIN_APPFORM"></action>
+  		<action path="DCBundleInbox" type="com.eaf.orig.ulo.pl.app.dc.view.webaction.InboxBundingWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="DC_PL_INBOX_BUNDLE_SCREEN" zForwardFailure="DC_PL_INBOX_BUNDLE_SCREEN"></action>
+  		<action path="DCSearchBundle" type="com.eaf.orig.ulo.pl.app.dc.view.webaction.SearchBundingWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="DC_PL_SEARCH_BUNDLE_SCREEN" zForwardFailure="DC_PL_SEARCH_BUNDLE_SCREEN"></action>
+  		<action path="DCSaveBundleApplication" type="com.eaf.orig.ulo.pl.app.dc.view.webaction.SaveBundingWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="DC_PL_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>
+  		<action path="DCSearchBundlePopup" type="com.eaf.orig.ulo.pl.app.dc.view.webaction.SearchBundingPopupWebaction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="DC_BUNDLE_CLAIM_POPUP" zForwardFailure="DC_BUNDLE_CLAIM_POPUP"></action>
+  		<action path="DCSearchCashDay5" type="com.eaf.orig.ulo.pl.app.dc.view.webaction.SearchCashDay5WebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="DC_SEARCH_CASHDAY5_SCREEN" zForwardFailure="DC_SEARCH_CASHDAY5_SCREEN"></action>
+  		<action path="CreateBundling" type="com.eaf.orig.ulo.pl.app.dc.view.webaction.CreateBundlingWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="MAIN_APPFORM" zForwardFailure="DC_CREATE_BUNDLING_SCREEN"></action>
+  		<!--CB -->
+  		<action path="CBPLInbox" type="com.eaf.orig.ulo.pl.app.cb.view.webaction.InboxCBWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CB_PL_INBOX_SCREEN" zForwardFailure="CB_PL_INBOX_SCREEN"></action>
+  		<action path="CBPullJobWebAction" type="com.eaf.orig.ulo.pl.app.cb.view.webaction.CBPullJobWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CB_PL_INBOX_SCREEN" zForwardFailure="CB_PL_INBOX_SCREEN"></action>
+  		<action path="CBAllocateJobWebAction" type="com.eaf.orig.ulo.pl.app.cb.view.webaction.CBAllocateJobWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CB_PL_INBOX_SCREEN" zForwardFailure="CB_PL_INBOX_SCREEN"></action>
+  		<action path="CBSendBackWebAction" type="com.eaf.orig.ulo.pl.app.cb.view.webaction.CBSendBackWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CB_PL_INBOX_SCREEN" zForwardFailure="CB_PL_INBOX_SCREEN"></action>
+  		<action path="CBSendBackPopupWebAction" type="com.eaf.orig.ulo.pl.app.cb.view.webaction.CBSendBackPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CB_SENDBACK_POPUP" zForwardFailure="CB_SENDBACK_POPUP"></action>
+  		<action path="SearchCBConsentWebAction" type="com.eaf.orig.ulo.pl.app.cb.view.webaction.SearchCBConsentWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CONSENT_ENQUIRY_SCREEN" zForwardFailure="CONSENT_ENQUIRY_SCREEN"></action>
+  		<action path="SendToKBankBureauWebAction" type="com.eaf.orig.ulo.pl.app.cb.view.webaction.SendToKBankBureauWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CB_PL_INBOX_SCREEN" zForwardFailure="CB_PL_INBOX_SCREEN"></action>
+  		<action path="NCB_IMAGES" type="com.eaf.orig.ulo.pl.app.cb.view.webaction.NCBImagesPopupWebAction" scope="request" name="NCB_IMAGES" validate="true" input="" zForwardSuccess="NCB_IMAGES_POPUP_SCREEN" zForwardFailure="NCB_IMAGES_POPUP_SCREEN"></action>
+  		<action path="VerifyNCBPopupWebAction" type="com.eaf.orig.ulo.pl.app.cb.view.webaction.VerifyNCBPopupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="VERIFY_NCB_POPUP_SCREEN" zForwardFailure="VERIFY_NCB_POPUP_SCREEN"></action>
+  		<action path="SaveVerifyCbWebAction" type="com.eaf.orig.ulo.pl.app.cb.view.webaction.SaveVerifyCbWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="VERIFY_NCB_SCREEN" zForwardFailure="VERIFY_NCB_SCREEN"></action>
+  		<action path="SearchVerifyNCBWebAction" type="com.eaf.orig.ulo.pl.app.sup.view.webaction.SearchVerifyNCBWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="VERIFY_NCB_SCREEN" zForwardFailure="VERIFY_NCB_SCREEN"></action>
+  		
+  		<!--VC -->
+  		<action path="VCPLInbox" type="com.eaf.orig.ulo.pl.app.vc.view.webaction.InboxVCWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="VC_PL_INBOX_SCREEN" zForwardFailure="VC_PL_INBOX_SCREEN"></action>
+  		<action path="VCSaveApplication" type="com.eaf.orig.ulo.pl.app.vc.view.webaction.SaveVCWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="VC_PL_SUMMARY_SCREEN" zForwardFailure="PL_MAIN_APPFORM"></action>
+  		<!--CA -->
+  		<action path="CAPLInbox" type="com.eaf.orig.ulo.pl.app.ca.view.webaction.InboxCAWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CA_PL_INBOX_SCREEN" zForwardFailure="CA_PL_INBOX_SCREEN"></action>
+  		<action path="CAPLICDCInbox" type="com.eaf.orig.ulo.pl.app.ca.view.webaction.InboxCAIcdcWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CA_PL_INBOX_ICDC_SCREEN" zForwardFailure="CA_PL_INBOX_ICDC_SCREEN"></action>
+  		<action path="CABundleCCInbox" type="com.eaf.orig.ulo.pl.app.ca.view.webaction.InboxCABundleCCWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CA_INBOX_BUNDLE_CC_SCREEN" zForwardFailure="CA_INBOX_BUNDLE_CC_SCREEN"></action>
+  		<action path="CASaveApplication" type="com.eaf.orig.ulo.pl.app.ca.view.webaction.SaveCAWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CA_PL_SUMMARY_SCREEN" zForwardFailure="PL_MAIN_APPFORM"></action>
+  		<action path="SearchBundleCC" type="com.eaf.orig.ulo.pl.app.ca.view.webaction.SearchBundleCCWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CA_SEARCH_BUNDLE_SCREEN" zForwardFailure="CA_SEARCH_BUNDLE_SCREEN"></action>
+  		<!--DF -->
+  		<action path="DFPLInbox" type="com.eaf.orig.ulo.pl.app.df.view.webaction.InboxDFWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="DF_PL_INBOX_SCREEN" zForwardFailure="DF_PL_INBOX_SCREEN"></action>
+  		<action path="DFPLRejectInbox" type="com.eaf.orig.ulo.pl.app.df.view.webaction.RejectInboxDFWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="DF_PL_REJECT_INBOX_SCREEN" zForwardFailure="DF_PL_REJECT_INBOX_SCREEN"></action>	
+  		<!--FU -->
+  		<action path="FUPLInbox" type="com.eaf.orig.ulo.pl.app.fu.view.webaction.InboxFUWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="FU_PL_INBOX_SCREEN" zForwardFailure="FU_PL_INBOX_SCREEN"></action>
+  		<action path="FuICDCInbox" type="com.eaf.orig.ulo.pl.app.fu.view.webaction.InboxFUIcdcWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="FU_INBOX_ICDC_SCREEN" zForwardFailure="FU_INBOX_ICDC_SCREEN"></action>
+  		<action path="FUSaveApplication" type="com.eaf.orig.ulo.pl.app.fu.view.webaction.SaveFUWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="FU_PL_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>
+  		
+  		<!--PL XRULES  -->
+		<action path="DUPLICATE_APPLICATION_POPUP" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.DuplicateApplicationPopupWebAction" scope="request" name="DUPLICATE_POPUP" validate="true" input="" zForwardSuccess="DUPLICATE_APPLICATION_POPUP_SCREEN" zForwardFailure="DUPLICATE_APPLICATION_POPUP_SCREEN"></action>
+		<action path="EXISTING_KEC_POPUP" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.ExistingKECPopupWebAction" scope="request" name="EXISTING_KEC_POPUP" validate="true" input="" zForwardSuccess="EXISTING_KEC_POPUP_SCREEN" zForwardFailure="EXISTING_KEC_POPUP_SCREEN"></action>
+		<action path="WATCHLIST_FRAUD_POPUP" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.WatchListFraudPopupWebaction" scope="request" name="WATCHLIST_FRAUD_POPUP" validate="true" input="" zForwardSuccess="WATCHLIST_FRAUD_POPUP_SCREEN" zForwardFailure="WATCHLIST_FRAUD_POPUP_SCREEN"></action>
+		<action path="PAYROLL_POPUP" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.PayRollPopupWebAction" scope="request" name="PAYROLL_POPUP" validate="true" input="" zForwardSuccess="PAYROLL_POPUP_SCREEN" zForwardFailure="PAYROLL_POPUP_SCREEN"></action>
+		<action path="LIST_COMPANY_POPUP" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.ListedCompanyPopupWebAction" scope="request" name="LIST_COMPANY_POPUP" validate="true" input="" zForwardSuccess="LIST_COMPANY_POPUP_SCREEN" zForwardFailure="LIST_COMPANY_POPUP_SCREEN"></action>
+		<action path="FRAUD_COMPANY_POPUP" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.FraudCompanyPopupWebAction" scope="request" name="FRAUD_COMPANY_POPUP" validate="true" input="" zForwardSuccess="FRAUD_COMPANY_POPUP_SCREEN" zForwardFailure="FRAUD_COMPANY_POPUP_SCREEN"></action>
+		<action path="DOC_LIST_POPUP" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.DocListPopupWebAction" scope="request" name="DOC_LIST_POPUP" validate="true" input="" zForwardSuccess="DOC_LIST_POPUP_SCREEN" zForwardFailure="DOC_LIST_POPUP_SCREEN"></action>
+		<action path="VERIFY_CUSTOMER_POPUP" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.VerifyCustomerPopupWebAction" scope="request" name="VERIFY_CUSTOMER_POPUP" validate="true" input="" zForwardSuccess="VERIFY_CUSTOMER_POPUP_SCREEN" zForwardFailure="VERIFY_CUSTOMER_POPUP_SCREEN"></action>
+		<action path="VERIFY_HR_POPUP" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.VerifyHRPopupWebAction" scope="request" name="VERIFY_HR_POPUP" validate="true" input="" zForwardSuccess="VERIFY_HR_POPUP_SCREEN" zForwardFailure="VERIFY_HR_POPUP_SCREEN"></action>
+		<action path="NCB_POPUP" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.NcbPopupWebAction" scope="request" name="NCB_POPUP" validate="true" input="" zForwardSuccess="NCB_POPUP_SCREEN" zForwardFailure="NCB_POPUP_SCREEN"></action>
+		<action path="NCB_RESULT_POPUP" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.NcbResultPopupWebAction" scope="request" name="NCB_RESULT_POPUP" validate="true" input="" zForwardSuccess="NCB_RESULT_POPUP_SCREEN" zForwardFailure="NCB_RESULT_POPUP_SCREEN"></action>
+		<action path="FOLLOWDETAIL_POPUP" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.FollowDetailPopupWebAction" scope="request" name="FOLLOWDETAIL_POPUP" validate="true" input="" zForwardSuccess="FOLLOWDETAIL_POPUP_SCREEN" zForwardFailure="FOLLOWDETAIL_POPUP_SCREEN"></action>
+		<action path="BSCORE_POPUP" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.BScorePopupWebAction" scope="request" name="BSCORE_POPUP" validate="true" input="" zForwardSuccess="BSCORE_POPUP_SCREEN" zForwardFailure="BSCORE_POPUP_SCREEN"></action>
+		<action path="NPL_POPUP" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.NplPopupWebAction" scope="request" name="NPL_POPUP" validate="true" input="" zForwardSuccess="NPL_POPUP_SCREEN" zForwardFailure="NPL_POPUP_SCREEN"></action>
+		<action path="EDIT_VERIFICATION_POPUP" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.EditVerificationPopupWebAction" scope="request" name="EDIT_POPUP" validate="true" input="" zForwardSuccess="EDIT_POPUP_SCREEN" zForwardFailure="EDIT_POPUP_SCREEN"></action>
+								
+		<action path="ExecuteXrulesModule" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.ExecuteXrulesModuleWebAction" scope="request" name="ExecuteXrulesModule" validate="true" input=""></action>
+		<action path="ILOGExecution" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.ILOGExecutionWebAction" scope="request" name="ILOGExecution" validate="true" input=""></action>
+		<action path="FormHandlerAction" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.FormHandlerWebAction" scope="request" name="FormHandlerAction" validate="true" input=""></action>
+		
+		
+		<action path="ExecuteChangeCreditCardResult" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.ExecuteChangeCreditCardResultWebAction" scope="request" name="ExecuteChangeCreditCardResult" validate="true" input=""></action>
+		<action path="ExecuteXrulesManual" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.ExecuteXRulesManualWebAction" scope="request" name="ExecuteXrulesManual" validate="true" input=""></action>
+		<action path="ValidateDuplicateApp" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.ValidateDuplicateAppWebAction" scope="request" name="ValidateDuplicateApp" validate="true" input=""></action>
+		<action path="DeplicateAppWebAction" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.XRulesDeplicateAppWebAction" scope="request" name="DeplicateAppWebAction" validate="true" input=""></action>
+		<action path="SendNcbWebAction" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.SendNcbWebAction" scope="request" name="SendNcbWebAction" validate="true" input=""></action>
+		<action path="SaveDocListWabAction" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.SaveDocListWabAction" scope="request" name="SaveDocListWabAction" validate="true" input=""></action>
+		<action path="ConfirmFollowDocEmail" type="com.eaf.orig.ulo.pl.app.view.webaction.LoadConfirmFollowDocWebAction" scope="request" name="SendEmail" validate="true" input="" zForwardSuccess="CONFIRM_FOLLOW_DOC_EMAIL_POPUP" zForwardFailure="CONFIRM_FOLLOW_DOC_EMAIL_POPUP"></action>
+		<action path="RuleDetailsPopup" type="com.eaf.orig.ulo.pl.app.view.webaction.RuleDetailsPopupWebAction" scope="request" name="SendEmail" validate="true" input="" zForwardSuccess="RULE_DETAILS_PUPUP" zForwardFailure="RULE_DETAILS_PUPUP"></action>
+		<action path="ValidateFollowDocEmail" type="com.eaf.orig.ulo.pl.app.view.webaction.ValidateFollowDocEmailWebAction" scope="request" name="SendEmail" validate="true" input=""></action>
+		<action path="ValidateIDWithCard" type="com.eaf.orig.ulo.pl.app.view.webaction.ValidateIDWithCardWebAction" scope="request" name="IDCard" validate="true" input=""></action>
+		<action path="SendFollowDocEmail" type="com.eaf.orig.ulo.pl.app.view.webaction.SendFollowDocEmailWebAction" scope="request" name="SendEmail" validate="true" input=""></action>
+		<action path="StartFollowWebAction" type="com.eaf.orig.ulo.pl.app.view.webaction.StartFollowingWebAction" scope="request" name="StartFollowing" validate="true" input=""></action>
+		<action path="SaveVerifyCustomerWebAction" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.SaveVerifyCustomerWebAction" scope="request" name="SaveVerifyCustomerWebAction" validate="true" input=""></action>
+		<action path="SaveVerifyHRWebAction" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.SaveVerifyHRWebAction" scope="request" name="SaveVerifyHRWebAction" validate="true" input=""></action>
+		<action path="ValidateBlockCodeWebAction" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.PLXrulesValidateBlockCodeWebAction" scope="request" name="ValidateBlockCodeWebAction" validate="true" input=""></action>
+		<action path="RejectAppWebAction" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.XRulesRejectAppWebAction" scope="request" name="RejectAppWebAction" validate="true" input=""></action>
+		<action path="CancleAppWebAction" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.XRulesCancleAppWebAction" scope="request" name="CancleAppWebAction" validate="true" input=""></action>
+		<action path="SaveNcbWebAction" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.SaveNcbWebAction" scope="request" name="SaveNcbWebAction" validate="true" input=""></action>
+		<action path="SaveFraudCompanyWebAction" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.SaveFraudCompanyWebAction" scope="request" name="SaveFraudCompanyWebAction" validate="true" input=""></action>
+		<action path="SaveEditPopupWebAction" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.SaveEditPopupWebAction" scope="request" name="SaveFraudCompanyWebAction" validate="true" input=""></action>
+		<action path="RetrieveOldNcbData" type="com.eaf.orig.ulo.pl.app.rule.view.webaction.RetrieveOldNcbData" scope="request" name="RetrieveOldNcbData" validate="true" input=""></action>
+		<action path="SaveFollowDetailWebAction" type="com.eaf.orig.ulo.pl.app.view.webaction.SaveFollowDetailWebAction" scope="request" name="SaveFollowDetailWebAction" validate="true" input=""></action>
+									
+		<!-- SUP -->
+		<action path="InboxSupWebAction" type="com.eaf.orig.ulo.pl.app.sup.view.webaction.InboxSupWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CONFIRM_REJECT_SCREEN" zForwardFailure="CONFIRM_REJECT_SCREEN"></action>
+		<action path="SearchReassignWebAction" type="com.eaf.orig.ulo.pl.app.sup.view.webaction.SearchReassignWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="REASSIGN_SCREEN" zForwardFailure="REASSIGN_SCREEN"></action>
+		<action path="SaveReassignWebAction" type="com.eaf.orig.ulo.pl.app.sup.view.webaction.SaveReassignWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="REASSIGN_SCREEN" zForwardFailure="REASSIGN_SCREEN"></action>
+		<action path="SaveReallocateWebAction" type="com.eaf.orig.ulo.pl.app.sup.view.webaction.SaveReallocateWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="REASSIGN_SCREEN" zForwardFailure="REASSIGN_SCREEN"></action>
+		<action path="SearchSetPriorityWebAction" type="com.eaf.orig.ulo.pl.app.sup.view.webaction.SearchSetPriorityWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SET_PRIORITY_SCREEN" zForwardFailure="SET_PRIORITY_SCREEN"></action>
+		<action path="SaveSetPriorityWebAction" type="com.eaf.orig.ulo.pl.app.sup.view.webaction.SaveSetPriorityWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SET_PRIORITY_SCREEN" zForwardFailure="SET_PRIORITY_SCREEN"></action>
+		<action path="SearchReworkWebAction" type="com.eaf.orig.ulo.pl.app.sup.view.webaction.SearchReworkWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="REWORK_SCREEN" zForwardFailure="REWORK_SCREEN"></action>
+		<action path="SearchTracking" type="com.eaf.orig.ulo.pl.app.sup.view.webaction.SearchTrackingWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="TRACKING_SCREEN" zForwardFailure="TRACKING_SCREEN"></action>
+		<action path="UnlockAction" type="com.eaf.orig.ulo.pl.app.sup.view.webaction.UnlockWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="UNLOCK_SCREEN" zForwardFailure="UNLOCK_SCREEN"></action>
+		<action path="ConfirmRejectWebAction" type="com.eaf.orig.ulo.pl.app.sup.view.webaction.ConfirmRejectWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CONFIRM_REJECT_SCREEN" zForwardFailure="CONFIRM_REJECT_SCREEN"></action>
+		<action path="ReworkWebAction" type="com.eaf.orig.ulo.pl.app.sup.view.webaction.ReworkWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="REWORK_SCREEN" zForwardFailure="REWORK_SCREEN"></action>
+		<action path="SearchInboxUnblockAction" type="com.eaf.orig.ulo.pl.app.sup.view.webaction.SearchInboxUnblockWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="UNLOCK_SCREEN" zForwardFailure="UNLOCK_SCREEN"></action>
+		<action path="SearchVerifyNCBWebAction" type="com.eaf.orig.ulo.pl.app.sup.view.webaction.SearchVerifyNCBWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="VERIFY_NCB_SCREEN" zForwardFailure="VERIFY_NCB_SCREEN"></action>
+		<action path="LoadUserNameWebAction" type="com.eaf.orig.ulo.pl.app.sup.view.webaction.LoadUserNameWebAction" scope="request" name="LoadCompletedForm3" validate="true" input="" zForwardSuccess="USER_POPUP_SEREEN" zForwardFailure="USER_POPUP_SEREEN"></action>
+
+		<!-- PO -->
+		<action path="SavePOWebAaction" type="com.eaf.orig.ulo.pl.app.po.view.webaction.SavePOWebAaction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="DE_PL_SUMMARY_SCREEN" zForwardFailure="MAIN_APPFORM"></action>
+		<action path="SearchReopenWebAction" type="com.eaf.orig.ulo.pl.app.po.view.webaction.SearchReopenWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_REOPEN_SCREEN" zForwardFailure="SEARCH_REOPEN_SCREEN"></action>
+		<action path="DeplicateAppPOWebAction" type="com.eaf.orig.ulo.pl.app.po.view.webaction.DeplicateAppPOWebAction" scope="request" name="DeplicateAppWebAction" validate="true" input=""></action>
+		<action path="CancelAppPOWebAction" type="com.eaf.orig.ulo.pl.app.po.view.webaction.CancelAppPOWebAction" scope="request" name="CancelAppWebAction" validate="true" input=""></action>
+		
+		<!-- SS -->
+		<action path="SearchCardMaintenanceWebAction" type="com.eaf.orig.ulo.pl.app.ss.view.webaction.SearchCardMaintenanceWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CARD_MAINTENANCE" zForwardFailure="CARD_MAINTENANCE"></action>
+		<action path="LoadCardInfoWebAction" type="com.eaf.orig.ulo.pl.app.ss.view.webaction.LoadCardInfoWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CARD_MAINTENANCE_DETAIL" zForwardFailure="CARD_MAINTENANCE"></action>
+		<action path="ReissueCardWebAction" type="com.eaf.orig.ulo.pl.app.ss.view.webaction.ReissueCardWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CARD_MAINTENANCE_DETAIL" zForwardFailure="CARD_MAINTENANCE_DETAIL"></action>
+		<action path="ReissueCustomerNoWebAction" type="com.eaf.orig.ulo.pl.app.ss.view.webaction.ReissueCustomerNoWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CARD_MAINTENANCE_DETAIL" zForwardFailure="CARD_MAINTENANCE_DETAIL"></action>
+		<action path="CancelCardMaintenenaceDetail" type="com.eaf.orig.ulo.pl.app.ss.view.webaction.CancelCardMaintenenaceDetail" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CARD_MAINTENANCE" zForwardFailure="CARD_MAINTENANCE_DETAIL"></action>
+		<action path="pageCardMaintenanceWebAction" type="com.eaf.orig.ulo.pl.app.ss.view.webaction.pageCardMaintenanceWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CARD_MAINTENANCE" zForwardFailure="CARD_MAINTENANCE"></action>
+		
+		<!-- CS -->
+		<action path="SearchCallCenterTrackingWebAction" type="com.eaf.orig.ulo.pl.app.cs.view.webaction.SearchCallCenterTrackingWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CS_CALL_CENTER_TRACKING_SCREEN" zForwardFailure="CS_CALL_CENTER_TRACKING_SCREEN"></action>
+		
+		<!-- GE -->
+		<action path="SearchEnquiryAction" type="com.eaf.orig.ulo.pl.app.ge.view.webaction.SearchEnquiryWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="ENQUIRY_DATA" zForwardFailure="ENQUIRY_DATA"></action>		
+		<action path="LoadAuditWebAction" type="com.eaf.orig.ulo.pl.app.ge.view.webaction.LoadAuditWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="AUDIT_TRAIL_POPUP" zForwardFailure="AUDIT_TRAIL_POPUP"></action>
+		<action path="LoadHistoryActionWebAction" type="com.eaf.orig.ulo.pl.app.ge.view.webaction.LoadHistoryActionWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="HISTORY_ACTION_POPUP" zForwardFailure="HISTORY_ACTION_POPUP"></action>
+		
+		<action path="ButtonOnJobAction" type="com.eaf.orig.ulo.pl.app.view.webaction.ButtonOnJobWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="DE_PL_INBOX_SCREEN" zForwardFailure="DE_PL_INBOX_SCREEN"></action>
+		
+		<action path="ManageOnJobFlag" type="com.eaf.orig.ulo.pl.app.wf.view.webaction.ManageOnJobFlagWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="CA_PL_INBOX_SCREEN" zForwardFailure="CA_PL_INBOX_SCREEN"></action>
+		
+		<!-- MasterPopup WebAction #SeptemWi-->	
+		<action path="PopupMasterWebAction" type="com.eaf.orig.shared.view.webaction.PopupMasterWebAction" scope="request" name="PopupMasterWebAction" validate="true" input="" zForwardSuccess="MASTER_POPUP_SCREEN" zForwardFailure="MASTER_POPUP_SCREEN"></action>
+				
+	<!-- END KLOP 2012 -->
+	</action-mappings>
+
+	<event-mappings>
+		<event name="ApplicationEvent" type="com.eaf.orig.shared.control.action.ApplicationAction" />
+		<event name="UserLogOnEvent" type="com.eaf.orig.shared.control.action.UserLogOnAction" />	
+		<event name="OrigMasterEvent" type="com.eaf.orig.shared.control.action.OrigMasterAction" />	
+		<event name="ListBoxEvent" type="com.eaf.orig.shared.control.action.ListBoxAction" />	
+		<event name="FieldIdEvent" type="com.eaf.orig.shared.control.action.FieldIdAction" />
+		<event name="RunParamEvent" type="com.eaf.orig.shared.control.action.RunParamAction" />	
+		<event name="GenParamEvent" type="com.eaf.orig.shared.control.action.GenParamAction" />
+		<event name="MandFieldEvent" type="com.eaf.orig.shared.control.action.MandFieldAction" />	
+		<event name="HolMasterEvent" type="com.eaf.orig.shared.control.action.HolMasterAction" />	
+		<event name="QTimeEvent" type="com.eaf.orig.shared.control.action.QTimeAction" />	
+		<event name="UserTeamEvent" type="com.eaf.orig.shared.control.action.UserTeamAction" />
+		<event name="ExceptActEvent" type="com.eaf.orig.shared.control.action.ExceptActAction" />	
+		<event name="ApprovAuthorEvent" type="com.eaf.orig.shared.control.action.ApprovAuthorAction" />	
+		<event name="AppScoreEvent" type="com.eaf.orig.shared.control.action.AppScoreAction" />
+		<event name="CarBlacklistEvent" type="com.eaf.orig.shared.control.action.CarBlacklistAction" />	
+		<event name="FICOEvent" type="com.eaf.orig.shared.control.action.FICOAction" />	
+		<event name="SLAEvent" type="com.eaf.orig.shared.control.action.SLAAction" />	
+		<event name="PolicyRulesEvent" type="com.eaf.orig.shared.control.action.PolicyRulesAction" />
+		<event name="PLApplicationEvent" type="com.eaf.orig.ulo.pl.control.action.PLApplicationAction" />							
+	</event-mappings>
+
+	<screen-definitions>
+		<!--Screen Example-->
+		<screen zname="LOGOUT_SCREEN" HtmlTitle="AUTO LOAN DEMO" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="logout.jsp" BottomNav="blank.jsp"></screen>				
+		<screen zname="APP_CLOSE" HtmlTitle="AUTO LOAN DEMO" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/appform/application_close.jsp" BottomNav="blank.jsp"></screen>				
+		<screen zname="INDEX_SCREEN" HtmlTitle="AUTO LOAN DEMO" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="login.jsp" BottomNav="footer.jsp"></screen>
+		
+		<screen zname="BLANK_SCREEN" HtmlTitle="AUTO LOAN DEMO" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="blank.jsp" BottomNav="footer.jsp"></screen>	
+	<!-- K-BANK -->
+		<screen zname="SEARCH_IMG_SCREEN" HtmlTitle="AUTO LOAN DEMO" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/appform/search_image.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="DE_SEARCH_SCREEN" HtmlTitle="AUTO LOAN DEMO" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/de/search_screen.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="DE_SEARCH_IMAGE_SCREEN" HtmlTitle="AUTO LOAN DEMO" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/de/search_image_screen.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="MAIN_APPFORM" HtmlTitle="AUTO LOAN DEMO" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/appform/application_main.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="POPUP_APPFORM" HtmlTitle="AUTO LOAN DEMO" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/appform/application_popup.jsp" BottomNav="blank.jsp"></screen>
+		<screen zname="MAIL_IN_SCREEN" HtmlTitle="AUTO LOAN DEMO" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/appform/mail_in_screen.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="CACHE_POPUP" HtmlTitle="AUTO LOAN DEMO" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/cache_popup.jsp" BottomNav="blank.jsp"></screen>	
+		<screen zname="ADDRESS_POPUP" HtmlTitle="Address Popup" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/address_popup.jsp" BottomNav="blank.jsp"></screen>
+		<screen zname="FINANCE_POPUP" HtmlTitle="Finance Popup" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/finance_popup.jsp" BottomNav="blank.jsp"></screen>
+		<screen zname="CHANGE_NAME_POPUP" HtmlTitle="Change Name History Popup" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/change_name_popup.jsp" BottomNav="blank.jsp"></screen>
+		<screen zname="OTHER_NAME_POPUP" HtmlTitle="Other Name Popup" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/othername_popup.jsp" BottomNav="blank.jsp"></screen>
+		<screen zname="LOAN_POPUP" HtmlTitle="Loan Popup" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/loan_popup.jsp" BottomNav="blank.jsp"></screen>
+		<screen zname="LOAN_LEASING_POPUP" HtmlTitle="Loan Popup" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/loan_leasing_popup.jsp" BottomNav="blank.jsp"></screen>	
+		<screen zname="LOAN_PLOAN_POPUP" HtmlTitle="Loan Popup" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/loan_ploan_popup.jsp" BottomNav="blank.jsp"></screen>
+		<screen zname="CAR_POPUP" HtmlTitle="Car Popup" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/car_popup.jsp" BottomNav="blank.jsp"></screen>	
+		<screen zname="MASTER_POPUP" HtmlTitle="Master Popup" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/master_popup.jsp" BottomNav="blank.jsp"></screen>
+		<screen zname="SAVING_POPUP" HtmlTitle="Master Popup" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/pl/pl_saving_popup.jsp" BottomNav="blank.jsp"></screen>
+		
+		<screen zname="CORPERATED_POPUP" HtmlTitle="Corperated Popup" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/corperated_popup.jsp" BottomNav="blank.jsp"></screen>
+		<screen zname="STEP_INSTALLMENT_POPUP" HtmlTitle="Loan Popup" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/stepInstallment_popup.jsp" BottomNav="blank.jsp"></screen>
+		<screen zname="FEE_INFORMATION_POPUP" HtmlTitle="Loan Popup" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/fee_information_popup.jsp" BottomNav="blank.jsp"></screen>
+		
+		<screen zname="POPUP_NOTEPAD" HtmlTitle="blank.jsp" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/notepad_popup.jsp" BottomNav="blank.jsp"></screen>
+		<screen zname="POPUP_DOCUMENTLIST" HtmlTitle="blank.jsp" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/documentchecklist_popup.jsp" BottomNav="blank.jsp"></screen>	
+		<screen zname="POPUP_TAILORDOCLIST" HtmlTitle="blank.jsp" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/tailorchecklist_popup.jsp" BottomNav="blank.jsp"></screen>
+		<screen zname="POPUP_ACTION_FLOW" HtmlTitle="blank.jsp" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/action_flow_popup.jsp" BottomNav="blank.jsp"></screen>	
+		<screen zname="POPUP_SLA" HtmlTitle="blank.jsp" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/sla_popup.jsp" BottomNav="blank.jsp"></screen>	
+		<screen zname="ACTUAL_PRICE_POPUP" HtmlTitle="blank.jsp" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/actual_price_popup.jsp" BottomNav="blank.jsp"></screen>	
+		
+		<screen zname="CMR_SEARCH_SCREEN" HtmlTitle="CMR Search Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/cmr/cmr_search_screen.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="UW_SEARCH_SCREEN" HtmlTitle="UW Search Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/uw/uw_inbox_search_screen.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="PD_SEARCH_SCREEN" HtmlTitle="PD Search Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/pd/pd_inbox_search_screen.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="XCMR_SEARCH_SCREEN" HtmlTitle="XCMR Search Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/xcmr/xcmr_override_search_screen.jsp" BottomNav="footer.jsp"></screen>								
+		<screen zname="XUW_SEARCH_SCREEN" HtmlTitle="XUW Search Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/xuw/xuw_override_search_screen.jsp" BottomNav="footer.jsp"></screen>
+		
+		<screen zname="CMR_SUMMARY_SCREEN" HtmlTitle="CMR Summary Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/cmr/cmr_summary.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="UW_SUMMARY_SCREEN" HtmlTitle="UW Summary Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/uw/uw_summary.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="UW_CREDIT_SUMMARY_SCREEN" HtmlTitle="UW Summary Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/uw/uw_credit_summary.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="UW_PLOAN_SUMMARY_SCREEN" HtmlTitle="UW Summary Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/uw/uw_ploan_summary.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="UW_MORTGAGE_SUMMARY_SCREEN" HtmlTitle="UW Summary Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/uw/uw_mortgage_summary.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="XCMR_SUMMARY_SCREEN" HtmlTitle="XCMR Summary Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/xcmr/xcmr_summary.jsp" BottomNav="footer.jsp"></screen>																
+		<screen zname="PD_SUMMARY_SCREEN" HtmlTitle="PD Summary Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/pd/pd_summary.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="XUW_SUMMARY_SCREEN" HtmlTitle="XUW Summary Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/xuw/xuw_summary.jsp" BottomNav="footer.jsp"></screen>
+		 
+		<screen zname="VIEW_ADDRESS_POPUP" HtmlTitle="View Address Popup" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/view_address_popup.jsp" BottomNav="blank.jsp"></screen>
+		
+		<screen zname="MS_USER_DETAIL_SEARCHING_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/user_detail_searching.jsp" BottomNav="footer.jsp"></screen>																		
+		<screen zname="MS_LISTBOX_MASTER_SEARCHING_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/listbox_master_searching.jsp" BottomNav="footer.jsp"></screen>																
+		<screen zname="MS_FIELD_ID_SEARCHING_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/field_id_searching.jsp" BottomNav="footer.jsp"></screen>																
+		<screen zname="MS_RUNNING_PARAMETER_SEARCHING_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/running_parameter_searching.jsp" BottomNav="footer.jsp"></screen>																
+		<screen zname="MS_GENERAL_PARAMETER_SEARCHING_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/general_parameter_searching.jsp" BottomNav="footer.jsp"></screen>																
+		<screen zname="MS_MANDATORY_FIELD_SEARCHING_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/mandatory_filed_searching.jsp" BottomNav="footer.jsp"></screen>																			
+		<screen zname="MS_HOLIDAY_MASTER_SEARCHING_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/holiday_master_searching.jsp" BottomNav="footer.jsp"></screen>																			
+		<screen zname="MS_QUEUE_TIMEOUT_SEARCHING_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/queue_timeout_searching.jsp" BottomNav="footer.jsp"></screen>	
+		<screen zname="MS_USER_TEAM_SEARCHING_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/user_team_searching.jsp" BottomNav="footer.jsp"></screen>																																					
+		<screen zname="MS_EXCEPT_ACT_SEARCHING_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/exceptional_action_searching.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="MS_APPROV_AUTHOR_SEARCHING_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/approval_authority_searching.jsp" BottomNav="footer.jsp"></screen>																																																																										
+		<screen zname="MS_CAR_BLACKLIST_SEARCHING_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/car_blacklist_entry_searching.jsp" BottomNav="footer.jsp"></screen>																																																																										
+		<screen zname="MS_SCORE_SEARCHING_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/application_score_searching.jsp" BottomNav="footer.jsp"></screen>																																																																										
+		<screen zname="MS_SCORE_SUMMARY_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/application_score_summary.jsp" BottomNav="footer.jsp"></screen>																																																																										
+		<screen zname="MS_FICO_SCORE_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/FICO_score.jsp" BottomNav="footer.jsp"></screen>																																																																										
+		<screen zname="MS_REFRESH_CACHE_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/refresh_cache.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="MS_SLA_SCREEN" HtmlTitle="Sla" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/sla_searching.jsp" BottomNav="footer.jsp"></screen>																																																																								
+		<screen zname="MS_POLICY_RULES_SEARCHING_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/policy_rules_searching.jsp" BottomNav="footer.jsp"></screen>
+		<!-- Approval Master-->
+	    <screen zname="MS_APPROV_AUTHOR_SETUP_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/approval_authority_setup.jsp" BottomNav="footer.jsp"></screen>			
+		<screen zname="MS_APPROV_AUTHOR_POLICY_LEVELS_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/approval_authority_levels.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="MS_APPROV_AUTHOR_POLICY_GROUPS_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/approval_authority_policy_groups.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="MS_APPROV_AUTHOR_MAP_POLICY_RULES_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/approval_authority_map_policyrules.jsp" BottomNav="footer.jsp"></screen>		
+	    <screen zname="MS_APPROV_AUTHOR_DETAIL_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/approval_authority_detail.jsp" BottomNav="footer.jsp"></screen>					
+	    <screen zname="MS_APPROV_AUTHOR_CREATE_NEW_COPY_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/approval_authority_create_new_copy.jsp" BottomNav="footer.jsp"></screen>					
+	    <screen zname="MS_APPROV_AUTHOR_CLOSE_SCREEN" HtmlTitle="User Profile Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/approval_authority_close.jsp" BottomNav="footer.jsp"></screen>					
+				
+		<screen zname="PRE_SCORE_INDIVIDUAL_SCREEN" HtmlTitle="Pre Score Individual Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/subform/pre_score_individual.jsp" BottomNav="footer.jsp"></screen>																																																																										
+		<screen zname="PRE_SCORE_FOREIGNER_SCREEN" HtmlTitle="Pre Score Foreigner Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/subform/pre_score_foreigner.jsp" BottomNav="footer.jsp"></screen>																																																																										
+		<screen zname="PRE_SCORE_CORPERATE_SCREEN" HtmlTitle="Pre Score Corperate Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/subform/pre_score_corperate.jsp" BottomNav="footer.jsp"></screen>	
+		
+																																																																											
+		
+		<!-- Recovery Application -->
+ 		<screen zname="RECOVERY_APP_SCREEN" HtmlTitle="Recovery Application" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/master/recoveryApp.jsp" BottomNav="footer.jsp"></screen> 
+ 		<!-- End Recovery Application -->
+		
+		
+		<!--XRules Popup-->
+	    <!-- By Sankom -->
+      	<!-- Oct 30, 2007 -->
+	    <screen zname="XRULES_NCB_SUMMARY_POPUP" HtmlTitle="Xrules NCB Summary Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_ncb_summary_popup.jsp" BottomNav="footer.jsp"></screen> 
+	    <screen zname="XRULES_NCB_DETAIL_POPUP" HtmlTitle="Xrules NCB Detail Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_ncb_detail_popup.jsp" BottomNav="footer.jsp"></screen> 
+	    <screen zname="XRULES_BLACKLIST_CUSTOMER_POPUP" HtmlTitle="Xrules Blacklist Customer Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_blacklist_customer_popup.jsp" BottomNav="footer.jsp"></screen> 
+	    <screen zname="XRULES_BLACKLIST_VEHICLE_POPUP" HtmlTitle="Xrules Blacklist Vehicle Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_blacklist_vehicle_popup.jsp" BottomNav="footer.jsp"></screen> 
+	    <screen zname="XRULES_EXISTING_CUSTOMER_POPUP" HtmlTitle="Xrules Existing Customer Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_existing_customer_popup.jsp" BottomNav="footer.jsp"></screen> 
+	    <screen zname="XRULES_DEDUP_POPUP" HtmlTitle="Xrules Dedup Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_dedup_popup.jsp" BottomNav="footer.jsp"></screen> 
+	    <screen zname="XRULES_DUP_VEHICLE_POPUP" HtmlTitle="Xrules Duplicate Vehicle Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_duplicatevehicle_popup.jsp" BottomNav="footer.jsp"></screen> 
+	    <screen zname="XRULES_LPM_MAIN_POPUP" HtmlTitle="Xrules LPM Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_lpm_main_popup.jsp" BottomNav="footer.jsp"></screen> 
+	    <screen zname="XRULES_LPM_ITEM_POPUP" HtmlTitle="Xrules LPM Input Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_lpm_input_popup.jsp" BottomNav="footer.jsp"></screen> 
+  	    <screen zname="XRULES_POLICYRULES_POPUP" HtmlTitle="Xrules Polycy Rules  Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_policyrules_popup.jsp" BottomNav="footer.jsp"></screen> 
+ 	    <screen zname="XRULES_DEBT_BURDEN_POPUP" HtmlTitle="Xrules Debt Burden  Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_debtburden_popup.jsp" BottomNav="footer.jsp"></screen> 
+ 	    <screen zname="XRULES_FICO_POPUP" HtmlTitle="Xrules PICO Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_fico_popup.jsp" BottomNav="footer.jsp"></screen> 
+   	    <screen zname="XRULES_PHONEVER_POPUP" HtmlTitle="Xrules Phone Verification Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_phonever_popup.jsp" BottomNav="footer.jsp"></screen> 
+	    <screen zname="XRULES_WEBVER_POPUP" HtmlTitle="Xrules WEB Verification Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_webver_popup.jsp" BottomNav="footer.jsp"></screen> 
+	    <screen zname="XRUlES_REWRITE_VERIFICATION_SCREEN" HtmlTitle="Rewrite Verification Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="/orig/popup/xrules_rewrite_verification_result_popup.jsp" BottomNav=""></screen>
+	    <screen zname="XRUlES_CLOSE" HtmlTitle="Blank Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="/orig/popup/xrules_close.html" BottomNav=""></screen>
+	    <screen zname="SCORING_REWRITE_POPUP_SCREEN" HtmlTitle="Rewrite Verification Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="/orig/popup/scoring_rewrite_result_popup.jsp" BottomNav=""></screen>
+	    <screen zname="XRUlES_REWRITE_ALL_VERIFICATION_SCREEN" HtmlTitle="Rewrite Verification Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="/orig/popup/xrules_rewrite_all_verification_result_popup.jsp" BottomNav=""></screen>
+   	    <screen zname="XRULES_NCB_PAYMENT_DETAIL_POPUP" HtmlTitle="Xrules NCB Payment Detail Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_ncb_payment_detail_popup.jsp" BottomNav="footer.jsp"></screen> 
+   	    <screen zname="XRUlES_LPM_INPUT_CLOSE" HtmlTitle="Blank Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="/orig/popup/xrules_lpminput_close.jsp" BottomNav=""></screen>
+   	    
+   	    <screen zname="XRULES_ELIGIBILITY_POPUP" HtmlTitle="Xrules Eligibility Verification Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_eligibility_popup.jsp" BottomNav="footer.jsp"></screen> 
+   	    <screen zname="XRULES_LTV_POPUP" HtmlTitle="Xrules LTV Verification Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/xrules_ltv_popup.jsp" BottomNav="footer.jsp"></screen> 
+   	    
+   	    <!--Ilog -->
+  	   <screen zname="SCORING_ILOG_REWRITE_POPUP_SCREEN" HtmlTitle="Rewrite Verification Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="/orig/popup/scoring_ilog_rewrite_result_popup.jsp" BottomNav=""></screen>
+	    <!--Ilog -->
+	    
+	    <!-- Multi App -->
+		<screen zname="MULTI_APPFORM" HtmlTitle="Multiple Application Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="/orig/appform/multiApp.jsp" BottomNav=""></screen>	    
+	    <screen zname="REKEY_SCREEN" HtmlTitle="Rekey screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/de/rekeyScreen.jsp" BottomNav="footer.jsp"></screen>									    	    
+	    <!-- End Multi App -->
+	    
+	    
+ <!--END XRules-->
+ 
+ 	 <!--Begin Report-->
+ 		<screen zname="RPT_CALATTER_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_ca_letter.jsp" BottomNav="footer.jsp"></screen>
+ 		<screen zname="RPT_VERIFICATION_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_ver_lst.jsp" BottomNav="footer.jsp"></screen>
+ 		<screen zname="RPT_CONSENT_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_consent.jsp" BottomNav="footer.jsp"></screen>
+ 		<screen zname="RPT_CMR_PERFORMANCE_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_cmr.jsp" BottomNav="footer.jsp"></screen>
+ 		<screen zname="RPT_CA_PERFORMANCE_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_ca_pfm.jsp" BottomNav="footer.jsp"></screen>
+ 		<screen zname="RPT_CASLA_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_ca_sla.jsp" BottomNav="footer.jsp"></screen>
+ 		<screen zname="RPT_CADECIS_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_ca_decs.jsp" BottomNav="footer.jsp"></screen>
+ 		<screen zname="RPT_CAOVER_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_over_rd.jsp" BottomNav="footer.jsp"></screen>
+ 		<screen zname="RPT_REP_BY_LOAN_TYPE_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_by_ltype.jsp" BottomNav="footer.jsp"></screen>
+ 		<screen zname="RPT_TIME_RESP_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_time_res.jsp" BottomNav="footer.jsp"></screen>
+ 		<screen zname="RPT_CMR_APPL_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_cmr_app.jsp" BottomNav="footer.jsp"></screen>
+ 		<screen zname="RPT_CA_APPL_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_ca_app.jsp" BottomNav="footer.jsp"></screen>
+ 		<screen zname="RPT_CONSENT_PRINT_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_consent_print.jsp" BottomNav="footer.jsp"></screen> 		
+ 		<screen zname="RPT_PRE_CONTRAC_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_pre_contract.jsp" BottomNav="footer.jsp"></screen>
+ 		<screen zname="RPT_PRE_CONTRAC_G_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_pre_contract_gurantor.jsp" BottomNav="footer.jsp"></screen>
+ 		<screen zname="RPT_PRE_CONTRAC_VER_SCREEN" HtmlTitle="User Searching Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/report/rep_pre_contract_ver.jsp" BottomNav="footer.jsp"></screen>
+ 	 <!--END Report-->
+ 	 
+ 		<screen zname="UPLOAD_IMAGE" HtmlTitle="Upload Image" TopNav="header.jsp" SubHeader="blank.jsp" LeftNav="left.jsp" HtmlBody="/orig/cmr/upload_image.jsp" BottomNav="footer.jsp"></screen>
+ 		<!--Proposal Screen-->   
+ 		<!--By Baworn-->
+ 		<!--Oct 31, 2007-->
+ 		<screen zname="CREATE_PROPOSAL" HtmlTitle="Create Propersal Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/proposal/createProposal.jsp" BottomNav="footer.jsp"></screen> 
+ 		<screen zname="SEARCH_CLIENT_GROUP" HtmlTitle="Search ClientGroup Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/proposal/searchClientGroup.jsp" BottomNav="footer.jsp"></screen> 
+ 		<screen zname="CREATE_CAR_DETAIL" HtmlTitle="Create Car Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/proposal/createCarDetail.jsp" BottomNav="footer.jsp"></screen> 
+ 		<screen zname="REWRITE_CAR_DETAIL" HtmlTitle="Create Car Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/proposal/rewriteCarDetail.jsp" BottomNav="footer.jsp"></screen> 
+ 		<!--End Proposal-->
+ 		
+ 		<screen zname="TEST_PAGE_VERIFILIST" HtmlTitle="Create Car Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/subform/pl/pl_verification_list_subform.jsp" BottomNav="footer.jsp"></screen> 
+ 		
+	<!-- PL XRULES SCREEN-->
+	<screen zname="DUPLICATE_APPLICATION_POPUP_SCREEN" HtmlTitle="Duplicate Application Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/DuplicateApplicationPopup.jsp" BottomNav="footer.jsp"></screen> 
+	<screen zname="EXISTING_KEC_POPUP_SCREEN" HtmlTitle="Existing KEC Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/ExistingKECPopup.jsp" BottomNav="footer.jsp"></screen> 
+	<screen zname="WATCHLIST_FRAUD_POPUP_SCREEN" HtmlTitle="Watchlist Fraud Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/WatchListFraudPopup.jsp" BottomNav="footer.jsp"></screen> 
+	<screen zname="PAYROLL_POPUP_SCREEN" HtmlTitle="Pay Roll Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/PayRollPopup.jsp" BottomNav="footer.jsp"></screen> 
+	<screen zname="LIST_COMPANY_POPUP_SCREEN" HtmlTitle="List Company Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/ListedCompanyPopup.jsp" BottomNav="footer.jsp"></screen> 
+	<screen zname="FRAUD_COMPANY_POPUP_SCREEN" HtmlTitle="Fraud Company Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/FraudCompanyPopup.jsp" BottomNav="footer.jsp"></screen> 
+	<screen zname="DOC_LIST_POPUP_SCREEN" HtmlTitle="Doc List Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/DocListPopup.jsp" BottomNav="footer.jsp"></screen> 
+	<screen zname="VERIFY_CUSTOMER_POPUP_SCREEN" HtmlTitle="Verify Customer Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/VerifyCustomerPopup.jsp" BottomNav="footer.jsp"></screen> 
+	<screen zname="VERIFY_HR_POPUP_SCREEN" HtmlTitle="Verify HR Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/VerifyHRPopup.jsp" BottomNav="footer.jsp"></screen> 
+	<screen zname="NCB_POPUP_SCREEN" HtmlTitle="Ncb Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/NcbPopup.jsp" BottomNav="footer.jsp"></screen> 
+	<screen zname="NCB_RESULT_POPUP_SCREEN" HtmlTitle="Ncb Result Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/NcbResultPopup.jsp" BottomNav="footer.jsp"></screen> 
+ 	<screen zname="FOLLOWDETAIL_POPUP_SCREEN" HtmlTitle="Follow Detail Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/FollowDetailPopup.jsp" BottomNav="footer.jsp"></screen> 
+	<screen zname="BSCORE_POPUP_SCREEN" HtmlTitle="BScore Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/BscorePopup.jsp" BottomNav="footer.jsp"></screen> 
+	<screen zname="NPL_POPUP_SCREEN" HtmlTitle="Npl Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/NplPopup.jsp" BottomNav="footer.jsp"></screen> 
+	<screen zname="EDIT_POPUP_SCREEN" HtmlTitle="Edit Popup Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/edit_popupverification.jsp" BottomNav="footer.jsp"></screen> 
+	 
+	 		
+	<!-- END K-BANK -->
+	<!--KB PL  -->
+	<screen zname="PL_MAIN_APPFORM" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/appform/pl/application_main.jsp" BottomNav="footer.jsp"></screen>
+	<!-- END KB PL -->
+	<!-- KLOP 2012 -->
+	<screen zname="MANUAL_IMPORT_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/ms/manual_import_data.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="CREATE_APP_FORM" HtmlTitle="AUTO LOAN DEMO" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/appform/pl/create_app_form.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="PL_ADDRESS_POPUP" HtmlTitle="Address Details" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/pl_address_popup.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="DE_PL_INBOX_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/de/inbox_screen.jsp" BottomNav="footer.jsp"></screen>
+	
+	<screen zname="DC_PL_INBOX_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/dc/inbox_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="DC_PL_INBOX_ICDC_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/dc/inbox_icdc_screen.jsp" BottomNav="footer.jsp"></screen>	
+	<screen zname="DC_CREATE_ICDC_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/dc/create_icdc_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="DC_PL_INBOX_BUNDLE_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/dc/inbox_bundle_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="DC_PL_SEARCH_BUNDLE_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/dc/search_bundle_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="DC_BUNDLE_CLAIM_POPUP" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/DCBundleClaimPopup.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="DC_PL_SEARCH_BUNDLE_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/dc/search_bundle_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="DC_SEARCH_CASHDAY5_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/dc/search_cashday5_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="DC_CREATE_BUNDLING_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/dc/create_bundling_screen.jsp" BottomNav="footer.jsp"></screen>
+	
+	
+	<screen zname="CA_PL_INBOX_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/ca/inbox_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="CA_PL_INBOX_ICDC_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/ca/inbox_icdc_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="CA_INBOX_BUNDLE_CC_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/ca/inbox_bundle_cc_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="CA_SEARCH_BUNDLE_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/ca/bundle_cc_screen.jsp" BottomNav="footer.jsp"></screen>
+	
+	<screen zname="SEARCH_REOPEN_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/po/reopen_screen.jsp" BottomNav="footer.jsp"></screen>
+	
+	<screen zname="CB_PL_INBOX_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/cb/inbox_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="CB_SENDBACK_POPUP" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/CBSendBackPopup.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="VERIFY_NCB_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/sup/verify_ncb_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="VERIFY_NCB_POPUP_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/verify_cb_popup.jsp" BottomNav="footer.jsp"></screen>
+
+	<screen zname="VC_PL_INBOX_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/vc/inbox_screen.jsp" BottomNav="footer.jsp"></screen>
+	
+	<screen zname="FU_PL_INBOX_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/fu/inbox_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="FU_INBOX_ICDC_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/fu/inbox_icdc_screen.jsp" BottomNav="footer.jsp"></screen>
+	
+	<screen zname="DF_PL_INBOX_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/df/inbox_screen.jsp" BottomNav="footer.jsp"></screen>
+	
+	<screen zname="CONFIRM_REJECT_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/sup/confirm_reject.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="UNLOCK_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/sup/unlock_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="REASSIGN_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/sup/re_assign_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="SET_PRIORITY_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/sup/set_priority_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="REWORK_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/sup/re_work_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="TRACKING_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/sup/tracking_screen.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="AUDIT_TRAIL_POPUP" HtmlTitle="Audit Trail" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/audit_trail_popup.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="HISTORY_ACTION_POPUP" HtmlTitle="History Action" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/history_action_popup.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="IMPORT_SPECIAL_POINT" HtmlTitle="Import Special Point" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/sup/import_special_point.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="NCB_IMAGES_POPUP_SCREEN" HtmlTitle="Ncb Images Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/cb/images_popup.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="USER_POPUP_SEREEN" HtmlTitle="User Popup" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/pl/user_popup.jsp" BottomNav="blank.jsp"></screen>
+	
+	<screen zname="CARD_MAINTENANCE" HtmlTitle="Card Maintenance" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/ss/card_maintenance.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="CARD_MAINTENANCE_DETAIL" HtmlTitle="Card Maintenance" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/ss/card_maintenance_detail.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="ENQUIRY_DATA" HtmlTitle="Enquiry Data" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/ge/enquiry_data.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="CS_CALL_CENTER_TRACKING_SCREEN" HtmlTitle="Cs call center tracking screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/cs/call_center_tracking_screen.jsp" BottomNav="footer.jsp"></screen>
+	
+	<screen zname="CONSENT_ENQUIRY_SCREEN" HtmlTitle="Consent Enquiry Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/cb/consent_enquiry_screen.jsp" BottomNav="footer.jsp"></screen>
+	
+	<screen zname="DE_PL_SUMMARY_SCREEN" HtmlTitle="DE Summary Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/de/de_pl_summary.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="DC_PL_SUMMARY_SCREEN" HtmlTitle="DE Summary Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/dc/dc_pl_summary.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="CA_PL_SUMMARY_SCREEN" HtmlTitle="CA Summary Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/ca/ca_pl_summary.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="FU_PL_SUMMARY_SCREEN" HtmlTitle="FU Summary Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/fu/fu_pl_summary.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="VC_PL_SUMMARY_SCREEN" HtmlTitle="VC Summary Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/vc/vc_pl_summary.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="DF_PL_SUMMARY_SCREEN" HtmlTitle="DF Summary Screen" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/df/df_pl_summary.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="MASTER_ZIPCODE_POPUP" HtmlTitle="Master Zipcode Popup" TopNav="header.jsp" SubHeader="blank.jsp" LeftNav="left.jsp" HtmlBody="orig/popup/pl/master_popup.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="PROJECTCODE_MASTER_POPUP" HtmlTitle="Project Code Master Popup" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/pl/projectcode_master_popup.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="PROJECT_CODE_ALL_POPUP" HtmlTitle="Project Code Master Popup" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/pl/ProjectCodeAllPopup.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="PL_MASTER_POPUP" HtmlTitle="PL Master Popup" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/pl/master_popup.jsp" BottomNav="footer.jsp"></screen>
+	
+	<screen zname="MASTER_POPUP_FIELDID_DESC" HtmlTitle="Master Popup" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/pl/master_popup_fieldid_desc.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="MASTER_DIALOG_POPUP" HtmlTitle="Master Dialog Popup" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/pl/master_dialog_popup.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="MASTER_POPUP_CODE" HtmlTitle="Master Popup" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/pl/master_popup_code.jsp" BottomNav="footer.jsp"></screen>
+		
+	<screen zname="PL_MASTER_NORMAL_POPUP" HtmlTitle="PL Master Popup" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/pl/master_normal_popup.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="DF_PL_REJECT_INBOX_SCREEN" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/df/reject_inbox_screen.jsp" BottomNav="footer.jsp"></screen>	
+	
+	<screen zname="CASH_DAY_ONE_DL" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/downloadsubform/download_cash_day_one.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="REPORT_SCREEN_DL" HtmlTitle="Personal Loan" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="left.jsp" HtmlBody="orig/downloadsubform/download_report_screen.jsp" BottomNav="footer.jsp"></screen>
+	
+	<screen zname="CONFIRM_FOLLOW_DOC_EMAIL_POPUP" HtmlTitle="Confirm Send Email" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/pl/confirm_follow_doc_email_popup.jsp" BottomNav="footer.jsp"></screen>
+	<screen zname="RULE_DETAILS_PUPUP" HtmlTitle="Rules Details Popup" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/pl/rulesDetailsPopup.jsp" BottomNav="footer.jsp"></screen>
+	
+	<screen zname="MASTER_POPUP_SCREEN" HtmlTitle="MASTER_POPUP_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/popup/pl/master_popup_screen.jsp" BottomNav="footer.jsp"></screen>
+	
+	<!-- Welcome Page for EAF Master Screen -->	
+	<screen zname="EAF_WELCOME_SCREEN" HtmlTitle="" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="EAF_Welcome.jsp" BottomNav="footer.jsp"></screen>
+		
+	
+	<!-- END KLOP 2012 -->	
+	</screen-definitions>
+
+	<value-list-impl-mapping v-web-action-path="VALUE_LIST_UTIL_WEB_ACTION">
+		<!-- Example Define ValueList Impl -->
+		<!--value-list-impl vname="firstValueList" vtype="com.ge.naosasia.view.valuelist.workflow.ApplicationValueListImpl" /-->
+		<!--value-list-impl vname="testWkValueList" vtype="com.ge.naosasia.view.valuelist.workflow.CCPendingValueListImpl_V2" /-->
+		<!-- End Example Define ValueList Impl -->
+		
+		<value-list-impl vname="VALUE_LIST_IMPL_CAPENDING" vtype="com.ge.naosasia.view.valuelist.workflow.CCPendingValueListImpl" />
+	</value-list-impl-mapping>
+
+	<!-- New option about value list from cgu -->
+	<initial-aval>
+		<!-- init-frontcontroller servletURL="http://localhost:8080/NAS3Web/FrontController?" indexPage="index.jsp"/ -->
+		<init-jsp id="1" itemPerPage="20" />
+		<init-jsp id="1" pagePerPage="5" />
+		
+    <!--init-LDAP LDAPServerName="naossgcm.avalant.co.th:389" LDAPRoot="root" LDAPRootPassword="password" initialContextFactory="com.sun.jndi.ldap.LdapCtxFactory" domain="dc=gecaptw,dc=com"/-->	
+
+
+	<!--  UIS confiuration-->
+    <!--<init-LDAP LDAPServerName="vmldap:389" LDAPRoot="root" LDAPRootPassword="password" initialContextFactory="com.sun.jndi.ldap.LdapCtxFactory" domain="dc=kbank,dc=com"/>	-->
+	<init-WEBSERVICE>
+           <!--<webservice WSName="IAS" WSURL="http://win2008-vm:9084/IASWeb/ServiceProxyBeanService" WSUserName="wasadmin" WSPassword="password" WSZAuthen="Y"/> -->
+	</init-WEBSERVICE>   
+   <!-- <Attachment  id="attach"  
+	    LOCAL_IMAGE_PATH = "C:\IBM\WebSphere\AppServer\profiles\AppSrv01\installedApps\WIN2008-VMCell01\IMAGE.ear\IMAGEWeb.war" 
+        LOCAL_IMAGE_TEMP_PATH="C:\temp"
+        MAX_FILE_SIZE="1536"
+        />   -->
+    
+	<!--UIS confiuration-->
+    <!-- SIT  confiuration 
+    <init-LDAP LDAPServerName="vmldap:389" LDAPRoot="root" LDAPRootPassword="password" initialContextFactory="com.sun.jndi.ldap.LdapCtxFactory" domain="dc=kbank,dc=com"/>	
+	<init-WEBSERVICE>
+           <webservice WSName="IAS" WSURL="http://172.31.163.133:9080/IASWeb/ServiceProxyBeanService" WSUserName="wasadmin" WSPassword="password" WSZAuthen="Y"/>
+	</init-WEBSERVICE>
+
+	   <Attachment  id="attach"  
+	    LOCAL_IMAGE_PATH = "/usr/IBM/WebSphere/AppServer/profiles/KLOPSITAppSrv/installedApps/DmgrSITCell01/IMAGE.ear/IMAGEWeb.war" 
+        LOCAL_IMAGE_TEMP_PATH="C:\temp"
+        MAX_FILE_SIZE="1536"
+        />    
+	 END SIT  confiuration-->
+	<!--	<cm id="1" 
+		LOCAL_IMG_FILE_PATH = "C:\\merge_dir" 
+		CM_SERVER_EX="192.168.0.104:9081" 
+		SERVER_CM_PROJECT = "CMV8Client_UAT"
+		IMAGE_WEB_PATH = "/icmrm/images_kbank" 
+		CM_USERID="icmadmin" 
+		CM_PASSWORD="password" 
+		CM_SERVER_NAME="ICMNLSDB" 
+		CM_MERGE_IMAGE_ITEMTYPE = "M_IMAGE_KBANK"
+		CM_IMAGE_ITEMTYPE = "IMAGE_SG_PROD"
+		CM_DOC_ITEMTYPE = "DOC_SG_PROD"/>
+	-->
+		<!-- 
+		<cm id="1" 
+		LOCAL_IMG_FILE_PATH = "C:\\merge_dir" 
+		CM_SERVER_EX="192.168.0.79:9081" 
+		SERVER_CM_PROJECT = "CMV8Client"
+		IMAGE_WEB_PATH = "/icmrm/images_kbank" 
+		CM_USERID="icmadmin" 
+		CM_PASSWORD="password" 
+		CM_SERVER_NAME="ICMNLSDB" 
+		CM_MERGE_IMAGE_ITEMTYPE = "M_IMAGE_KBANK"
+		CM_IMAGE_ITEMTYPE = "IMAGE"
+		CM_DOC_ITEMTYPE = "DOC"/>
+        -->
+
+	    <!--  
+		<Service ServiceName="ORIGWF" ServiceURL="corbaloc:iiop:cosmos.avalant.co.th:2812" ServiceZJNDI="ejb/com/eaf/orig/wf/service/ejb/ORIGWFServiceManagerHome"/>
+		<Service ServiceName="IMGWF" ServiceURL="corbaloc:iiop:cosmos.avalant.co.th:2812" ServiceZJNDI="ejb/com/eaf/img/wf/service/ejb/IMGWFServiceManagerHome"/>
+        -->
+	    <!--  
+		<Service ServiceName="ORIGWF" ServiceURL="corbaloc:iiop:wichaya:2809" ServiceZJNDI="ejb/com/eaf/orig/wf/service/ejb/ORIGWFServiceManagerHome"/>
+		<Service ServiceName="IMGWF" ServiceURL="corbaloc:iiop:wichaya:2809" ServiceZJNDI="ejb/com/eaf/img/wf/service/ejb/IMGWFServiceManagerHome"/>
+	    -->
+	    <!-- 
+		<Service ServiceName="ORIGWF" ServiceURL="corbaloc:iiop:kl-vmwid6.avalant.co.th:2809" ServiceZJNDI="ejb/com/eaf/orig/wf/service/ejb/ORIGWFServiceManagerHome"/>
+		<Service ServiceName="IMGWF" ServiceURL="corbaloc:iiop:kl-vmwid6.avalant.co.th:2809" ServiceZJNDI="ejb/com/eaf/img/wf/service/ejb/IMGWFServiceManagerHome"/>
+	     -->
+	  
+	</initial-aval>
+	
+	<controller contentType="text/html;charset=UTF-8" debug="3" locale="true" nocache="true" />
+	<message-resources parameter="BankingMessageResources" null="false" />
+</struts-config> 
+
+

@@ -1,0 +1,146 @@
+table td.center,table th.center {
+	text-align: center;
+}
+
+table .red-text {
+	color: red;
+}
+
+table .green-text {
+	color: green;
+}
+.ui-state-disabled{
+	opacity: 1;
+}
+/* Progress Bar
+=================================================================== */
+.skill-bar h2 {
+	float: right;
+}
+
+.skill-bar h5 {
+	float: left;
+}
+
+.skill-bar .header {
+	height: 40px;
+}
+/* Group comparison
+=================================================================== */
+.compare-group {
+	display: inline-block;
+	width: 48%;
+	min-width: 360px;
+	margin-right: 25px;
+}
+/* Box Container Style
+=================================================================== */
+.box.center {
+	text-align: center;
+}
+/* Text and Box
+=================================================================== */
+.textAndBox {
+	/* 	display:table; */
+	width: 99%;
+	text-align: center;
+	margin: 0;
+	padding: 0px;
+}
+
+.textAndBox>div {
+	display: inline-block;
+	text-align: center;
+	margin: 0 auto 10px;
+	padding: 0px 5px;
+	vertical-align: top;
+	box-sizing: border-box;
+}
+
+.textAndBox span {
+	display: block;
+	text-align: center;
+	padding: 5px;
+	font-size: 1.5em;
+	font-weight: bolder;
+}
+
+.textAndBox button {
+	width: 99%;
+	min-width: 100px;
+}
+
+/* Single Stat Box Group
+=================================================================== */
+.singleStatBoxGroup {
+	width: 99%;
+	text-align: center;
+	margin: 0;
+	padding: 0px;
+}
+
+.singleStatBoxGroup .header {
+	background-color: rgba(255, 255, 255, 0.2);
+	margin: 0;
+	padding: 5px 0;
+	height: 40px;
+	font-weight: normal;
+}
+
+.singleStatBoxGroup>div {
+	display: inline-block;
+	vertical-align: top;
+	box-sizing: border-box;
+	background-color: rgb(124, 181, 236);
+	color: white;
+	width: 200px;
+}
+
+.singleStatBoxGroup div {
+	text-align: center;
+	font-weight: bolder;
+	margin: 10px;
+	padding: 0;
+}
+
+.singleStatBoxGroup span {
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: bolder;
+}
+
+/* Double Stat Box Group
+=================================================================== */
+.doubleStatBoxGroup {
+	width: 99%;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+.doubleStatBoxGroup .unit {
+	margin: 0;
+	padding: 5px 0;
+	font-weight: normal;
+}
+
+.doubleStatBoxGroup>div {
+	display: inline-block;
+	vertical-align: top;
+	box-sizing: border-box;
+	background-color: rgb(247, 163, 92);
+	color: white;
+	width: 200px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.doubleStatBoxGroup div {
+	text-align: center;
+}
+
+.doubleStatBoxGroup span {
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: bolder;
+}

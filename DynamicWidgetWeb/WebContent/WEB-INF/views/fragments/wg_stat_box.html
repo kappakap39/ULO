@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Line Chart Widget Fragments</title>
+
+</head>
+<body>
+	<th:block th:fragment="text-n-number-button(widget)">
+		<div th:id="'wg_tnnb_'+${widget.id}" style="display: table-cell; vertical-align: middle;">
+			<div th:each="cate : ${widget.categories}" class="text_n_button">
+				<!--
+				<span th:id="'tnn_btn_cate_'+${cateStat.index}" th:text="${widget.categories[__${cateStat.index}__]}">Text here</span>
+				<button th:id="'tnn_btn_val_'+${cateStat.index}" data-th-attr="data-dynamic-series=${cateStat.index}" type="button" th:class="${cateStat.odd}?'btn btn-primary':'btn btn-yellow'">Button</button>
+				-->
+				<button th:id="'tnn_btn_val_'+${cateStat.index}" data-th-attr="data-dynamic-series=${cateStat.index}" type="button" th:class="${cateStat.index==0}?'btn btn-danger':(${cateStat.index==1}?'btn btn-warning':(${cateStat.index==2}?'btn btn-green':'btn btn-gray'))">Button</button>
+			</div>
+			<script th:inline="javascript">
+			//<![CDATA[
+			$(function(){
+				var chart = /*[[${widget}]]*/;
+				var id = /*[['wg_tnnb_'+${widget.id}]]*/;
+				chart || (chart = {});
+				chart.round = true;
+				$('#'+id).dynamic(chart);
+				var intervalTime = chart.intervalTime;
+				if(null!=intervalTime&&intervalTime>0){
+					var interval = setInterval(function(){
+						$.ajax({
+							method: 'POST',
+							url: "/Widget/grid/statbox/load-data",
+							contentType: 'application/json',
+							data: JSON.stringify(chart),
+							success: function(data) {
+								//console.log(data);
+								if(data && data.dataList && data.dataList.length){
+									for(var i =0, l = data.dataList.length; i < l; i++){
+										$('#tnn_btn_cate_'+i).text(data.dataList[i].firstBoxUnit);
+										$('#tnn_btn_val_'+i).text(data.dataList[i].value1);
+									}
+								}
+							},
+							error: function(e) {
+								log.error('Error');
+							}
+						});
+					}, intervalTime);
+				}
+			});
+			//]]>
+			</script>
+		</div>
+	</th:block>
+
+	<th:block th:fragment="text-n-text-button(widget)">
+		<div th:id="'wg_tntb_'+${widget.id}" style="display: table-cell; vertical-align: middle;">
+			<div th:each="cate : ${widget.categories}" class="text_n_button display-block">
+				<!-- 			<span th:text="${#numbers.formatInteger(widget.series[0].data[__${cateStat.index}__],1)}+${#strings.defaultString(widget.dataSuffix,'')}">Text here</span> -->
+				<span th:id="'tnt_btn_val_'+${cateStat.index}" data-th-attr="data-dynamic-series=${cateStat.index}, data-dynamic-suffix=${#strings.defaultString(widget.dataSuffix,'')}">Text here</span>
+				<button th:id="'tnt_btn_cate_'+${cateStat.index}" type="button" th:class="${cateStat.odd}?'btn btn-warning':'btn btn-success'" th:text="${cate}">Button</button>
+			</div>
+			<script th:inline="javascript">
+			//<![CDATA[
+			$(function(){
+				var chart = /*[[${widget}]]*/;
+				var id = /*[['wg_tntb_'+${widget.id}]]*/;
+				chart || (chart = {});
+				chart.round = true;
+				$('#'+id).dynamic(chart);
+				
+				var intervalTime = chart.intervalTime;
+				if(null!=intervalTime&&intervalTime>0){
+					var interval = setInterval(function(){
+						$.ajax({
+							method: 'POST',
+							url: "/Widget/grid/statbox/load-data",
+							contentType: 'application/json',
+							data: JSON.stringify(chart),
+							success: function(data) {	
+								//console.log(data);
+								if(data && data.dataList && data.dataList.length){
+									for(var i =0, l = data.dataList.length; i < l; i++){
+										$('#tnt_btn_val_'+i).text(data.dataList[i].value1+" %");
+										$('#tnt_btn_cate_'+i).text(data.dataList[i].firstBoxUnit);
+									}
+								}					
+							},
+							error: function(e) {
+								log.error('Error');
+							}
+						});
+					}, intervalTime);
+				}
+			});
+			//]]>
+			</script>
+		</div>
+	</th:block>
+	
+	<th:block th:fragment="text-n-text-button-2(widget)">
+		<div th:id="'wg_tntb_'+${widget.id}" style="display: table-cell; vertical-align: middle;">
+			<div th:each="cate : ${widget.categories}" class="text_n_button display-block">
+				<!--  <span th:text="${#numbers.formatInteger(widget.series[0].data[__${cateStat.index}__],1)}+${#strings.defaultString(widget.dataSuffix,'')}">Text here</span> -->  
+				<span th:id="'tnt_btn_cate_'+${cateStat.index}" style="font-weight:bold" th:text="${cate}" >Text here</span>
+				<button th:id="'tnt_btn_val_'+${cateStat.index}" type="button" th:class="${#numbers.formatDecimal(widget.series[0].data[__${cateStat.index}__],1,2)} > 99.99 ?'btn btn-custom3':(${#numbers.formatDecimal(widget.series[0].data[__${cateStat.index}__],1,2)} > 79.99 ?'btn btn-custom2':'btn btn-custom1')" data-th-attr="data-dynamic-series=${cateStat.index}, data-dynamic-suffix=${#strings.defaultString(widget.dataSuffix,'')}" >Button</button> 
+			</div>
+			<script th:inline="javascript">
+			//<![CDATA[
+			$(function(){
+				var chart = /*[[${widget}]]*/;
+				var id = /*[['wg_tntb_'+${widget.id}]]*/;
+				chart || (chart = {});
+				chart.round = true;
+				$('#'+id).dynamic(chart);
+				
+				var intervalTime = chart.intervalTime;
+				if(null!=intervalTime&&intervalTime>0){
+					var interval = setInterval(function(){
+						$.ajax({
+							method: 'POST',
+							url: "/Widget/grid/statbox/load-data",
+							contentType: 'application/json',
+							data: JSON.stringify(chart),
+							success: function(data) {	
+								//console.log(data);
+								if(data && data.dataList && data.dataList.length){
+									for(var i =0, l = data.dataList.length; i < l; i++){
+										$('#tnt_btn_cate_'+i).text(data.dataList[i].firstBoxUnit);
+										var testData = data.dataList[i].value1;
+										if(testData > 99.99 ){
+											$('#tnt_btn_val_'+i).css({'color':'green'});
+										}
+										else if(testData > 79.99 ){
+											$('#tnt_btn_val_'+i).css({'color':'#ffc40d'});
+										}
+										else{
+											$('#tnt_btn_val_'+i).css({'color':'red'});
+										}
+										$('#tnt_btn_val_'+i).text(data.dataList[i].value1+" %");
+									}
+								}					
+							},
+							error: function(e) {
+								log.error('Error');
+							}
+						});
+					}, intervalTime);
+				}
+			});
+			//]]>
+			</script>
+		</div>
+	</th:block>
+	
+
+</body>
+</html>

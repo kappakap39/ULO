@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://tempuri.org/">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="FLPService_InlineSchema1.xsd"/>
+        <binding hasEncoding="false" imported="false" name="FLPServiceSoap12" originalBindingStyle="document"/>
+        <binding hasEncoding="false" imported="true" name="FLPServiceSoap" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+<wsdl:types>
+
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+<xsd:include schemaLocation="FLPService_InlineSchema1.xsd"/>
+    </xsd:schema>
+    </wsdl:types>
+<wsdl:message name="NewRequestSoapIn">
+<wsdl:part element="tns:NewRequest" name="parameters"/> 
+</wsdl:message>
+<wsdl:message name="NewRequestSoapOut">
+<wsdl:part element="tns:NewRequestResponse" name="parameters"/> 
+</wsdl:message>
+<wsdl:portType name="FLPServiceSoap">
+<wsdl:operation name="NewRequest">
+<wsdl:input message="tns:NewRequestSoapIn"/> 
+<wsdl:output message="tns:NewRequestSoapOut"/> 
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="FLPServiceSoap" type="tns:FLPServiceSoap">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/> 
+<wsdl:operation name="NewRequest">
+<soap:operation soapAction="http://tempuri.org/NewRequest" style="document"/> 
+<wsdl:input>
+<soap:body use="literal"/> 
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/> 
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:binding name="FLPServiceSoap12" type="tns:FLPServiceSoap">
+<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/> 
+<wsdl:operation name="NewRequest">
+<soap12:operation soapAction="http://tempuri.org/NewRequest" style="document"/> 
+<wsdl:input>
+<soap12:body use="literal"/> 
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/> 
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="FLPService">
+<wsdl:port binding="tns:FLPServiceSoap" name="FLPServiceSoap">
+<soap:address location="http://localhost:1047/B2BFLPServicve/FLPService.asmx"/> 
+</wsdl:port>
+<wsdl:port binding="tns:FLPServiceSoap12" name="FLPServiceSoap12">
+<soap12:address location="http://localhost:1047/B2BFLPServicve/FLPService.asmx"/> 
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

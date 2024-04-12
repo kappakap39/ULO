@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ibm.etools.webservice.wscbnd:ClientBinding xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.ibm.etools.webservice.wscbnd="http://www.ibm.com/websphere/appserver/schemas/5.0.2/wscbnd.xmi" xmi:id="ClientBinding_1431395734506">
+  <serviceRefs xmi:id="ServiceRef_1431395734506" serviceRefLink="service/SMSService">
+    <portQnameBindings xmi:id="PortQnameBinding_1431395734506" portQnameNamespaceLink="http://sms.kbank.com/SMSService.wsdl" portQnameLocalNameLink="SMSServiceWS" overriddenEndpointURI="http://localhost:9080/SMSWeb/services/SMSServiceWS"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431395897880" serviceRefLink="service/CIS0315U01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431395897880" portQnameLocalNameLink="CIS0315U01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431397255676" serviceRefLink="service/CBS1215I01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431397255676" portQnameLocalNameLink="CBS1215I01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431435352020" serviceRefLink="service/CIS0222I01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431435352020" portQnameLocalNameLink="CIS0222I01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431435408772" serviceRefLink="service/CIS0314I01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431435408772" portQnameLocalNameLink="CIS0314I01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431435450081" serviceRefLink="service/CIS1034A01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431435450081" portQnameLocalNameLink="CIS1034A01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431435483403" serviceRefLink="service/CIS1035A01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431435483403" portQnameLocalNameLink="CIS1035A01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431435556026" serviceRefLink="service/CIS1046A01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431435556026" portQnameLocalNameLink="CIS1046A01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431435591950" serviceRefLink="service/CIS1036A01">
+    <portQnameBindings xmi:id="PortQnameBinding_1431435591950" portQnameLocalNameLink="CIS1036A01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431486797751" serviceRefLink="service/SMSServiceStd">
+    <portQnameBindings xmi:id="PortQnameBinding_1431486797751" portQnameNamespaceLink="http://sms.kbank.com/SMSService.wsdl" portQnameLocalNameLink="SMSServiceStdWS" overriddenEndpointURI="https://172.31.166.207:5050/KBankSMSService/services/SMSServiceWS"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1431488068457" serviceRefLink="service/OLDEEntry">
+    <portQnameBindings xmi:id="PortQnameBinding_1431488068457" portQnameNamespaceLink="http://www.fairisaac.org/OLDEEntry/" portQnameLocalNameLink="OLDEEntrySOAP" overriddenEndpointURI="http://www.fairisaac.org/OLDEEntry/processRequest"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1432021868210" serviceRefLink="service/WorkFlowService">
+    <portQnameBindings xmi:id="PortQnameBinding_1432021868210" portQnameNamespaceLink="http://workflow.ava.com/" portQnameLocalNameLink="WorkFlowPort" overriddenEndpointURI="http://localhost:9082/ProjectWeb/WorkFlowService"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1433236964554" serviceRefLink="service/EditKVIApplication">
+    <portQnameBindings xmi:id="PortQnameBinding_1433236964554" portQnameLocalNameLink="BasicHttpBinding_IEditKVIApplication"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1445418838138" serviceRefLink="service/OrchestrationLayerEntry">
+    <portQnameBindings xmi:id="PortQnameBinding_1445418838138" portQnameNamespaceLink="http://www.fico.com" portQnameLocalNameLink="OrchestrationLayerEntrySoap" overriddenEndpointURI="http://localhost:9082/ServiceCenterWeb/OrchestrationLayerEntry"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1455620892128" serviceRefLink="service/CreateKVIApplication">
+    <portQnameBindings xmi:id="PortQnameBinding_1455620892128" portQnameLocalNameLink="BasicHttpBinding_ICreateKVIApplication"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1470728517850" serviceRefLink="service/IIBServiceHttpService">
+    <portQnameBindings xmi:id="PortQnameBinding_1470728517850" portQnameNamespaceLink="http://ava.kasikornbank.com/IIBService" portQnameLocalNameLink="IIBServiceHttpPort" overriddenEndpointURI="http://localhost:7800/IIBService"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1474365822225" serviceRefLink="service/DecisionServiceHttpService">
+    <portQnameBindings xmi:id="PortQnameBinding_1474365822225" portQnameNamespaceLink="http://com.ava.iib/decisionservice" portQnameLocalNameLink="DecisionServiceHttpPort" overriddenEndpointURI="http://192.168.0.9:7800/DecisionService"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1477298469820" serviceRefLink="service/FLPService">
+    <portQnameBindings xmi:id="PortQnameBinding_1477298469820" portQnameNamespaceLink="http://tempuri.org/" portQnameLocalNameLink="FLPServiceSoap" overriddenEndpointURI="http://localhost:1047/B2BFLPServicve/FLPService.asmx"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1481778255811" serviceRefLink="service/CIS1047O01">
+    <portQnameBindings xmi:id="PortQnameBinding_1481778255811" portQnameLocalNameLink="CIS1047O01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1481804203081" serviceRefLink="service/CIS1048O01">
+    <portQnameBindings xmi:id="PortQnameBinding_1481804203081" portQnameLocalNameLink="CIS1048O01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1485342403260" serviceRefLink="service/DataQualityWebServiceService">
+    <portQnameBindings xmi:id="PortQnameBinding_1485342403260" portQnameLocalNameLink="DataQualityWebServicePort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1507200803596" serviceRefLink="service/DataQualityTemplateWebServiceService">
+    <portQnameBindings xmi:id="PortQnameBinding_1507200803596" portQnameNamespaceLink="http://ws.dq.kasikornbank.com" portQnameLocalNameLink="DataQualityTemplateWebServicePort" overriddenEndpointURI="https://172.30.149.159:9443/cdq-ws/DataQualityTemplateService"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1509649278504" serviceRefLink="service/CIS1037A01">
+    <portQnameBindings xmi:id="PortQnameBinding_1509649278504" portQnameLocalNameLink="CIS1037A01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1509649362596" serviceRefLink="service/CIS1044U01">
+    <portQnameBindings xmi:id="PortQnameBinding_1509649362596" portQnameLocalNameLink="CIS1044U01SoapPort"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1545361502183" serviceRefLink="service/KBKInstinctFraudCheck">
+    <portQnameBindings xmi:id="PortQnameBinding_1545361502183" portQnameNamespaceLink="http://tempuri.org/" portQnameLocalNameLink="KBKInstinctFraudCheckSoap" overriddenEndpointURI="https://172.30.149.185:7443/KBKInstinctFraudCheck.asmx"/>
+  </serviceRefs>
+</com.ibm.etools.webservice.wscbnd:ClientBinding>

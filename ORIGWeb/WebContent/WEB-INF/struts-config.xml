@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.5 NT (http://www.xmlspy.com) by  () -->
+<!--DOCTYPE struts-config SYSTEM "struts-config_1_1.dtd"-->
+<struts-config> 
+	<form-beans>
+		<form-bean name="loginForm" type="com.oreilly.struts.banking.form.LoginForm" />
+	</form-beans>
+	<global-exceptions>
+		<exception key="global.error.invalidlogin" path="/login.jsp" scope="request" type="com.oreilly.struts.banking.service.InvalidLoginException" />
+	</global-exceptions>
+	<global-forwards>
+		<forward name="SystemFailure" path="/systemerror.jsp" />
+		<forward name="SessionTimeOut" path="/sessiontimeout.jsp" />
+	</global-forwards>
+
+	<action-mappings>
+		<action path="UserAction" type="com.eaf.orig.logon.view.webaction.UserWebAction" scope="request" name="UserAction" validate="true" input="" zForwardSuccess="BLANK_SCREEN"></action>
+		<action path="MenuAction" type="com.eaf.orig.menu.view.webaction.MenuWebAction" scope="request" name="MenuAction" validate="true" input="" zForwardSuccess="INDEX_SCREEN"></action>		
+		<action path="FrontAction" type="com.eaf.orig.ulo.app.view.webaction.FrontWebAction" scope="request" name="FrontAction" validate="true"></action>
+		<action path="SearchControl" type="com.eaf.orig.ulo.app.view.webaction.SearchControlWebAction" scope="request" name="LoadCompletedForm" validate="true"></action>
+	
+		<action path="LoadSubform" type="com.eaf.orig.ulo.formcontrol.view.action.LoadSubFormWebAction" scope="request" name="LoadSubform" validate="true" input="" zForwardSuccess="SC_SUBFORM"></action>
+		<action path="SaveSubform" type="com.eaf.orig.ulo.formcontrol.view.action.SaveSubFormWebAction" scope="request" name="SaveSubform" validate="true" input="" zForwardSuccess="SC_SUBFORM"></action>
+		<action path="LoadForm" type="com.eaf.orig.ulo.formcontrol.view.action.LoadFormWebAction" scope="request" name="LoadForm" validate="true" input="" zForwardSuccess="SC_FORM"></action>
+		<action path="SaveForm" type="com.eaf.orig.ulo.formcontrol.view.action.SaveFormWebAction" scope="request" name="SaveForm" validate="true" input="" zForwardSuccess="SC_FORM"></action>
+		
+		<action path="LoadPopupForm" type="com.eaf.orig.ulo.app.view.webaction.LoadPopupWebAction" scope="request" name="LoadPopupForm" validate="true" input="" zForwardSuccess="POPUP_FORM_TEMPLATE"></action>
+		<action path="SavePopupForm" type="com.eaf.orig.ulo.app.view.webaction.SavePopupWebAction" scope="request" name="SavePopupForm" validate="true" input=""></action>
+		<action path="LoadNextTab" type="com.eaf.orig.ulo.formcontrol.view.action.LoadNextTabWebAction" scope="request" name="LoadNextTab" validate="true" input=""></action>
+		<action path="BackLastTab" type="com.eaf.orig.ulo.formcontrol.view.action.BackLastTabWebAction" scope="request" name="BackLastTab" validate="true" input=""></action>
+		<action path="SaveTabForm" type="com.eaf.orig.ulo.formcontrol.view.action.SaveTabFormWebAction" scope="request" name="BackLastTab" validate="true" input=""></action>			
+		<action path="SaveApplication" type="com.eaf.orig.ulo.app.view.webaction.SaveApplicationWebAction" scope="request" name="LoadPopupForm" validate="true" input=""></action>
+		<action path="LoadApplication" type="com.eaf.orig.ulo.app.view.webaction.LoadApplicationWebAction" scope="request" name="LoadPopupForm" validate="true" input="" zForwardSuccess="MASTER_FORM_TEMPLATE"></action>
+		<action path="LoadCardMaintenanceForm" type="com.eaf.orig.ulo.app.view.webaction.LoadCardMaintenanceWebAction" scope="request" name="LoadPopupForm" validate="true" input="" zForwardSuccess="MAIN_FORM_TEMPLATE"></action>
+		<action path="SaveCardMaintenance" type="com.eaf.orig.ulo.app.view.webaction.SaveCardMaintenanceWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_CARD_MAINTENANCE"></action>
+		<action path="CloseApplication" type="com.eaf.orig.ulo.app.view.webaction.CloseApplicationWebAction" scope="request" name="LoadPopupForm" validate="true" input=""></action>							
+		<action path="SearchCallCenter" type="com.eaf.orig.ulo.search.view.webaction.SearchCallCenterWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_CALL_CENTER"></action>
+		<action path="SearchAllEnquiry" type="com.eaf.orig.ulo.search.view.webaction.SearchEnquiryWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_ENQUIRY"></action>
+		<action path="SearchIAEnquiry" type="com.eaf.orig.ulo.search.view.webaction.SearchEnquiryWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_IA_ENQUIRY"></action>
+		<action path="Inbox" type="com.eaf.orig.ulo.app.view.webaction.InboxWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="INBOX_SCREEN"></action>
+		<action path="SearchFraud" type="com.eaf.orig.ulo.search.view.webaction.SearchFraudWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_FRAUD"></action>
+		<action path="SearchCardMaintenance" type="com.eaf.orig.ulo.search.view.webaction.SearchCardMaintenanceWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_CARD_MAINTENANCE"></action>
+		<action path="SearchReAllocate" type="com.eaf.orig.ulo.search.view.webaction.SearchReAllocateWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_RE_ALLOCATE"></action>
+		<action path="SearchReAssign" type="com.eaf.orig.ulo.search.view.webaction.SearchReAssignWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_RE_ASSIGN"></action>
+		<action path="SearchManualPriority" type="com.eaf.orig.ulo.search.view.webaction.SearchManualPriorityWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_MANUAL_PRIORITY"></action>
+		<action path="SearchDownloadReportWebAction" type="com.eaf.orig.ulo.pl.app.view.webaction.SearchDownloadReportWebAction" scope="request" name="SearchDownloadReportWebAction" validate="true" 	input="" zForwardSuccess="DOWNLOAD_REPORT"></action>
+		<action path="SearchDownLoadWebaction" type="com.eaf.orig.ulo.pl.app.view.webaction.SearchDownLoadWebaction" scope="request" name="SearchDownLoadWebaction" validate="true" 	input="" zForwardSuccess="DOWNLOAD_REPORT"></action>
+		
+		<action path="DownloadReportAction" type="com.eaf.orig.ulo.pl.app.view.webaction.LoadReportMWebaction" scope="request" name="DownloadReportAction" validate="true" input="" zForwardSuccess="DOWNLOAD_REPORT"></action>
+		
+		<action path="SearchClaimJobEnquiry" type="com.eaf.orig.ulo.search.view.webaction.SearchClaimJobEnquiryWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_CLAIM_JOB_ENQUIRY"></action>
+		<action path="SearchLetter" type="com.eaf.orig.ulo.search.view.webaction.SearchLetterWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_LETTER"></action>		
+		
+		<action path="SearchOldData" type="com.eaf.orig.ulo.search.view.webaction.SearchOldDataWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="SEARCH_OLD_DATA"></action>
+		<action path="LoadOldApplicationData" type="com.eaf.orig.ulo.app.view.webaction.LoadOldAppWebAction" scope="request" name="LoadPopupForm" validate="true" input="" zForwardSuccess="OLD_DATA_PAGE"></action>
+				
+		<action path="SearchWMTask" type="com.eaf.orig.ulo.search.view.webaction.SearchWMTaskWebAction" scope="request" name="LoadCompletedForm" validate="true" input="" zForwardSuccess="WM_TASK"></action>
+	</action-mappings>
+
+	<event-mappings>
+		<event name="ApplicationEvent" type="com.eaf.orig.ulo.control.action.ApplicationAction"/>
+	</event-mappings>
+
+	<screen-definitions>
+		<screen zname="LOGOUT_SCREEN" HtmlTitle="TEMPLATE_SCREEN" TopNav="blank.jsp" SubHeader="blank.jsp" LeftNav="blank.jsp" HtmlBody="logout.jsp" BottomNav="blank.jsp"></screen>				
+		<screen zname="INDEX_SCREEN" HtmlTitle="TEMPLATE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="login.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="BLANK_SCREEN" HtmlTitle="TEMPLATE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="blank.jsp" BottomNav="footer.jsp"></screen>	
+		<screen zname="WELCOME_SCREEN" HtmlTitle="ULO_WELCOME_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="ULO_Welcome.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="SESSION_TIME_OUT_SCREEN" HtmlTitle="SESSION_TIME_OUT_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="login.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="NOT_AUTHORIZED_SCREEN" HtmlTitle="NOT_AUTHORIZED_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="notauthorized.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="WORKFLOW_SCREEN" HtmlTitle="WORKFLOW_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="/orig/ia/ia_home.jsp" BottomNav="footer.jsp"></screen>				
+		<screen zname="CONSOLE_SCREEN" HtmlTitle="CONSOLE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="/console/consoleFlow.jsp" BottomNav="footer.jsp"></screen>				
+					
+		<screen zname="SC_FORM" HtmlTitle="SC_FORM" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="/orig/ulo/template/SCForm.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="SC_SUBFORM" HtmlTitle="SC_SUBFORM" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="/orig/ulo/template/SCSubForm.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="POPUP_FORM_TEMPLATE" HtmlTitle="POPUP_FORM_TEMPLATE" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="/orig/ulo/template/PopupMasterFormTemplate.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="MASTER_FORM_TEMPLATE" HtmlTitle="MASTER_FORM_TEMPLATE" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="/orig/ulo/template/MasterFrameTemplate.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="MAIN_FORM_TEMPLATE" HtmlTitle="MAIN_FORM_TEMPLATE" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="/orig/ulo/template/MainFormTemplate.jsp" BottomNav="footer.jsp"></screen>				
+		
+		<screen zname="SEARCH_CALL_CENTER" HtmlTitle="TEMPLATE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/search/searchCallCenter.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="SEARCH_ENQUIRY" HtmlTitle="TEMPLATE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/search/searchEnquiry.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="SEARCH_IA_ENQUIRY" HtmlTitle="TEMPLATE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/search/searchIAEnquiry.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="INBOX_SCREEN" HtmlTitle="Inbox" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/screen/Inbox.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="SEARCH_FRAUD" HtmlTitle="Search Fraud" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/search/searchFraud.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="SEARCH_RE_ALLOCATE" HtmlTitle="Search Re-Allocate" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/search/searchReAllocate.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="SEARCH_RE_ASSIGN" HtmlTitle="Search Re-Assign" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/search/searchReAssign.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="SEARCH_CARD_MAINTENANCE" HtmlTitle="Search Card Maintenance" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/search/searchCardMaintenance.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="SEARCH_MANUAL_PRIORITY" HtmlTitle="search Manual Priority" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/search/searchManualPriority.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="DOWNLOAD_REPORT" HtmlTitle="search report" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/downloadsubform/download_report_screen.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="AUDITLOG_REPORT" HtmlTitle="AuditLog Report" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/export/excel/audit_log.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="ITSI_REPORT" HtmlTile="ITSI Report" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/export/excel/itsi_report.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="OPERATING_RESULT" HtmlTitle="Operating Result Report" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/export/excel/operating_result.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="SLA_REPORT" HtmlTitle="SLA Report" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/export/excel/sla_report.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="PROCESSING_TIME" HtmlTile="Processing Time" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/export/excel/processing_time.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="IMPORT_OT_DATA" HtmlTitle="Import OT Data" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ld/importOTData.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="UPLOAD_FORECAST" HtmlTitle="Upload Forecast" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ld/uploadForecast.jsp" BottomNav="footer.jsp"></screen>
+		<screen zname="UPLOAD_PRODUCT_IMAGE" HtmlTitle="Upload Product Image" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ld/uploadProductImage.jsp" BottomNav="footer.jsp"></screen>
+		
+		<screen zname="USER_CHANGE_PASSWORD" HtmlTitle="User Change Password" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/subform/encrypt/UserChangePassword.jsp" BottomNav="footer.jsp"></screen>
+		
+		<!-- Upload User -->
+		<screen zname="UPLOAD_USER" HtmlTitle="Upload User" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/it/uploadUser.jsp" BottomNav="footer.jsp"></screen>
+		
+		<!-- UPLOAD COMPANY NAME -->
+		<screen zname="UPLOAD_COMPANY_NAME" HtmlTitle="Upload Company Name" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ld/uploadCompanyName.jsp" BottomNav="footer.jsp"></screen>
+		
+		<!-- UPLOAD FILE MANUAL  -->
+		<screen zname="UPLOAD_FILE_MANUAL" HtmlTitle="Upload Manual File Module" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="mf/subform/uploadFile.jsp" BottomNav="footer.jsp"></screen>
+	
+		<!-- UPLOAD PTT BLUE CARD FILE  -->
+		<screen zname="UPLOAD_PTT_BLUE_CARD" HtmlTitle="Upload PTT Blue Card File" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/pe/uploadPttBlueCard.jsp" BottomNav="footer.jsp"></screen>
+		
+		<!-- Post Approval Screen  -->
+		<screen zname="SEARCH_CLAIM_JOB_ENQUIRY" HtmlTitle="TEMPLATE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/search/searchClaimJobEnquiry.jsp" BottomNav="footer.jsp"></screen>		
+		<screen zname="SEARCH_LETTER" HtmlTitle="TEMPLATE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/search/searchLetter.jsp" BottomNav="footer.jsp"></screen>		
+		
+		<!-- Search Old Data Screen -->
+		<screen zname="SEARCH_OLD_DATA" HtmlTitle="TEMPLATE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/search/searchOldData.jsp" BottomNav="footer.jsp"></screen>		
+		<screen zname="OLD_DATA_PAGE" HtmlTitle="TEMPLATE_SCREEN" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="orig/ulo/template/MasterFrameTemplate.jsp" BottomNav="footer.jsp"></screen>		
+			
+		<!--  WM_TASK explorer -->
+		<screen zname="WM_TASK" HtmlTitle="WM Task Explorer" TopNav="header.jsp" SubHeader="subheader.jsp" LeftNav="blank.jsp" HtmlBody="wm/WMTask.jsp" BottomNav="footer.jsp"></screen>
+	</screen-definitions>
+	
+	<initial-aval>
+		<init-jsp id="1" itemPerPage="20" />
+		<init-jsp id="1" pagePerPage="5" />
+	</initial-aval>
+	
+	<controller contentType="text/html;charset=UTF-8" debug="3" locale="true" nocache="true" />
+	<message-resources parameter="BankingMessageResources" null="false" />
+</struts-config> 
+
+

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://eai.kasikornbank.com/EAIWS/CIS0315U01/v2" xmlns:s1="http://eai.kasikornbank.com/EAIWS/CIS0315U01/v2">
+
+   <xsd:element name="doService" type="s1:doService"/>
+   <xsd:element name="doServiceResponse" type="s1:doServiceResponse"/>
+
+   <xsd:complexType name="doService">
+      <xsd:sequence>
+         <xsd:element name="CIS0315U01">
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="EAIHeader">
+                     <xsd:complexType>
+                        <xsd:sequence>
+                           <xsd:element name="serviceId" nillable="true" type="s1:stringLength12"/>
+                           <xsd:element name="beginTimestamp" nillable="true" type="xsd:dateTime"/>
+                           <xsd:element minOccurs="0" name="endTimestamp" nillable="true" type="xsd:dateTime"/>
+                           <xsd:element minOccurs="0" name="transactionId" nillable="true" type="s1:stringLength32"/>
+                           <xsd:element minOccurs="0" name="sourceTransactionId" nillable="true" type="xsd:string"/>
+                           <xsd:element name="sourceSystem" nillable="true" type="xsd:string"/>
+                           <xsd:element minOccurs="0" name="userId" nillable="true" type="xsd:string"/>
+                           <xsd:element minOccurs="0" name="password" nillable="true" type="xsd:string"/>
+                           <xsd:element minOccurs="0" name="status" nillable="true" type="s1:intLength1"/>
+                           <xsd:element minOccurs="0" name="reasonCode" nillable="true" type="s1:intLength5"/>
+                           <xsd:element minOccurs="0" name="multiMsgFlg" nillable="true" type="s1:stringLength1"/>
+                           <xsd:element minOccurs="0" name="orderMsgTypeCode" nillable="true" type="s1:intLength1"/>
+                        </xsd:sequence>
+                     </xsd:complexType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="CISCustomer">
+                     <xsd:complexType>
+                        <xsd:sequence>
+                           <xsd:element name="num" nillable="true" type="s1:stringLength10"/>
+                           <xsd:element minOccurs="0" name="KYCObj">
+                              <xsd:complexType>
+                                 <xsd:sequence>
+                                    <xsd:element name="srcAsstCode" nillable="true" type="s1:stringLength15"/>
+                                    <xsd:element minOccurs="0" name="srcAsstOthDesc" nillable="true" type="s1:stringLength100"/>
+                                    <xsd:element minOccurs="0" name="politcnPosiDesc" nillable="true" type="s1:stringLength100"/>
+                                    <xsd:element minOccurs="0" name="valAsstAmt" nillable="true" type="s1:decimalLength18frictions17_2"/>
+                                    <xsd:element minOccurs="0" name="valAsstCode" nillable="true" type="s1:stringLength2"/>
+                                 </xsd:sequence>
+                              </xsd:complexType>
+                           </xsd:element>
+                        </xsd:sequence>
+                     </xsd:complexType>
+                  </xsd:element>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="doServiceResponse">
+      <xsd:sequence>
+         <xsd:element name="CIS0315U01Response">
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="EAIHeader">
+                     <xsd:complexType>
+                        <xsd:sequence>
+                           <xsd:element name="serviceId" nillable="true" type="s1:stringLength12"/>
+                           <xsd:element name="beginTimestamp" nillable="true" type="xsd:dateTime"/>
+                           <xsd:element name="endTimestamp" nillable="true" type="xsd:dateTime"/>
+                           <xsd:element name="transactionId" nillable="true" type="s1:stringLength32"/>
+                           <xsd:element name="sourceTransactionId" nillable="true" type="xsd:string"/>
+                           <xsd:element name="sourceSystem" nillable="true" type="xsd:string"/>
+                           <xsd:element minOccurs="0" name="userId" nillable="true" type="xsd:string"/>
+                           <xsd:element minOccurs="0" name="password" nillable="true" type="xsd:string"/>
+                           <xsd:element name="status" nillable="true" type="s1:intLength1"/>
+                           <xsd:element name="reasonCode" nillable="true" type="s1:intLength5"/>
+                           <xsd:element name="reasonDesc" nillable="true" type="xsd:string"/>
+                           <xsd:element minOccurs="0" name="multiMsgFlg" nillable="true" type="s1:stringLength1"/>
+                           <xsd:element minOccurs="0" name="orderMsgTypeCode" nillable="true" type="s1:intLength1"/>
+                           <xsd:element minOccurs="0" name="multiMsgVect">
+                              <xsd:complexType>
+                                 <xsd:sequence>
+                                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="MultiMsg">
+                                       <xsd:complexType>
+                                          <xsd:sequence>
+                                             <xsd:element minOccurs="0" name="status" nillable="true" type="s1:intLength1"/>
+                                             <xsd:element minOccurs="0" name="reasonCode" nillable="true" type="s1:intLength5"/>
+                                             <xsd:element minOccurs="0" name="reasonDesc" nillable="true" type="xsd:string"/>
+                                             <xsd:element minOccurs="0" name="refFieldVect">
+                                                <xsd:complexType>
+                                                   <xsd:sequence>
+                                                      <xsd:element maxOccurs="500" minOccurs="0" name="RefField">
+                                                         <xsd:complexType>
+                                                            <xsd:sequence>
+                                                               <xsd:element minOccurs="0" name="refValue" nillable="true" type="xsd:string"/>
+                                                               <xsd:element minOccurs="0" name="refCode" nillable="true" type="xsd:string"/>
+                                                               <xsd:element minOccurs="0" name="refDesc" nillable="true" type="xsd:string"/>
+                                                            </xsd:sequence>
+                                                         </xsd:complexType>
+                                                      </xsd:element>
+                                                   </xsd:sequence>
+                                                </xsd:complexType>
+                                             </xsd:element>
+                                          </xsd:sequence>
+                                       </xsd:complexType>
+                                    </xsd:element>
+                                 </xsd:sequence>
+                              </xsd:complexType>
+                           </xsd:element>
+                        </xsd:sequence>
+                     </xsd:complexType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="CISCustomer">
+                     <xsd:complexType>
+                        <xsd:sequence>
+                           <xsd:element name="num" nillable="true" type="s1:stringLength10"/>
+                        </xsd:sequence>
+                     </xsd:complexType>
+                  </xsd:element>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:simpleType name="decimalLength18frictions17_2">
+      <xsd:restriction base="xsd:decimal">
+         <xsd:totalDigits value="18"/>
+         <xsd:fractionDigits value="2"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="intLength1">
+      <xsd:restriction base="xsd:int">
+         <xsd:totalDigits value="1"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="intLength5">
+      <xsd:restriction base="xsd:int">
+         <xsd:totalDigits value="5"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="stringLength1">
+      <xsd:restriction base="xsd:string">
+         <xsd:maxLength value="1"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="stringLength10">
+      <xsd:restriction base="xsd:string">
+         <xsd:maxLength value="10"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="stringLength100">
+      <xsd:restriction base="xsd:string">
+         <xsd:maxLength value="100"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="stringLength12">
+      <xsd:restriction base="xsd:string">
+         <xsd:maxLength value="12"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="stringLength15">
+      <xsd:restriction base="xsd:string">
+         <xsd:maxLength value="15"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="stringLength2">
+      <xsd:restriction base="xsd:string">
+         <xsd:maxLength value="2"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="stringLength32">
+      <xsd:restriction base="xsd:string">
+         <xsd:maxLength value="32"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+
+</xsd:schema>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://tempuri.org/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="InstinctFraudCheck">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="request" type="tns:RequestOnline"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestOnline">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="ApplicationNo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="FraudCheckFlag" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="InputString" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="LegacyName" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ApplicationType" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="RequestDttm" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InstinctFraudCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="InstinctFraudCheckResult" type="tns:ResponseOnline"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOnline">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="ApplicationNo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="FraudResult" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="RuleTriggers" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ResponeDttm" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ErrorCode" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ErrorDesc" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InquiryFraudResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="request" type="tns:RequestOnline"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InquiryFraudResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="InquiryFraudResultResult" type="tns:ResponseOnline"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="InstinctFraudCheckSoapIn">
+    <wsdl:part element="tns:InstinctFraudCheck" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InstinctFraudCheckSoapOut">
+    <wsdl:part element="tns:InstinctFraudCheckResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InquiryFraudResultSoapIn">
+    <wsdl:part element="tns:InquiryFraudResult" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InquiryFraudResultSoapOut">
+    <wsdl:part element="tns:InquiryFraudResultResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="KBKInstinctFraudCheckSoap">
+    <wsdl:operation name="InstinctFraudCheck">
+      <wsdl:input message="tns:InstinctFraudCheckSoapIn"/>
+      <wsdl:output message="tns:InstinctFraudCheckSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="InquiryFraudResult">
+      <wsdl:input message="tns:InquiryFraudResultSoapIn"/>
+      <wsdl:output message="tns:InquiryFraudResultSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="KBKInstinctFraudCheckSoap" type="tns:KBKInstinctFraudCheckSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="InstinctFraudCheck">
+      <soap:operation soapAction="http://tempuri.org/InstinctFraudCheck" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InquiryFraudResult">
+      <soap:operation soapAction="http://tempuri.org/InquiryFraudResult" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="KBKInstinctFraudCheckSoap12" type="tns:KBKInstinctFraudCheckSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="InstinctFraudCheck">
+      <soap12:operation soapAction="http://tempuri.org/InstinctFraudCheck" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InquiryFraudResult">
+      <soap12:operation soapAction="http://tempuri.org/InquiryFraudResult" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="KBKInstinctFraudCheck">
+    <wsdl:port binding="tns:KBKInstinctFraudCheckSoap" name="KBKInstinctFraudCheckSoap">
+      <soap:address location="https://172.30.149.185:7443/KBKInstinctFraudCheck.asmx"/>
+    </wsdl:port>
+    <wsdl:port binding="tns:KBKInstinctFraudCheckSoap12" name="KBKInstinctFraudCheckSoap12">
+      <soap12:address location="https://172.30.149.185:7443/KBKInstinctFraudCheck.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

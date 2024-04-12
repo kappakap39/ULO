@@ -1,0 +1,54 @@
+#Tooltip
+retrieve_data=คลิกเพื่อโหลดข้อมูลลูกค้าตาม Identification No.
+edit_data=คลิกเพื่อเปลี่ยน Identification No.
+debt_amount_mor=ลูกค้าชาวต่างชาติและนิติบุคคลกรอกภาระจาก NCB <br>ลูกค้าบุคคลธรรมดากรอก Interest rate ที่ใช้คำนวณภาระ OD
+prescore_car_vat=กรณี Used car ให้กรอก Car price ที่ไม่มี vat
+prescore_down_payment=กรณี Used car ให้กรอก Down payment ที่ไม่มี vat
+prescore_installment=กรณี Used car ให้กรอก Installment ที่ไม่มี vat
+car_year_bc=กรอกปี ค.ศ. ที่ออกรถ
+app_draw_down=เลือกเพื่อทำ Draw down application
+add_car_detail=กรอก Client group code
+car_copy=กรอกจำนวนรถที่ต้องการ Copy
+loan_type=Loan type สำหรับการเพิ่มข้อมูลรถ
+main_app_code=กรอก code
+popup_search=ค้นหาโดยใช้ Description
+existing_data=กดเพื่อเลือก Existing data
+#NCB
+XRULES_BUTTON_1=กดเพื่อ Execute NCB
+#FICO
+XRULES_BUTTON_10=กดเพื่อตรวจสอบ FICO
+XRULES_BUTTON_11=คลิกเพื่อบันทึกผลการตรวจสอบ Khonthai.com
+XRULES_BUTTON_12=คลิกเพื่อบันทึกผลการตรวจสอบ Thai Registration
+XRULES_BUTTON_13=คลิกเพื่อบันทึกผลการตรวจสอบ BOL
+XRULES_BUTTON_14=คลิกเพื่อบันทึกผลการตรวจสอบ Yellow Page
+XRULES_BUTTON_15=คลิกเพื่อบันทึกผลการตรวจสอบ Phone Book
+XRULES_BUTTON_16=คลิกเพื่อบันทึกผลการตรวจสอบ Phone Verification
+#Blacklist - Customer
+XRULES_BUTTON_2=กดเพื่อตรวจสอบ Blacklist customer
+#Blacklist - Car
+XRULES_BUTTON_3=กดเพื่อตรวจสอบ Blacklist vehicle
+#Existing Customer
+XRULES_BUTTON_4=กดเพื่อตรวจสอบ Existing customer
+#Dedup
+XRULES_BUTTON_5=กดเพื่อตรวจสอบ Duplicate application
+#Duplicate Vehicle
+XRULES_BUTTON_6=กดเพื่อตรวจสอบ Duplicate vehicle
+#LPM
+XRULES_BUTTON_7=คลิกเพื่อบันทึกผลการตรวจสอบ LPM
+#Policy Rules
+XRULES_BUTTON_8=กดเพื่อตรวจสอบ Policy rules
+#% Debt Burden
+XRULES_BUTTON_9=กดเพื่อคำนวณ % Debt Burden/ DSCR
+#Debt Amount
+XRULES_BUTTON_17=กดเพื่อคำนวณ Debt amount
+xrules_get_result=คลิกเพื่อแสดงผลการตรวจสอบ
+execute_app_guarantor=คลิกเพื่อ Execute : Dedup application,Existing customer
+execute_app_applicant=คลิกเพื่อ Execute : Dedup application, Dedup vehicle, Existing customer
+execute_app_uw=คลิกเพื่อ Execute : Dedup application, Dedup vehicle, Existing customer
+view_image=คลิกเพื่อแสดงรูปที่ได้มาจากเมนู Image
+notepad=คลิกเพื่อบันทึก Note สำหรับ Application
+doclist=คลิกเพื่อบันทึกเอกสารที่ได้รับจากลูกค้า
+action_flow=คลิกเพื่อแสดงประวัติการทำงานของ Application
+million=หน่วย ล้านบาท
+
+

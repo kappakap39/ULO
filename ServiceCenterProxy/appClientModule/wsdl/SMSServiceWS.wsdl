@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions name="SMSService" targetNamespace="http://sms.kbank.com/SMSService.wsdl" xmlns:sms="http://sms.kbank.com/SMSService.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://sms.kbank.com/SMSService.wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd2="http://sms.kbank.com/SMSService.xsd2">
+
+     <wsdl:documentation>
+This service allows clients to send SMS, and it captures information about this SMS. </wsdl:documentation>
+
+     <wsdl:types>
+
+          <xsd:schema targetNamespace="http://sms.kbank.com/SMSService.xsd" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/">
+
+               <xsd:element name="MobileNoElement">
+
+                    <xsd:annotation>
+
+                         <xsd:documentation>
+SMS is sent to this mobile no     </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:simpleType>
+
+                         <xsd:restriction base="xsd:string">
+
+                              <xsd:pattern value="[0-9]{9}"/>
+
+                         </xsd:restriction>
+
+                    </xsd:simpleType>
+
+               </xsd:element>
+
+               <xsd:element name="TextMessageElement">
+
+                    <xsd:annotation>
+
+                         <xsd:documentation>
+The Text message to SMS     </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:simpleType>
+
+                         <xsd:restriction base="xsd:string"/>
+
+<!--                          <xsd:maxlength value="140"/> -->
+
+                    </xsd:simpleType>
+
+               </xsd:element>
+
+               <xsd:element name="SMSRequestElement">
+
+            	    <xsd:complexType>
+
+            		     <xsd:sequence>
+
+            			      <xsd:element maxOccurs="unbounded" minOccurs="1" ref="sms:MobileNoElement"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" ref="sms:CardLinkElement"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="sendDate" type="xsd:dateTime">
+
+                                   <xsd:annotation>
+
+                            	        <xsd:documentation>
+Not being used in this version        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+            			      </xsd:element>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="expiredDate" type="xsd:dateTime">
+
+                                   <xsd:annotation>
+
+                            	        <xsd:documentation>
+Not being used in this version        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+            			      </xsd:element>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="priority" type="xsd:int">
+
+                                   <xsd:annotation>
+
+                            	        <xsd:documentation>
+Not being used in this version        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+            			      </xsd:element>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="replyURL" type="xsd:string">
+
+            			      </xsd:element>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="clientId" type="xsd:string">
+
+                                   <xsd:annotation>
+
+                            	        <xsd:documentation>
+Not being used in this version        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+            			      </xsd:element>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="sessionId" type="xsd:string">
+
+                                   <xsd:annotation>
+
+                            	        <xsd:documentation>
+Not being used in this version        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+            			      </xsd:element>
+
+            		     </xsd:sequence>
+
+            	    </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="CardLinkElement">
+
+            	    <xsd:complexType>
+
+            		     <xsd:sequence>
+
+						      <xsd:element maxOccurs="1" minOccurs="0" name="templateId" type="xsd:int"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="messageType" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="responseCode" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="txDate" type="xsd:date"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="txTime" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="cardNo" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="txType" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="accFrom" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="accTo" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="txAmount" type="xsd:double"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="billAmount" type="xsd:double"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="availBalance" type="xsd:double"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="merchantType" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="acquirerId" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="currencyCode" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="approveCode" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="merchantName" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="cardType" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="alertStatus" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="newsStatus" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="smsLanguage" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="registerChannel" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="departmentCode" type="xsd:string"/>
+
+            			      <xsd:element maxOccurs="1" minOccurs="0" name="sourceIP" type="xsd:string"/>
+
+            			      <xsd:element name="msg" type="xsd:string">
+
+            			      </xsd:element>
+
+            		     </xsd:sequence>
+
+            	    </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="SMSResponseElement">
+
+            	    <xsd:complexType>
+
+            		     <xsd:sequence>
+
+            			      <xsd:element name="ResponseCode" type="xsd:int">
+
+            			      </xsd:element>
+
+            			      <xsd:element name="ResponseDetail" type="xsd:string">
+
+            			      </xsd:element>
+
+            			      <xsd:element name="ResponseId" type="xsd:string">
+
+            			      </xsd:element>
+
+            		     </xsd:sequence>
+
+            	    </xsd:complexType>
+
+               </xsd:element>
+
+          </xsd:schema>
+
+     </wsdl:types>
+
+     <wsdl:message name="SMSResponse">
+
+          <wsdl:part element="sms:SMSResponseElement" name="SMSResponse"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="SMSRequest">
+
+          <wsdl:part element="sms:SMSRequestElement" name="SMSRequest"/>
+
+     </wsdl:message>
+
+     <wsdl:portType name="SMSServiceWS">
+
+          <wsdl:operation name="sendSMS">
+
+               <wsdl:input message="tns:SMSRequest"/>
+
+               <wsdl:output message="tns:SMSResponse"/>
+
+          </wsdl:operation>
+
+     </wsdl:portType>
+
+     <wsdl:binding name="SMSServiceBinding" type="tns:SMSServiceWS">
+
+          <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+          <wsdl:operation name="sendSMS">
+
+               <soap:operation soapAction="http://sms.kbank.com/SMSService"/>
+
+               <wsdl:input>
+
+                    <soap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output>
+
+                    <soap:body use="literal"/>
+
+               </wsdl:output>
+
+          </wsdl:operation>
+
+     </wsdl:binding>
+
+     <wsdl:service name="SMSService">
+
+          <wsdl:port binding="tns:SMSServiceBinding" name="SMSServiceWS">
+
+               <soap:address location="http://localhost:9080/SMSWeb/services/SMSServiceWS"/>
+
+          </wsdl:port>
+
+     </wsdl:service>
+
+</wsdl:definitions>

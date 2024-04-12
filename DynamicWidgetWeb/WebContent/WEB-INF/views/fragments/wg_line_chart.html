@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Line Chart Widget Fragments</title>
+<meta name="description" content="Bootstrap Metro Dashboard" />
+<meta name="author" content="Topkung" />
+<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+<!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- end: Mobile Specific -->
+
+<!-- start: CSS -->
+<link id="bootstrap-style" href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet" th:href="@{/resources/bootstrap/css/bootstrap.min.css}" />
+<link href="../../../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" th:href="@{/resources/bootstrap/css/bootstrap-responsive.min.css}" />
+<link id="base-style" href="../../../bootstrap/css/style.css" rel="stylesheet" th:href="@{/resources/bootstrap/css/style.css}" />
+<link id="base-style-responsive" href="../../../bootstrap/css/style-responsive.css" rel="stylesheet" th:href="@{/resources/bootstrap/css/style-responsive.css}" />
+<link href="../../../bootstrap/css/bootstrap.fonts.css" th:href="@{/resources/bootstrap/css/bootstrap.fonts.css}" rel='stylesheet' type='text/css' />
+<!-- end: CSS -->
+
+
+<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<link id="ie-style" href="css/ie.css" rel="stylesheet">
+	<![endif]-->
+
+<!--[if IE 9]>
+		<link id="ie9style" href="css/ie9.css" rel="stylesheet">
+	<![endif]-->
+
+<!-- start: Favicon -->
+<link rel="shortcut icon" href="img/favicon.ico" th:href="@{/resources/bootstrap/img/favicon.ico}" />
+<!-- end: Favicon -->
+<link href="/resources/css/jquery-ui.css" rel="stylesheet" media="screen" th:href="@{/resources/css/jquery-ui.css}" />
+<!-- <script src="/resources/js/jquery-2.1.3.js" th:src="@{/resources/js/jquery-2.1.3.js}"></script> -->
+<!-- <script src="/resources/js/jquery-ui.js" th:src="@{/resources/js/jquery-ui.js}"></script> -->
+</head>
+<body>
+	<div class="row-fluid" th:fragment="basic-line-row">
+		
+		<div class="box span8">
+			<div class="box-header">
+				<h2>
+					<i class="halflings-icon tasks"></i><span class="break"></span>SLA Achievement Monthly Statistics
+				</h2>
+			</div>
+			<div class="box-content">
+				<th:block th:fragment="wg-basic-line(widget)">
+<!-- 				<div id="basic-line1" th:id="'wg_lc_'+${widget.id}" style="min-width: 310px; margin: 0 auto;" th:styleappend="'height:'+${widget.height==null?300:widget.height}+'px'"></div> -->
+					<div id="basic-line1" th:id="'wg_lc_'+${widget.id}" style="width: 100%;height: 230px; margin: 0 auto; display: table-cell;"></div>
+				<script th:inline="javascript">
+					//<![CDATA[
+					$(function() {
+						var chartId = /*[['wg_lc_'+${widget.id}]]*/'basic-linexx';
+						var chartTitle = /*[[${widget.title}]]*/'basic-linexx';
+						var categoryArray = /*[[${widget.categories}]]*/'basic-linexx';
+						var seriesArray = /*[[${widget.series}]]*/'basic-linexx';
+						var toolTipSuffix = /*[[${widget.toolTipSuffix}]]*/'basic-linexx';
+						var yAxisMax = /*[[${widget.yAxisMax}]]*/200;
+						$('#' + chartId).highcharts({
+							exporting: {
+					        	enabled: false
+					        },
+							title : {
+								text : chartTitle,
+								x : -20
+							//center
+							},
+							subtitle : {
+								text : '',
+								x : -20
+							},
+							xAxis : {
+								categories : categoryArray
+							},
+							yAxis : {
+								min : 0,
+								max : yAxisMax,
+								title : {
+									text : '% Achievement'
+								},
+								plotLines : [ {
+									value : 0,
+									width : 1,
+									color : '#808080'
+								} ]
+							},
+							tooltip : {
+								valueSuffix : toolTipSuffix
+							},
+							legend : {
+								layout : 'vertical',
+								align : 'right',
+								verticalAlign : 'middle',
+								borderWidth : 0
+							},
+							series : seriesArray
+						});
+						
+						$(window).resize(function() {
+							var chartele = $('#'+chartId);
+							var hc = chartele.highcharts();
+							var newWidth = chartele.parents('.panel-body').width();
+							hc.setSize(newWidth,230);
+							hc.reflow();
+						});
+						
+						var widget = /*[[${widget}]]*/{id:1234};
+						var intervalTime = widget.intervalTime;
+						if(null!=intervalTime&&intervalTime>0){
+							var interval = setInterval(function(){
+								$.ajax({
+									method: 'POST',
+									url: "/Widget/grid/chart/load-data",
+									contentType: 'application/json',
+									data: JSON.stringify(widget),
+									success: function(data) {	
+										//console.log(data);
+										if(data && data.series && data.series.length){
+											for(var i =0, l = data.series.length; i < l; i++){
+												$('#' + chartId).highcharts().series[i].setData(data.series[i].data); 
+											}
+										}
+										
+									},
+									error: function(e) {
+										log.error('Error');
+									}
+								});
+							}, intervalTime);
+						}
+					});
+					//]]>
+				</script>
+				</th:block>
+			</div>
+		</div>
+		<!--/span-->
+		
+	</div>
+	<!--/row-->
+
+
+
+</body>
+</html>

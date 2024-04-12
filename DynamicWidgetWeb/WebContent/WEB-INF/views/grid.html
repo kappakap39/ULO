@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Dashboard</title>
+<meta name="description" content="Bootstrap Metro Dashboard" />
+<meta name="author" content="Topkung" />
+<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+<!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- end: Mobile Specific -->
+<th:block th:replace="fragments/inc_header :: grid-resources"/>
+
+</head>
+<body class="kstyle">
+	<div id="wrapper" th:class="${(grid == null)||(grid.menu == null)}?'full-size'">
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+			 <div class="navbar-header">
+                    <a class="navbar-brand" th:href="@{/}"><img th:src="@{/resources/img/logo.jpg}"/></a>
+                </div>
+                <!-- /.navbar-header -->
+
+                <div class="nav navbar-top-links navbar-left col-xs-6">
+                    <div class="row">
+                        <div class="col-xs-12 line1">Welcome Back <span class="profilename" th:if="${session.owner != null}" th:text="${session.owner.name}">Mr. Lead Dashboard</span></div>
+                    </div>
+                    <div class="row">
+<!--                         <div class="col-xs-12" style="font-size: 12px;">Last login 15:25 | 17 Apr 2015</div> -->
+						<div class="col-xs-6 line2" style="font-size: 12px">
+							<span id="time" th:text="${session.userM.displayDate}"></span>				
+						</div>
+                    </div>
+                </div>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" th:href="@{/}">
+<!--                             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i> -->
+							<span class="avatar"><img th:src="@{/resources/img/user.png}"/></span> 
+							<i class="fa fa-chevron-down" style="vertical-align: bottom"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            
+<!--                             <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a> -->
+<!--                             </li> -->
+                            <li class="divider"></li>
+<!--                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>   -->
+                            <li><a href="/ORIGWeb/index.jsp"><i class="fa fa-home fa-fw"></i> Home</a></li>
+                            <li><a href="/ORIGWeb/logout.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+<!--                        <li><a href="/Widget/grid/11"><i class="fa fa-gear fa-fw"></i> Config Param</a></li> -->
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- /.dropdown -->
+                </ul>
+                <!-- /.navbar-top-links -->
+
+			<th:block th:if="${#objects.nullSafe(grid, false)}">
+				<div th:replace="fragments/fr_navigation :: left-nav(${grid.menu})"></div>
+			</th:block>
+			<!-- /.navbar-static-side -->
+
+		</nav>
+
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<ul class="breadcrumb" th:if="${session.owner != null }">
+						<li th:each="item : ${session.owner.navigation.items}">
+							<i th:if="${itemStat.index == 0}" class="fa fa-home">&nbsp;&nbsp;</i>
+							<a data-th-attr="data-id=${item.id}" th:href="${item.link}" th:text="${item.displayName}" th:remove="${session.owner.navigation.items.size() == itemStat.count?'tag':'none'}">Head of Manager</a>
+						</li>
+					</ul>
+				</div>
+				<script th:inline="javascript">
+					//<![CDATA[
+						$('#userId').change(function(){
+							var val = $(this).val();
+							if(!val)return;
+							$('#teamSelectionForm').submit();
+						});
+			        //]]>
+		    	</script>
+				<!-- /.col-lg-12 -->
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<th:block th:if="${session.otherMembers != null}">
+						<form id="teamSelectionForm" th:action="@{/}" method="POST">
+							<div class="row">
+								<div class="col-sm-4 text-right" style="margin-top: 20px;"><label>Team Name : </label></div>
+								<div class="col-sm-8">	
+									<select id="userId" name="userId" class="form-control" style="margin-top: 15px; margin-bottom: 10px;">
+										<option value="" selected="selected">Please Select</option>
+										<th:block  th:each="member : ${session.otherMembers}">
+											<option th:value="${member.userId}" th:text="${member.name}">DE1.1 SUP</option>
+										</th:block>
+									</select>
+								</div>
+							</div>
+						</form>
+						<script th:inline="javascript">
+						//<![CDATA[
+							$('#userId').change(function(){
+								var val = $(this).val();
+								if(!val)return;
+								$('#teamSelectionForm').submit();
+							});
+				        //]]>
+				    	</script>
+					</th:block>
+				</div>
+				<div class="col-sm-8">
+					<h1 th:if="${#objects.nullSafe(grid, false)}" class="text-right" th:text="${grid.title}">Head of XXX Dashboard</h1>
+					<h1 th:if="${grid == null}" class="page-header text-right">Dashboard is not available</h1>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+
+			<div class="row" style="padding-bottom:20px;">
+				<div class="grid-stack" th:if="not ${grid == null}">
+					<th:block th:each="item : ${grid.items}">
+						<i th:inline="text" th:remove="tag" th:utext="'&lt;!-- Start : Grid Item ' +  ${itemStat.count} +  '--&gt;'"></i>
+						<div class="grid-stack-item" data-th-attr="data-gs-id=${item.id}, data-gs-x=${item.posX}, data-gs-y=${item.posY}, data-gs-width=${item.width}, data-gs-height=${item.height}"
+							data-gs-id="1" data-gs-x="0" data-gs-y="0" data-gs-width="3" data-gs-height="4">	
+							<div th:include="fragments/wg_container :: grid-item(${item}, ${grid.dynamicItems})" class="panel panel-default grid-stack-item-content"></div>
+						</div>
+						<i th:inline="text" th:remove="tag" th:utext="'&lt;!-- End : Grid Item ' +  ${itemStat.count} +  '--&gt;'"></i>
+					</th:block>
+				</div>
+			</div>
+			
+			
+		</div>
+
+		<script th:inline="javascript">
+		//<![CDATA[
+        $(function () {
+            var options = {
+            	dont_resize: true,
+				dont_move: true
+            };
+            $('.grid-stack').gridstack(options);
+        });
+        //]]>
+    	</script>
+	</div>
+
+
+
+	<!-- start: JavaScript-->
+	<script th:inline="javascript">
+		//<![CDATA[
+		$('a#refresh-cache').click(function(e){
+			e.preventDefault();
+			var refreshUrl = /*[[@{/dashboard/refreshCache}]]*/;
+			$.ajax({
+				url: refreshUrl,
+				method: "GET",
+				dataType: "html",
+				success: function(data){
+// 					alert('Refresh Widget Cache successfully!');
+					window.location.reload();
+				},
+				error: function(xhr){
+					alert('Fail to refresh cache');
+				}
+			});
+		});
+		
+		$(function(){
+			$("a[href='#']").click(function(e){
+				e.preventDefault();
+			});
+		});
+		
+		$("#btn_re").click(function(e){
+			e.preventDefault();
+			var url = "/Widget/grid/service/refresh";
+    		$.ajax({
+			  	url: url,
+			   	success: function(response) {
+					window.location.reload();
+		       	},
+		      	error: function(xhr, status){
+		        	alert('Error! '+xhr.responseText);
+	          	}
+			});
+		});
+		
+// 		var currentTime = new Date();
+// 		var month = currentTime.getMonth();
+// 		var day = currentTime.getDate();
+// 		var year = currentTime.getFullYear();
+// 		var hours = currentTime.getHours();
+// 		var minutes = currentTime.getMinutes();
+// 		var milliseconds = currentTime.getMilliseconds();
+// 		var currentDate = document.write("Last login "+hours+":"+minutes+":"+milliseconds+" | "+day+" "+month+" "+year);
+// 		document.getElementById('time').innerHTML = currentDate;
+		
+// 		function AutoRefresh(interval) {
+// 			//setTimeout("location.reload(true);",interval);
+// 			var url = "/Widget/grid/service/refresh";
+//     		$.ajax({
+// 			  	url: url,
+// 			   	success: function(response) {
+// 					setTimeout("location.reload(true);",interval);
+// 		       	},
+// 		      	error: function(e){
+// 		        	alert('Fail to refresh dash board');
+// 	          	}
+// 			});
+// 		}
+
+// 		(function update() {
+// 			var url = "/Widget/grid/service/refresh";
+// 		    $.ajax({
+// 			  	url: url,
+// 			   	success: function(response) {
+// 					setTimeout("location.reload(true);",interval);
+// 		       	},
+// 		      	error: function(e){
+// 		        	alert('Fail to refresh dash board');
+// 	          	}
+// 			}).then(function() {           
+// 		      	setTimeout("location.reload(true);",interval);
+// 		    });
+// 		})();
+		//]]>
+	</script>
+	<!-- end: JavaScript-->
+
+
+</body>
+
+</html>

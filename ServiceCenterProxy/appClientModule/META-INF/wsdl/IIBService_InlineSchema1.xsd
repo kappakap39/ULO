@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ava.kasikornbank.com/IIBService" xmlns:Q2="http://DecisionService_IIB" xmlns:tns="http://ava.kasikornbank.com/IIBService">
+    <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService_IIB_Schema1.xsd"/>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="CIS0368I01">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="CIS0368I01Request" nillable="true" type="Q2:applicationGroupDataM"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="CIS0368I01Response">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="CIS0368I01Response" nillable="true" type="Q2:applicationGroupDataM"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="CVRS1312I01">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="CVRS1312I01Request" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="CVRS1312I01Response">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="CVRS1312I01Response" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="KCBS">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="KCBSRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="KCBSResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="KCBSResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="KBANK1211I01">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="KBANK1211I01Request" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="KBANK1211I01Response">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="KBANK1211I01Response" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="KBANK1550I01">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="KBANK1550I01Request" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="KBANK1550I01Response">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="KBANK1550I01Response" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="Fraud">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="FraudRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="FraudResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="FraudResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="BOL">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="BOLRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="BOLResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="BOLResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="CardLink">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="CardLinkRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="CardLinkResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="CardLinkResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="SavingAccount">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="SavingAccountRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="SavingAccountResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="SavingAccountResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="HRIS">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="HRISRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="HRISResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="HRISResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="KAsset">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="KAssetRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="KAssetResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="KAssetResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="KOC">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="KOCRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="KOCResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="KOCResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="LPM">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="LPMRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="LPMResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="LPMResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="Payroll">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="PayrollRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="PayrollResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="PayrollResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="SAFE">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="SAFERequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="SAFEResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="SAFEResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="BScore">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="BScoreRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="BScoreResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="BScoreResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="TCBLoan">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="TCBLoanRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="TCBLoanResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="TCBLoanResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+
+    <xsd:element name="mappingResponse" type="Q2:mappingResponse"/>
+
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="WFInquire">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="WFInquireRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="WFInquireResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="WFInquireResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+    <xsd:element name="applicationGroupDataMResponse" type="Q2:applicationGroupDataM">
+    </xsd:element>
+    
+    <xsd:element name="applicationGroupDataMRequest" type="Q2:applicationGroupDataM">
+    </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="FixAccount">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="FixAccountRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="FixAccountResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="FixAccountResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="CurrentAccount">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="CurrentAccountRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="CurrentAccountResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="CurrentAccountResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="Wealth">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="WealthRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="WealthResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="WealthResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="CapPort">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="CapPortRequest" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="CapPortResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="CapPortResponse" nillable="true" type="Q2:applicationGroupDataM"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

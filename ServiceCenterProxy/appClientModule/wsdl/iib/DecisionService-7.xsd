@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!--File FLPService_InlineSchema1.xsd, application DecisionService--><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:Q1="http://kasikornbank.com/Format" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<xsd:element ibmSchExtn:docRoot="true" name="NewRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="1" minOccurs="1" name="FuncNm" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="1" name="RqUID" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="1" name="RqDt" type="xsd:dateTime"/> 
+				<xsd:element maxOccurs="1" minOccurs="1" name="RqAppId" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="1" name="UserId" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="0" name="TerminalId" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="0" name="UserLangPref" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="0" name="CorrID" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="0" name="AuthUserId" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="0" name="AuthLevel" type="xsd:int"/> 
+				<xsd:element maxOccurs="1" minOccurs="0" name="Filler" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="1" name="TranNo" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="1" name="Requester" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="1" name="RequestObjective" type="xsd:int"/> 
+				<xsd:element maxOccurs="1" minOccurs="1" name="IdType" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="1" name="IdNo" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="1" name="Prefix" type="xsd:int"/> 
+				<xsd:element maxOccurs="1" minOccurs="1" name="FirstName" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="1" name="FamilyName" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="1" name="DateOfBirth" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="1" name="DataSource" type="xsd:string"/> 
+				<xsd:element maxOccurs="1" minOccurs="1" name="Department" type="xsd:string"/> 
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element ibmSchExtn:docRoot="true" name="NewRequestResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="1" minOccurs="0" name="NewRequestResult" type="tns:NewRequestResult"/> 
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="NewRequestResult">
+		<xsd:sequence>
+			<xsd:element maxOccurs="1" minOccurs="0" name="FuncNm" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="RqUID" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="RsAppId" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="RsUID" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="RsDt" type="xsd:dateTime"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="StatusCode" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="Errors" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="ErrorAppId" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="ErrorAppAbbrv" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="ErrorCode" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="ErrorDesc" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="ErrorSeverity" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="CorrID" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="Filler" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="TranNo" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="ConsentRefNo" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="IdNo" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="Result" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="DataSource" type="xsd:string"/>
+			<xsd:element maxOccurs="1" minOccurs="0" name="DateOfSearch" type="xsd:string"/>
+
+
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

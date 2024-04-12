@@ -1,0 +1,332 @@
+body {  margin: 0px  0px; padding: 0px  0px; background-color: #FFFFFF;scrollbar-shadow-color:#FFFFFF;scrollbar-face-color:#D3D3D3;scrollbar-highlight-color:#CCCCCC;scrollbar-darkshadow-color:#CCCCCC;scrollbar-3dlight-color:#FFFFFF; SCROLLBAR-ARROW-COLOR: #000099; SCROLLBAR-TRACK-COLOR: #E6E6E6; }
+a:link {color: #000000;  text-decoration: none; font-family: "MS Sans Serif", "Microsoft Sans Serif"; font-size: 9px; font-style: normal; font-weight: normal;vertical-align:baseline;cursor:hand;}
+a:visited { color: #000000; text-decoration: none; font-family: "MS Sans Serif", "Microsoft Sans Serif"; font-size: 9px; font-style: normal; font-weight: normal;vertical-align:baseline;cursor:hand;}
+a:active {	color: #9999ff;	text-decoration: none;	font-family: "MS Sans Serif", "Microsoft Sans Serif";	font-size: 9px;	font-style: normal;	font-weight: normal;vertical-align:baseline;cursor:hand;}
+a:hover { color: #000000; text-decoration: none; font-family: "MS Sans Serif", "Microsoft Sans Serif"; font-size: 9px; font-style: normal; font-weight: normal;vertical-align:baseline;cursor:hand;}
+a { text-decoration: none; }
+a img {border: none; }
+.textbox {	font-family: "Tahoma";	font-size: 11px;	font-style: normal;	font-weight: normal;	color: #000000;	text-decoration: none;	text-align: left;	background-color: #FFFFFF;	border: 1px #888888 solid;vertical-align:middle;}
+.textboxCurrency { font-family: "Tahoma"; font-size: 11; font-style: normal; font-weight: normal; color: #000000; text-decoration: none; background-color: #FFFFFF; border: 1px #999999 ridge; text-align: right;vertical-align:middle;}
+.textboxCurrencyRed { font-family: "Tahoma"; font-size: 11; font-style: normal; font-weight: normal; color: #000000; background-color: #FFFFFF; border: 1px #999999 ridge; text-align: right;vertical-align:middle; border: 1px #FF0000 solid;}
+.ComboBox {  font-family: "MS Sans Serif", "Microsoft Sans Serif"; font-size: 11px; font-style: normal; font-weight: normal; color: #000000; text-decoration: none; background-color: #FFFFFF; line-height: normal; border: 0.5px #888888 solid; vertical-align:middle;}
+.textboxWarning {	font-family: "MS Sans Serif", "Microsoft Sans Serif";	font-size: 9px;	font-style: normal;	font-weight: normal;	color: #FF0000;	text-decoration: none;	text-align: left;	background-color: #FFFFFF;	border: none;vertical-align:middle;}
+.TextWarningNormal{	font-family: "MS Sans Serif", "Microsoft Sans Serif";	font-size: 9px;	font-style: normal;	font-weight: bold;	color: #CC3333;	text-decoration: none;	text-align: left;}
+.button_blue{background-color:#034d8f; color:#ffffff; font-family: Verdana, Arial, Helvetica, sans-serif; font-size:9px;cursor:hand;}
+.button_text { font-family: "tahoma"; font-size:9px;cursor:hand;}
+.button{font-family: Verdana, Arial, Helvetica, sans-serif; font-size:5px;cursor:hand;}
+.hr {  background-color: #999999; height: 0.3px; background-position: left}
+div.menuBar,
+div.menuBar a.menuButton,
+div.menu,
+div.menu a.menuItem {  font-family: "MS Sans Serif", Arial, sans-serif;  font-size: 9pt;  font-style: normal;  font-weight: normal;  color: #000000;}
+div.menuBar {  background-color: #2058a0;  border: 0px solid;  padding: 4px 2px 4px 2px;  text-align: left;}
+div.menuBar a.menuButton {  background-color: transparent;  border: 0px solid;  color: #FFFFFF;  cursor: default;  left: 0px;  margin: 1px;  padding: 2px 6px 2px 6px;  position: relative;  text-decoration: none;  top: 0px;  z-index: 100;}
+div.menuBar a.menuButton:hover {  background-color: #C1D5E8;  border-color: #f0f0f0 #909090 #909090 #f0f0f0;  color: #000000;}
+div.menuBar a.menuButtonActive,
+div.menuBar a.menuButtonActive:hover {  background-color: #FFFFFF;  border-color: #909090 #f0f0f0 #f0f0f0 #909090;  color: #000000;  left: 1px;  top: 1px;}
+div.menu {  background-color: #C1D5E8;  border: 1px solid;  border-color: #f0f0f0 #909090 #909090 #f0f0f0;  left: 0px;  padding: 0px 1px 1px 0px;  position: absolute;  top: 0px;  visibility: hidden;  z-index: 101;}
+div.menu a.menuItem {  color: #000000;  cursor: default;  display: block;  padding: 3px 1em;  text-decoration: none;  white-space: nowrap;}
+div.menu a.menuItem:hover, div.menu a.menuItemHighlight {  background-color: #000080;  color: #ffffff;}
+div.menu a.menuItem span.menuItemText {}
+div.menu a.menuItem span.menuItemArrow {  margin-right: -.75em;}
+div.menu div.menuItemSep {  border-top: 1px solid #909090;  border-bottom: 1px solid #f0f0f0;  margin: 4px 2px;}
+.logo { font-family: "MS Sans Serif"; font-size: 8pt; color: #FFFFFF; font-weight: bolder; font-stretch: expanded;}
+.bu { font-family: "MS Sans Serif"; font-size: 9pt; color: #002C6D}
+.wh { font-family: "MS Sans Serif"; font-size: 9pt; color: #FFFFFF}
+.MenuFont { font-family: "MS Sans Serif"; font-size: 9pt;}
+.font2 { font-family: "MS Sans Serif"; font-size: 9pt; color: #535252; }
+.font2ManField { font-family: "tahoma"; font-size: 9pt; color: #FF0000; }
+.font4 { font-family: "MS Sans Serif"; font-size: 9pt; color: #535252;}
+.font5 { font-family: "MS Sans Serif", "DB ThaiText", "AngsanaUPC","Thonburi"; font-size: 5pt;  color: #FFFFFF; font-weight:bold}
+.font6{color:0000FF;}
+.LoginHeadText { font-family: "Arial"; font-size: 10pt; color: #000000; }
+td {  font-family:  "MS Sans Serif","Arial", "Helvetica"; font-size: 10px}
+.box {background: transparent; background-color: C6D3E7; border: 1px solid #0F40A5; color: #4F4F4F; font-family: Verdana,Arial,Helvetica; font-size: 10px ; text-align: left; scrollbar-face-color: #CCCCCC; scrollbar-shadow-color: #FFFFFF; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #FFFFFF; scrollbar-darkshadow-color: #FFFFFF; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000 }
+TR.tabOff {
+	PADDING-RIGHT: 6px; 
+	PADDING-LEFT: 6px; 
+	PADDING-BOTTOM: 2px; 
+	PADDING-TOP: 2px; 
+	WHITE-SPACE: nowrap; 
+	TEXT-ALIGN: center;
+	BORDER-LEFT: solid #000033 1px;
+	BORDER-TOP: solid #000033 1px;               
+	BORDER-RIGHT: solid #000033 1px;
+	BORDER-BOTTOM: solid #000033 1px;
+	BACKGROUND-COLOR: #f5f5f5 ;
+	CURSOR:pointer;
+}
+TR.tabOn {
+	PADDING-RIGHT: 6px; 
+	PADDING-LEFT: 6px; 
+	PADDING-BOTTOM: 2px; 
+	PADDING-TOP: 2px; 
+	WHITE-SPACE: nowrap; 
+	TEXT-ALIGN: center;
+	BORDER-LEFT: solid #000033 1px;
+	BORDER-TOP: solid #000033 1px;
+	BORDER-RIGHT: solid #000033 1px;
+	BACKGROUND-COLOR: #000099;
+	CURSOR:pointer;
+}
+
+.BLT1px {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #000000;
+	border-right-color: #000000;
+	border-bottom-color: #000000;
+	border-left-color: #000000;
+
+}
+.BL1px {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #000000;
+	border-right-color: #000000;
+	border-bottom-color: #000000;
+	border-left-color: #000000;
+
+}
+.BLTR1px {
+	border: 1px solid #000000;
+}
+.BLR1px {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #000000;
+	border-right-color: #000000;
+	border-bottom-color: #000000;
+	border-left-color: #000000;
+
+}
+
+
+<!-- Begin Disburse Style -->
+.textboxDate{	font-family: "Tahoma";	font-size: 11px;	font-style: normal;	font-weight: normal;	color: #000000;	text-decoration: none;	text-align: left;	background-color: #FFFFFF;	border: 1px #888888 solid;vertical-align:middle; width: 65px;}
+.textboxTime{	font-family: "Tahoma";	font-size: 11px;	font-style: normal;	font-weight: normal;	color: #000000;	text-decoration: none;	text-align: left;	background-color: #FFFFFF;	border: 1px #888888 solid;vertical-align:middle; width: 60px;}
+.textboxSlip {	font-family: "Tahoma";	font-size: 11px;	font-style: normal;	font-weight: normal;	color: #000000;	text-decoration: none;	text-align: left;	background-color: #FFFFFF;	border: 1px #888888 solid;vertical-align:middle; width: 100px;}
+.textboxShort {	font-family: "Tahoma";	font-size: 11px;	font-style: normal;	font-weight: normal;	color: #000000;	text-decoration: none;	text-align: left;	background-color: #FFFFFF;	border: 1px #888888 solid;vertical-align:middle; width: 160px;}
+<!-- End Disburse Style -->
+.tableHeader{background-color:#D7D6D7; height:20;}
+.tableBody{background-color:#FAFAFA;}
+.textCol {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; COLOR: #000000; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; 
+	HEIGHT: 20px; TEXT-ALIGN: right; BACKGROUND-COLOR: #E6E6E6;  TEXT-DECORATION: none
+}
+
+.textColS {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; COLOR: #535252; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; 
+	HEIGHT: 20px; TEXT-ALIGN: right; BACKGROUND-COLOR: #F4F4F4;  TEXT-DECORATION: none
+}
+.textColS_falign {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; COLOR: #535252; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; 
+	HEIGHT: 20px; BACKGROUND-COLOR: #F4F4F4;  TEXT-DECORATION: none
+}
+
+.inputCol {
+	FONT-WEIGHT: normal; FONT-SIZE: 9px; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; 
+	HEIGHT: 20px; BACKGROUND-COLOR: #F4F4F4; TEXT-DECORATION: none
+}
+
+.subformHead{
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; COLOR: #FFFFFF; FONT-STYLE: normal; 
+	FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; BACKGROUND-COLOR: #8F4B05; 
+	TEXT-ALIGN: left; TEXT-DECORATION: none; height:15;
+}
+
+.subformCol{
+	WIDTH:10; TEXT-ALIGN: left; vertical-align:TOP
+}
+
+.backToTop{
+	WIDTH:15; TEXT-ALIGN: center; vertical-align:TOP; TEXT-DECORATION: none
+}
+
+
+.TableHeadSearchRes{
+	FONT-WEIGHT: bold; FONT-SIZE: 9px; VERTICAL-ALIGN: middle; COLOR: #ffffff; 
+	FONT-STYLE: normal; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; 
+	BACKGROUND-COLOR: #7C7C7C; TEXT-ALIGN:center; TEXT-DECORATION: none
+}
+
+<!-- For Search Pages -->
+.tableHeader3{height:20;text-align:center;color: #0066B3; font-family: "MS Sans Serif"; font-size: 9pt}
+.tableHeader2{ background-color:#D7D6D7;height:20;text-align:center;color: #0066B3; font-family: "MS Sans Serif"; font-size: 9pt}
+.TableBodySearch{height:20;text-align:center;}
+
+#KLTable TABLE{
+	font-family: Tahoma;
+	border-collapse: collapse;
+	border: 1px solid #bbbaba;
+	font-size: 8pt;
+	color: #000000;
+} 
+#KLTable TD{
+	font-family: Tahoma;
+	border: 1px solid #bbbaba;
+	padding-left : 5px;
+	font-size: 8pt;
+	color: #000000;
+	padding: 2px;
+}
+#KLTable TD.TableHeader {
+	font-family: "Tahoma";	
+	font-size: 8pt;	
+	font-style: normal;	
+	font-weight: bold;	
+	color: #000000;	
+	text-decoration: none;	
+	background-color: #DADADA;	
+	text-align: center;	
+	vertical-align: top;
+	padding: 2px;
+}
+#KLTable TD.TableData {
+	font-family: "Tahoma";
+	font-weight: bold;
+	font-size: 8pt;	
+	font-style: normal;		
+	color: #000000;	
+	text-align: center;	
+	padding: 2px;
+}
+
+#KLTable TD.TableHeader1 {
+	font-family: "Tahoma";	
+	font-size: 8pt;	
+	font-style: normal;	
+	font-weight: bold;	
+	color: #000000;	
+	text-decoration: none;	
+	background-color: #D6FFD6;	
+	text-align: left;	
+	vertical-align: top;
+	padding: 2px;
+}
+
+.warningText {
+	FONT-SIZE: 9pt; COLOR: red; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; font-weight: bold;
+}
+.textboxRed {	font-family: "Tahoma";	font-size: 11px;	font-style: normal;	font-weight: normal;	color: #000000;	text-decoration: none;	text-align: left;	background-color: #FFFFFF;	border: 1px #FF0000 solid;vertical-align:middle;}
+.ComboBoxRed {  font-family: "MS Sans Serif", "Microsoft Sans Serif"; font-size: 11px; font-style: normal; font-weight: normal; color: #FF0000; text-decoration: none; background-color: #FFFFFF; line-height: normal; border: 0.5px #FF0000 solid; vertical-align:middle; border-color: #FF0000}
+.foundText {
+	FONT-SIZE: 9pt; COLOR: red; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; font-weight: bold;
+}
+.textboxCurrencyReadOnly { font-family: "Tahoma"; font-size: 11px; font-style: normal; font-weight: normal; color: #000000; background-color: #C0C0C0; border: 1px #999999 ridge; text-align: right;vertical-align:middle; }
+.textboxCurrencyReadOnlyRed { font-family: "Tahoma"; font-size: 11px; font-style: normal; font-weight: normal; color: #000000; background-color: #C0C0C0; border: 1px #999999 ridge; text-align: right;vertical-align:middle; border: 1px #FF0000 solid;}
+.textboxReadOnly {
+	font-family: "Tahoma";
+	font-size: 11px;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+	text-decoration: none;
+	text-align: left;
+	background-color: #C0C0C0;
+	border: 1px #888888 solid;
+	vertical-align:middle;
+	}
+.tableHeaderXrules{background-color:#D7D6D7; height:20;
+	text-align: center;
+	white-space: nowrap;
+	display: inline;}
+	
+.Imglist{
+	padding: 5px;
+	border: 3px;
+	position:relative;
+	z-index: 0;	
+}
+.child{
+	z-index :1;
+	background-color:#D7D6D7; 
+	opacity:0.6;
+	filter: alpha(opacity=60);
+	filter: "alpha(opacity=60)";
+	visibility:visible;
+}
+.buttonRotate{
+	z-index :2;
+	cursor:hand;	
+}
+#tabImage {
+   float:left;
+   width:100%;
+   line-height:normal;   
+}
+#tabImage ul {
+	margin:0;
+	padding:2px 0 0 0;
+	list-style:none;
+}
+#tabImage li {
+   display:inline;
+   margin:0;
+   padding:0;
+}
+#tabImage a {
+   float:left;
+   background:url("images/tabLeft.png") no-repeat left top;
+   margin:0;
+   padding:0 0 0 4px;
+   text-decoration:none;
+}
+#tabImage a span {
+   float:left;
+   display:block;
+   background:url("images/tabRight.png") no-repeat right top;
+   padding:5px 15px 4px 6px;
+   font-family: "Verdana";
+   font-size: 11px;
+   font-weight: bold;
+   color:#FFF;
+}
+#tabImage a span {float:none;}
+#tabImage a:hover span {
+   font-family: "Verdana";
+   font-size: 11px;
+   font-weight: bold;
+   color:#464E42;
+}
+#tabImage a:hover {
+   background-position:0% -42px;
+}
+#tabImage a:hover span {
+   background-position:100% -42px;
+}
+#tabImage .current a {
+   background-position:0% -42px;
+}
+#tabImage .current a span {
+   background-position:100% -42px;
+   font-family: "Verdana";
+   font-size: 11px;
+   font-weight: bold;
+   color:#464E42;
+}
+#thumbnailImg{
+	border-top: solid 1px green;
+}
+#plantImg{
+	background-color: #F4F4F4;
+	padding: 3px;
+	width: 100%;
+	height: 100%;
+}

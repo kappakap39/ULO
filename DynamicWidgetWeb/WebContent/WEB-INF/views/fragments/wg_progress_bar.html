@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>Circle Widget Fragments</title>
+
+</head>
+<body>
+
+	<div class="widget-box" th:fragment="wg-bar(widget)">
+		<div class="skill-bar-wrapper">
+			<div th:if="${widget.title != null}" th:text="${#lists.isEmpty(widget.categories)?'':widget.categories.get(0)}"></div>
+			<ul class="skill-bar">
+				<li th:each="series : ${widget.series}">
+					<div class="header">
+						<h5 th:text="${series.name}">% SLA Achievement</h5>
+						<h2 th:id="'wg_bar_name_'+${seriesStat.index}" th:text="${#numbers.formatDecimal(series.data.get(0),1,2)+#strings.defaultString(widget.dataSuffix,'')}">(40%)</h2>
+					</div>
+					<div class="meter yellow" th:class="${#numbers.formatDecimal(series.data.get(0),1,2)} > 95?'meter green':(${#numbers.formatDecimal(series.data.get(0),1,2)} > 92 ?'meter yellow':'meter red')">
+						<span th:id="'wg_bar_meter_'+${seriesStat.index}" style="width: 40%" th:style="'width:'+${#numbers.formatDecimal(series.data.get(0),1,2)}+'%'"></span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<script th:inline="javascript">
+			//<![CDATA[
+			$(function() {
+				var widget = /*[[${widget}]]*/{id:1234};
+				var series = /*[[${widget.series}]]*/;
+				var intervalTime = widget.intervalTime;
+				if(null!=intervalTime&&intervalTime>0){
+					var interval = setInterval(function(){
+						$.ajax({
+							method: 'POST',
+							url: "/Widget/grid/chart/load-data",
+							contentType: 'application/json',
+							data: JSON.stringify(widget),
+							success: function(data) {
+								//console.log(data);
+								if(data && data.series && data.series.length){
+									for(var i =0, l = data.series.length; i < l; i++){
+										$('#wg_bar_name_'+i).text(numbers.formatDecimal(data.series[i].data,1,2) +"%");
+										$('#wg_bar_meter_'+i).width(numbers.formatDecimal(data.series[i].data,1,2) +"%");
+									}
+								}
+							},
+							error: function(e) {
+								log.error('Error');
+							}
+						});
+					}, intervalTime);
+				}
+			});
+			//]]>
+		</script>
+	</div>
+
+	<div class="widget-box" th:fragment="wg-decoratable-bar(widget)">
+		<div class="skill-bar-wrapper">
+			<div th:if="${widget.title != null}" th:text="${#lists.isEmpty(widget.categories)?'':widget.categories.get(0)}"></div>
+			<ul class="skill-bar">
+				<li th:each="series : ${widget.series}">
+					<div class="header">
+						<h5 th:text="${series.name}">% SLA Achievement</h5>
+						<h2 th:id="'wg_db_name_'+${seriesStat.index}" th:text="${#numbers.formatInteger(series.data.get(0),1)+#strings.defaultString(widget.dataSuffix,'')}">(40%)</h2>
+					</div>
+					<div th:id="'wg_db_class_'+${seriesStat.index}" class="meter" th:classappend="${series.stack}">
+						<span th:id="'wg_db_meter_'+${seriesStat.index}" style="width: 40%" th:style="'width:'+${#numbers.formatInteger(series.data.get(0),1)}+'%'"></span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<script th:inline="javascript">
+			//<![CDATA[
+			$(function() {
+				var widget = /*[[${widget}]]*/{id:1234};
+				var series = /*[[${widget.series}]]*/;
+				var intervalTime = widget.intervalTime;
+				if(null!=intervalTime&&intervalTime>0){
+					var interval = setInterval(function(){
+						$.ajax({
+							method: 'POST',
+							url: "/Widget/grid/chart/load-data",
+							contentType: 'application/json',
+							data: JSON.stringify(widget),
+							success: function(data) {
+								//console.log(data);
+								if(data && data.series && data.series.length){
+									for(var i =0, l = data.series.length; i < l; i++){
+										$('#wg_db_name_'+i).text(data.series[i].data+"%");
+										$('#wg_db_class_'+i).removeClass();
+										$('#wg_db_class_'+i).addClass('meter '+data.series[i].stack);
+										$('#wg_db_meter_'+i).width(data.series[i].data+"%");
+										$('#wg_db_meter_'+i).addClass(data.series[i].stack);
+									}
+								}
+							},
+							error: function(e) {
+								log.error('Error');
+							}
+						});
+					}, intervalTime);
+				}
+			});
+			//]]>
+		</script>
+	</div>
+
+</body>
+</html>

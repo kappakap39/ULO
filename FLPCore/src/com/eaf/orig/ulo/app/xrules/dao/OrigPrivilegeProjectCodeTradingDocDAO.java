@@ -1,0 +1,16 @@
+package com.eaf.orig.ulo.app.xrules.dao;
+
+import java.util.ArrayList;
+
+import com.eaf.orig.ulo.app.dao.exception.ApplicationException;
+import com.eaf.orig.ulo.model.app.PrivilegeProjectCodeProductTradingDataM;
+
+public interface OrigPrivilegeProjectCodeTradingDocDAO {
+
+	public void createOrigPrivilegeProjectCodeTradingDocM(PrivilegeProjectCodeProductTradingDataM privilegeProjectCodeProductTrading)throws ApplicationException;
+	public void deleteOrigPrivilegeProjectCodeTradingDocM(String prvlgDocId, String privlgTradingDocId)throws ApplicationException;
+	public ArrayList<PrivilegeProjectCodeProductTradingDataM> loadPrivilegeProjectCodeTradingDocM(String prvlgDocId)throws ApplicationException;
+	public void saveUpdatePrivilegeProjectCodeTradingDocM(PrivilegeProjectCodeProductTradingDataM privilegeProjectCodeProductTrading)throws ApplicationException;
+	public void deleteNotInKeyPrivilegeProjectCodeTradingDocM(ArrayList<PrivilegeProjectCodeProductTradingDataM>
+	privilegeProjectCodeProductTradings,String prvlgDocId)throws ApplicationException;
+}

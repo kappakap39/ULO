@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="DM">
+        <wb-resource deploy-path="/" source-path="/" tag="defaultRootSource"/>
+        <dependent-module archiveName="DMWeb.war" deploy-path="/" handle="module:/resource/DMWeb/DMWeb">
+            <dependent-object>Module_1423468615240</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="DMEJB.jar" deploy-path="/" handle="module:/resource/DMEJB/DMEJB">
+            <dependent-object>Module_1423468615241</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="DMEJBClient.jar" deploy-path="/" handle="module:/resource/DMEJBClient/DMEJBClient">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

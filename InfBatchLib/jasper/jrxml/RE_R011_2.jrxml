@@ -1,0 +1,1002 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportP10" language="groovy" pageWidth="4000" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="3960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="3ba5a5af-155d-4a7c-a6b9-21c6f44a69c1">
+	<property name="ireport.zoom" value="1.6105100000000203"/>
+	<property name="ireport.x" value="1831"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\FLP\\Report\\Jasper\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from table (PKA_RPT.f_rpt_R011_1) order by length(branch_no)]]>
+	</queryString>
+	<field name="BRANCH_NO" class="java.lang.String"/>
+	<field name="BRANCH_NAME" class="java.lang.String"/>
+	<field name="BRANCH_REGION" class="java.lang.String"/>
+	<field name="BRANCH_ZONE" class="java.lang.String"/>
+	<field name="SALES_ID" class="java.lang.String"/>
+	<field name="SALES_NAME" class="java.lang.String"/>
+	<field name="CS_REFER_OFF_CODE" class="java.lang.String"/>
+	<field name="CS_REFER_OFF_NAME" class="java.lang.String"/>
+	<field name="APPLICATION_GROUP_NO" class="java.lang.String"/>
+	<field name="APPLICATION_TYPE" class="java.lang.String"/>
+	<field name="CARD_GENDATE" class="java.lang.String"/>
+	<field name="A_TH_FIRST_NAME" class="java.lang.String"/>
+	<field name="A_TH_LAST_NAME" class="java.lang.String"/>
+	<field name="A1_FLAG_INSURE" class="java.lang.String"/>
+	<field name="A2_FLAG_INSURE" class="java.lang.String"/>
+	<field name="A3_FLAG_INSURE" class="java.lang.String"/>
+	<field name="S_TH_FIRST_NAME" class="java.lang.String"/>
+	<field name="S_TH_LAST_NAME" class="java.lang.String"/>
+	<field name="S1_FLAG_INSURE" class="java.lang.String"/>
+	<field name="S2_FLAG_INSURE" class="java.lang.String"/>
+	<field name="S3_FLAG_INSURE" class="java.lang.String"/>
+	<field name="A1_CARD_LEVEL" class="java.lang.String"/>
+	<field name="AS_CARD_LEVEL" class="java.lang.String"/>
+	<field name="A3_CARD_LEVEL" class="java.lang.String"/>
+	<field name="S1_CARD_LEVEL" class="java.lang.String"/>
+	<field name="S2_CARD_LEVEL" class="java.lang.String"/>
+	<field name="S3_CARD_LEVEL" class="java.lang.String"/>
+	<field name="APPLY_DATE" class="java.lang.String"/>
+	<field name="APPLICATION_DATE" class="java.lang.String"/>
+	<field name="ON_SCREEN_DATE" class="java.lang.String"/>
+	<variable name="CURRENT_DATE" class="java.util.Date">
+		<variableExpression><![CDATA[new Date()]]></variableExpression>
+	</variable>
+	<variable name="COUNT_BY_BRANCH" class="java.lang.Integer">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="103">
+			<textField isStretchWithOverflow="true" evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement x="3916" y="70" width="27" height="20" uuid="14513871-6853-4d28-85a4-029e43295df8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3873" y="70" width="18" height="20" uuid="011e3723-852b-4dba-a78b-1280f77c9001"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3891" y="70" width="25" height="20" uuid="dd9d6e9b-b4e8-46be-825e-87d9e0e19d06"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[of]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="3797" y="30" width="94" height="20" uuid="fecf2c8f-41ad-4919-a5f3-335a9f708a42"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3844" y="70" width="29" height="20" uuid="a61e79e3-a8a4-49ee-bf0d-71941d2f25a8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Page ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3807" y="50" width="136" height="20" uuid="c0bde652-a82e-49f6-bd7a-d006ee66ed87"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Report ID: RE_R011_2]]></text>
+			</staticText>
+			<textField pattern="HH:mm:ss">
+				<reportElement x="3891" y="30" width="52" height="20" uuid="6363e2c2-c903-4641-8e87-b8060e04c73d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="572" y="10" width="96" height="20" uuid="42c42e75-ec73-4cfa-ac72-025254e8e037"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[: Credit Shield]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="10" width="324" height="20" uuid="1fa2fe08-be4f-4a6d-a76d-742a4533ecc6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[รายงานสรุปผลงาน KPI คะแนนการขายและบริการ ปี]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="30" width="97" height="20" uuid="099a9fd6-6fa5-4aa8-b72e-fe21f9a05e99"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[เดือน มกราคม - ]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="475" y="30" width="48" height="20" uuid="96854de8-d5d9-4e99-b878-0331b456d3be"/>
+				<textElement>
+					<font fontName="Tahoma" pdfFontName="C:\Users\father\Desktop\พร้อมส่ง\tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("MMM").format(new java.util.Date())=="Jan"?"มกราคม":
+(new SimpleDateFormat("MMM").format(new java.util.Date())=="Feb"?"กุมภาพันธ์":
+(new SimpleDateFormat("MMM").format(new java.util.Date())=="Mar"?"มีนาคม":
+(new SimpleDateFormat("MMM").format(new java.util.Date())=="Apr"?"เมษายน":
+(new SimpleDateFormat("MMM").format(new java.util.Date())=="May"?"พฤษภาคม":
+(new SimpleDateFormat("MMM").format(new java.util.Date())=="Jun"?"มิถุนายน":
+(new SimpleDateFormat("MMM").format(new java.util.Date())=="Jul"?"กรกฎาคม":
+(new SimpleDateFormat("MMM").format(new java.util.Date())=="Aug"?"สิงหาคม":
+(new SimpleDateFormat("MMM").format(new java.util.Date())=="Sep"?"กันยายน":
+(new SimpleDateFormat("MMM").format(new java.util.Date())=="Oct"?"ตุลาคม":
+(new SimpleDateFormat("MMM").format(new java.util.Date())=="Nov"?"พฤศจิกายน":"ธันวาคม")))))))))))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="523" y="30" width="49" height="20" uuid="19edf91e-7cc2-4285-a282-0560deb7947c"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[Integer.parseInt(new SimpleDateFormat("yyyy").format(new java.util.Date()))+543]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="523" y="10" width="49" height="20" uuid="34714d7f-596d-4662-889d-7be92e8cc4d0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[Integer.parseInt(new SimpleDateFormat("yyyy").format(new java.util.Date()))+543]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement mode="Opaque" x="84" y="0" width="235" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="9a2d136d-b5d8-45b2-80b2-81fc666aeefe"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Branch Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="439" y="0" width="120" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="95d6325f-0e95-4988-b7de-5c9488c96437"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Branch Zone Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="319" y="0" width="120" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="a690c7d4-ef6e-4cb3-8657-55651f9c291f"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Branch Region Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="84" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="5c9cacb5-91f4-44f0-b53c-09f6238b7a00"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Branch Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="559" y="0" width="187" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="b064423d-6974-42d1-927e-d2ca4283519f"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[HO / Customer Service Officer Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="746" y="0" width="187" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="68607e99-0af6-40dd-8461-5884f9f46530"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[HO / Customer Service Officer Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="933" y="0" width="187" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="138ba094-f3a9-444b-8c22-2e0939d6771a"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Customer Service Refer officer Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1120" y="0" width="187" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="a4db1ebc-a35c-402c-9799-3273f7cbcea4"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Customer Service Refer officer Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1307" y="0" width="151" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="4f906b45-b35d-40c6-bbb8-7baf2f833b0f"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Application Reference Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1458" y="0" width="87" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="47646c2b-00e7-4f40-8374-1734c85fc50d"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ApplicationType]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1545" y="0" width="151" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="88b42c9c-50ee-4a6c-920e-12851c9fe2fc"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Generate Card no. Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1696" y="0" width="131" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="3cc6a090-f24e-4af3-b70b-c6df800f06a5"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[A1 First Name (Thai)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1827" y="0" width="131" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="109132d2-68d7-4814-a037-8abf64cf5ae9"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[A1 Surname (Thai)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1958" y="0" width="100" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="7465afe5-fe24-4afa-b591-65eaf278af40"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[A1InsuranceFlag1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2058" y="0" width="100" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="70d77912-dec9-41a2-bb84-bae5d3db7cd3"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[A1InsuranceFlag2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2158" y="0" width="100" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="71b3692d-9d49-478e-8614-ecda4bd6157a"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[A1InsuranceFlag3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2258" y="0" width="131" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="13557cd7-60af-42af-8701-3252f09ddfa0"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[S1 First Name (Thai)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2389" y="0" width="131" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="3ad08ef5-5fd9-4f22-9ba9-fbdea2c9e0d9"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[S1 Surname (Thai)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2520" y="0" width="100" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="f221c2ce-d9cf-44bc-b3bd-f77cd0ccfafb"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[S1InsuranceFlag1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2620" y="0" width="100" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="9493e4b2-16fb-4728-8201-b6de72bc7700"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[S1InsuranceFlag2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2720" y="0" width="100" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="61a94981-2702-40a8-9490-8c42781f9cbe"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[S1InsuranceFlag3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2820" y="0" width="100" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="271c63e0-f8d4-4428-a197-0de40e33c86f"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[A1 Final Card Level 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2920" y="0" width="100" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="04e10e98-0ece-4f83-a9af-2a60cadc1eeb"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[A1 Final Card Level 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3020" y="0" width="100" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="18cdf3d8-637d-42c3-af3a-c7769c5f2d0e"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[A1 Final Card Level 3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3120" y="0" width="100" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="90da278a-1048-43ab-a885-010a49bf85ff"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[S1 Final Card Level 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3220" y="0" width="100" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="5008915a-4084-4606-bf55-36c9fc152ca1"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[S1 Final Card Level 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3320" y="0" width="100" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="2d997d53-b95f-46ca-9263-dd15a0107d1d"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[S1 Final Card Level 3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3420" y="0" width="154" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="ec6377d6-5049-4b0f-97db-ad32a23528e3"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Customer Submitted Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3574" y="0" width="154" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="f441dfbc-fda8-4b40-b723-343479e7cdd7"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[HQ Received Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3728" y="0" width="232" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="93199d2c-b7fb-4e5b-8066-1530cd2d4259"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[On Screen Application Date]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="319" y="0" width="120" height="20" uuid="3fcd56e2-434c-4b9e-b1a1-d1c8aaa0d8a8"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BRANCH_REGION}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="439" y="0" width="120" height="20" uuid="495e6ce9-31f2-44c2-a083-53642df1fe6c"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BRANCH_ZONE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="84" height="20" uuid="63e803fd-9b53-4c4c-aa6a-10a39ef0382b"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BRANCH_NO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="84" y="0" width="235" height="20" uuid="a03bb584-fda2-4a10-88c8-e58fcd50ff7b"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BRANCH_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="559" y="0" width="187" height="20" uuid="7e96083d-bbab-4e30-8770-0c0e6bc4ec12"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SALES_ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="746" y="0" width="187" height="20" uuid="f79eead9-6c52-4c3d-88ed-b1c2da6804a7"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SALES_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="933" y="0" width="187" height="20" uuid="7cc614bd-783e-4a4e-9845-2b4bd3772adf"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CS_REFER_OFF_CODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1120" y="0" width="187" height="20" uuid="a2586b7e-eb11-4028-b376-4d92005e81b6"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CS_REFER_OFF_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1307" y="0" width="151" height="20" uuid="0251c29d-9f7e-4e2b-b774-db80d7da14ad"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APPLICATION_GROUP_NO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1458" y="0" width="87" height="20" uuid="e4fc0557-82c8-4865-acf4-1b8668741701"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APPLICATION_TYPE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1545" y="0" width="151" height="20" uuid="74868add-9d7e-4b9c-b623-833b64dcc5ca"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CARD_GENDATE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1696" y="0" width="131" height="20" uuid="0ce91454-6628-4436-ba46-bbb0f838bcc7"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{A_TH_FIRST_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1827" y="0" width="131" height="20" uuid="27bd3289-7a46-4a81-b061-d63698bb1358"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(
+    ($F{A_TH_LAST_NAME}==null)
+    ? ""
+    : (
+        ($F{A_TH_LAST_NAME}.length() < 2)
+        ? $F{A_TH_LAST_NAME}
+        : $F{A_TH_LAST_NAME}.substring(0,2).concat("xxxx")
+      )
+)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1958" y="0" width="100" height="20" uuid="f8f49191-98a5-42e9-ae27-8a19b43926ff"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{A1_FLAG_INSURE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2058" y="0" width="100" height="20" uuid="fcac8add-b9d3-4459-b17f-f960752eb315"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{A2_FLAG_INSURE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2158" y="0" width="100" height="20" uuid="ad5f5a9b-2186-4f29-86e8-c07d05c83b94"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{A3_FLAG_INSURE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2258" y="0" width="131" height="20" uuid="5e7355c2-e095-4785-b774-e2fd94f67b9f"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{S_TH_FIRST_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2389" y="0" width="131" height="20" uuid="954811e1-a754-482f-b969-f2a030dbc7d4"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(
+   ($F{S_TH_LAST_NAME}==null)
+   ? ""
+   : (
+        ($F{S_TH_LAST_NAME}.length() < 2)
+        ? $F{S_TH_LAST_NAME}
+        : $F{S_TH_LAST_NAME}.substring(0,2).concat("xxxx")
+     )
+)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2520" y="0" width="100" height="20" uuid="1f64e812-3180-4d9e-8748-3b0a98f20364"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{S1_FLAG_INSURE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2620" y="0" width="100" height="20" uuid="409cc9ea-c519-4af7-934d-de3abf80ca82"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{S2_FLAG_INSURE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2720" y="0" width="100" height="20" uuid="e9d3d4b2-c704-49e7-bed8-36e4a1ec2fad"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{S3_FLAG_INSURE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2820" y="0" width="100" height="20" uuid="6fea4225-3e2c-4e94-9f5e-590a255dc3f5"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{A1_CARD_LEVEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2920" y="0" width="100" height="20" uuid="4ba155df-30bb-4724-9b7c-50aaedc7f917"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AS_CARD_LEVEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3020" y="0" width="100" height="20" uuid="d783560e-6b6f-4ad7-93dd-c15e7c2c3e0a"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{A3_CARD_LEVEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3120" y="0" width="100" height="20" uuid="582392e4-4e9b-4a73-8e00-e9758fa0615c"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{S1_CARD_LEVEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3220" y="0" width="100" height="20" uuid="0f1741b2-8a57-47d0-a452-b1b7d24891d9"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{S2_CARD_LEVEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3320" y="0" width="100" height="20" uuid="3d40cc7a-bbe8-45c1-b392-7d35eb166118"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{S3_CARD_LEVEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3420" y="0" width="154" height="20" uuid="057f8cea-eeba-4cf8-acaa-858afbacb5ec"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APPLY_DATE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3574" y="0" width="154" height="20" uuid="fbe510c7-8ab7-4832-aabb-568d79055c5e"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APPLICATION_DATE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3728" y="0" width="232" height="20" uuid="5ed94b55-c9d3-47a8-9e25-635525d744a7"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ON_SCREEN_DATE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="157" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="14" width="70" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="ffa5e3e0-2818-40c1-86c3-6942eb1cb66f"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Remark :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="83" y="14" width="235" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="c5e10fa0-6d88-436f-b3b9-f3ecddf66f6d"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[A1 : 1st Main Applicant]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="83" y="29" width="235" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="46c6917d-d835-4431-93da-fe3113831f88"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[A2 : 2nd Main Applicant]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="83" y="44" width="235" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="216c52c6-ab6e-450c-b5ff-9510ec4ef6d1"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[A3 : 3rd Main Applicant]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="83" y="59" width="235" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="182c3b4f-ba63-4d4a-b645-42d68564cc43"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[S1 : 1st Supplementary Applicant]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="83" y="74" width="235" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="ac847f8a-6941-462e-8c5e-3b1cbfca4c95"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[S2 : 2nd Supplementary Applicant]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="83" y="89" width="235" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="c0c1a92d-d5fd-435b-86f0-6b2c24c6a1f5"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[S3 : 3rd Supplementary Applicant]]></text>
+			</staticText>
+		</band>
+	</summary>
+	<noData>
+		<band height="50">
+			<frame>
+				<reportElement x="250" y="4" width="100" height="20" uuid="f298fba2-22b4-4111-b8b7-2e87710ed19a"/>
+			</frame>
+		</band>
+	</noData>
+</jasperReport>

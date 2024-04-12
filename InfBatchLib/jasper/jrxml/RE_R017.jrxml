@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RE_R017" language="groovy" pageWidth="1450" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="1450" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="1e368fee-313a-4840-8915-8870a7a05c67">
+	<property name="ireport.zoom" value="1.0245201830476058"/>
+	<property name="ireport.x" value="168"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.print.keep.full.text" value="true"/>
+	<parameter name="P_APP_DATE" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT DISTINCT
+AG.APPLICATION_GROUP_NO,
+PL.DISPLAY_NAME AS PERSONAL_TYPE_DESC,
+P.TH_FIRST_NAME,
+P.TH_LAST_NAME,
+TO_CHAR(APP.FINAL_APP_DECISION_DATE,'DD/MM/YYYY') AS FINAL_APP_DECISION_DATE,
+OL.DISPLAY_NAME AS OCCUPATION_DESC,
+BL.DISPLAY_NAME AS BUSINESS_TYPE_DESC,
+CASE WHEN B.ORG_ID = 'KPL' THEN PT.DISPLAY_NAME ELSE CA.DISPLAY_NAME || CASE WHEN B.ORG_ID = 'CC' THEN  ' / '|| CL.DISPLAY_NAME ELSE '' END END AS CARD_LEVEL_DESC,
+AG.APPLICATION_TYPE,
+APP.RECOMMEND_DECISION,
+XS.REASON_DESC
+ FROM ORIG_APPLICATION_GROUP AG
+JOIN ORIG_APPLICATION APP ON AG.APPLICATION_GROUP_ID = APP.APPLICATION_GROUP_ID
+JOIN ORIG_LOAN L ON APP.APPLICATION_RECORD_ID = L.APPLICATION_RECORD_ID
+LEFT JOIN ORIG_CARD C ON L.LOAN_ID = C.LOAN_ID
+LEFT JOIN CARD_TYPE CT ON CT.CARD_TYPE_ID = C.CARD_TYPE
+JOIN ORIG_PERSONAL_RELATION PR ON PR.REF_ID = APP.APPLICATION_RECORD_ID
+JOIN ORIG_PERSONAL_INFO P ON P.PERSONAL_ID = PR.PERSONAL_ID
+JOIN ORIG_KYC K ON K.PERSONAL_ID = P.PERSONAL_ID
+AND (TO_NUMBER(K.CUSTOMER_RISK_GRADE)  >= 3 OR K.RELATION_FLAG = 'Y')
+JOIN ORIG_APPLICATION_LOG AL ON AL.APPLICATION_GROUP_ID = APP.APPLICATION_GROUP_ID AND AL.JOB_STATE IN ('NM9901', 'NM1201')
+AND  TRUNC(AL.CREATE_DATE) = (select TRUNC(app_date) from APPLICATION_DATE)
+AND APP.LIFE_CYCLE = (SELECT MAX(LIFE_CYCLE) FROM ORIG_APPLICATION WHERE ORIG_APPLICATION.APPLICATION_GROUP_ID = AG.APPLICATION_GROUP_ID )
+JOIN BUSINESS_CLASS B ON B.BUS_CLASS_ID = APP.BUSINESS_CLASS_ID
+LEFT JOIN (
+        SELECT XV.REF_ID,X.VER_RESULT_ID, LISTAGG(XL.DISPLAY_NAME,', ') WITHIN GROUP(ORDER BY XL.DISPLAY_NAME) AS REASON_DESC
+        FROM  ORIG_APP.XRULES_POLICY_RULES X
+        LEFT JOIN XRULES_VERIFICATION_RESULT XV ON X.VER_RESULT_ID = XV.VER_RESULT_ID
+        LEFT JOIN LIST_BOX_MASTER XL ON XL.CHOICE_NO = X.REASON AND XL.FIELD_ID = '57'
+        GROUP BY X.VER_RESULT_ID,XV.REF_ID
+)XS ON XS.REF_ID = APP.APPLICATION_RECORD_ID
+ LEFT JOIN LIST_BOX_MASTER OL ON OL.CHOICE_NO = P.OCCUPATION AND OL.FIELD_ID = '16'
+ LEFT JOIN LIST_BOX_MASTER BL ON BL.CHOICE_NO = P.BUSINESS_TYPE AND BL.FIELD_ID = '21'
+LEFT JOIN LIST_BOX_MASTER CL ON CL.CHOICE_NO = CT.CARD_LEVEL AND CL.FIELD_ID = '45'
+LEFT JOIN LIST_BOX_MASTER PL ON PL.CHOICE_NO = P.PERSONAL_TYPE AND PL.FIELD_ID = '29'
+LEFT JOIN LIST_BOX_MASTER CA ON CA.CHOICE_NO = CT.CARD_CODE AND CA.FIELD_ID = '108'
+LEFT JOIN LIST_BOX_MASTER PT ON PT.SYSTEM_ID2 = APP.BUSINESS_CLASS_ID AND PT.FIELD_ID = '53'
+WHERE APP.FINAL_APP_DECISION IN ('Approve')
+ORDER BY AG.APPLICATION_GROUP_NO]]>
+	</queryString>
+	<field name="APPLICATION_GROUP_NO" class="java.lang.String"/>
+	<field name="PERSONAL_TYPE_DESC" class="java.lang.String"/>
+	<field name="TH_FIRST_NAME" class="java.lang.String"/>
+	<field name="TH_LAST_NAME" class="java.lang.String"/>
+	<field name="FINAL_APP_DECISION_DATE" class="java.lang.String"/>
+	<field name="OCCUPATION_DESC" class="java.lang.String"/>
+	<field name="BUSINESS_TYPE_DESC" class="java.lang.String"/>
+	<field name="CARD_LEVEL_DESC" class="java.lang.String"/>
+	<field name="APPLICATION_TYPE" class="java.lang.String"/>
+	<field name="RECOMMEND_DECISION" class="java.lang.String"/>
+	<field name="REASON_DESC" class="java.lang.String"/>
+	<title>
+		<band height="166" splitType="Stretch">
+			<staticText>
+				<reportElement x="514" y="0" width="487" height="37" uuid="3fb545d1-5f8a-4f03-a797-79598ba55f36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="true" isItalic="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[รายการใบสมัครCredit Card (กลุ่ม 9 อาชีพเสี่ยง) ที่ได้รับอนุมัติ]]></text>
+			</staticText>
+			<textField pattern="MMM dd, yyyy" isBlankWhenNull="true">
+				<reportElement x="750" y="37" width="124" height="20" uuid="b4599f38-9009-4b5d-8e4d-12d581f50e60"/>
+				<textElement>
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{P_APP_DATE} == null?(new java.util.Date()-1): $P{P_APP_DATE}==""?(new java.util.Date()-1):$P{P_APP_DATE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="684" y="37" width="66" height="20" uuid="dc4e9ea1-36c1-4b79-a92d-8bfa44e05243"/>
+				<textElement>
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Date as of ]]></text>
+			</staticText>
+			<textField pattern="dd-MM-yyyy">
+				<reportElement x="1314" y="75" width="70" height="20" uuid="a8eaaa82-8a65-4aea-a1b7-35964cfab9e7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="1384" y="75" width="50" height="20" uuid="85450311-0419-46cc-8ded-9812d5e68827"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1305" y="95" width="129" height="20" uuid="a7ad3d00-8964-4f4b-93e7-e5d724e00fbb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Report ID: RE_R017]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1331" y="115" width="41" height="20" uuid="18175185-0486-4cbe-8f39-0f1bb6bcf3ba"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Page]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1374" y="115" width="20" height="20" uuid="14eba999-7a77-4176-bfc7-53e9d5ecf75b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1394" y="115" width="20" height="20" uuid="18175185-0486-4cbe-8f39-0f1bb6bcf3ba"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[of]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="1414" y="115" width="20" height="20" uuid="14eba999-7a77-4176-bfc7-53e9d5ecf75b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="146" width="150" height="20" uuid="e55f3ee2-8a4b-4130-a786-3d1bd1d47244"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[หมายเลขใบสมัคร]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="146" width="100" height="20" uuid="af9fc699-b21b-4f5e-af99-1a776c4701c8"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ประเภทผู้สมัคร]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="146" width="150" height="20" uuid="28623100-9bc0-4495-a1a1-67f7de241778"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ชื่อ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="146" width="150" height="20" uuid="95ac5d43-62f8-429a-b4a0-1d41f8eb116e"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[นามสกุล]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="900" y="146" width="150" height="20" uuid="046f673c-e1a4-4410-a6ea-33a70bc3d860"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Product]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="550" y="146" width="100" height="20" uuid="5c500b32-48c9-4d45-a866-5010444e7494"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[วันพิจารณาเครติด]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="650" y="146" width="100" height="20" uuid="9a6dfe75-6cdb-48b3-b82d-782d7e3d443e"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[อาชีพ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="750" y="146" width="150" height="20" uuid="5d100c34-e4a7-4baa-beda-8b2d184421c1"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ประเภทธุรกิจ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1050" y="146" width="100" height="20" uuid="0909572c-ee1f-47f9-b5db-b1bef5ffb062"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Apply Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1150" y="146" width="100" height="20" uuid="54dc8432-358e-4fd1-ae7d-2780033aa075"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Approval Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1250" y="146" width="200" height="20" uuid="d8929e32-96d0-4f42-94bf-9752561f8039"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Policy Description]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="150" height="20" uuid="e5cd0fd7-1ae8-4bd5-8a98-b90ee9ce51e8"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{APPLICATION_GROUP_NO}!= null  ? $F{APPLICATION_GROUP_NO} : "-" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="0" width="100" height="20" uuid="8a746c2c-a4ea-4af1-b2bf-c77b7f744759"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{PERSONAL_TYPE_DESC} != null  ? $F{PERSONAL_TYPE_DESC} : "-" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="0" width="150" height="20" uuid="67d810e5-9f6f-4081-b176-57432ddd789e"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{TH_FIRST_NAME} != null  ? $F{TH_FIRST_NAME} : "-" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="150" height="20" uuid="02a89db5-f648-4c86-aba9-8b9cd29aa16b"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{TH_LAST_NAME} != null  ? $F{TH_LAST_NAME} : "-" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="900" y="0" width="150" height="20" uuid="ccee6201-dddb-4052-a991-11d6c911d754"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{CARD_LEVEL_DESC} != null  ? $F{CARD_LEVEL_DESC} : "-" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="650" y="0" width="100" height="20" uuid="ac91a38b-e8c4-4c0f-a9b8-cb2f35922416"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{OCCUPATION_DESC} != null  ? $F{OCCUPATION_DESC} : "-" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="550" y="0" width="100" height="20" uuid="9a60bac4-874c-4119-a0ff-d9c51f72f7fd"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{FINAL_APP_DECISION_DATE} != null  ? $F{FINAL_APP_DECISION_DATE} : "-" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="750" y="0" width="150" height="20" uuid="0ce2811d-c42c-4c77-8170-acd025b9b5b1"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{BUSINESS_TYPE_DESC} != null  ? $F{BUSINESS_TYPE_DESC} : "-" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1150" y="0" width="100" height="20" uuid="185e124d-41c1-48e1-ba3c-a2d2f7479b50"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{RECOMMEND_DECISION} != null  ? ( ($F{RECOMMEND_DECISION} == "AP" && $F{REASON_DESC} == null) ? "Approve ปกติ" : "OR" ) : "-" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1050" y="0" width="100" height="20" uuid="b52c2357-0293-40c5-9fdd-e3cb0a552304"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{APPLICATION_TYPE} != null  ? $F{APPLICATION_TYPE} : "-" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1250" y="0" width="200" height="20" uuid="46ae76b2-3838-4cf1-a3c0-0868bfb53a86"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{REASON_DESC} != null  ? $F{REASON_DESC} : "-" )]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,1451 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="OrchestrationLayerEntry" targetNamespace="http://www.fico.com" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.fico.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.fico.com" version="1.0">
+
+  <xs:element name="processRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element form="qualified" minOccurs="0" name="request" type="tns:Application"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="processRequestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element form="qualified" minOccurs="0" name="response" type="tns:Application"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="Application">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="creditApplication" type="tns:creditApplication"/>
+      <xs:element form="qualified" minOccurs="0" name="action" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="header" type="tns:header"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="creditApplication">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="applicationID" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="templateCode" type="xs:string"/>
+      <xs:element form="qualified" name="applicationCreateDateTime" type="xs:dateTime"/>
+      <xs:element form="qualified" minOccurs="0" name="channelCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="isFraudApplicant" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="isFraudCompany" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="isFraudApplicantFromInterface" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="isFraudCompanyFromInterface" type="xs:string"/>
+      <xs:element form="qualified" name="policyExceptionDate" type="xs:date"/>
+      <xs:element form="qualified" minOccurs="0" name="personalApplicant" type="tns:ArrayOfpersonalApplicant"/>
+      <xs:element form="qualified" minOccurs="0" name="creditRequests" type="tns:ArrayOfcreditRequests"/>
+      <xs:element form="qualified" minOccurs="0" name="priorityPassQuota" type="tns:priorityPassQuota"/>
+      <xs:element form="qualified" minOccurs="0" name="Offer" type="tns:ArrayOfOffer"/>
+      <xs:element form="qualified" minOccurs="0" name="serviceError" type="tns:ArrayOfserviceError"/>
+      <xs:element form="qualified" minOccurs="0" name="isVETO" type="xs:string"/>
+      <xs:element form="qualified" name="numTimesOfApp" type="xs:int"/>
+      <xs:element form="qualified" name="strategySelRandomNum1" type="xs:int"/>
+      <xs:element form="qualified" name="strategySelRandomNum2" type="xs:int"/>
+      <xs:element form="qualified" name="strategySelRandomNum3" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="testRulesetName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfpersonalApplicant">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="personalApplicant" nillable="true" type="tns:personalApplicant"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="personalApplicant">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="isDocumentComplete" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="isBureauRequired" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="IDType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="IDNumber" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="CISID" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="applicantType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="educationLevel" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="isSOLOCustomer" type="xs:string"/>
+      <xs:element form="qualified" name="thaiBevAvgPurchaseAmt" type="xs:decimal"/>
+      <xs:element form="qualified" name="SPReason" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="personalApplicantId" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="isKGroupStaff" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="incomeSource" type="tns:ArrayOfincomeSource"/>
+      <xs:element form="qualified" name="numberOfSupplementaryCards" type="xs:int"/>
+      <xs:element form="qualified" name="numberOfPrimaryCards" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="WFVerifiedFlag" type="xs:string"/>
+      <xs:element form="qualified" name="verifiedIncome" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="cisPrimarySegment" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="cisPrimarySubSegment" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="cisSecondarySegment" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="cisSecondarySubSegment" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="thaiBevMembershipNo" type="xs:string"/>
+      <xs:element form="qualified" name="inProcess" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="documentSLAtype" type="tns:ArrayOfdocumentSLAtype"/>
+      <xs:element form="qualified" minOccurs="0" name="cardLinkCardInfoSegment" type="tns:ArrayOfcardLinkCardInfoSegment"/>
+      <xs:element form="qualified" minOccurs="0" name="bScoreSegment" type="tns:ArrayOfbScoreSegment"/>
+      <xs:element form="qualified" minOccurs="0" name="classifyLevelService" type="tns:classifyLevelService"/>
+      <xs:element form="qualified" minOccurs="0" name="cardlinkCustInfoSegment" type="tns:ArrayOfcardlinkCustInfoSegment"/>
+      <xs:element form="qualified" minOccurs="0" name="applicantScore" type="tns:ArrayOfapplicantScore"/>
+      <xs:element form="qualified" minOccurs="0" name="previousEmployment" type="tns:ArrayOfpreviousEmployment"/>
+      <xs:element form="qualified" minOccurs="0" name="IDAddress" type="tns:IDAddress"/>
+      <xs:element form="qualified" minOccurs="0" name="currentResidence" type="tns:currentResidence"/>
+      <xs:element form="qualified" minOccurs="0" name="incomeReceiveCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="person" type="tns:person"/>
+      <xs:element form="qualified" minOccurs="0" name="otherDebt" type="tns:otherDebt"/>
+      <xs:element form="qualified" minOccurs="0" name="currentEmployment" type="tns:currentEmployment"/>
+      <xs:element form="qualified" minOccurs="0" name="documentList" type="tns:documentList"/>
+      <xs:element form="qualified" minOccurs="0" name="HRVerificationRequest" type="tns:HRVerificationRequest"/>
+      <xs:element form="qualified" minOccurs="0" name="HRVerificationResponse" type="tns:HRVerificationResponse"/>
+      <xs:element form="qualified" minOccurs="0" name="websiteVerificationRequest" type="tns:ArrayOfwebsiteVerificationRequest"/>
+      <xs:element form="qualified" minOccurs="0" name="websiteVerificationResponse" type="tns:ArrayOfwebsiteVerificationResponse"/>
+      <xs:element form="qualified" minOccurs="0" name="customerVerificationRequest" type="tns:customerVerificationRequest"/>
+      <xs:element form="qualified" minOccurs="0" name="customerVerificationResponse" type="tns:customerVerificationResponse"/>
+      <xs:element form="qualified" minOccurs="0" name="incInfo" type="tns:ArrayOfincInfo"/>
+      <xs:element form="qualified" minOccurs="0" name="screenRecommendation" type="tns:ArrayOfscreenRecommendation"/>
+      <xs:element form="qualified" minOccurs="0" name="KCBSData" type="tns:KCBSData"/>
+      <xs:element form="qualified" minOccurs="0" name="reference" type="tns:ArrayOfreference"/>
+      <xs:element form="qualified" minOccurs="0" name="isBangkokHospitalStaff" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="kBankEmpJobLevel" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="isKBankEmp" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="salaryLevel" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="kBankEmpCorpTitle" type="xs:string"/>
+      <xs:element form="qualified" name="isVerifiedIncome" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="isIncomeVerificationRequired" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="isPrivelegeVerificationRequired" type="xs:string"/>
+      <xs:element form="qualified" name="isPriorityVerificationRequired" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfincomeSource">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="incomeSource" nillable="true" type="tns:incomeSource"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incomeSource">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="source" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfdocumentSLAtype">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="documentSLAtype" nillable="true" type="tns:documentSLAtype"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="documentSLAtype">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="code" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfcardLinkCardInfoSegment">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="cardLinkCardInfoSegment" nillable="true" type="tns:cardLinkCardInfoSegment"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cardLinkCardInfoSegment">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="custNumber" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="orgNumber" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="projectCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="encryptedCardNumber" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="cardCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="plasticCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="blockCode" type="xs:string"/>
+      <xs:element form="qualified" name="blockDate" type="xs:date"/>
+      <xs:element form="qualified" minOccurs="0" name="SupCustNo" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="SupOrgno" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="custTypeCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="coaProductCode" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfbScoreSegment">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="bScoreSegment" nillable="true" type="tns:bScoreSegment"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="bScoreSegment">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="productTypeCode" type="xs:string"/>
+      <xs:element form="qualified" name="positionDate" type="xs:date"/>
+      <xs:element form="qualified" minOccurs="0" name="riskGrade" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="finalBscore" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="bscoreLast1Month" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="bscoreLast2Month" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="bscoreLast3Month" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="classifyLevelService">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="classifyLevel" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfcardlinkCustInfoSegment">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="cardlinkCustInfoSegment" nillable="true" type="tns:cardlinkCustInfoSegment"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cardlinkCustInfoSegment">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="cardLinkCustomerNum" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="cardLinkOrgNum" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="mailingAddress1" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="mailingAddress2" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="mailingAddress3" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="referMailingAddress1" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="referMailingAddress2" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="referMailingAddress3" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="referZipCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="mailingAddressProvince" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="referProvince" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="financialInfoCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="vatCode" type="xs:string"/>
+      <xs:element form="qualified" name="creditLine" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="billingCycle" type="xs:string"/>
+      <xs:element form="qualified" name="incomeAmount" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="zipCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="mobileNumber" type="xs:string"/>
+      <xs:element form="qualified" name="openDate" type="xs:date"/>
+      <xs:element form="qualified" minOccurs="0" name="employmentPosition" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="occupationCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="custTypeCode" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfapplicantScore">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="applicantScore" nillable="true" type="tns:applicantScore"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="applicantScore">
+    <xs:sequence>
+      <xs:element form="qualified" name="totalScore" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="scoreModelID" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="coarseRiskGrade" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="fineRiskGrade" type="xs:string"/>
+      <xs:element form="qualified" name="constantScore" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="AScoreFlag" type="xs:string"/>
+      <xs:element form="qualified" name="inProcess" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="systemProductCode" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfpreviousEmployment">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="previousEmployment" nillable="true" type="tns:previousEmployment"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="previousEmployment">
+    <xs:sequence>
+      <xs:element form="qualified" name="previousEmploymentYears" type="xs:int"/>
+      <xs:element form="qualified" name="previousEmploymentMonths" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="IDAddress">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="address" type="tns:address"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="address">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="houseNumber" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="village" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="buildingName" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="subDistrict" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="district" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="province" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="postalCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="country" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="fixedLineNumber" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="floorNumber" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="moo" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="soi" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="street" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="type" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="postalCodeArea" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="currentResidence">
+    <xs:sequence>
+      <xs:element form="qualified" name="monthsAtAddress" type="xs:int"/>
+      <xs:element form="qualified" name="yearsAtAddress" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="currentResidentialStatus" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="address" type="tns:address"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="person">
+    <xs:sequence>
+      <xs:element form="qualified" name="birthDate" type="xs:date"/>
+      <xs:element form="qualified" name="numberOfDependents" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="maritalStatus" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="phoneNumber" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="nationality" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="name" type="tns:name"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="name">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="prefix" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="first" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="middle" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="last" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="otherDebt">
+    <xs:sequence>
+      <xs:element form="qualified" name="commercialAmount" type="xs:decimal"/>
+      <xs:element form="qualified" name="welfareAmount" type="xs:decimal"/>
+      <xs:element form="qualified" name="otherDebtAmount" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="currentEmployment">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="employment" type="tns:employment"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="employment">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="CISIDEmployer" type="xs:string"/>
+      <xs:element form="qualified" name="monthsWithEmployer" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="occupationCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="professionCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="positionType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="employerTitleCode" type="xs:string"/>
+      <xs:element form="qualified" name="currentEmploymentYears" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="isTrustedCompany" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="companyName" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="kbankJobLevel" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="companyStatusFromBOL" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="telephoneNumFromBOL" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="employerAddress" type="tns:employerAddress"/>
+      <xs:element form="qualified" minOccurs="0" name="orgIDfromBOL" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="employerAddress">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="address" type="tns:address"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="documentList">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="documentSuggestionList" type="tns:ArrayOfdocumentSuggestionList"/>
+      <xs:element form="qualified" minOccurs="0" name="documents" type="tns:ArrayOfdocuments"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfdocumentSuggestionList">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="documentSuggestionList" nillable="true" type="tns:documentSuggestionList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="documentSuggestionList">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="scenarioList" type="tns:ArrayOfscenarioList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfscenarioList">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="scenarioList" nillable="true" type="tns:scenarioList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="scenarioList">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="type" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="scenario" type="tns:ArrayOfscenario"/>
+      <xs:element form="qualified" minOccurs="0" name="UserDefinedField" type="tns:ArrayOfUserDefinedField"/>
+      <xs:element form="qualified" minOccurs="0" name="DataMethodHistory" type="tns:ArrayOfDataMethodHistory"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfscenario">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="scenario" nillable="true" type="tns:scenario"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="scenario">
+    <xs:sequence>
+      <xs:element form="qualified" name="num" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="document" type="tns:ArrayOfdocument"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfdocument">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="document" nillable="true" type="tns:document"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="document">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="isdocMandatory" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="docID" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="docFollowUpCategory" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfUserDefinedField">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="UserDefinedField" nillable="true" type="tns:UserDefinedField"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="UserDefinedField">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="Name" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="DataType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Value" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfDataMethodHistory">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="DataMethodHistory" nillable="true" type="tns:DataMethodHistory"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DataMethodHistory">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="TargetObjectXPath" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Name" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="DataType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Value" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="DataMethodInput" type="tns:ArrayOfDataMethodInput"/>
+      <xs:element form="qualified" minOccurs="0" name="DataMethodOutput" type="tns:ArrayOfDataMethodOutput"/>
+      <xs:element form="qualified" name="Timestamp_" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfDataMethodInput">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="DataMethodInput" nillable="true" type="tns:DataMethodInput"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DataMethodInput">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="Name" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="DataType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Value" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfDataMethodOutput">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="DataMethodOutput" nillable="true" type="tns:DataMethodOutput"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DataMethodOutput">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="Name" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="DataType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Value" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfdocuments">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="documents" nillable="true" type="tns:documents"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="documents">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="documentCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="documentType" type="xs:string"/>
+      <xs:element form="qualified" name="expiryDate" type="xs:date"/>
+      <xs:element form="qualified" name="inProcess" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="HRVerificationRequest">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="isHRVerificationRequired" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="questionSetCode" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="HRVerificationResponse">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="HRVerificationResult" type="xs:string"/>
+      <xs:element form="qualified" name="bonus" type="xs:decimal"/>
+      <xs:element form="qualified" name="otherVariableIncome" type="xs:decimal"/>
+      <xs:element form="qualified" name="verifiedIncome" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfwebsiteVerificationRequest">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="websiteVerificationRequest" nillable="true" type="tns:websiteVerificationRequest"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="websiteVerificationRequest">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="isWebsiteVerificationRequired" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="websiteCode" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfwebsiteVerificationResponse">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="websiteVerificationResponse" nillable="true" type="tns:websiteVerificationResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="websiteVerificationResponse">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="websiteCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="websiteVerificationResult" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="customerVerificationRequest">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="isCustomerVerificationRequired" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="callTo" type="tns:ArrayOfcallTo"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfcallTo">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="callTo" nillable="true" type="tns:callTo"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="callTo">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="whom" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="callType" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="customerVerificationResponse">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="customerVerificationResult" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfincInfo">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="incInfo" nillable="true" type="tns:incInfo"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incInfo">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="incomeType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="incPayslip" type="tns:ArrayOfincPayslip"/>
+      <xs:element form="qualified" minOccurs="0" name="incYearlyTawi" type="tns:ArrayOfincYearlyTawi"/>
+      <xs:element form="qualified" minOccurs="0" name="incTaweesap" type="tns:incTaweesap"/>
+      <xs:element form="qualified" minOccurs="0" name="incSavingAcc" type="tns:ArrayOfincSavingAcc"/>
+      <xs:element form="qualified" minOccurs="0" name="incSalaryCert" type="tns:ArrayOfincSalaryCert"/>
+      <xs:element form="qualified" minOccurs="0" name="incPreviousIncome" type="tns:incPreviousIncome"/>
+      <xs:element form="qualified" minOccurs="0" name="incPayroll" type="tns:incPayroll"/>
+      <xs:element form="qualified" minOccurs="0" name="incOpnEndFund" type="tns:ArrayOfincOpnEndFund"/>
+      <xs:element form="qualified" minOccurs="0" name="incMonthlyTawi" type="tns:ArrayOfincMonthlyTawi"/>
+      <xs:element form="qualified" minOccurs="0" name="incKvi" type="tns:incKvi"/>
+      <xs:element form="qualified" minOccurs="0" name="incFixedGuarantee" type="tns:incFixedGuarantee"/>
+      <xs:element form="qualified" minOccurs="0" name="incFixedAcc" type="tns:incFixedAcc"/>
+      <xs:element form="qualified" minOccurs="0" name="incFinInstrument" type="tns:incFinInstrument"/>
+      <xs:element form="qualified" minOccurs="0" name="incClsEndFund" type="tns:incClsEndFund"/>
+      <xs:element form="qualified" minOccurs="0" name="incBankStatement" type="tns:incBankStatement"/>
+      <xs:element form="qualified" minOccurs="0" name="origBundleSme" type="tns:origBundleSme"/>
+      <xs:element form="qualified" minOccurs="0" name="origBundleKL" type="tns:origBundleKL"/>
+      <xs:element form="qualified" minOccurs="0" name="origBundleHL" type="tns:origBundleHL"/>
+      <xs:element form="qualified" minOccurs="0" name="incPayrollFileInfo" type="tns:ArrayOfincPayrollFileInfo"/>
+      <xs:element form="qualified" name="inProcess" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfincPayslip">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="incPayslip" nillable="true" type="tns:incPayslip"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incPayslip">
+    <xs:sequence>
+      <xs:element form="qualified" name="noMonth" type="xs:int"/>
+      <xs:element form="qualified" name="accumIncome" type="xs:decimal"/>
+      <xs:element form="qualified" name="bonus" type="xs:decimal"/>
+      <xs:element form="qualified" name="sumSso" type="xs:decimal"/>
+      <xs:element form="qualified" name="specialPension" type="xs:decimal"/>
+      <xs:element form="qualified" name="accumOthIncome" type="xs:decimal"/>
+      <xs:element form="qualified" name="salaryDate" type="xs:date"/>
+      <xs:element form="qualified" name="bonusMonth" type="xs:int"/>
+      <xs:element form="qualified" name="bonusYear" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="incPayslipMonthly" type="tns:ArrayOfincPayslipMonthly"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfincPayslipMonthly">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="incPayslipMonthly" nillable="true" type="tns:incPayslipMonthly"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incPayslipMonthly">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="incomeType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="incomeDesc" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="incomeOthDesc" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="incPayslipMonthlyDetail" type="tns:ArrayOfincPayslipMonthlyDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfincPayslipMonthlyDetail">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="incPayslipMonthlyDetail" nillable="true" type="tns:incPayslipMonthlyDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incPayslipMonthlyDetail">
+    <xs:sequence>
+      <xs:element form="qualified" name="month" type="xs:int"/>
+      <xs:element form="qualified" name="year" type="xs:int"/>
+      <xs:element form="qualified" name="amount" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfincYearlyTawi">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="incYearlyTawi" nillable="true" type="tns:incYearlyTawi"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incYearlyTawi">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="companyName" type="xs:string"/>
+      <xs:element form="qualified" name="year" type="xs:int"/>
+      <xs:element form="qualified" name="noMonth" type="xs:int"/>
+      <xs:element form="qualified" name="income401" type="xs:decimal"/>
+      <xs:element form="qualified" name="income402" type="xs:decimal"/>
+      <xs:element form="qualified" name="sumSso" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incTaweesap">
+    <xs:sequence>
+      <xs:element form="qualified" name="aum" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfincSavingAcc">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="incSavingAcc" nillable="true" type="tns:incSavingAcc"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incSavingAcc">
+    <xs:sequence>
+      <xs:element form="qualified" name="openDate" type="xs:date"/>
+      <xs:element form="qualified" minOccurs="0" name="accountNo" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="accountName" type="xs:string"/>
+      <xs:element form="qualified" name="holdingRatio" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="bankCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="incSavingAccDetail" type="tns:incSavingAccDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incSavingAccDetail">
+    <xs:sequence>
+      <xs:element form="qualified" name="month" type="xs:int"/>
+      <xs:element form="qualified" name="year" type="xs:int"/>
+      <xs:element form="qualified" name="amount" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfincSalaryCert">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="incSalaryCert" nillable="true" type="tns:incSalaryCert"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incSalaryCert">
+    <xs:sequence>
+      <xs:element form="qualified" name="income" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="companyName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incPreviousIncome">
+    <xs:sequence>
+      <xs:element form="qualified" name="incomeDate" type="xs:date"/>
+      <xs:element form="qualified" minOccurs="0" name="product" type="xs:string"/>
+      <xs:element form="qualified" name="income" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incPayroll">
+    <xs:sequence>
+      <xs:element form="qualified" name="lowestIncome" type="xs:decimal"/>
+      <xs:element form="qualified" name="noOfEmployee" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfincOpnEndFund">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="incOpnEndFund" nillable="true" type="tns:incOpnEndFund"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incOpnEndFund">
+    <xs:sequence>
+      <xs:element form="qualified" name="openDate" type="xs:date"/>
+      <xs:element form="qualified" minOccurs="0" name="accountNo" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="accountName" type="xs:string"/>
+      <xs:element form="qualified" name="holdingRatio" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="bankCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="fundName" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="incOpnEndFundDetail" type="tns:ArrayOfincOpnEndFundDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfincOpnEndFundDetail">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="incOpnEndFundDetail" nillable="true" type="tns:incOpnEndFundDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incOpnEndFundDetail">
+    <xs:sequence>
+      <xs:element form="qualified" name="month" type="xs:int"/>
+      <xs:element form="qualified" name="year" type="xs:int"/>
+      <xs:element form="qualified" name="amount" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfincMonthlyTawi">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="incMonthlyTawi" nillable="true" type="tns:incMonthlyTawi"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incMonthlyTawi">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="incomeType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="companyName" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="compareFlag" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="incMonthlyTawiDetail" type="tns:ArrayOfincMonthlyTawiDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfincMonthlyTawiDetail">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="incMonthlyTawiDetail" nillable="true" type="tns:incMonthlyTawiDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incMonthlyTawiDetail">
+    <xs:sequence>
+      <xs:element form="qualified" name="month" type="xs:int"/>
+      <xs:element form="qualified" name="year" type="xs:int"/>
+      <xs:element form="qualified" name="amount" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incKvi">
+    <xs:sequence>
+      <xs:element form="qualified" name="percentChequeReturn" type="xs:decimal"/>
+      <xs:element form="qualified" name="verifiedIncome" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incFixedGuarantee">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="accountNo" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="sub" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="accountName" type="xs:string"/>
+      <xs:element form="qualified" name="retentionDate" type="xs:date"/>
+      <xs:element form="qualified" minOccurs="0" name="branchNo" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="retentionType" type="xs:string"/>
+      <xs:element form="qualified" name="retentionAmt" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incFixedAcc">
+    <xs:sequence>
+      <xs:element form="qualified" name="openDate" type="xs:dateTime"/>
+      <xs:element form="qualified" minOccurs="0" name="accountNo" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="accountName" type="xs:string"/>
+      <xs:element form="qualified" name="holdingRatio" type="xs:int"/>
+      <xs:element form="qualified" name="accountBalance" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="bankCode" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incFinInstrument">
+    <xs:sequence>
+      <xs:element form="qualified" name="openDate" type="xs:dateTime"/>
+      <xs:element form="qualified" name="expireDate" type="xs:dateTime"/>
+      <xs:element form="qualified" minOccurs="0" name="issuerName" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="instrumentType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="holderName" type="xs:string"/>
+      <xs:element form="qualified" name="holdingRatio" type="xs:int"/>
+      <xs:element form="qualified" name="currentBalance" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="instrumentTypeDesc" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incClsEndFund">
+    <xs:sequence>
+      <xs:element form="qualified" name="bankCode" type="xs:date"/>
+      <xs:element form="qualified" name="fundName" type="xs:date"/>
+      <xs:element form="qualified" minOccurs="0" name="accountNo" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="accountName" type="xs:string"/>
+      <xs:element form="qualified" name="holdingRatio" type="xs:int"/>
+      <xs:element form="qualified" name="accountBalance" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incBankStatement">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="bankCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="statementCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="additionalCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="incBankStatementDetail" type="tns:incBankStatementDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incBankStatementDetail">
+    <xs:sequence>
+      <xs:element form="qualified" name="month" type="xs:int"/>
+      <xs:element form="qualified" name="year" type="xs:int"/>
+      <xs:element form="qualified" name="amount" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="origBundleSme">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="applicantQuality" type="xs:string"/>
+      <xs:element form="qualified" name="approvalLimit" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="businessOwnerFlag" type="xs:string"/>
+      <xs:element form="qualified" name="corporateRatio" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="gDscrReq" type="xs:string"/>
+      <xs:element form="qualified" name="gTotalExistPayment" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="gTotalNewpayReq" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="SMEBorrowerType" type="xs:string"/>
+      <xs:element form="qualified" name="individualRatio" type="xs:int"/>
+      <xs:element form="qualified" name="approvedDate" type="xs:date"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="origBundleKL">
+    <xs:sequence>
+      <xs:element form="qualified" name="verifiedIncome" type="xs:decimal"/>
+      <xs:element form="qualified" name="verifiedDate" type="xs:date"/>
+      <xs:element form="qualified" name="estimatedIncome" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="origBundleHL">
+    <xs:sequence>
+      <xs:element form="qualified" name="approveCreditLine" type="xs:decimal"/>
+      <xs:element form="qualified" name="verifiedIncome" type="xs:decimal"/>
+      <xs:element form="qualified" name="approvedDate" type="xs:date"/>
+      <xs:element form="qualified" name="CCApprovedAmt" type="xs:decimal"/>
+      <xs:element form="qualified" name="KECApprovedAmt" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfincPayrollFileInfo">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="incPayrollFileInfo" nillable="true" type="tns:incPayrollFileInfo"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="incPayrollFileInfo">
+    <xs:sequence>
+      <xs:element form="qualified" name="avgIncome6m" type="xs:decimal"/>
+      <xs:element form="qualified" name="a1SalaryDate" type="xs:date"/>
+      <xs:element form="qualified" name="payrollCurrMonth" type="xs:decimal"/>
+      <xs:element form="qualified" name="payrollPrev1Month" type="xs:decimal"/>
+      <xs:element form="qualified" name="payrollPrev2Month" type="xs:decimal"/>
+      <xs:element form="qualified" name="payrollPrev3Month" type="xs:decimal"/>
+      <xs:element form="qualified" name="payrollPrev4Month" type="xs:decimal"/>
+      <xs:element form="qualified" name="payrollPrev5Month" type="xs:decimal"/>
+      <xs:element form="qualified" name="payrollPrev6Month" type="xs:decimal"/>
+      <xs:element form="qualified" name="payrollPrev7Month" type="xs:decimal"/>
+      <xs:element form="qualified" name="payrollPrev8Month" type="xs:decimal"/>
+      <xs:element form="qualified" name="payrollPrev9Month" type="xs:decimal"/>
+      <xs:element form="qualified" name="payrollPrev10Month" type="xs:decimal"/>
+      <xs:element form="qualified" name="payrollPrev11Month" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfscreenRecommendation">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="screenRecommendation" nillable="true" type="tns:screenRecommendation"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="screenRecommendation">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="incomeScreenTypeCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="otherScreenTypeCode" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="KCBSData">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="consentRefNo" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="NameSegment" type="tns:NameSegment"/>
+      <xs:element form="qualified" minOccurs="0" name="IdSegment" type="tns:IdSegment"/>
+      <xs:element form="qualified" minOccurs="0" name="AddressSegment" type="tns:AddressSegment"/>
+      <xs:element form="qualified" minOccurs="0" name="AccountSegment" type="tns:AccountSegment"/>
+      <xs:element form="qualified" minOccurs="0" name="ScoreSegment" type="tns:ScoreSegment"/>
+      <xs:element form="qualified" minOccurs="0" name="FicoScore" type="tns:FicoScore"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NameSegment">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="NameSegmentRow" type="tns:ArrayOfNameSegmentRow"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfNameSegmentRow">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="NameSegmentRow" nillable="true" type="tns:NameSegmentRow"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NameSegmentRow">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="SegmentTag" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="FamilyName1" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="FamilyName2" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="FirstName" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Middle" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="MaritalStatus" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="DateOfBirth" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Gender" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Title" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Nationality" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="NumberOfChildren" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="SpouseName" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Occupation" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="ConsentToEnquire" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="IdSegment">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="IdSegmentRow" type="tns:ArrayOfIdSegmentRow"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfIdSegmentRow">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="IdSegmentRow" nillable="true" type="tns:IdSegmentRow"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="IdSegmentRow">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="SegmentTag" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="IdType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="IdNumber" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="IdIssueCountry" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AddressSegment">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="AddressSegmentRow" type="tns:ArrayOfAddressSegmentRow"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfAddressSegmentRow">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="AddressSegmentRow" nillable="true" type="tns:AddressSegmentRow"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AddressSegmentRow">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="SegmentTag" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="AddressLine1" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="AddressLine2" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="AddressLine3" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Subdistrict" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="District" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Province" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Country" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="PostalCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Telephone" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="TelephoneType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="AddressType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="ResidentialStatus" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="ReportedDate" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AccountSegment">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="AccountSegmentRow" type="tns:ArrayOfAccountSegmentRow"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfAccountSegmentRow">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="AccountSegmentRow" nillable="true" type="tns:AccountSegmentRow"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AccountSegmentRow">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="SegmentTag" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="MemberCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="MemberShortName" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="AccountNumber" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="AccountType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="OwnershipIndicator" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="CurrencyCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="DateAccountOpened" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="DateOfLastPayment" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="DateAccountClose" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="AsOfDate" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="CreditLimit" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="AmountOwed" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="AmountPastDue" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="DefaultDate" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Installment" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Frequency" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="InstallmentAmount" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="InstallmentNumberOfPayments" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="AccountStatus" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="LoanClass" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="PaymentHistory1" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="PaymentHistory2" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="PaymentHistoryStartDate" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="PaymentHistoryEndDate" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="LoanObjective" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Collateral1" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Collateral2" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Collateral3" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="DateOfLastDebtRestructure" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="PercentPayment" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="TypeOfCreditCard" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="NumberOfCoborrowers" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="UnitMake" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="UnitModel" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="CreditTypeFlag" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ScoreSegment">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="ScoreSegmentRow" type="tns:ScoreSegmentRow"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ScoreSegmentRow">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="ScoreName" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="ScoreVersion" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="ScoreSegment" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="RecalibrationVersion" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="ScoreDate" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Score" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="ScoreGrad" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="Odds" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="ReasonCode1" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="ReasonCode2" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="ReasonCode3" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="ReasonCode4" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="ReasonCode5" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="ErrorCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="EnquiryControlNumber" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FicoScore">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="FicoScore" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="FicoReason1Code" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="FicoReason1Desc" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="FicoReason2Code" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="FicoReason2Desc" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="FicoReason3Code" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="FicoReason3Desc" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="FicoReason4Code" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="FicoReason4Desc" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="FicoErrorCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="FicoErrorMsg" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfreference">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="reference" nillable="true" type="tns:reference"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reference">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="title" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="lastName" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="firstName" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="relationshipWithBorrower" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="fixedLineHome" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="fixedLineWork" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="mobileNumber" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfcreditRequests">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="creditRequests" nillable="true" type="tns:creditRequests"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="creditRequests">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="creditDetails" type="tns:creditDetails"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="creditDetails">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="cardLinkCardCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="cardLinkPlasticType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="applyType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="newOrExistingType" type="xs:string"/>
+      <xs:element form="qualified" name="minCreditLimit" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="isEligibleCard" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="maxEligibleCardLevel" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="maxEligibleCOAProductCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="maxEligibleCardType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="isRequestedProjectCodeValid" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="recommendProjectCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="recommendProjectCodeFLP" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="productStatus" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="policyProgramID" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="cashOnTransfer" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="typeOfKECProgram" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="projectCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="uniqueProductId" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="isAutoPayment" type="xs:string"/>
+      <xs:element form="qualified" name="transferPercentage" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="applyTypeErrorCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="custNumCardlink" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="orgNumCardlink" type="xs:string"/>
+      <xs:element form="qualified" name="recommendLimitFI" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="coaProductCode" type="xs:string"/>
+      <xs:element form="qualified" name="verifiedIncomeFI" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="productCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="systemProductCode" type="xs:string"/>
+      <xs:element form="qualified" name="inProcess" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="cardLevel" type="xs:string"/>
+      <xs:element form="qualified" name="spSignOffDate" type="xs:date"/>
+      <xs:element form="qualified" minOccurs="0" name="ccaManualVerification" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="creditCardType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="tcbAccountNumberForTopUp" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="tcbArrangementNameForTopUp" type="xs:string"/>
+      <xs:element form="qualified" name="requestCreditLimitPercent" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="paymentMethod" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="productMailingAddressType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="wealthProjectCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="accountNumberMC" type="xs:string"/>
+      <xs:element form="qualified" name="billingCycleCutDay" type="xs:int"/>
+      <xs:element form="qualified" name="interestDate" type="xs:date"/>
+      <xs:element form="qualified" name="billingCycleCutDate" type="xs:date"/>
+      <xs:element form="qualified" minOccurs="0" name="policySegmentID" type="xs:string"/>
+      <xs:element form="qualified" name="requestedAmount" type="xs:decimal"/>
+      <xs:element form="qualified" name="requestedTerm" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="flpCardType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="caFinalDecision" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="subProduct" type="xs:string"/>
+      <xs:element form="qualified" name="caApprovedAmount" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="accountNumberINC" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="isMailingAddressMatchCardlink" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="isMailingAddressMatchNCB" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="isMailingAddressMatchID" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="mailingAddress" type="tns:mailingAddress"/>
+      <xs:element form="qualified" name="debtBurdenRatio" type="xs:decimal"/>
+      <xs:element form="qualified" name="maxCreditLimit1" type="xs:decimal"/>
+      <xs:element form="qualified" name="maxCreditLimit2" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="specialSegmentCriteria" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="associatedApplicant" type="tns:ArrayOfassociatedApplicant"/>
+      <xs:element form="qualified" minOccurs="0" name="ruleResults" type="tns:ArrayOfruleResults"/>
+      <xs:element form="qualified" name="stampDutyFee" type="xs:decimal"/>
+      <xs:element form="qualified" name="stampDutyFeeForOriginal" type="xs:decimal"/>
+      <xs:element form="qualified" name="stampDutyFeeForDupCopy" type="xs:decimal"/>
+      <xs:element form="qualified" name="insuranceFee" type="xs:decimal"/>
+      <xs:element form="qualified" name="otherFee" type="xs:decimal"/>
+      <xs:element form="qualified" name="adminFee" type="xs:decimal"/>
+      <xs:element form="qualified" name="stampDutyFeeForGuarantor" type="xs:decimal"/>
+      <xs:element form="qualified" name="maxLimitForBOT" type="xs:decimal"/>
+      <xs:element form="qualified" name="recommendedAmount" type="xs:decimal"/>
+      <xs:element form="qualified" name="recommendTerm" type="xs:int"/>
+      <xs:element form="qualified" name="interestRate" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="interestRateType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="interestSignSpread" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="interestRates" type="tns:ArrayOfinterestRates"/>
+      <xs:element form="qualified" minOccurs="0" name="installmentTiers" type="tns:ArrayOfinstallmentTiers"/>
+      <xs:element form="qualified" minOccurs="0" name="pricing" type="tns:ArrayOfpricing"/>
+      <xs:element form="qualified" name="interestAmount" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="isVETOEligible" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="derivedMaxEligibleCardlinkCardCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="derivedMaxEligibleCardlinkPlasticType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="prevEntryPointProdStatus" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="hisAndHerMembershipNum" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="mailingAddress">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="address" type="tns:address"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfassociatedApplicant">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="associatedApplicant" nillable="true" type="tns:associatedApplicant"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="associatedApplicant">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="applicantType" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfruleResults">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="ruleResults" nillable="true" type="tns:ruleResults"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ruleResults">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="ruleID" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="ruleResult" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="reasonCode" type="xs:string"/>
+      <xs:element form="qualified" name="reasonRank" type="xs:decimal"/>
+      <xs:element form="qualified" name="inProcess" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="override" type="tns:ArrayOfoverride"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfoverride">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="override" nillable="true" type="tns:override"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="override">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="overrideCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="minApprovalAuthority" type="tns:minApprovalAuthority"/>
+      <xs:element form="qualified" minOccurs="0" name="guidelines" type="tns:ArrayOfguidelines"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="minApprovalAuthority">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="authority" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfguidelines">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="guidelines" nillable="true" type="tns:guidelines"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="guidelines">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="code" type="xs:string"/>
+      <xs:element form="qualified" name="rank" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="result" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="isPolicyOverride" type="xs:string"/>
+      <xs:element form="qualified" name="maxLimit" type="xs:decimal"/>
+      <xs:element form="qualified" minOccurs="0" name="minApprovalAuthority" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="data" type="tns:ArrayOfdata"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfdata">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="data" nillable="true" type="tns:data"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="data">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="name" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="value" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfinterestRates">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="interestRates" nillable="true" type="tns:interestRates"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="interestRates">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="interestReferenceRateType" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="interestSignSpread" type="xs:string"/>
+      <xs:element form="qualified" name="interestRate" type="xs:decimal"/>
+      <xs:element form="qualified" name="interestAmount" type="xs:decimal"/>
+      <xs:element form="qualified" name="tierNumber" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfinstallmentTiers">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="installmentTiers" nillable="true" type="tns:installmentTiers"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="installmentTiers">
+    <xs:sequence>
+      <xs:element form="qualified" name="tierNumber" type="xs:int"/>
+      <xs:element form="qualified" name="installmentAmount" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfpricing">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="pricing" nillable="true" type="tns:pricing"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="pricing">
+    <xs:sequence>
+      <xs:element form="qualified" name="feeStartMonth" type="xs:int"/>
+      <xs:element form="qualified" name="feeEndMonth" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="preTerminationFeeFlag" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="preTerminationFeeCode" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="feeWaiveCode" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="priorityPassQuota">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="ppTypeOfSupCard" type="xs:string"/>
+      <xs:element form="qualified" name="ppOfMainCard" type="xs:int"/>
+      <xs:element form="qualified" minOccurs="0" name="foundMemo" type="xs:string"/>
+      <xs:element form="qualified" name="totalExsSup" type="xs:int"/>
+      <xs:element form="qualified" name="totalpp" type="xs:int"/>
+      <xs:element form="qualified" name="ppMain" type="xs:int"/>
+      <xs:element form="qualified" name="ppSupMax" type="xs:int"/>
+      <xs:element form="qualified" name="ppSupCurr" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfOffer">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="Offer" nillable="true" type="tns:Offer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Offer">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="creditDetails" type="tns:creditDetails"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfserviceError">
+    <xs:sequence>
+      <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="serviceError" nillable="true" type="tns:serviceError"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="serviceError">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="codeFromOL" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="codeFromSource" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="sourceOfError" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="message" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="description" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="header">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="authLevel" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="authUserID" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="corrID" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="functionName" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="reqAppID" type="xs:string"/>
+      <xs:element form="qualified" name="reqDateTime" type="xs:dateTime"/>
+      <xs:element form="qualified" minOccurs="0" name="rqUID" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="terminalID" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="userID" type="xs:string"/>
+      <xs:element form="qualified" minOccurs="0" name="userLangPref" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="processRequestResponse">
+    <wsdl:part element="tns:processRequestResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="processRequest">
+    <wsdl:part element="tns:processRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="OrchestrationLayerEntry">
+    <wsdl:operation name="processRequest">
+      <wsdl:input message="tns:processRequest" name="processRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:processRequestResponse" name="processRequestResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OrchestrationLayerEntrySoapBinding" type="tns:OrchestrationLayerEntry">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="processRequest">
+      <soap:operation soapAction="http://www.fico.com/processRequest" style="document"/>
+      <wsdl:input name="processRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="processRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OrchestrationLayerEntry">
+    <wsdl:port binding="tns:OrchestrationLayerEntrySoapBinding" name="OrchestrationLayerEntrySoap">
+      <soap:address location="http://localhost:9082/ServiceCenterWeb/OrchestrationLayerEntry"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

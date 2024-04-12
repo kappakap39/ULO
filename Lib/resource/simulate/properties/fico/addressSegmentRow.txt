@@ -1,0 +1,2 @@
+SegmentTag1,AddressLine11,AddressLine21,AddressLine31,Subdistrict1,District1,Province1,Country1,PostalCode1,Telephone1,TelephoneType1,AddressType1,ResidentialStatus1,ReportedDate1
+SegmentTag2,AddressLine22,AddressLine22,AddressLine32,Subdistrict2,District2,Province2,Country2,PostalCode2,Telephone2,TelephoneType2,AddressType2,ResidentialStatus2,ReportedDate2

@@ -1,0 +1,10 @@
+.sidebar-collapsed {
+  padding-left: 65px;
+  transition: all 100ms linear;
+  transition-delay: 300ms;
+}
+
+.sidebar-collapsed-back {
+  padding-left: 280px;
+  transition: all 100ms linear;
+}

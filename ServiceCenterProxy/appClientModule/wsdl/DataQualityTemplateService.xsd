@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.10 svn-revision#919b322c92f13ad085a933e8dd6dd35d4947364b.--><xs:schema version="1.0" targetNamespace="http://ws.dq.kasikornbank.com/" xmlns:tns="http://ws.dq.kasikornbank.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="dataQualityTemplateRequest">
+    <xs:complexContent>
+      <xs:extension base="tns:baseRequest">
+        <xs:sequence>
+          <xs:element name="customerProfile" type="tns:customerProfile" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="baseRequest">
+    <xs:sequence>
+      <xs:element name="header" type="tns:header" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="customerProfile">
+    <xs:sequence>
+      <xs:element name="assetWithoutLand" type="xs:string" minOccurs="0"/>
+      <xs:element name="businessCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="cisId" type="xs:string" minOccurs="0"/>
+      <xs:element name="consentFlag" type="xs:string" minOccurs="0"/>
+      <xs:element name="contactAddress" type="tns:address" minOccurs="0"/>
+      <xs:element name="contactEmails" type="tns:contactEmail" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="contactNumbers" type="tns:contactNumber" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="customerType" type="xs:string" minOccurs="0"/>
+      <xs:element name="customerTypeCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="dateOfBirthOrRegistrationDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="documentType" type="xs:string" minOccurs="0"/>
+      <xs:element name="educationLevelOfDependant" type="xs:string" minOccurs="0"/>
+      <xs:element name="expireDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="gender" type="xs:string" minOccurs="0"/>
+      <xs:element name="idCardNoOrRegistrationNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="issueBy" type="xs:string" minOccurs="0"/>
+      <xs:element name="issueDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="marriageStatus" type="xs:string" minOccurs="0"/>
+      <xs:element name="nameEng" type="tns:name" minOccurs="0"/>
+      <xs:element name="nameThai" type="tns:name" minOccurs="0"/>
+      <xs:element name="nationalityCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="noOfEmployee" type="xs:string" minOccurs="0"/>
+      <xs:element name="occupationCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="otherAddresses" type="tns:address" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="position" type="xs:string" minOccurs="0"/>
+      <xs:element name="professionCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="professionOther" type="xs:string" minOccurs="0"/>
+      <xs:element name="raceCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="registrationAddress" type="tns:address" minOccurs="0"/>
+      <xs:element name="salary" type="xs:string" minOccurs="0"/>
+      <xs:element name="sourceOfConsent" type="xs:string" minOccurs="0"/>
+      <xs:element name="workAddress" type="tns:address" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="address">
+    <xs:sequence>
+      <xs:element name="addressLine1" type="xs:string" minOccurs="0"/>
+      <xs:element name="addressLine2" type="xs:string" minOccurs="0"/>
+      <xs:element name="amphurCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="building" type="xs:string" minOccurs="0"/>
+      <xs:element name="countryCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="districtCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="floor" type="xs:string" minOccurs="0"/>
+      <xs:element name="moo" type="xs:string" minOccurs="0"/>
+      <xs:element name="number" type="xs:string" minOccurs="0"/>
+      <xs:element name="place" type="xs:string" minOccurs="0"/>
+      <xs:element name="poBox" type="xs:string" minOccurs="0"/>
+      <xs:element name="postcode" type="xs:string" minOccurs="0"/>
+      <xs:element name="provinceCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="road" type="xs:string" minOccurs="0"/>
+      <xs:element name="room" type="xs:string" minOccurs="0"/>
+      <xs:element name="soi" type="xs:string" minOccurs="0"/>
+      <xs:element name="village" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="contactEmail">
+    <xs:sequence>
+      <xs:element name="location" type="tns:locationType" minOccurs="0"/>
+      <xs:element name="mail" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="contactNumber">
+    <xs:sequence>
+      <xs:element name="ext" type="xs:string" minOccurs="0"/>
+      <xs:element name="location" type="tns:locationType" minOccurs="0"/>
+      <xs:element name="number" type="xs:string" minOccurs="0"/>
+      <xs:element name="type" type="tns:contactType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="name">
+    <xs:sequence>
+      <xs:element name="fistName" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="middleName" type="xs:string" minOccurs="0"/>
+      <xs:element name="titleName" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="header">
+    <xs:sequence>
+      <xs:element name="beginTimestamp" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="endTimestamp" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="serviceId" type="xs:string" minOccurs="0"/>
+      <xs:element name="sourceConfig" type="xs:string" minOccurs="0"/>
+      <xs:element name="sourceSystem" type="xs:string" minOccurs="0"/>
+      <xs:element name="status" type="xs:int"/>
+      <xs:element name="transactionId" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dataQualityTemplateResponse">
+    <xs:complexContent>
+      <xs:extension base="tns:baseResponse">
+        <xs:sequence>
+          <xs:element name="contactEmails" type="tns:contactEmailList" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="contactNumbers" type="tns:contactNumberList" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="fields" type="tns:dqField" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="otherAddresses" type="tns:othetAddressList" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="baseResponse">
+    <xs:sequence>
+      <xs:element name="header" type="tns:header" minOccurs="0"/>
+      <xs:element name="responseStatus" type="tns:responseStatus" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="contactEmailList">
+    <xs:sequence>
+      <xs:element name="fields" type="tns:dqField" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="seqNo" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dqField">
+    <xs:sequence>
+      <xs:element name="errors" type="tns:dqError" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="id" type="xs:int"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dqError">
+    <xs:sequence>
+      <xs:element name="code" type="xs:string" minOccurs="0"/>
+      <xs:element name="desc" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="contactNumberList">
+    <xs:sequence>
+      <xs:element name="fields" type="tns:dqField" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="seqNo" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="othetAddressList">
+    <xs:sequence>
+      <xs:element name="fields" type="tns:dqField" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="seqNo" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="responseStatus">
+    <xs:sequence>
+      <xs:element name="responseCode" type="xs:int"/>
+      <xs:element name="responseMsg" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="locationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HOME"/>
+      <xs:enumeration value="OFFICE"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="contactType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MOBILE"/>
+      <xs:enumeration value="TELEPHONE"/>
+      <xs:enumeration value="FAX"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

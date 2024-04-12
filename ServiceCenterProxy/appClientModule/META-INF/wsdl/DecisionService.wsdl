@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?><!--File DecisionService.wsdl, application DecisionService--><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="DecisionService" targetNamespace="http://com.ava.iib/decisionservice" xmlns:bons1="http://DecisionService_IIB" xmlns:bons2="http://www.ibm.com/rules/decisionservice/Flp_uis/Flp_decision" xmlns:bons3="http://www.ibm.com/rules/decisionservice/Flp_uis/Flp_decision/param" xmlns:bons4="http://kasikornbank.com/ExpiredCache" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://com.ava.iib/decisionservice" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="DecisionServiceHttpBinding" originalBindingStyle="document"/>
+        <generatedXSD location="DecisionService_Schema.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <wsdl:types>
+    
+        <xsd:schema targetNamespace="http://com.ava.iib/decisionservice">
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:include schemaLocation="DecisionService-1.xsd"/>
+      <xsd:import namespace="http://kasikornbank.com/ExpiredCache" schemaLocation="DecisionService-2.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://www.ibm.com/rules/decisionservice/Flp_uis/Flp_decision" schemaLocation="DecisionService-3.xsd"/>
+            <xsd:import namespace="http://www.ibm.com/rules/decisionservice/Flp_uis/Flp_decision" schemaLocation="DecisionService-3.xsd"/>
+            <xsd:import namespace="http://www.ibm.com/rules/decisionservice/Flp_uis/Flp_decision/param" schemaLocation="DecisionService-4.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:import namespace="http://DecisionService_IIB" schemaLocation="DecisionService-0.xsd"/>
+            <xsd:include schemaLocation="DecisionService-1.xsd"/>
+    </xsd:schema>
+    </wsdl:types>
+  <wsdl:message name="DecisionServiceRequestMsg">
+    <wsdl:part element="tns:DecisionService" name="DecisionServiceParameters"/>
+  </wsdl:message>
+  <wsdl:message name="DecisionServiceResponseMsg">
+    <wsdl:part element="tns:DecisionServiceResponse" name="DecisionServiceResult"/>
+  </wsdl:message>
+    <wsdl:message name="BOLRequestMsg">
+    <wsdl:part element="tns:BOL" name="BOLParameters"/>
+  </wsdl:message>
+    <wsdl:message name="BOLResponseMsg">
+    <wsdl:part element="tns:BOLResponse" name="BOLResult"/>
+  </wsdl:message>
+    <wsdl:message name="CIS0368I01RequestMsg">
+    <wsdl:part element="tns:CIS0368I01" name="CIS0368I01Parameters"/>
+  </wsdl:message>
+    <wsdl:message name="CIS0368I01ResponseMsg">
+    <wsdl:part element="tns:CIS0368I01Response" name="CIS0368I01Result"/>
+  </wsdl:message>
+    <wsdl:message name="CVRS1312I01RequestMsg">
+    <wsdl:part element="tns:CVRS1312I01" name="CVRS1312I01Parameters"/>
+  </wsdl:message>
+    <wsdl:message name="CVRS1312I01ResponseMsg">
+    <wsdl:part element="tns:CVRS1312I01Response" name="CVRS1312I01Result"/>
+  </wsdl:message>
+    <wsdl:message name="KCBSRequestMsg">
+    <wsdl:part element="tns:KCBS" name="KCBSParameters"/>
+  </wsdl:message>
+    <wsdl:message name="KCBSResponseMsg">
+    <wsdl:part element="tns:KCBSResponse" name="KCBSResult"/>
+  </wsdl:message>
+    <wsdl:message name="KBANK1211I01RequestMsg">
+    <wsdl:part element="tns:KBANK1211I01" name="KBANK1211I01Parameters"/>
+  </wsdl:message>
+    <wsdl:message name="KBANK1211I01ResponseMsg">
+    <wsdl:part element="tns:KBANK1211I01Response" name="KBANK1211I01Result"/>
+  </wsdl:message>
+    <wsdl:message name="FraudRequestMsg">
+    <wsdl:part element="tns:Fraud" name="FraudParameters"/>
+  </wsdl:message>
+    <wsdl:message name="FraudResponseMsg">
+    <wsdl:part element="tns:FraudResponse" name="FraudResult"/>
+  </wsdl:message>
+    <wsdl:message name="CardlinkRequestMsg">
+    <wsdl:part element="tns:Cardlink" name="CardlinkParameters"/>
+  </wsdl:message>
+    <wsdl:message name="CardlinkResponseMsg">
+    <wsdl:part element="tns:CardlinkResponse" name="CardlinkResult"/>
+  </wsdl:message>
+    <wsdl:message name="SavingAccountRequestMsg">
+    <wsdl:part element="tns:SavingAccount" name="SavingAccountParameters"/>
+  </wsdl:message>
+    <wsdl:message name="SavingAccountResponseMsg">
+    <wsdl:part element="tns:SavingAccountResponse" name="SavingAccountResult"/>
+  </wsdl:message>
+    <wsdl:message name="HRISRequestMsg">
+    <wsdl:part element="tns:HRIS" name="HRISParameters"/>
+  </wsdl:message>
+    <wsdl:message name="HRISResponseMsg">
+    <wsdl:part element="tns:HRISResponse" name="HRISResult"/>
+  </wsdl:message>
+    <wsdl:message name="KAssetRequestMsg">
+    <wsdl:part element="tns:KAsset" name="KAssetParameters"/>
+  </wsdl:message>
+    <wsdl:message name="KAssetResponseMsg">
+    <wsdl:part element="tns:KAssetResponse" name="KAssetResult"/>
+  </wsdl:message>
+    <wsdl:message name="KOCRequestMsg">
+    <wsdl:part element="tns:KOC" name="KOCParameters"/>
+  </wsdl:message>
+    <wsdl:message name="KOCResponseMsg">
+    <wsdl:part element="tns:KOCResponse" name="KOCResult"/>
+  </wsdl:message>
+    <wsdl:message name="LPMRequestMsg">
+    <wsdl:part element="tns:LPM" name="LPMParameters"/>
+  </wsdl:message>
+    <wsdl:message name="LPMResponseMsg">
+    <wsdl:part element="tns:LPMResponse" name="LPMResult"/>
+  </wsdl:message>
+    <wsdl:message name="PayrollRequestMsg">
+    <wsdl:part element="tns:Payroll" name="PayrollParameters"/>
+  </wsdl:message>
+    <wsdl:message name="PayrollResponseMsg">
+    <wsdl:part element="tns:PayrollResponse" name="PayrollResult"/>
+  </wsdl:message>
+    <wsdl:message name="SAFERequestMsg">
+    <wsdl:part element="tns:SAFE" name="SAFEParameters"/>
+  </wsdl:message>
+    <wsdl:message name="SAFEResponseMsg">
+    <wsdl:part element="tns:SAFEResponse" name="SAFEResult"/>
+  </wsdl:message>
+    <wsdl:message name="BScoreRequestMsg">
+    <wsdl:part element="tns:BScore" name="BScoreParameters"/>
+  </wsdl:message>
+    <wsdl:message name="BScoreResponseMsg">
+    <wsdl:part element="tns:BScoreResponse" name="BScoreResult"/>
+  </wsdl:message>
+    <wsdl:message name="TCBLoanRequestMsg">
+    <wsdl:part element="tns:TCBLoan" name="TCBLoanParameters"/>
+  </wsdl:message>
+    <wsdl:message name="TCBLoanResponseMsg">
+    <wsdl:part element="tns:TCBLoanResponse" name="TCBLoanResult"/>
+  </wsdl:message>
+    <wsdl:message name="WFInquireRequestMsg">
+    <wsdl:part element="tns:WFInquire" name="WFInquireParameters"/>
+  </wsdl:message>
+    <wsdl:message name="WFInquireResponseMsg">
+    <wsdl:part element="tns:WFInquireResponse" name="WFInquireResult"/>
+  </wsdl:message>
+    <wsdl:message name="FixAccountRequestMsg">
+    <wsdl:part element="tns:FixAccount" name="FixAccountParameters"/>
+  </wsdl:message>
+    <wsdl:message name="FixAccountResponseMsg">
+    <wsdl:part element="tns:FixAccountResponse" name="FixAccountResult"/>
+  </wsdl:message>
+    <wsdl:message name="CurrentAccountRequestMsg">
+    <wsdl:part element="tns:CurrentAccount" name="CurrentAccountParameters"/>
+  </wsdl:message>
+    <wsdl:message name="CurrentAccountResponseMsg">
+    <wsdl:part element="tns:CurrentAccountResponse" name="CurrentAccountResult"/>
+  </wsdl:message>
+    <wsdl:message name="WealthRequestMsg">
+    <wsdl:part element="tns:Wealth" name="WealthParameters"/>
+  </wsdl:message>
+    <wsdl:message name="WealthResponseMsg">
+    <wsdl:part element="tns:WealthResponse" name="WealthResult"/>
+  </wsdl:message>
+    <wsdl:message name="KBANK1550I01RequestMsg">
+    <wsdl:part element="tns:KBANK1550I01" name="KBANK1550I01Parameters"/>
+  </wsdl:message>
+    <wsdl:message name="KBANK1550I01ResponseMsg">
+    <wsdl:part element="tns:KBANK1550I01Response" name="KBANK1550I01Result"/>
+  </wsdl:message>
+    <wsdl:message name="RefreshCacheRequestMsg">
+    <wsdl:part element="tns:RefreshCache" name="RefreshCacheParameters"/>
+  </wsdl:message>
+    <wsdl:message name="RefreshCacheResponseMsg">
+    <wsdl:part element="tns:RefreshCacheResponse" name="RefreshCacheResult"/>
+  </wsdl:message>
+    <wsdl:message name="ExpiredCacheRequestMsg">
+    <wsdl:part element="tns:ExpiredCache" name="ExpiredCacheParameters"/>
+  </wsdl:message>
+    <wsdl:message name="ExpiredCacheResponseMsg">
+    <wsdl:part element="tns:ExpiredCacheResponse" name="ExpiredCacheResult"/>
+  </wsdl:message>
+    <wsdl:message name="LeadByIdentNoRequestMsg">
+    <wsdl:part element="tns:LeadByIdentNo" name="LeadByIdentNoParameters"/>
+  </wsdl:message>
+    <wsdl:message name="LeadByIdentNoResponseMsg">
+    <wsdl:part element="tns:LeadByIdentNoResponse" name="LeadByIdentNoResult"/>
+  </wsdl:message>
+    <wsdl:message name="CheckKPLDuplicateRequestMsg">
+    <wsdl:part element="tns:CheckKPLDuplicate" name="CheckKPLDuplicateParameters"/>
+  </wsdl:message>
+    <wsdl:message name="CheckKPLDuplicateResponseMsg">
+    <wsdl:part element="tns:CheckKPLDuplicateResponse" name="CheckKPLDuplicateResult"/>
+  </wsdl:message>
+    <wsdl:portType name="DecisionService">
+    <wsdl:operation name="DecisionService">
+      <wsdl:input message="tns:DecisionServiceRequestMsg" name="DecisionServiceRequest"/>
+      <wsdl:output message="tns:DecisionServiceResponseMsg" name="DecisionServiceResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="CIS0368I01">
+      <wsdl:input message="tns:CIS0368I01RequestMsg" name="CIS0368I01Request"/>
+      <wsdl:output message="tns:CIS0368I01ResponseMsg" name="CIS0368I01Response"/>
+    </wsdl:operation>
+        <wsdl:operation name="BOL">
+      <wsdl:input message="tns:BOLRequestMsg" name="BOLRequest"/>
+      <wsdl:output message="tns:BOLResponseMsg" name="BOLResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="CVRS1312I01">
+      <wsdl:input message="tns:CVRS1312I01RequestMsg" name="CVRS1312I01Request"/>
+      <wsdl:output message="tns:CVRS1312I01ResponseMsg" name="CVRS1312I01Response"/>
+    </wsdl:operation>
+        <wsdl:operation name="KCBS">
+      <wsdl:input message="tns:KCBSRequestMsg" name="KCBSRequest"/>
+      <wsdl:output message="tns:KCBSResponseMsg" name="KCBSResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="KBANK1211I01">
+      <wsdl:input message="tns:KBANK1211I01RequestMsg" name="KBANK1211I01Request"/>
+      <wsdl:output message="tns:KBANK1211I01ResponseMsg" name="KBANK1211I01Response"/>
+    </wsdl:operation>
+        <wsdl:operation name="Fraud">
+      <wsdl:input message="tns:FraudRequestMsg" name="FraudRequest"/>
+      <wsdl:output message="tns:FraudResponseMsg" name="FraudResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="Cardlink">
+      <wsdl:input message="tns:CardlinkRequestMsg" name="CardlinkRequest"/>
+      <wsdl:output message="tns:CardlinkResponseMsg" name="CardlinkResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="SavingAccount">
+      <wsdl:input message="tns:SavingAccountRequestMsg" name="SavingAccountRequest"/>
+      <wsdl:output message="tns:SavingAccountResponseMsg" name="SavingAccountResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="HRIS">
+      <wsdl:input message="tns:HRISRequestMsg" name="HRISRequest"/>
+      <wsdl:output message="tns:HRISResponseMsg" name="HRISResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="KAsset">
+      <wsdl:input message="tns:KAssetRequestMsg" name="KAssetRequest"/>
+      <wsdl:output message="tns:KAssetResponseMsg" name="KAssetResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="KOC">
+      <wsdl:input message="tns:KOCRequestMsg" name="KOCRequest"/>
+      <wsdl:output message="tns:KOCResponseMsg" name="KOCResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="LPM">
+      <wsdl:input message="tns:LPMRequestMsg" name="LPMRequest"/>
+      <wsdl:output message="tns:LPMResponseMsg" name="LPMResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="Payroll">
+      <wsdl:input message="tns:PayrollRequestMsg" name="PayrollRequest"/>
+      <wsdl:output message="tns:PayrollResponseMsg" name="PayrollResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="SAFE">
+      <wsdl:input message="tns:SAFERequestMsg" name="SAFERequest"/>
+      <wsdl:output message="tns:SAFEResponseMsg" name="SAFEResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="BScore">
+      <wsdl:input message="tns:BScoreRequestMsg" name="BScoreRequest"/>
+      <wsdl:output message="tns:BScoreResponseMsg" name="BScoreResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="TCBLoan">
+      <wsdl:input message="tns:TCBLoanRequestMsg" name="TCBLoanRequest"/>
+      <wsdl:output message="tns:TCBLoanResponseMsg" name="TCBLoanResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="WFInquire">
+      <wsdl:input message="tns:WFInquireRequestMsg" name="WFInquireRequest"/>
+      <wsdl:output message="tns:WFInquireResponseMsg" name="WFInquireResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="FixAccount">
+      <wsdl:input message="tns:FixAccountRequestMsg" name="FixAccountRequest"/>
+      <wsdl:output message="tns:FixAccountResponseMsg" name="FixAccountResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="CurrentAccount">
+      <wsdl:input message="tns:CurrentAccountRequestMsg" name="CurrentAccountRequest"/>
+      <wsdl:output message="tns:CurrentAccountResponseMsg" name="CurrentAccountResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="Wealth">
+      <wsdl:input message="tns:WealthRequestMsg" name="WealthRequest"/>
+      <wsdl:output message="tns:WealthResponseMsg" name="WealthResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="KBANK1550I01">
+      <wsdl:input message="tns:KBANK1550I01RequestMsg" name="KBANK1550I01Request"/>
+      <wsdl:output message="tns:KBANK1550I01ResponseMsg" name="KBANK1550I01Response"/>
+    </wsdl:operation>
+        <wsdl:operation name="RefreshCache">
+      <wsdl:input message="tns:RefreshCacheRequestMsg" name="RefreshCacheRequest"/>
+      <wsdl:output message="tns:RefreshCacheResponseMsg" name="RefreshCacheResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="ExpiredCache">
+      <wsdl:input message="tns:ExpiredCacheRequestMsg" name="ExpiredCacheRequest"/>
+      <wsdl:output message="tns:ExpiredCacheResponseMsg" name="ExpiredCacheResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="LeadByIdentNo">
+      <wsdl:input message="tns:LeadByIdentNoRequestMsg" name="LeadByIdentNoRequest"/>
+      <wsdl:output message="tns:LeadByIdentNoResponseMsg" name="LeadByIdentNoResponse"/>
+    </wsdl:operation>
+        <wsdl:operation name="CheckKPLDuplicate">
+      <wsdl:input message="tns:CheckKPLDuplicateRequestMsg" name="CheckKPLDuplicateRequest"/>
+      <wsdl:output message="tns:CheckKPLDuplicateResponseMsg" name="CheckKPLDuplicateResponse"/>
+    </wsdl:operation>
+    </wsdl:portType>
+  <wsdl:binding name="DecisionServiceHttpBinding" type="tns:DecisionService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="DecisionService">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/DecisionService"/>
+            <wsdl:input name="DecisionServiceRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="DecisionServiceResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="BOL">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/BOL"/>
+            <wsdl:input name="BOLRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="BOLResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="CIS0368I01">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/CIS0368I01"/>
+            <wsdl:input name="CIS0368I01Request">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="CIS0368I01Response">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="CVRS1312I01">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/CVRS1312I01"/>
+            <wsdl:input name="CVRS1312I01Request">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="CVRS1312I01Response">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="KCBS">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/KCBS"/>
+            <wsdl:input name="KCBSRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="KCBSResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="KBANK1211I01">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/KBANK1211I01"/>
+            <wsdl:input name="KBANK1211I01Request">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="KBANK1211I01Response">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="Fraud">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/Fraud"/>
+            <wsdl:input name="FraudRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="FraudResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="Cardlink">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/Cardlink"/>
+            <wsdl:input name="CardlinkRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="CardlinkResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="SavingAccount">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/SavingAccount"/>
+            <wsdl:input name="SavingAccountRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="SavingAccountResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="HRIS">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/HRIS"/>
+            <wsdl:input name="HRISRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="HRISResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="KAsset">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/KAsset"/>
+            <wsdl:input name="KAssetRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="KAssetResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="KOC">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/KOC"/>
+            <wsdl:input name="KOCRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="KOCResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="LPM">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/LPM"/>
+            <wsdl:input name="LPMRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="LPMResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="Payroll">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/Payroll"/>
+            <wsdl:input name="PayrollRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="PayrollResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="SAFE">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/SAFE"/>
+            <wsdl:input name="SAFERequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="SAFEResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="BScore">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/BScore"/>
+            <wsdl:input name="BScoreRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="BScoreResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="TCBLoan">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/TCBLoan"/>
+            <wsdl:input name="TCBLoanRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="TCBLoanResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="WFInquire">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/WFInquire"/>
+            <wsdl:input name="WFInquireRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="WFInquireResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="FixAccount">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/FixAccount"/>
+            <wsdl:input name="FixAccountRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="FixAccountResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="CurrentAccount">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/CurrentAccount"/>
+            <wsdl:input name="CurrentAccountRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="CurrentAccountResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="Wealth">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/Wealth"/>
+            <wsdl:input name="WealthRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="WealthResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="KBANK1550I01">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/KBANK1550I01"/>
+            <wsdl:input name="KBANK1550I01Request">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="KBANK1550I01Response">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="RefreshCache">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/RefreshCache"/>
+            <wsdl:input name="RefreshCacheRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="RefreshCacheResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="ExpiredCache">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/ExpiredCache"/>
+            <wsdl:input name="ExpiredCacheRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="ExpiredCacheResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="LeadByIdentNo">
+            <soap:operation soapAction="http://com.ava.iib/decisionservice/LeadByIdentNo"/>
+            <wsdl:input name="LeadByIdentNoRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="LeadByIdentNoResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="CheckKPLDuplicate">
+      <soap:operation soapAction="http://com.ava.iib/decisionservice/CheckKPLDuplicate"/>
+      <wsdl:input name="CheckKPLDuplicateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CheckKPLDuplicateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    </wsdl:binding>
+  <wsdl:service name="DecisionServiceHttpService">
+    <wsdl:port binding="tns:DecisionServiceHttpBinding" name="DecisionServiceHttpPort">
+      <soap:address location="http://192.168.0.9:7800/DecisionService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

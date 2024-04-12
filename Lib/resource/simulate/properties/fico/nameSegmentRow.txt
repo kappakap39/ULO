@@ -1,0 +1,2 @@
+SegmentTag1,FamilyName11,FamilyName21,FirstName1,Middle1,MaritalStatus1,DateOfBirth1,Gender1,Title1,Nationality1,NumberOfChildren1,SpouseName1,Occupation1,ConsentToEnquire1
+SegmentTag2,FamilyName22,FamilyName22,FirstName2,Middle2,MaritalStatus2,DateOfBirth2,Gender2,Title2,Nationality2,NumberOfChildren2,SpouseName2,Occupation2,ConsentToEnquire2

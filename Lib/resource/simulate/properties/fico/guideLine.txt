@@ -1,0 +1,2 @@
+code1,1,result1,1.00,5.00,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,2,true,true,true,true,true,true
+code2,2,result2,2.00,10.00,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,2,false,false,false,false,false,false

@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RE_R007sub" language="groovy" pageWidth="3300" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="3300" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="942ef362-1a6f-493e-8628-63595f0b3ae0">
+	<property name="ireport.zoom" value="0.9493745839581041"/>
+	<property name="ireport.x" value="893"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.print.keep.full.text" value="true"/>
+	<parameter name="P_APP_DATE" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT DISTINCT AG.APPLICATION_GROUP_NO, P.PERSONAL_ID,
+    ORIG_CARDLINK_CUSTOMER.CARDLINK_CUST_NO, --CARDLINK_CUSTOMER_NO
+    P.CIS_NO, --CIS_NO
+    P.CIS_PRIM_SEGMENT || P.CIS_PRIM_SUB_SEGMENT AS SEGMENT_CODE, --SEGMENT
+    A.FINAL_APP_DECISION,--FINAL_APPLICATION_DECISION
+    to_char(A.FINAL_APP_DECISION_DATE, 'dd/MM/yyyy') as FINAL_APP_DECISION_DATE  ,--FINAL_APPLICATION_DECISION_DATE
+    PM.DUE_CYCLE,--BILLING_CYCLE_DATE
+    LB.DISPLAY_NAME AS PRODUCT_DESC, --PRODUCT
+    C.CARD_NO_MARK, --CARD_NO_MARK
+    CASE WHEN B.ORG_ID = 'KPL' THEN NULL ELSE APT.DISPLAY_NAME END AS APPLICATION_TYPE_DESC,--APPLICATION_STATUS
+    CT.CARD_TYPE_DESC, --CARD_TYPE
+
+
+    CASE
+    WHEN  PV.PHONE_VER_STATUS IS NULL THEN 'N'
+    ELSE PV.PHONE_VER_STATUS
+    END AS  DV_PHONE_VER_STATUS, --DV_CONTACT_CUSTOMER
+
+
+    TO_CHAR(PV.CREATE_DATE,'DD/MM/YYYY') AS DV_CONTACT_DATE, --CONTACT DATE
+    TO_CHAR(PV.CREATE_DATE ,'HH24:MI') AS DV_CONTACT_TIME, --CONTACT_TIME
+
+   CASE WHEN INSTR(CIS_CLOB.EDIT_FLAG,'02') <> 0 THEN 'X' ELSE '' END AS CURRENT_ADDRESS_EDIT_FLAG , --ADDRESS_CONTACT_CURRENT
+   CASE WHEN INSTR(CIS_CLOB.EDIT_FLAG,'03') <> 0 THEN 'X' ELSE '' END AS OFFICE_ADDRESS_EDIT_FLAG, --ADDRESS_CONTACT_OFFICE
+   CASE WHEN INSTR(CIS_CLOB.EDIT_FLAG,'01') <> 0 THEN 'X' ELSE '' END AS DOCUMENT_ADDRESS_EDIT_FLAG, --ADDRESS_CONTACT_DOCUMENT
+    T.ERROR_DESC,
+
+    P.TH_FIRST_NAME ||' '|| P.TH_LAST_NAME AS CUSTOMER_NAME,
+    NVL2(P.MOBILE_NO,SUBSTR(P.MOBILE_NO, 1, 2)||'-'||SUBSTR(P.MOBILE_NO, 3, 4)||'-'||SUBSTR(P.MOBILE_NO, 7, 4),'') AS MOBILE,
+    AD1.PHONE1 AS HOME_PHONE,
+    AD2.PHONE1 AS OFFICE_PHONE,
+    P.EMAIL_PRIMARY,
+    PV.TELEPHONE_NUMBER AS DV_PHONE,
+    CASE WHEN OAS6.PERSONAL_ID IS NOT NULL THEN 'รับ' ELSE 'ไม่รับ' END AS POSTAL_FLAG,
+    CASE WHEN OAS2.PERSONAL_ID IS NOT NULL THEN '/' ELSE 'X' END AS DUE_ALERT_FLAG,
+    CASE WHEN OAS1.PERSONAL_ID IS NOT NULL THEN '/' ELSE 'X' END AS SPENDING_ALERT_FLAG,
+    PRC.DISPLAY_NAME AS PLACE_RECEIVE_CARD
+
+FROM ORIG_PERSONAL_INFO P
+JOIN ORIG_PERSONAL_RELATION REL ON REL.PERSONAL_ID = P.PERSONAL_ID AND P.PERSONAL_TYPE = REL.PERSONAL_TYPE
+JOIN ORIG_APPLICATION_GROUP AG ON P.APPLICATION_GROUP_ID = AG.APPLICATION_GROUP_ID
+JOIN ORIG_APPLICATION A ON A.APPLICATION_RECORD_ID = REL.REF_ID
+JOIN ORIG_LOAN L ON L.APPLICATION_RECORD_ID = A.APPLICATION_RECORD_ID
+LEFT JOIN ORIG_CARD C ON C.LOAN_ID = L.LOAN_ID
+LEFT JOIN CARD_TYPE CT ON CT.CARD_TYPE_ID = C.CARD_TYPE
+JOIN SERVICE_REQ_RESP ON SERVICE_REQ_RESP.SERVICE_ID IN ('CVRSDQ0001', 'CVRSDQ0004') AND  SERVICE_REQ_RESP.APP_ID = A.APPLICATION_GROUP_ID
+LEFT JOIN ORIG_CARDLINK_CUSTOMER ON ORIG_CARDLINK_CUSTOMER.CARDLINK_CUST_ID = C.CARDLINK_CUST_ID
+LEFT JOIN
+        (SELECT PVI.PERSONAL_ID, PV.PHONE_VER_STATUS, PV.CREATE_DATE, PV.TELEPHONE_NUMBER FROM
+                XRULES_PHONE_VERIFICATION PV JOIN
+                (SELECT PER.PERSONAL_ID, MAX(PVII.PHONE_VERIFY_ID) AS PHONE_VERIFY_ID FROM XRULES_VERIFICATION_RESULT VR
+                JOIN ORIG_PERSONAL_INFO PER ON PER.PERSONAL_ID = VR.REF_ID
+                JOIN XRULES_PHONE_VERIFICATION PVII ON PVII.VER_RESULT_ID = VR.VER_RESULT_ID AND VR.VER_LEVEL = 'P'
+                WHERE PVII.PHONE_VER_STATUS = 'Y' GROUP BY PER.PERSONAL_ID) PVI ON PVI.PHONE_VERIFY_ID = PV.PHONE_VERIFY_ID
+        ) PV ON PV.PERSONAL_ID = P.PERSONAL_ID
+JOIN ORIG_PAYMENT_METHOD PM ON PM.PERSONAL_ID = P.PERSONAL_ID
+JOIN BUSINESS_CLASS B ON B.BUS_CLASS_ID = A.BUSINESS_CLASS_ID
+LEFT JOIN (
+SELECT PERSONAL_ID, NVL2(PHONE1,SUBSTR(PHONE1, 1, 1)||'-'||SUBSTR(PHONE1, 2, 4)||'-'||SUBSTR(PHONE1, 6, 4),'')||NVL2(EXT1,' ext.'||EXT1,'') AS PHONE1 FROM ORIG_PERSONAL_ADDRESS
+WHERE ADDRESS_TYPE = '01')
+AD1 ON P.PERSONAL_ID = AD1.PERSONAL_ID
+LEFT JOIN (
+SELECT PERSONAL_ID, NVL2(PHONE1,SUBSTR(PHONE1, 1, 1)||'-'||SUBSTR(PHONE1, 2, 4)||'-'||SUBSTR(PHONE1, 6, 4),'')||NVL2(EXT1,' ext.'||EXT1,'') AS PHONE1 FROM ORIG_PERSONAL_ADDRESS
+WHERE ADDRESS_TYPE = '02')
+AD2 ON P.PERSONAL_ID = AD2.PERSONAL_ID
+LEFT JOIN (
+SELECT CV.PERSONAL_ID,LISTAGG(FIELD_NAME||': '||CV.ERROR_DESC,',')
+WITHIN GROUP (ORDER BY CV.ERROR_DESC) AS ERROR_DESC
+FROM CVRS_VALIDATION_RESULT CV
+GROUP BY CV.PERSONAL_ID) T ON P.PERSONAL_ID = T.PERSONAL_ID
+LEFT JOIN LIST_BOX_MASTER LB ON A.BUSINESS_CLASS_ID = LB.SYSTEM_ID2 AND LB.FIELD_ID = '53'
+LEFT JOIN LIST_BOX_MASTER APT ON C.APPLICATION_TYPE = APT.CHOICE_NO AND APT.FIELD_ID = '66'
+LEFT JOIN LIST_BOX_MASTER PRC ON P.PLACE_RECEIVE_CARD = PRC.CHOICE_NO AND PRC.FIELD_ID = '12'
+LEFT JOIN ORIG_ADDITIONAL_SERVICE OAS6 ON OAS6.PERSONAL_ID = P.PERSONAL_ID AND OAS6.SERVICE_TYPE = '06'
+LEFT JOIN ORIG_ADDITIONAL_SERVICE OAS2 ON OAS2.PERSONAL_ID = P.PERSONAL_ID AND OAS2.SERVICE_TYPE = '02'
+LEFT JOIN ORIG_ADDITIONAL_SERVICE OAS1 ON OAS1.PERSONAL_ID = P.PERSONAL_ID AND OAS1.SERVICE_TYPE = '01'
+LEFT JOIN
+(
+ SELECT APP_ID, LISTAGG(CONTENT_MSG ,',') WITHIN GROUP (ORDER BY APP_ID) EDIT_FLAG
+ FROM (
+    SELECT DISTINCT APP_ID, REGEXP_SUBSTR(DBMS_LOB.substr(CONTENT_MSG, LENGTH(CONTENT_MSG)), '("typeCode":")(0[1-3])(")') AS CONTENT_MSG
+    FROM SERVICE_REQ_RESP WHERE SERVICE_ID = 'CIS1046A01' AND ACTIVITY_TYPE = 'O'
+    AND SERVICE_REQ_RESP.CREATE_DATE >= (SELECT TRUNC(APP_DATE) FROM APPLICATION_DATE) AND SERVICE_REQ_RESP.CREATE_DATE <= (SELECT TRUNC(APP_DATE)+1 FROM APPLICATION_DATE)
+ )  GROUP BY APP_ID
+) CIS_CLOB ON CIS_CLOB.APP_ID = AG.APPLICATION_GROUP_ID
+WHERE A.FINAL_APP_DECISION IS NOT NULL
+AND SERVICE_REQ_RESP.CREATE_DATE >= (SELECT TRUNC(APP_DATE) FROM APPLICATION_DATE) AND SERVICE_REQ_RESP.CREATE_DATE <= (SELECT TRUNC(APP_DATE)+1 FROM APPLICATION_DATE)
+ ORDER BY AG.APPLICATION_GROUP_NO]]>
+	</queryString>
+	<field name="APPLICATION_GROUP_NO" class="java.lang.String"/>
+	<field name="PERSONAL_ID" class="java.lang.String"/>
+	<field name="CARDLINK_CUST_NO" class="java.lang.String"/>
+	<field name="CIS_NO" class="java.lang.String"/>
+	<field name="SEGMENT_CODE" class="java.lang.String"/>
+	<field name="FINAL_APP_DECISION" class="java.lang.String"/>
+	<field name="FINAL_APP_DECISION_DATE" class="java.lang.String"/>
+	<field name="DUE_CYCLE" class="java.math.BigDecimal"/>
+	<field name="PRODUCT_DESC" class="java.lang.String"/>
+	<field name="CARD_NO_MARK" class="java.lang.String"/>
+	<field name="APPLICATION_TYPE_DESC" class="java.lang.String"/>
+	<field name="CARD_TYPE_DESC" class="java.lang.String"/>
+	<field name="DV_PHONE_VER_STATUS" class="java.lang.String"/>
+	<field name="DV_CONTACT_DATE" class="java.lang.String"/>
+	<field name="DV_CONTACT_TIME" class="java.lang.String"/>
+	<field name="CURRENT_ADDRESS_EDIT_FLAG" class="java.lang.String"/>
+	<field name="OFFICE_ADDRESS_EDIT_FLAG" class="java.lang.String"/>
+	<field name="DOCUMENT_ADDRESS_EDIT_FLAG" class="java.lang.String"/>
+	<field name="ERROR_DESC" class="java.lang.String"/>
+	<field name="CUSTOMER_NAME" class="java.lang.String"/>
+	<field name="MOBILE" class="java.lang.String"/>
+	<field name="HOME_PHONE" class="java.lang.String"/>
+	<field name="OFFICE_PHONE" class="java.lang.String"/>
+	<field name="EMAIL_PRIMARY" class="java.lang.String"/>
+	<field name="DV_PHONE" class="java.lang.String"/>
+	<field name="POSTAL_FLAG" class="java.lang.String"/>
+	<field name="DUE_ALERT_FLAG" class="java.lang.String"/>
+	<field name="SPENDING_ALERT_FLAG" class="java.lang.String"/>
+	<field name="PLACE_RECEIVE_CARD" class="java.lang.String"/>
+	<title>
+		<band height="80">
+			<staticText>
+				<reportElement x="1300" y="23" width="106" height="37" uuid="c011b222-2501-4643-a72a-b635aa11fa75"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="true" isItalic="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[DQE Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="68">
+			<staticText>
+				<reportElement x="3249" y="42" width="20" height="20" uuid="d6a12fef-856e-4ba1-8d59-6613098f0d60"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[of]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3160" y="22" width="129" height="20" uuid="fa0767aa-74eb-49c5-ad49-f0728bd45901"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Report ID: RE_R015]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1280" y="2" width="66" height="20" uuid="fda0d8a2-0e0c-484b-a016-085a21b5c683"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Date as of ]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="3269" y="42" width="20" height="20" uuid="27c61ee9-2676-4882-a0e8-195b202e44b6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="3145" y="2" width="89" height="20" uuid="7ad5fcd7-13b3-4f0d-a63a-4f707c042906"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMM dd, yyyy">
+				<reportElement x="1346" y="2" width="242" height="20" uuid="9b9ea36b-d12a-4a0b-a722-e7a891decf53"/>
+				<textElement>
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{P_APP_DATE} == null?(new java.util.Date()-1): $P{P_APP_DATE}==""?(new java.util.Date()-1):$P{P_APP_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3229" y="42" width="20" height="20" uuid="35b57a32-fe7f-42de-97d5-0093c3a93a28"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss">
+				<reportElement x="3234" y="2" width="55" height="20" uuid="12197722-a44a-43f7-8a56-82090f90e08c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3188" y="42" width="41" height="20" uuid="4bb3ee15-f740-4921-8358-98f6b669ad80"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Page]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="80">
+			<staticText>
+				<reportElement mode="Opaque" x="284" y="40" width="56" height="40" forecolor="#000000" uuid="c3c40149-5c11-4393-b66d-bc7025449d1f"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Segment]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1223" y="40" width="106" height="40" forecolor="#000000" uuid="49557a20-a088-482c-8aee-2342d563a54c"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Product]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1329" y="40" width="172" height="40" forecolor="#000000" uuid="8dd1ada1-1abb-4feb-a8d4-e14dc291b380"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[หมายเลขบัตรที่อนุมัติ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="100" y="60" width="111" height="20" forecolor="#000000" uuid="e15e7286-b352-43c0-8a30-12f6ddedc886"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[(Cardpac ID)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="100" y="40" width="111" height="20" forecolor="#000000" uuid="ded5de15-ca58-40a5-be12-1935e65f0948"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Customer ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1788" y="60" width="150" height="20" forecolor="#000000" uuid="af8ddd7e-1d48-4f6f-a188-82fb1fb56b31"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[(Y/N)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1788" y="40" width="150" height="20" forecolor="#000000" uuid="9dc857ad-9f99-497a-95fc-6201e993185f"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[DV มีการติดต่อลูกค้าหรือไม่ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1501" y="60" width="87" height="20" forecolor="#000000" uuid="523debfa-c32d-46aa-8416-d175e1d7c8e6"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[บัตรเสริม]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1501" y="40" width="87" height="20" forecolor="#000000" uuid="cc282020-0568-439a-8ae5-3f42a239ceb8"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[แสดง บัตรหลัก/]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2046" y="60" width="138" height="20" forecolor="#000000" uuid="8fcb7897-ab64-4262-83d1-63402840d884"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ติดต่อลูกค้า]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2046" y="40" width="138" height="20" forecolor="#000000" uuid="bb33c678-0bc7-4f03-bf54-f4e3d199a13b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[วันที่ทีม DV]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2184" y="60" width="138" height="20" forecolor="#000000" uuid="03bf9dd9-1d2f-4ca8-a8a7-db602d0d13e9"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ติดต่อลูกค้า]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2184" y="40" width="138" height="20" forecolor="#000000" uuid="1c224f77-f47e-460e-8c3b-6574525cf489"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[เวลาที่ทีม DV]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2913" y="40" width="387" height="20" forecolor="#000000" uuid="bf338a8a-afec-40f9-8cfa-62e9d4cbbdda"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ข้อมูลที่มีปัญหา]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2913" y="60" width="387" height="20" forecolor="#000000" uuid="36197e22-b580-4551-a614-eb73b88d799a"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[(Error_Description)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="340" y="40" width="152" height="40" forecolor="#000000" uuid="525ac112-7bd9-47df-918e-a151180ef2b4"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ชื่อ-นามสกุล]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="670" y="40" width="89" height="40" forecolor="#000000" uuid="9dd8701d-fb67-445d-932c-6be96f8a0e10"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[โทรศัพท์ที่ทำงาน]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2322" y="60" width="109" height="20" forecolor="#000000" uuid="776c0f54-7c1d-443f-a182-2563fb2fa964"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[แจ้งยอดทางไปรษณีย์]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2322" y="40" width="109" height="20" forecolor="#000000" uuid="6be958b4-aca9-481b-84c4-ca8d8e54b940"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ความประสงค์รับใบ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="962" y="40" width="71" height="20" forecolor="#000000" uuid="496336af-68f9-442c-9b7a-c2987e804a23"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Approval ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="962" y="60" width="71" height="20" forecolor="#000000" uuid="9045af93-f2d5-4f6c-8b18-df6828871d34"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[result]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1133" y="60" width="90" height="20" forecolor="#000000" uuid="aca02c29-60ab-4049-bbb4-d1181680cb3b"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[(Date)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1133" y="40" width="90" height="20" forecolor="#000000" uuid="86c748dc-6b7d-40ad-8f80-b92ea3373245"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Billing Cycle ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1033" y="40" width="100" height="40" forecolor="#000000" uuid="e8b9fe04-7499-459a-addd-17c6dfa59a7e"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Approval Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1588" y="40" width="200" height="40" forecolor="#000000" uuid="d52d868f-57d9-4643-befc-864a120764a4"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ประเภทบัตร (Card type)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1938" y="40" width="108" height="20" forecolor="#000000" uuid="3c19f47f-afa2-446c-b184-5c87c32c8056"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[เบอร์โทรติดต่อ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1938" y="60" width="108" height="20" forecolor="#000000" uuid="e6664e68-c113-4e7b-a91e-fc8900c588f2"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ที่DV ใช้ติดต่อ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2431" y="40" width="79" height="40" forecolor="#000000" uuid="49c2ca6f-281a-41f6-a3c6-d20e638a81d2"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Spending Alert]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2510" y="40" width="79" height="40" forecolor="#000000" uuid="f7bc1de6-e20e-42b4-9dc3-7ff1b7b1d364"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Due Alert]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2589" y="40" width="111" height="40" forecolor="#000000" uuid="82997beb-d264-48a3-ac23-47b1a29dcbb5"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[สถานที่จัดส่งเอกสาร]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2700" y="0" width="213" height="40" forecolor="#000000" uuid="2a19b017-4e13-4b9f-be4a-a8a7010d8f19"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Address update]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2913" y="0" width="387" height="40" forecolor="#000000" uuid="a1385d00-d427-4894-9cd3-86766c4808ff"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CVRS Cross validation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2842" y="40" width="71" height="40" forecolor="#000000" uuid="a58ecada-6dc6-4bdb-aaf4-87f615768ecc"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ที่อยู่ที่ติดต่อ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2771" y="40" width="71" height="40" forecolor="#000000" uuid="f0f04828-817c-47d2-bceb-0ea7ef74a744"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ที่อยู่ตามเอกสารสำคัญ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2700" y="40" width="71" height="40" forecolor="#000000" uuid="404002ab-6e20-41ce-a96d-58ec714d3952"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ที่อยู่ที่ทำงาน]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="759" y="40" width="203" height="40" forecolor="#000000" uuid="1cc41172-6269-48d0-811c-4aa1a7f7980b"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="492" y="40" width="89" height="40" forecolor="#000000" uuid="0518333e-8887-42bf-b0a3-7b6899e191a6"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[โทรศัพท์มือถือ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="581" y="40" width="89" height="40" forecolor="#000000" uuid="16c85b42-d0f9-4f1a-a916-e930e24b4805"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[โทรศัพท์บ้าน]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="2700" height="40" forecolor="#000000" uuid="ab88ec19-ab5d-414b-aaef-5c7b4e61be21"/>
+				<box topPadding="0" rightPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Customer Information Filter]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="40" width="100" height="40" forecolor="#000000" uuid="a5c2aac5-850a-440e-a82c-3a08aa246328"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[หมายเลขใบสมัคร]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="211" y="40" width="73" height="40" forecolor="#000000" uuid="d84d5f8a-77e3-4939-822c-f750c61399fe"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Tahoma" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CIS No.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="100" y="0" width="111" height="20" uuid="55f915a7-d95a-4d7e-b740-e34063a88a32"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CARDLINK_CUST_NO} == null ? "-" : $F{CARDLINK_CUST_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="0" width="73" height="20" uuid="b62f4910-3bbc-4491-bed7-12216a1ac48d"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CIS_NO} == null ? "-" : $F{CIS_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="284" y="0" width="56" height="20" uuid="c868eca0-72ba-43ef-9020-6d081801c74d"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{SEGMENT_CODE} == null ? "-" : $F{SEGMENT_CODE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1033" y="0" width="100" height="20" uuid="7e99e616-eae5-4fb9-b637-9bd9c76c506f"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{FINAL_APP_DECISION_DATE} == null ? "-" : $F{FINAL_APP_DECISION_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1133" y="0" width="90" height="20" uuid="f706ca87-b48c-4698-b1b9-6af158304d4e"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DUE_CYCLE} == null ? "-" : $F{DUE_CYCLE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="####-####-####-####">
+				<reportElement x="1329" y="0" width="172" height="20" uuid="bb30d743-1dd2-495a-9fb4-7bb2706d5866"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{CARD_NO_MARK} == null) ? "-" : ((($F{CARD_NO_MARK}.length()) == 16) ? ($F{CARD_NO_MARK}.substring(0, 4) + "-" + $F{CARD_NO_MARK}.substring(4,8) + "-" + $F{CARD_NO_MARK}.substring(8,12) + "-" + $F{CARD_NO_MARK}.substring(12,16)) : $F{CARD_NO_MARK})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1501" y="0" width="87" height="20" uuid="0d9e4237-8fe2-4498-bda3-17b989a27b79"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{APPLICATION_TYPE_DESC} == null ? "-" : $F{APPLICATION_TYPE_DESC}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="1588" y="0" width="200" height="20" uuid="132cfc1b-2cee-41ae-9d1f-097879d738c1"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CARD_TYPE_DESC} == null ? "-" : $F{CARD_TYPE_DESC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1788" y="0" width="150" height="20" uuid="3c584f95-aef6-4213-884c-659f5b5c3420"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DV_PHONE_VER_STATUS} == null ? "-" : $F{DV_PHONE_VER_STATUS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="2046" y="0" width="138" height="20" uuid="08a5088d-8e31-4b1b-8940-3bcb798699cf"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DV_CONTACT_DATE} == null ? "-" : $F{DV_CONTACT_DATE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="2184" y="0" width="138" height="20" uuid="a7654b86-3f64-4907-a3db-b08e8c0f9a7a"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DV_CONTACT_TIME} == null ? "-" : $F{DV_CONTACT_TIME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2700" y="0" width="71" height="20" uuid="6e9938bf-e1ec-4f03-b8d4-104760593004"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{OFFICE_ADDRESS_EDIT_FLAG} == null ? "" : $F{OFFICE_ADDRESS_EDIT_FLAG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2771" y="0" width="71" height="20" uuid="c7ccaf25-ca66-4b1d-9d67-33201ff04832"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DOCUMENT_ADDRESS_EDIT_FLAG} == null ? "" : $F{DOCUMENT_ADDRESS_EDIT_FLAG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2842" y="0" width="71" height="20" uuid="483c7bb1-1181-42fb-b988-a457bd8e0de8"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CURRENT_ADDRESS_EDIT_FLAG} == null ? "" : $F{CURRENT_ADDRESS_EDIT_FLAG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2913" y="0" width="387" height="20" uuid="9903774e-874a-422a-bbfd-a123a49fb15f"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ERROR_DESC} == null ? "-" : ($F{ERROR_DESC}).replace(",","\n")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1223" y="0" width="106" height="20" uuid="17337922-478c-4b4e-88bc-7ce1369e8ab1"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PRODUCT_DESC} == null ? "-" : $F{PRODUCT_DESC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2510" y="0" width="79" height="20" uuid="2dc3e535-aa28-4f04-bbbc-dd6890e5c878"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DUE_ALERT_FLAG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2589" y="0" width="111" height="20" uuid="21090d3a-41bf-4e29-b0ad-26c9993ae538"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PLACE_RECEIVE_CARD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2431" y="0" width="79" height="20" uuid="8930ee50-24f5-4660-9485-7bf928abd67a"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{SPENDING_ALERT_FLAG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2322" y="0" width="109" height="20" uuid="d482e889-fabd-4a69-a84c-0e9d290c32cf"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{POSTAL_FLAG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1938" y="0" width="108" height="20" uuid="4614f84a-03ae-4f82-b09f-3d3c6f9e83b0"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DV_PHONE} == null ? "-" : $F{DV_PHONE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="962" y="0" width="71" height="20" uuid="b1e73ad6-908a-4bd4-a37f-c4088bb4f9ea"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{FINAL_APP_DECISION} == null ? "-" : $F{FINAL_APP_DECISION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="759" y="0" width="203" height="20" uuid="cf50d2a4-5bc2-453f-a45c-d01a272bdb4e"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMAIL_PRIMARY} == null ? "-" : $F{EMAIL_PRIMARY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="670" y="0" width="89" height="20" uuid="678507ed-cd13-4841-bfc3-62869ab6c547"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{OFFICE_PHONE} == null ? "-" : $F{OFFICE_PHONE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="581" y="0" width="89" height="20" uuid="25e54247-65b5-43f8-addb-c13e072d81f7"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{HOME_PHONE} == null ? "-" : $F{HOME_PHONE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="492" y="0" width="89" height="20" uuid="b082aafb-cf44-4116-be21-dddef1fa4fe5"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{MOBILE} == null ? "-" : $F{MOBILE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="152" height="20" uuid="7a527b9e-fb1c-4bdd-a6c6-88a2a2e1401b"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CUSTOMER_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="461239cb-858c-4e39-bf7b-78646d952fc7"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{APPLICATION_GROUP_NO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

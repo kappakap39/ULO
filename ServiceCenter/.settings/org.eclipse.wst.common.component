@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="ServiceCenter">
+        <wb-resource deploy-path="/" source-path="/" tag="defaultRootSource"/>
+        <dependent-module archiveName="ServiceCenterEJB.jar" deploy-path="/" handle="module:/resource/ServiceCenterEJB/ServiceCenterEJB">
+            <dependent-object>Module_1429246361312</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ServiceCenterWeb.war" deploy-path="/" handle="module:/resource/ServiceCenterWeb/ServiceCenterWeb">
+            <dependent-object>Module_1431398978243</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ServiceCenterProxy.jar" deploy-path="/" handle="module:/resource/ServiceCenterProxy/ServiceCenterProxy">
+            <dependent-object>Module_1431435249135</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

@@ -1,0 +1,221 @@
+@charset "utf-8";
+figure, h2, h1, p{
+	padding:0;
+	margin:0;
+}
+header, footer, section, aside, nav, article, {
+ display:block;
+}
+textarea, input, *:focus { outline: none !important; }
+body{
+	background:#fff;
+	font-family: Helvetica, Arial, sans-serif;
+	color:#8b8d90 !important;
+	-webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+	font-size:16px;
+	margin: 0 auto;
+	width: 100%;
+	min-height: 100%;
+	position: absolute;
+	display: table;
+}
+.outerlogin {
+	
+    display: table-cell;
+    vertical-align: middle;
+}
+.wraplogin	{
+	width:790px;
+	height: 410px;
+	margin: 0 auto;
+	/* border: solid 1px #000; */
+	/* box-shadow: 0 30px 70px #989898; */
+}
+.logo_icon{
+	margin:-80px auto 10px 0px;
+	width:137px;
+	height:104px;
+	background:url(image/logoicon.png) no-repeat;
+}
+.logo_iconsmall{
+	margin-bottom:25px;
+	width:90px;
+	height:67px;
+	background:url(image/logoicon_small.png) no-repeat;
+}
+.login{
+	width:305px;
+	font-size:0.9em;
+	float:right;
+	margin: 26px auto;
+}
+.info{
+	margin:0.5em 0 1.2em;
+	font-size:0.9em;
+	float:left;
+}
+.info h1{
+	font-size:48px;
+	color:#00a950;
+	font-weight:400;
+}
+.info hgroup{
+	line-height: 32px;
+ 	float: left;
+	height:23px;
+	font-size:18px;
+	color:#00a950;
+	border-right:1px solid #00a950;
+	padding-right:5px;
+}
+.info p{
+	padding-left:5px;
+	float:left;
+	margin-top:10px;
+}
+.wraptext_user, .textbox_password{
+	/* margin:0px 43px 10px 0px; */
+	/* background:url(image/loginuser.png) no-repeat; */
+	/* padding:3px 10px 3px 45px; */
+	height: 48px;
+	width: 262px;
+	/* border:1px solid #c7c7c7; */
+	float: left;
+	position: relative;
+}
+.wraptext_user:after, .textbox_password:after{
+	content: '';
+	background: url(image/loginuser.png) transparent no-repeat;
+	position: absolute;
+	/* display: block; */
+	width: 39px;
+	height: 37px;
+	margin-left: 1px;
+	pointer-events: none;
+	top: 1px;
+}
+.textbox_password:after {
+ 	background:url(image/loginpassword.png) no-repeat !important;
+ }
+.textbox_login:focus {
+    border: 1px solid #00A950;
+	
+}
+.textbox_password{
+	background:url(image/loginpassword.png) no-repeat !important;
+}
+.textbox_login {
+	font-size:1em;
+	line-height:6mm;
+	color:#818181;
+	text-align:center;
+	margin: 0px 43px 10px 0px;        
+	padding: 3px 10px 3px 45px;    
+	height: 31px;    
+	width: 205px;    
+	border: 1px solid #c7c7c7;
+	position: relative;
+}
+.errormessage{
+	font-size:11px;
+	float:left;
+	width:100%;
+	margin: 10px 0 5px;
+	color:#c85305;
+}	
+.clear:after { content: "."; display: block; height: 0; clear: both; visibility: hidden;}
+.clear { display: inline-block; }
+html[xmlns] .clear { display: block;}
+* html .clear { height: 1%;}
+.groupList .button {margin-right: 0px; float:left;cursor: pointer;}
+.groupList .right {margin-right: 1em;}
+.groupList{
+	float:left;
+}	
+.groupList_search{
+	text-align:center !important;
+}
+.groupList .button{
+	display: block;
+	text-decoration: none!important; 
+	font-family: Helvetica, Arial, sans serif, tahoma;
+	padding: 0.8em 3.5em; 
+	border-radius: 3px; 
+	-moz-border-radius: 3px; 
+	border: solid 0px #114B22;
+}
+.groupList .green{
+	color: #fff;
+	background-color: #2fb457;
+	margin-top:3px;
+}
+.groupList .green:hover, .groupFooter:hover {
+	background-color: #229f47;
+	color:#fff;
+}
+.groupList .disable {
+	color: #555;
+	background-color: #eee;
+	margin-right:3px;
+}
+.groupList .red {
+	color: #fff;
+	background-color: #de815c;
+}
+.groupList .red:hover{
+	background-color: #d55b2b;
+	margin-right:3px;
+}
+.groupList .left{
+	border-top-right-radius: 0px;
+	-moz-border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	-moz-border-bottom-right-radius: 0px;
+	border-right: 0px;
+}
+.groupList .left:hover {
+	border-right: 0px;
+}
+.groupList .middle{
+	border-radius: 0px;
+	-moz-radius: 0px;
+	border-right: 0px;
+}
+.groupList .middle:hover {
+	border-right: 0px;
+}
+.groupList .right {
+	border-top-left-radius: 0px;
+	-moz-border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	-moz-border-bottom-left-radius: 0px;
+}
+.brandMode{
+	width:440px;
+	float:left;
+	font-size:11px;
+	color:#fff;
+	background:#00a850;
+}
+.brandMode figure{
+	width:440px;
+	height:295px;
+	float:left;
+	background:url(image/brandmode.png) no-repeat;
+}
+.brandinfo{
+	width:86%;
+	padding:6% 7% 10%;
+	float:left;	
+}
+.brandinfo h1{
+	font-size:24px;
+	margin-bottom:5px;
+	font-weight:400;
+}
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: #fff!important;
+    box-shadow: 0 50px 0px #fff inset;
+}

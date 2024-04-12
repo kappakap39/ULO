@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QrReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0fddd31-1c10-489d-879d-277edfaa57dc">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="48"/>
+	<queryString>
+		<![CDATA[select * from table(f_gen_coverpage(2178))]]>
+	</queryString>
+	<field name="APP_GROUP_NO" class="java.lang.String"/>
+	<field name="FULL_NAME" class="java.lang.String"/>
+	<field name="CID_NO" class="java.lang.String"/>
+	<field name="COVERPAGE_TYPE" class="java.lang.String"/>
+	<field name="QR1" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="119" splitType="Stretch">
+			<image scaleImage="RealSize">
+				<reportElement uuid="48890b34-41c6-4a11-9ea1-0cf74b964e4e" x="1" y="2" width="58" height="58"/>
+				<imageExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
+     new com.google.zxing.qrcode.QRCodeWriter().encode(
+        $F{QR1},
+         com.google.zxing.BarcodeFormat.QR_CODE, 300, 300))]]></imageExpression>
+			</image>
+			<image scaleImage="RealSize">
+				<reportElement uuid="48890b34-41c6-4a11-9ea1-0cf74b964e4e" x="72" y="0" width="62" height="62"/>
+				<imageExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
+     new com.google.zxing.qrcode.QRCodeWriter().encode(
+         $F{APP_GROUP_NO},
+         com.google.zxing.BarcodeFormat.QR_CODE, 300, 300))]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="74" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="699a9210-d3b2-45fc-824d-014e27a42731" x="158" y="14" width="185" height="38"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="14" pdfFontName="C:\Users\father\Documents\tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Cover Page - Follow Up]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="151" splitType="Stretch">
+			<textField>
+				<reportElement uuid="0608f80b-5805-4fa4-80fe-222ebb09e71b" x="243" y="25" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfFontName="C:\Users\father\Documents\tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APP_GROUP_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bdadfabb-5147-4d33-b8be-fc0a501057c7" x="243" y="56" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfFontName="C:\Users\father\Documents\tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FULL_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="38cc3c05-09b6-4ebb-9e4b-b6137fec6ac5" x="243" y="88" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfFontName="C:\Users\father\Documents\tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CID_NO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="972ce65d-9281-497a-b92a-3bf4a161a1e1" x="70" y="25" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfFontName="C:\Users\father\Documents\tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[หมายเลขใบสมัคร]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="972ce65d-9281-497a-b92a-3bf4a161a1e1" x="70" y="56" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfFontName="C:\Users\father\Documents\tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ชื่อนามสกุล]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="972ce65d-9281-497a-b92a-3bf4a161a1e1" x="70" y="88" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" pdfFontName="C:\Users\father\Documents\tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[เลขที่เอกสารสำตัญ]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

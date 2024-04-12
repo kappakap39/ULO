@@ -1,0 +1,99 @@
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; SCROLLBAR-FACE-COLOR: #d3d3d3; PADDING-BOTTOM: 0px; MARGIN: 0px; SCROLLBAR-HIGHLIGHT-COLOR: #cccccc; SCROLLBAR-SHADOW-COLOR: #ffffff; SCROLLBAR-3DLIGHT-COLOR: #ffffff; SCROLLBAR-ARROW-COLOR: #000099; PADDING-TOP: 0px; SCROLLBAR-TRACK-COLOR: #e6e6e6; SCROLLBAR-DARKSHADOW-COLOR: #cccccc; BACKGROUND-COLOR: #ffffff
+}
+A:link {
+	FONT-WEIGHT: normal; FONT-SIZE: 9px; VERTICAL-ALIGN: baseline; CURSOR: hand; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; TEXT-DECORATION: none
+}
+A:visited {
+	FONT-WEIGHT: normal; FONT-SIZE: 9px; VERTICAL-ALIGN: baseline; CURSOR: hand; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; TEXT-DECORATION: none
+}
+A:active {
+	FONT-WEIGHT: normal; FONT-SIZE: 9px; VERTICAL-ALIGN: baseline; CURSOR: hand; COLOR: #9999ff; FONT-STYLE: normal; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; TEXT-DECORATION: none
+}
+A:hover {
+	FONT-WEIGHT: normal; FONT-SIZE: 9px; VERTICAL-ALIGN: baseline; CURSOR: hand; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; TEXT-DECORATION: none
+}
+A {
+	TEXT-DECORATION: none
+}
+.textbox {
+	BORDER-RIGHT: #888888 1px solid; BORDER-TOP: #888888 1px solid; FONT-WEIGHT: normal; FONT-SIZE: 10px; VERTICAL-ALIGN: middle; BORDER-LEFT: #888888 1px solid; COLOR: #000000; BORDER-BOTTOM: #888888 1px solid; FONT-STYLE: normal; FONT-FAMILY: "Tahoma"; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: left; TEXT-DECORATION: none
+}
+.textboxCurrency {
+	BORDER-RIGHT: #999999 1px ridge; BORDER-TOP: #999999 1px ridge; FONT-WEIGHT: normal; FONT-SIZE: 9px; VERTICAL-ALIGN: middle; BORDER-LEFT: #999999 1px ridge; COLOR: #000000; BORDER-BOTTOM: #999999 1px ridge; FONT-STYLE: normal; FONT-FAMILY: "MS Sans Serif ","Microsoft Sans Serif"; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: right
+}
+.TextAreaBox {
+	BORDER-RIGHT: #888888 1px solid; BORDER-TOP: #888888 1px solid; SCROLLBAR-FACE-COLOR: #cccccc; FONT-WEIGHT: normal; FONT-SIZE: 9px; SCROLLBAR-HIGHLIGHT-COLOR: #cccccc; VERTICAL-ALIGN: middle; BORDER-LEFT: #888888 1px solid; WIDTH: auto; SCROLLBAR-SHADOW-COLOR: #ffffff; COLOR: #000000; SCROLLBAR-3DLIGHT-COLOR: #ffffff; BORDER-BOTTOM: #888888 1px solid; FONT-STYLE: normal; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; SCROLLBAR-DARKSHADOW-COLOR: #999999; HEIGHT: auto; TEXT-ALIGN: left; TEXT-DECORATION: none
+}
+.ComboBox {
+	BORDER-RIGHT: #888888 0px solid; BORDER-TOP: #888888 0px solid; FONT-WEIGHT: normal; FONT-SIZE: 9px; VERTICAL-ALIGN: middle; BORDER-LEFT: #888888 0px solid; COLOR: #000000; LINE-HEIGHT: normal; BORDER-BOTTOM: #888888 0px solid; FONT-STYLE: normal; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; BACKGROUND-COLOR: #ffffff; TEXT-DECORATION: none
+}
+.ComboBox2 {
+	BORDER-RIGHT: #888888 0px solid; BORDER-TOP: #888888 0px solid; FONT-WEIGHT: normal; FONT-SIZE: 9px; VERTICAL-ALIGN: middle; BORDER-LEFT: #888888 0px solid; WIDTH: 150px; COLOR: #000000; LINE-HEIGHT: normal; BORDER-BOTTOM: #888888 0px solid; FONT-STYLE: normal; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; BACKGROUND-COLOR: #ffffff; TEXT-DECORATION: none
+}
+.RadioButton {
+	
+}
+.CheckBox {
+	
+}
+.TextWarningHeader {
+	FONT-WEIGHT: bold; FONT-SIZE: 9px; COLOR: #cc3333; FONT-STYLE: normal; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; TEXT-ALIGN: left; TEXT-DECORATION: none
+}
+.TextWarningNormal {
+	FONT-WEIGHT: bold; FONT-SIZE: 9px; COLOR: #cc3333; FONT-STYLE: normal; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; TEXT-ALIGN: left; TEXT-DECORATION: none
+}
+.TextAbNormal0 {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif"; TEXT-ALIGN: left; TEXT-DECORATION: none
+}
+.button_next {
+	FONT-SIZE: 9px; CURSOR: hand; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #006bb5
+}
+.button_previous {
+	BORDER-RIGHT: #999999 1px outset; BORDER-TOP: #999999 1px outset; FONT-WEIGHT: normal; FONT-SIZE: 9px; VERTICAL-ALIGN: baseline; BORDER-LEFT: #999999 1px outset; CURSOR: hand; COLOR: #000066; BORDER-BOTTOM: #999999 1px outset; FONT-FAMILY: "MS Sans Serif"; BACKGROUND-COLOR: #cccccc
+}
+.button_add {
+	FONT-SIZE: 9px; CURSOR: hand; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #006bb5
+}
+.button_blue {
+	FONT-SIZE: 9px; CURSOR: hand; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #034d8f
+}
+.button_text {
+	FONT-SIZE: 9px; CURSOR: hand; FONT-FAMILY: "tahoma"
+}
+.button {
+	FONT-SIZE: 5px; CURSOR: hand; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.hr {
+	BACKGROUND-POSITION: left 50%; HEIGHT: 0px; BACKGROUND-COLOR: #999999
+}
+.font1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 9pt; COLOR: #000063; FONT-FAMILY: "MS Sans Serif", "DB ThaiText", "AngsanaUPC","Thonburi"
+}
+.font2 {
+	FONT-SIZE: 9pt; COLOR: #0066b3; FONT-FAMILY: "tahoma"
+}
+.font3 {
+	FONT-WEIGHT: bold; FONT-SIZE: 9pt; COLOR: #ffffff; FONT-FAMILY: "MS Sans Serif", "DB ThaiText", "AngsanaUPC","Thonburi"
+}
+.font4 {
+	FONT-SIZE: 9pt; FONT-FAMILY: "tahoma"
+}
+.font5 {
+	FONT-WEIGHT: bold; FONT-FAMILY: "MS Sans Serif", "DB ThaiText", "AngsanaUPC","Thonburi"
+}
+.font6 {
+	FONT-FAMILY: "MS Sans Serif", "DB ThaiText", "AngsanaUPC","Thonburi"
+}
+.font7 {
+	FONT-SIZE: 8pt; COLOR: #000000; FONT-FAMILY: "tahoma"
+}
+.font8 {
+	FONT-SIZE: 8pt; COLOR: #0066b3; FONT-FAMILY: "tahoma"
+}
+TD {
+	FONT-SIZE: 10px; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.box {
+	BORDER-RIGHT: #0f40a5 1px solid; BORDER-TOP: #0f40a5 1px solid; SCROLLBAR-FACE-COLOR: #cccccc; FONT-SIZE: 10px; BACKGROUND: #c6d3e7; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; BORDER-LEFT: #0f40a5 1px solid; SCROLLBAR-SHADOW-COLOR: #ffffff; COLOR: #4f4f4f; SCROLLBAR-3DLIGHT-COLOR: #ffffff; SCROLLBAR-ARROW-COLOR: #000000; SCROLLBAR-TRACK-COLOR: #ffffff; BORDER-BOTTOM: #0f40a5 1px solid; FONT-FAMILY: Verdana,Arial,Helvetica; SCROLLBAR-DARKSHADOW-COLOR: #ffffff; TEXT-ALIGN: left
+}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/WebSphere Application Server V8.5 JRE">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path=".apt_generated">
+		<attributes>
+			<attribute name="optional" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/com.ibm.ws.ast.st.runtime.runtimeTarget.v85/was.base.v85">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="/Lib/log4j-1.2.16.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DMEJB"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DMEJBClient"/>
+	<classpathentry kind="lib" path="/Lib/JSONLibs/gson-2.2.4.jar"/>
+	<classpathentry kind="lib" path="/Lib/IASModel.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/InfBatchCore"/>
+	<classpathentry kind="lib" path="/Lib/bpm-rest-client.jar"/>
+	<classpathentry kind="lib" path="/Lib/org.json.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring-framework/spring-core-4.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring-framework/spring-web-4.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/spring-framework/spring-webmvc-4.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Lib/poi-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="/Lib/poi-examples-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="/Lib/poi-excelant-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="/Lib/poi-ooxml-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="/Lib/poi-ooxml-schemas-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="/Lib/poi-scratchpad-3.13-20150929.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ServiceCenterProxy"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/FLPCore"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/FLPModel"/>
+	<classpathentry kind="lib" path="/Lib/core-lib/BPMCore.jar"/>
+	<classpathentry kind="lib" path="/Lib/core-lib/BPMCoreModel.jar"/>
+	<classpathentry kind="lib" path="/Lib/core-lib/BPMProxy.jar"/>
+	<classpathentry kind="lib" path="/Lib/core-lib/ULOCache.jar"/>
+	<classpathentry kind="lib" path="/Lib/core-lib/ULOCore.jar"/>
+	<classpathentry kind="lib" path="/Lib/core-lib/ULOModel.jar"/>
+	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
+</classpath>
